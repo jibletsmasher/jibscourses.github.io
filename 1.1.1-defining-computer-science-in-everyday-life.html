@@ -1,0 +1,4238 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1.1.1 — Defining Computer Science in Everyday Life</title>
+        <style>
+
+:root {
+    --bg: #0f1a17;
+    --bg-accent: #172522;
+    --card: #13211d;
+    --card-strong: #193028;
+    --text: #ebf4ee;
+    --muted: #9db4a8;
+    --accent: #7ad0a0;
+    --accent-strong: #4eb57d;
+    --accent-soft: #173328;
+    --border: #28453d;
+    --ok: #6fdf95;
+    --warn: #f0a560;
+    --danger: #ff8b7d;
+    --shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+    --button-bg: #13211d;
+    --button-text: #ebf4ee;
+    --button-border: #35564c;
+    --button-hover-bg: #193028;
+    --button-hover-border: #7ad0a0;
+    --status-bg: #10211b;
+    --status-text: #d5e5dc;
+    --status-border: #33554a;
+    --chip-bg: #173328;
+    --chip-text: #9ee1b8;
+    --chip-border: #356a54;
+    --exercise-bg: #10201b;
+    --exercise-border: #35564c;
+    --input-bg: #0d1714;
+    --input-text: #ebf4ee;
+    --input-border: #35564c;
+    --code-bg: #163328;
+    --footer-text: #8ea49a;
+}
+
+[data-theme='light'] {
+    --bg: #f4efe2;
+    --bg-accent: #efe3c8;
+    --card: #fffaf0;
+    --card-strong: #fff2d8;
+    --text: #1e2a23;
+    --muted: #5f6b61;
+    --accent: #1f6f50;
+    --accent-strong: #16543c;
+    --accent-soft: #dff0e6;
+    --border: #c8d3c4;
+    --ok: #1e7a45;
+    --warn: #a45b18;
+    --danger: #aa2e25;
+    --shadow: 0 18px 40px rgba(30, 42, 35, 0.12);
+    --button-bg: #fff8ea;
+    --button-text: #163328;
+    --button-border: #b9c9bb;
+    --button-hover-bg: #eef7f0;
+    --button-hover-border: #1f6f50;
+    --status-bg: #f8f5ec;
+    --status-text: #31433a;
+    --status-border: #cfd8d1;
+    --chip-bg: #e5f3ea;
+    --chip-text: #1f6f50;
+    --chip-border: #a6cdb6;
+    --exercise-bg: #fffdf7;
+    --exercise-border: #cfdbc7;
+    --input-bg: #fffdf8;
+    --input-text: #1e2a23;
+    --input-border: #b9c9bb;
+    --code-bg: #ecf7f0;
+    --footer-text: #68756c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light;
+}
+
+html[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top left, var(--bg-accent), transparent 34%),
+        linear-gradient(180deg, var(--bg), var(--bg-accent));
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+.wrap {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.hero,
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    padding: 1.25rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.hero-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls,
+.hero-action-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls {
+    margin-right: auto;
+}
+
+.hero-copy {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.hero-copy h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero-copy p {
+    max-width: 70ch;
+}
+
+.card {
+    padding: 1rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.lesson-step {
+    display: none;
+    gap: 0.85rem;
+}
+
+.lesson-step.active {
+    display: grid;
+}
+
+.lesson-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (min-width: 980px) {
+    .lesson-grid {
+        grid-template-columns: 0.95fr 1.25fr 0.9fr;
+        align-items: start;
+    }
+}
+
+.panel {
+    display: grid;
+    gap: 0.75rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.workspace-panel {
+    min-height: 420px;
+}
+
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.step-actions .left,
+.step-actions .right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.footer-note {
+    color: var(--footer-text);
+    font-size: 0.92rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+
+.theme-label,
+.step-meta,
+.muted,
+.fact-label {
+    color: var(--muted);
+}
+
+.theme-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.theme-select {
+    width: auto;
+    min-width: 8rem;
+    max-width: 100%;
+}
+
+.theme-select,
+.text-input,
+.select-input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    padding: 0.65rem 0.75rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button,
+.btn-link {
+    border: 1px solid var(--button-border);
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+button:hover,
+button:focus-visible,
+.btn-link:hover,
+.btn-link:focus-visible {
+    background: var(--button-hover-bg);
+    border-color: var(--button-hover-border);
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.primary:hover,
+.primary:focus-visible {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+}
+
+.ghost {
+    background: transparent;
+}
+
+.chips,
+.controls,
+.tab-row,
+.game-bar,
+.facts,
+.mini-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chip,
+.game-pill,
+.tab-btn,
+.fact-chip {
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--chip-border);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.fact-chip.complete {
+    background: color-mix(in srgb, var(--ok) 15%, var(--chip-bg));
+    color: var(--ok);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.progress-track {
+    width: 100%;
+    height: 0.8rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-soft) 58%, transparent);
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    transition: width 180ms ease;
+}
+
+.step-title {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border: 1px solid var(--chip-border);
+    font-weight: 700;
+}
+
+.exercise,
+.checkpoint,
+.reflection-box,
+.summary-item {
+    display: grid;
+    gap: 0.6rem;
+    border: 1px dashed var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.objective-list {
+    margin: 0;
+    padding-left: 0.1rem;
+    list-style-position: inside;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.status {
+    border: 1px solid var(--status-border);
+    background: var(--status-bg);
+    color: var(--status-text);
+    border-radius: 14px;
+    padding: 0.75rem 0.85rem;
+}
+
+.status.ok {
+    border-color: color-mix(in srgb, var(--ok) 58%, transparent);
+    color: var(--ok);
+}
+
+.status.retry {
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+    color: var(--warn);
+}
+
+.status.error {
+    border-color: color-mix(in srgb, var(--danger) 55%, transparent);
+    color: var(--danger);
+}
+
+.term-tip {
+    position: relative;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+}
+
+.term-tip::after {
+    content: ' ⓘ';
+    font-size: 0.78rem;
+}
+
+.term-tip::before {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    min-width: 14rem;
+    max-width: 18rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    background: var(--card-strong);
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease;
+    z-index: 5;
+}
+
+.term-tip:hover::before,
+.term-tip:focus-visible::before {
+    opacity: 1;
+}
+
+.star-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.star-step {
+    border: 1px solid var(--button-border);
+    border-radius: 8px;
+    padding: 0.35rem 0.45rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+    justify-items: center;
+}
+
+.star-step.earned {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.star-glyphs {
+    color: var(--muted);
+    font-size: 0.84rem;
+    letter-spacing: 0.07rem;
+    font-weight: 700;
+}
+
+.star-step-label {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.star-step.earned .star-glyphs {
+    color: var(--accent);
+}
+
+.star-step.pop {
+    animation: star-pop 260ms ease;
+}
+
+.streak-display.pulse {
+    animation: streak-pop 260ms ease;
+}
+
+@keyframes streak-pop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes star-pop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -1rem;
+    width: 0.6rem;
+    height: 0.9rem;
+    border-radius: 0.2rem;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh) rotate(320deg);
+        opacity: 0;
+    }
+}
+
+.trophy-case {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 35;
+}
+
+.trophy-case.hidden {
+    display: none;
+}
+
+.teacher-summary-grid,
+.teacher-summary-section,
+.teacher-summary-actions,
+.teacher-summary-card,
+.teacher-response-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.teacher-summary-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 38;
+}
+
+.teacher-summary-modal.hidden {
+    display: none;
+}
+
+.teacher-summary-card {
+    width: min(960px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+}
+
+.teacher-summary-section {
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.teacher-summary-section h4 {
+    margin: 0;
+}
+
+.teacher-response-card {
+    display: grid;
+    gap: 0.45rem;
+    border: 1px dashed var(--exercise-border);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--card) 76%, transparent);
+    padding: 0.8rem;
+}
+
+.teacher-response-label {
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.teacher-response-text {
+    white-space: pre-wrap;
+    line-height: 1.55;
+}
+
+.trophy-card {
+    width: min(760px, 100%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.9rem;
+}
+
+.trophy-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.achievement-list {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.achievement-item {
+    border: 1px solid var(--button-border);
+    border-radius: 10px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+}
+
+.achievement-item.unlocked {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.achievement-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.achievement-desc {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.trophy-summary {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--exercise-bg);
+    padding: 0.65rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.summary-title {
+    font-weight: 700;
+}
+
+.summary-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    min-width: 190px;
+    border: 1px solid var(--button-border);
+    border-radius: 14px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    font-weight: 700;
+}
+
+.retry-prompt {
+    border-top: 1px solid var(--border);
+    padding-top: 0.55rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.trophy-summary.hidden,
+.retry-prompt.hidden {
+    display: none;
+}
+
+
+
+.intro-grid,
+.wrap-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.spot-workspace-grid,
+.sequence-stage {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.sequence-visual-header {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.warmup-options,
+.warmup-actions {
+    display: grid;
+    gap: 0.55rem;
+}
+
+@media (min-width: 860px) {
+    .intro-grid,
+    .wrap-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 980px) {
+    .spot-workspace-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr) minmax(
+                0,
+                0.85fr
+            );
+        align-items: start;
+    }
+
+    .sequence-stage {
+        grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.25fr);
+        align-items: start;
+    }
+
+    .sequence-visual-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+    }
+}
+
+.spot-choice-panel {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+}
+
+.scene-choice-bank {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+.scene-choice {
+    border: 1px solid var(--button-border);
+    border-radius: 18px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.8rem;
+    font-weight: 700;
+    text-align: left;
+    display: grid;
+    gap: 0.65rem;
+    align-content: start;
+    min-height: 210px;
+}
+
+.scene-choice:hover,
+.scene-choice:focus-visible {
+    border-color: var(--accent);
+    background: var(--button-hover-bg);
+}
+
+.scene-choice.correct {
+    border-color: color-mix(in srgb, var(--ok) 60%, transparent);
+    background: color-mix(in srgb, var(--ok) 14%, transparent);
+}
+
+.scene-choice:disabled {
+    opacity: 1;
+}
+
+.scene-choice-figure {
+    border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--accent-soft) 28%, transparent),
+        color-mix(in srgb, var(--card-strong) 92%, transparent)
+    );
+    min-height: 112px;
+    display: grid;
+    place-items: center;
+    padding: 0.55rem;
+}
+
+.scene-choice-figure svg {
+    width: 100%;
+    max-width: 128px;
+    height: 88px;
+    display: block;
+}
+
+.scene-choice-copy {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.scene-choice-name {
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.scene-choice-context {
+    color: var(--muted);
+    font-size: 0.84rem;
+    font-weight: 600;
+}
+
+.scene-choice.incorrect {
+    border-color: color-mix(in srgb, var(--warn) 60%, transparent);
+}
+
+.selected-tags,
+.feedback-list,
+.sequence-log {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.scenario-strip {
+    display: grid;
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+}
+
+@media (min-width: 980px) {
+    .scenario-strip {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: start;
+    }
+}
+
+.scenario-brief,
+.scenario-plan {
+    display: grid;
+    gap: 0.65rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 18px;
+    background: var(--exercise-bg);
+    padding: 0.95rem;
+}
+
+.planning-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.question-stack {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.feedback-list li,
+.sequence-log li {
+    margin-left: 1rem;
+}
+
+.sequence-card,
+.slot-card {
+    width: 100%;
+    border: 1px solid var(--button-border);
+    border-radius: 16px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.sequence-card strong,
+.slot-card strong {
+    font-size: 1rem;
+}
+
+.sequence-card:focus-visible,
+.slot-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.card-bank,
+.sequence-lane {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.slot {
+    border: 1px dashed var(--exercise-border);
+    border-radius: 16px;
+    min-height: 88px;
+    padding: 0.55rem;
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+}
+
+.slot.locked {
+    border-style: solid;
+    border-color: color-mix(in srgb, var(--ok) 60%, transparent);
+}
+
+.slot.preview-correct {
+    border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+    background: color-mix(in srgb, var(--ok) 10%, transparent);
+}
+
+.slot.preview-error {
+    border-color: color-mix(in srgb, var(--warn) 65%, transparent);
+    background: color-mix(in srgb, var(--warn) 10%, transparent);
+}
+
+.slot.preview-next {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.slot-label {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.move-controls {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.route-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    background: color-mix(in srgb, var(--accent-soft) 30%, transparent);
+    padding: 0.75rem;
+    border-radius: 16px;
+}
+
+.route-node {
+    min-width: 110px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+    padding: 0.65rem 0.75rem;
+    display: grid;
+    gap: 0.2rem;
+}
+
+.route-node.active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.route-node.complete {
+    border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+}
+
+.route-node.error {
+    border-color: color-mix(in srgb, var(--warn) 65%, transparent);
+    background: color-mix(in srgb, var(--warn) 12%, transparent);
+}
+
+.route-node-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.route-node-title {
+    font-weight: 700;
+}
+
+.route-arrow {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.route-board {
+    --board-cols: 5;
+    display: grid;
+    grid-template-columns: repeat(var(--board-cols), minmax(56px, 1fr));
+    gap: 0.55rem;
+    padding: 0.85rem;
+    border-radius: 18px;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--accent-soft) 22%, transparent),
+        color-mix(in srgb, var(--card-strong) 90%, transparent)
+    );
+    border: 1px solid var(--exercise-border);
+}
+
+.route-cell {
+    min-height: 78px;
+    border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    background: color-mix(in srgb, var(--card) 82%, transparent);
+    padding: 0.55rem;
+    display: grid;
+    gap: 0.25rem;
+    align-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.route-cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.route-cell.blocked {
+    background: repeating-linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--border) 20%, transparent),
+        color-mix(in srgb, var(--border) 20%, transparent) 10px,
+        color-mix(in srgb, var(--card-strong) 94%, transparent) 10px,
+        color-mix(in srgb, var(--card-strong) 94%, transparent) 20px
+    );
+    opacity: 0.72;
+}
+
+.route-cell.route-path::after {
+    box-shadow: inset 0 0 0 1px
+        color-mix(in srgb, var(--accent-soft) 50%, transparent);
+}
+
+.route-cell.traversed {
+    background: color-mix(in srgb, var(--ok) 14%, transparent);
+    border-color: color-mix(in srgb, var(--ok) 50%, transparent);
+}
+
+.route-cell.upcoming {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.route-cell.bot {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.route-cell.bot-error {
+    border-color: color-mix(in srgb, var(--warn) 70%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--warn) 15%, transparent);
+}
+
+.route-cell.start {
+    background: color-mix(in srgb, var(--accent-soft) 18%, transparent);
+}
+
+.route-cell.target {
+    background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+
+.route-cell-label {
+    font-size: 0.72rem;
+    line-height: 1.2;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.route-cell-token {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.5rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--card-strong) 92%, transparent);
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.route-cell-token.bot {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.route-cell-token.error {
+    background: color-mix(in srgb, var(--warn) 18%, transparent);
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+}
+
+.route-cell-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+}
+
+.complete-banner {
+    border: 1px solid color-mix(in srgb, var(--ok) 55%, transparent);
+    background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+
+.scene-certification-panel {
+    align-content: start;
+}
+
+.reflection-actions {
+    margin-top: 0.15rem;
+}
+
+.question-card {
+    display: grid;
+    gap: 0.55rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    padding: 0.85rem;
+    background: var(--exercise-bg);
+}
+
+.question-card label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: start;
+}
+
+.question-card legend {
+    margin-bottom: 0.4rem;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <main class="wrap">
+            <section class="hero">
+                <div class="hero-controls">
+                    <div class="hero-theme-controls">
+                        <span class="theme-label">Theme</span>
+                        <select id="themeSelect" class="theme-select" aria-label="Select theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="hero-action-controls">
+                        <button id="toggleTrophyBtn" type="button">Achievements</button>
+                        <button id="resetLessonBtn" type="button" class="ghost">Reset lesson</button>
+                    </div>
+                </div>
+                
+<div class="hero-copy">
+    <p class="muted">Foundations of Computing & Digital Systems · What Is Computer Science?</p>
+    <h1>1.1.1 — Defining Computer Science in Everyday Life</h1>
+    <p>Students identify computing where no code is visible, defend their choices with evidence from everyday scenes, plan and test a practical sequence, and transfer the idea of input, rules, and output to a new device.</p>
+    
+<div class="chips">
+    
+    <span class="chip">Predict -> inspect -> certify</span>
+    
+    <span class="chip">Evidence-based scene reasoning</span>
+    
+    <span class="chip">Plan -> run -> revise</span>
+    
+    <span class="chip">Transfer with concept vocabulary</span>
+    
+</div>
+
+</div>
+
+            </section>
+
+            <section class="card">
+                <div class="game-bar" aria-label="Lesson status bar">
+                    <span id="stepCounter" class="game-pill">Step 1 of 4</span>
+                    <span id="scoreDisplay" class="game-pill">Score: 0 / 285</span>
+                    <span id="streakDisplay" class="game-pill streak-display">Streak: 0 / 11</span>
+                </div>
+                <div class="progress-track" aria-hidden="true">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="stepStars" class="star-row"></div>
+                
+<section id="step1" class="lesson-step active" aria-hidden="false">
+    
+<div class="step-title">
+    <span class="badge">1</span>
+    <div>
+        <h2>Set the Lesson Goal</h2>
+        
+        <p class="muted">Predict what counts as computer science before you inspect the scenes.</p>
+        
+    </div>
+</div>
+
+    <div class="intro-grid">
+        <div class="exercise">
+            <h3>Objectives</h3>
+            
+<ol class="objective-list">
+    
+    <li>Identify examples of computing embedded in ordinary environments.</li>
+    
+    <li>Distinguish computational systems from non-computational tools using evidence.</li>
+    
+    <li>Translate an everyday process into an ordered set of actionable steps.</li>
+    
+    <li>Use computing terms such as input, data, rules, output, and sensor to justify claims.</li>
+    
+</ol>
+
+        </div>
+        <div class="reflection-box">
+            <h3>Warm-up prompt</h3>
+            <p>
+                In this lesson, a <span class="term-tip" tabindex="0" data-tip="An input is information a system receives before it reacts.">system input</span>, a rule, and an output matter more than whether you can see code running on a screen.
+            </p>
+            <div class="question-card">
+                <p><strong>Which description best matches computer science in everyday life?</strong></p>
+                <div class="warmup-options">
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="apps-only" />
+                        <span>It only counts when someone is typing code on a screen.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="systems-and-rules" />
+                        <span>It includes systems that collect data, follow rules, and produce outputs even when no code is visible.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="internet-only" />
+                        <span>It is mostly about being connected to the internet.</span>
+                    </label>
+                    
+                </div>
+                <div class="warmup-actions">
+                    <button id="checkWarmupBtn" type="button" class="primary">Check warm-up</button>
+                    <div id="warmupStatus" class="status">Choose the best description, then check your answer.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left"></div>
+        <div class="right">
+            <button id="nextStep1" type="button" class="primary" disabled>Go to Spot the CS</button>
+        </div>
+    </div>
+</section>
+
+<section id="step2" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">2</span>
+    <div>
+        <h2>Spot the CS</h2>
+        
+        <p class="muted">Inspect three scenes, confirm the systems that compute, then certify each scene with evidence.</p>
+        
+    </div>
+</div>
+
+    <p>
+        You will move through the home, school, and city scenes in order. Select one system at a time, read the feedback right away, and then pass a short reasoning check before the scene is fully certified.
+    </p>
+    <div class="spot-workspace-grid">
+        <div class="panel workspace-panel spot-choice-panel">
+            <h3 id="sceneChoiceHeading">Choose a system you might see in a home</h3>
+            <p id="sceneChoiceSubheading" class="muted">Pick the device or tool that best fits the current location, then use the feedback to revise if needed.</p>
+            <div class="controls">
+                <button id="resetSpotBtn" type="button">Reset activity</button>
+            </div>
+            <div id="sceneChoiceBank" class="scene-choice-bank"></div>
+        </div>
+        <div class="panel">
+            <h3>Feedback</h3>
+            <div id="spotFeedback" class="status">Select a system to see why it is, or is not, a strong example of computing.</div>
+            <ul id="spotFeedbackList" class="feedback-list"></ul>
+            <div id="spotHintBox" class="reflection-box hidden" aria-hidden="true">
+                <h3>Narrowed hint</h3>
+                <p id="spotHintText"></p>
+            </div>
+        </div>
+        <div class="panel scene-certification-panel">
+            <h3>Certify this scene</h3>
+            <p id="sceneReasoningPrompt" class="muted">Find every required system in the current scene to unlock its certification question.</p>
+            <div id="sceneReasoningOptions" class="question-stack"></div>
+            <div class="controls">
+                <button id="checkSceneReasoningBtn" type="button">Certify scene</button>
+            </div>
+            <div id="sceneReasoningStatus" class="status">Finish identifying the required systems first, then certify the scene with evidence.</div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep2" type="button">Back</button>
+        </div>
+        <div class="right">
+            <button id="nextStep2" type="button" class="primary" disabled>Go to Human Algorithm</button>
+        </div>
+    </div>
+</section>
+
+<section id="step3" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">3</span>
+    <div>
+        <h2>Human Algorithm</h2>
+        
+        <p class="muted">Plan the route, test it, then explain the dependency that mattered most.</p>
+        
+    </div>
+</div>
+
+    <div class="scenario-strip">
+        <div class="scenario-brief">
+            <h3>What is going on?</h3>
+            <p>
+                A helper bot starts at the classroom door and needs to reach the laptop in the lab area.
+                The bot only follows the commands you give it, in order, and it stops as soon as a step is missing
+                or out of place.
+            </p>
+            <p class="muted">
+                Goal: Build a sequence that gets the helper bot from the classroom door to the laptop.
+            </p>
+            <p class="muted">
+                First think through the route, then build it, run it, and revise it based on the feedback.
+            </p>
+        </div>
+        <div class="scenario-plan">
+            <h3>Plan first</h3>
+            <p>Before you run the bot, answer these two questions so you have to think about the route dependencies instead of guessing.</p>
+            <div class="question-stack planning-grid">
+                
+                <fieldset class="question-card" id="plan-q1">
+                    <legend><strong>1. Before the bot can turn toward the lab wing, what must already be true?</strong></legend>
+                    
+                    <label>
+                        <input type="radio" name="plan-q1" value="in-hallway" />
+                        <span>The bot must have already moved out of the classroom and into the hallway.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="plan-q1" value="knows-cart" />
+                        <span>The bot must know where the laptop is.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="plan-q1" value="all-steps-planned" />
+                        <span>All five steps must already be filled in.</span>
+                    </label>
+                    
+                </fieldset>
+                
+                <fieldset class="question-card" id="plan-q2">
+                    <legend><strong>2. If the bot reaches the lab door and then repeats the step 'Move out to the hallway,' what should you expect?</strong></legend>
+                    
+                    <label>
+                        <input type="radio" name="plan-q2" value="still-works" />
+                        <span>The route still works because the step is always useful.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="plan-q2" value="backward" />
+                        <span>The bot would move backward in the route, undoing progress toward the laptop.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="plan-q2" value="auto-finish" />
+                        <span>The bot skips ahead to the laptop automatically.</span>
+                    </label>
+                    
+                </fieldset>
+                
+            </div>
+            <div class="controls">
+                <button id="checkSequencePlanBtn" type="button">Check plan</button>
+            </div>
+            <div id="planningStatus" class="status">Answer both planning questions to unlock Run.</div>
+        </div>
+    </div>
+    <div class="sequence-stage">
+        <div class="panel sequence-builder-panel">
+            <h3>Command bank</h3>
+            <p>Select the commands and arrange them in the correct order, then run the bot. You can run the bot even if some later slots are blank.</p>
+            <div id="cardBank" class="card-bank"></div>
+            <h3>Build the route</h3>
+            <p class="muted">Place commands in order. The route board updates immediately when you add, move, or remove a command.</p>
+            <div id="sequenceLane" class="sequence-lane"></div>
+            <div class="controls">
+                <button id="sequenceHintBtn" type="button">Show me the first step</button>
+                <button id="resetSequenceBtn" type="button">Reset activity</button>
+            </div>
+            <div id="sequenceStatus" class="status">You can arrange cards now, but Run unlocks only after the planning check passes.</div>
+        </div>
+        <div class="panel workspace-panel sequence-visual-panel">
+            <div class="sequence-visual-header">
+                <div>
+                    <h3>Live route preview</h3>
+                    <p class="muted">The board shows where the bot would be after the commands currently in the lane.</p>
+                </div>
+                <button id="runSequenceBtn" type="button" class="primary" disabled>Run the bot</button>
+            </div>
+            <p class="muted">Goal: Build a sequence that gets the helper bot from the classroom door to the laptop.</p>
+            <div id="routeBoard" class="route-board" aria-label="Hallway helper route board"></div>
+            <div id="boardPreview" class="route-strip" aria-label="Hallway helper route checkpoints"></div>
+            <div id="sequenceRunStatus" class="status">Answer the planning questions first, then run the bot to test your sequence.</div>
+            <div id="sequenceReflection" class="reflection-box hidden" aria-hidden="true">
+                <h3>Reflect</h3>
+                <p>Which instruction or dependency was easiest to overlook, and how did the run feedback help you revise the sequence?</p>
+                <textarea id="sequenceReflectionInput" placeholder="Write one or two sentences about which step relationship mattered most, such as a move that had to happen before a turn."></textarea>
+                <div class="controls reflection-actions">
+                    <button id="saveSequenceReflectionBtn" type="button">Save reflection</button>
+                </div>
+                <div id="sequenceReflectionStatus" class="status">Run a working sequence, then save a short explanation to complete Step 3.</div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep3" type="button">Back</button>
+        </div>
+        <div class="right">
+            <button id="nextStep3" type="button" class="primary" disabled>Go to Wrap Up</button>
+        </div>
+    </div>
+</section>
+
+<section id="step4" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">4</span>
+    <div>
+        <h2>Wrap Up</h2>
+        
+        <p class="muted">Use the evidence from both activities and transfer the idea to a new system.</p>
+        
+    </div>
+</div>
+
+    <div class="wrap-grid">
+        <div class="exercise">
+            <h3>Exit check</h3>
+            
+            <fieldset class="question-card" id="exit-q1">
+                <legend><strong>1. Which item is the strongest evidence that a system is computing?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="decorative" />
+                    <span>It lights up in the room.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="processes-data" />
+                    <span>It takes in information, applies rules, and changes output based on that information.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="plugged-in" />
+                    <span>It is connected to a wall outlet.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q2">
+                <legend><strong>2. Why was the plain lamp in the home scene not the best example of computer science?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="too-small" />
+                    <span>It was too small to notice.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="no-data-rules" />
+                    <span>By itself it does not collect data or follow changing rules the way the router or thermostat does.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="not-online" />
+                    <span>It was not connected to the internet.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q3">
+                <legend><strong>3. What made the hallway bot sequence work?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="longest-sequence" />
+                    <span>It used the most steps available.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="correct-order" />
+                    <span>Each instruction happened in a useful order so later actions had the right setup.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="fastest-clicks" />
+                    <span>The cards were placed quickly.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q4">
+                <legend><strong>4. A smart refrigerator shows what food is inside, reminds you when milk is close to expiring, and sends a phone alert if the door stays open. Why is that a strong example of computing?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="has-screen" />
+                    <span>It has a screen and uses electricity.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="data-rules-output" />
+                    <span>It collects data about food and door status, applies rules, and changes its alerts or display based on that data.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="expensive" />
+                    <span>It costs more than a regular refrigerator.</span>
+                </label>
+                
+            </fieldset>
+            
+        </div>
+        <div class="reflection-box">
+            <h3>Reflection</h3>
+            <p>Choose one computing system from this lesson or from your own life. Explain why it counts as computing by naming at least two of these ideas: input, data, rules, output, or sensor.</p>
+            <p class="muted">Write at least 80 characters and use at least 2 concept terms from this lesson: input, data, rules, output, sensor.</p>
+            <textarea id="finalReflection" placeholder="Example: The traffic sensor uses a sensor to collect input about vehicles, then rules help change the signal output when traffic builds up."></textarea>
+            <button id="submitExitCheckBtn" type="button" class="primary">Submit wrap-up</button>
+            <div id="exitStatus" class="status">Answer all four questions and complete the reflection, then submit the wrap-up.</div>
+            <div id="completeBanner" class="complete-banner hidden" aria-hidden="true">
+                <h3>Lesson complete</h3>
+                <p>You finished Lesson 1.1.1. Open the achievement case to review your stars, score, and certified reasoning work.</p>
+                <div class="controls teacher-summary-actions">
+                    <button id="openTeacherSummaryBtn" type="button">Open teacher summary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep4" type="button">Back</button>
+        </div>
+        <div class="right"></div>
+    </div>
+</section>
+
+            </section>
+
+            <p class="footer-note">Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24</p>
+        </main>
+
+        <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+        <div id="trophyCase" class="trophy-case hidden" aria-hidden="true">
+    <div class="trophy-card">
+        <div class="trophy-head">
+            <h3>Achievements</h3>
+            <button id="closeTrophyBtn" type="button">Close</button>
+        </div>
+        <div id="trophySummary" class="trophy-summary hidden">
+            <p class="summary-title">Lesson Summary</p>
+            <div class="summary-grid">
+                <div id="summaryScore" class="summary-item">Score: 0/0</div>
+                <div id="summaryStreak" class="summary-item">Streak: 0/0</div>
+            </div>
+            <p id="summaryPerfectText" class="muted"></p>
+            <div id="retryPrompt" class="retry-prompt hidden">
+                <p class="muted">You did not get a perfect score. Want to try again?</p>
+                <button id="tryAgainBtn" type="button" class="primary">
+                    Yes, try again
+                </button>
+            </div>
+        </div>
+        <div id="achievementList" class="achievement-list"></div>
+    </div>
+</div>
+
+        <div id="teacherSummaryModal" class="teacher-summary-modal hidden" aria-hidden="true">
+    <div class="teacher-summary-card">
+        <div class="trophy-head">
+            <h3>Teacher Summary</h3>
+            <button id="closeTeacherSummaryBtn" type="button">Close</button>
+        </div>
+        <p class="muted">Use this summary to review the student's overall performance, unlocked achievements, and written reflections.</p>
+        <div class="teacher-summary-grid">
+            <div id="teacherSummaryScore" class="summary-item">Score: 0 / 0</div>
+            <div id="teacherSummaryStreak" class="summary-item">Streak: 0 / 0</div>
+            <div id="teacherSummaryRetries" class="summary-item">Retries: 0</div>
+        </div>
+        <p id="teacherSummaryPerfectText" class="muted"></p>
+        <div class="teacher-summary-section">
+            <h4>Step stars</h4>
+            <div id="teacherSummaryStepStars" class="star-row"></div>
+        </div>
+        <div class="teacher-summary-section">
+            <h4>Achievements</h4>
+            <div id="teacherSummaryAchievements" class="achievement-list"></div>
+        </div>
+        <div class="teacher-summary-section">
+            <h4>Student reflections</h4>
+            <div id="teacherSummaryReflections" class="teacher-response-list"></div>
+        </div>
+    </div>
+</div>
+        <script>
+            window.__LESSON_DATA__ = {"id":"1.1.1","template":"lesson.njk","title":"Defining Computer Science in Everyday Life","moduleTitle":"What Is Computer Science?","unitTitle":"Foundations of Computing & Digital Systems","description":"Students identify computing where no code is visible, defend their choices with evidence from everyday scenes, plan and test a practical sequence, and transfer the idea of input, rules, and output to a new device.","chips":["Predict -> inspect -> certify","Evidence-based scene reasoning","Plan -> run -> revise","Transfer with concept vocabulary"],"objectives":["Identify examples of computing embedded in ordinary environments.","Distinguish computational systems from non-computational tools using evidence.","Translate an everyday process into an ordered set of actionable steps.","Use computing terms such as input, data, rules, output, and sensor to justify claims."],"footerNote":"Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24","steps":[{"id":"step1","title":"Set the Lesson Goal"},{"id":"step2","title":"Spot the CS"},{"id":"step3","title":"Human Algorithm"},{"id":"step4","title":"Wrap Up"}],"warmup":{"prompt":"Which description best matches computer science in everyday life?","options":[{"value":"apps-only","label":"It only counts when someone is typing code on a screen."},{"value":"systems-and-rules","label":"It includes systems that collect data, follow rules, and produce outputs even when no code is visible."},{"value":"internet-only","label":"It is mostly about being connected to the internet."}],"correct":"systems-and-rules","correctFeedback":"Yes. Computer science shows up whenever data, rules, and automated processes shape what a system does.","retryFeedback":"Look for the answer that mentions data, rules, and outputs instead of visible programming alone."},"exitCheck":{"questions":[{"id":"exit-q1","prompt":"Which item is the strongest evidence that a system is computing?","options":[{"value":"decorative","label":"It lights up in the room."},{"value":"processes-data","label":"It takes in information, applies rules, and changes output based on that information."},{"value":"plugged-in","label":"It is connected to a wall outlet."}],"correct":"processes-data"},{"id":"exit-q2","prompt":"Why was the plain lamp in the home scene not the best example of computer science?","options":[{"value":"too-small","label":"It was too small to notice."},{"value":"no-data-rules","label":"By itself it does not collect data or follow changing rules the way the router or thermostat does."},{"value":"not-online","label":"It was not connected to the internet."}],"correct":"no-data-rules"},{"id":"exit-q3","prompt":"What made the hallway bot sequence work?","options":[{"value":"longest-sequence","label":"It used the most steps available."},{"value":"correct-order","label":"Each instruction happened in a useful order so later actions had the right setup."},{"value":"fastest-clicks","label":"The cards were placed quickly."}],"correct":"correct-order"},{"id":"exit-q4","prompt":"A smart refrigerator shows what food is inside, reminds you when milk is close to expiring, and sends a phone alert if the door stays open. Why is that a strong example of computing?","options":[{"value":"has-screen","label":"It has a screen and uses electricity."},{"value":"data-rules-output","label":"It collects data about food and door status, applies rules, and changes its alerts or display based on that data."},{"value":"expensive","label":"It costs more than a regular refrigerator."}],"correct":"data-rules-output"}],"reflectionPrompt":"Choose one computing system from this lesson or from your own life. Explain why it counts as computing by naming at least two of these ideas: input, data, rules, output, or sensor.","reflectionPlaceholder":"Example: The traffic sensor uses a sensor to collect input about vehicles, then rules help change the signal output when traffic builds up.","reflectionRequirement":"Write at least 80 characters and use at least 2 concept terms from this lesson: input, data, rules, output, sensor.","reflectionMinLength":80,"reflectionTerms":["input","data","rules","output","sensor"],"reflectionRequiredTermCount":2,"reflectionSuccessFeedback":"Reflection complete. You used lesson vocabulary to explain why the system counts as computing.","reflectionRetryFeedback":"Be more specific. Use at least two lesson terms such as input, data, rules, output, or sensor.","points":50},"gamification":{"perfectScoreTarget":285,"perfectStreakTarget":11,"hotStreakThreshold":4,"achievements":[{"id":"warmup_ready","name":"Warm-Up Ready","description":"Complete Step 1 without a retry."},{"id":"scene_spotter","name":"Scene Spotter","description":"Finish all three everyday scenes."},{"id":"overlap_reader","name":"Evidence Hunter","description":"Find an extra computing example that still fits the scene evidence."},{"id":"hallway_builder","name":"Hallway Builder","description":"Guide the helper bot to the laptop."},{"id":"hot_streak","name":"Hot Streak","description":"Reach a streak of 4 correct actions."},{"id":"triple_star","name":"Triple Star","description":"Earn 3 stars on any step."},{"id":"perfect_score","name":"Perfect Score","description":"Finish the lesson with every point and no retries."}]},"activityData":{"human-algorithm":{"title":"Hallway Helper Bot","goal":"Build a sequence that gets the helper bot from the classroom door to the laptop.","prompt":"Select the commands and arrange them in the correct order, then run the bot. You can run the bot even if some later slots are blank.","points":70,"planningCheck":{"intro":"Before you run the bot, answer these two questions so you have to think about the route dependencies instead of guessing.","points":20,"successFeedback":"Plan approved. Now build or revise the route and use Run to test it.","retryFeedback":"At least one planning answer needs revision. Use the route goal and the command wording to think through what must happen first.","questions":[{"id":"plan-q1","prompt":"Before the bot can turn toward the lab wing, what must already be true?","options":[{"value":"in-hallway","label":"The bot must have already moved out of the classroom and into the hallway."},{"value":"knows-cart","label":"The bot must know where the laptop is."},{"value":"all-steps-planned","label":"All five steps must already be filled in."}],"correct":"in-hallway"},{"id":"plan-q2","prompt":"If the bot reaches the lab door and then repeats the step 'Move out to the hallway,' what should you expect?","options":[{"value":"still-works","label":"The route still works because the step is always useful."},{"value":"backward","label":"The bot would move backward in the route, undoing progress toward the laptop."},{"value":"auto-finish","label":"The bot skips ahead to the laptop automatically."}],"correct":"backward"}]},"reflection":{"points":20,"minLength":45,"prompt":"Which instruction or dependency was easiest to overlook, and how did the run feedback help you revise the sequence?","placeholder":"Write one or two sentences about which step relationship mattered most, such as a move that had to happen before a turn.","successFeedback":"Reflection saved. You explained a dependency behind the working route.","retryFeedback":"Be more specific about which step had to come before another step and how the feedback helped you revise."},"slotCount":5,"hint":"The bot must leave the classroom before it can turn toward the lab hall.","board":{"rows":4,"cols":5,"start":{"row":2,"col":0},"target":{"row":0,"col":4},"blocked":[{"row":1,"col":1},{"row":1,"col":3}],"route":[{"row":2,"col":0},{"row":2,"col":1},{"row":2,"col":2},{"row":1,"col":2},{"row":0,"col":2},{"row":0,"col":4}],"routeStops":[{"label":"Classroom door","title":"Start"},{"label":"Main hallway","title":"Move"},{"label":"Hall branch","title":"Move"},{"label":"Turn toward lab","title":"Turn"},{"label":"Lab door","title":"Move"},{"label":"Laptop","title":"Finish"}]},"cards":[{"id":"leave-classroom","label":"Move out to the hallway","dependsOn":[],"failureReason":"The bot cannot turn toward the hall until it has actually moved out of the classroom."},{"id":"move-down-hall","label":"Move forward past the first classroom","dependsOn":["leave-classroom"],"failureReason":"This hallway move only makes sense after the bot has entered the hall."},{"id":"turn-to-lab","label":"Turn left toward the lab wing","dependsOn":["move-down-hall"],"failureReason":"Turning toward the lab works only after the bot reaches the hallway branch."},{"id":"move-to-door","label":"Move to the lab door","dependsOn":["turn-to-lab"],"failureReason":"The bot has to face the lab wing before it can move to the lab door."},{"id":"move-to-cart","label":"Move right to the laptop","dependsOn":["move-to-door"],"failureReason":"The final move happens after the bot reaches the lab door, not before."}],"correctOrder":["leave-classroom","move-down-hall","turn-to-lab","move-to-door","move-to-cart"],"reflectionPrompt":"Which instruction was easiest to overlook, and how did the feedback help you revise the sequence?"},"spot-the-cs":{"revealMode":"immediate","scenes":[{"id":"home","name":"Home","prompt":"Select the home systems that sense, store, or exchange information in a way that changes what the system does.","hint":"Look for a device that routes information, a device that listens for a command, and a device that reacts to changing temperature data.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='30' y='40' width='560' height='280' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='68' y='92' width='136' height='88' rx='12' fill='color-mix(in srgb, var(--accent-soft) 60%, transparent)' stroke='var(--border)' />\u003crect x='232' y='86' width='156' height='72' rx='14' fill='color-mix(in srgb, var(--accent) 10%, var(--card))' stroke='var(--border)' />\u003crect x='420' y='86' width='108' height='150' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ccircle cx='500' cy='132' r='24' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003crect x='238' y='218' width='120' height='64' rx='12' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003crect x='80' y='222' width='76' height='48' rx='10' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ctext x='104' y='84' font-size='18' fill='var(--muted)'>Router shelf\u003c/text>\u003ctext x='256' y='76' font-size='18' fill='var(--muted)'>TV corner\u003c/text>\u003ctext x='430' y='76' font-size='18' fill='var(--muted)'>Thermostat wall\u003c/text>\u003ctext x='84' y='214' font-size='18' fill='var(--muted)'>Lamp\u003c/text>\u003ctext x='245' y='210' font-size='18' fill='var(--muted)'>Speaker table\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"Why is the plain lamp not one of the strongest examples of computing in this home scene?","options":[{"value":"lighting-only","label":"Because lamps are only used for lighting, not for science."},{"value":"no-input-rules","label":"Because by itself it does not collect input or apply changing rules the way the router and thermostat do."},{"value":"not-main-focus","label":"Because it was not the main object drawn in the scene."},{"value":"no-wifi","label":"Because it was not connected to Wi-Fi."}],"correct":"no-input-rules","correctFeedback":"Correct. Electricity alone is not enough. The stronger examples in this scene respond to input or rules that change what the system does.","retryFeedback":"Look for the choice that focuses on input and changing rules, not on size, location, or internet access."},"targets":[{"id":"router","label":"Wi-Fi router","classification":"required","top":"22%","left":"9%","width":"22%","height":"22%","feedback":"The router moves packets between devices, so it is constantly making decisions about data flow."},{"id":"smart-speaker","label":"Smart speaker","classification":"required","top":"60%","left":"36%","width":"23%","height":"21%","feedback":"The speaker captures voice input, sends it for processing, and changes output based on what it hears."},{"id":"thermostat","label":"Smart thermostat","classification":"required","top":"18%","left":"66%","width":"20%","height":"34%","feedback":"The thermostat reads sensor data and applies rules to decide when heating or cooling should change."},{"id":"lamp","label":"Plain lamp","classification":"incorrect","top":"63%","left":"8%","width":"15%","height":"20%","feedback":"A plain lamp can be electrical without actually processing changing input data or following software rules."}]},{"id":"school","name":"School","prompt":"Inspect the classroom entry and learning tools. Select the items that collect, process, or organize information.","hint":"Look for the item that records attendance, the device that stores classwork, and the display that changes based on software.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='26' y='36' width='568' height='286' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='74' y='78' width='128' height='182' rx='16' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003crect x='232' y='74' width='242' height='116' rx='16' fill='color-mix(in srgb, var(--accent) 12%, var(--card))' stroke='var(--border)' />\u003crect x='252' y='214' width='142' height='66' rx='14' fill='color-mix(in srgb, var(--accent-soft) 58%, transparent)' stroke='var(--border)' />\u003crect x='434' y='214' width='112' height='72' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ctext x='82' y='68' font-size='18' fill='var(--muted)'>Entry station\u003c/text>\u003ctext x='244' y='66' font-size='18' fill='var(--muted)'>Smart board\u003c/text>\u003ctext x='278' y='206' font-size='18' fill='var(--muted)'>Laptop\u003c/text>\u003ctext x='444' y='206' font-size='18' fill='var(--muted)'>Poster board\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"What makes the attendance tablet a computing system in a way the printed poster board is not?","options":[{"value":"newer-tech","label":"The tablet is newer technology."},{"value":"stores-processes-info","label":"The tablet records, stores, and retrieves information according to rules, while the poster just displays fixed words."},{"value":"connected-screen","label":"The tablet is closer to the interactive board."},{"value":"important-room-item","label":"The tablet is a more important classroom item."}],"correct":"stores-processes-info","correctFeedback":"Correct. The tablet handles information and can change records over time, while the poster stays static.","retryFeedback":"Focus on what the system does with information, not whether it looks newer or more important."},"targets":[{"id":"attendance-tablet","label":"Attendance tablet","classification":"required","group":"entry-station","top":"20%","left":"10%","width":"18%","height":"42%","feedback":"The attendance tablet records data about who entered class and stores it for later review."},{"id":"id-badge-reader","label":"Badge reader","classification":"optional","group":"entry-station","top":"20%","left":"10%","width":"18%","height":"42%","feedback":"The badge reader scans identity information and compares it against stored records."},{"id":"smart-board","label":"Interactive board","classification":"required","top":"18%","left":"39%","width":"40%","height":"30%","feedback":"The board changes what it displays based on software, touch input, and saved lesson materials."},{"id":"laptop","label":"Laptop","classification":"required","top":"58%","left":"42%","width":"24%","height":"20%","feedback":"A laptop stores files, runs applications, and changes what it does based on user input and software rules."},{"id":"poster-board","label":"Printed poster board","classification":"incorrect","top":"58%","left":"72%","width":"20%","height":"23%","feedback":"A printed poster can communicate ideas, but it does not change behavior by processing new information."}]},{"id":"city","name":"City","prompt":"Select the city systems that help the environment respond to information, movement, or payments.","hint":"Focus on the parts of the street scene that sense traffic, take payment, or update information for travelers.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='30' y='30' width='560' height='300' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='40' y='206' width='540' height='74' rx='20' fill='color-mix(in srgb, var(--accent) 10%, var(--card))' stroke='var(--border)' />\u003crect x='92' y='82' width='74' height='144' rx='14' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003crect x='230' y='88' width='146' height='112' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003crect x='430' y='74' width='78' height='164' rx='16' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003ccircle cx='280' cy='128' r='22' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003ctext x='96' y='70' font-size='18' fill='var(--muted)'>Traffic pole\u003c/text>\u003ctext x='236' y='74' font-size='18' fill='var(--muted)'>Transit kiosk\u003c/text>\u003ctext x='420' y='60' font-size='18' fill='var(--muted)'>Arrival display\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"Why does the park bench not count as part of the city's computing systems, while the traffic sensor does?","options":[{"value":"indoors-outdoors","label":"Because the bench is outdoors and the traffic sensor is not."},{"value":"no-sensing-or-rules","label":"Because the bench provides physical support, but it does not sense conditions or use data to change behavior."},{"value":"different-material","label":"Because the bench and sensor are made from different materials."},{"value":"less-helpful","label":"Because the bench is less helpful to the city."}],"correct":"no-sensing-or-rules","correctFeedback":"Correct. The traffic system changes based on sensed conditions, while the bench stays the same unless a person acts on it.","retryFeedback":"Look for the answer about sensing conditions and using data or rules to change what happens next."},"targets":[{"id":"traffic-sensor","label":"Traffic sensor","classification":"required","top":"18%","left":"12%","width":"16%","height":"42%","feedback":"Traffic systems measure timing and vehicle flow so signal rules can change based on what the street needs."},{"id":"kiosk-screen","label":"Transit kiosk screen","classification":"required","group":"transit-kiosk","top":"20%","left":"38%","width":"22%","height":"30%","feedback":"The kiosk screen shows stored route data and updates what riders see based on the system state."},{"id":"tap-reader","label":"Tap payment reader","classification":"optional","group":"transit-kiosk","top":"20%","left":"38%","width":"22%","height":"30%","feedback":"The payment reader checks a fare card and confirms whether the rider can continue."},{"id":"arrival-display","label":"Arrival display","classification":"required","top":"16%","left":"72%","width":"16%","height":"48%","feedback":"The arrival display changes when new route or timing data arrives."},{"id":"park-bench","label":"Park bench","classification":"incorrect","top":"70%","left":"62%","width":"24%","height":"14%","feedback":"The bench supports people physically, but it does not process information or apply rules by itself."}]}]}}};
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initThemeControls = function initThemeControls(options) {
+        const root = options.rootElement || document.documentElement;
+        const selectElement = options.selectElement;
+        const storageKey = options.storageKey || 'lessonTheme';
+        const defaultTheme = options.defaultTheme || 'light';
+
+        function applyTheme(theme) {
+            const selectedTheme = theme === 'dark' ? 'dark' : 'light';
+            root.setAttribute('data-theme', selectedTheme);
+            if (selectElement) {
+                selectElement.value = selectedTheme;
+            }
+            localStorage.setItem(storageKey, selectedTheme);
+            return selectedTheme;
+        }
+
+        const savedTheme = localStorage.getItem(storageKey) || defaultTheme;
+        applyTheme(savedTheme);
+
+        if (selectElement) {
+            selectElement.addEventListener('change', function onThemeChange() {
+                applyTheme(selectElement.value);
+            });
+        }
+
+        return {
+            applyTheme: applyTheme,
+            getTheme: function getTheme() {
+                return root.getAttribute('data-theme') || defaultTheme;
+            },
+        };
+    };
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    function escapeHtml(value) {
+        return String(value)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#39;');
+    }
+
+    function shuffle(array) {
+        const copy = array.slice();
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+            const swapIndex = Math.floor(Math.random() * (index + 1));
+            const current = copy[index];
+            copy[index] = copy[swapIndex];
+            copy[swapIndex] = current;
+        }
+        return copy;
+    }
+
+    function setStatus(element, text, kind) {
+        if (!element) {
+            return;
+        }
+        element.textContent = text;
+        element.className = kind ? `status ${kind}` : 'status';
+    }
+
+    function setHtmlStatus(element, html, kind) {
+        if (!element) {
+            return;
+        }
+        element.innerHTML = html;
+        element.className = kind ? `status ${kind}` : 'status';
+    }
+
+    function createStepStarSlots(container, stepCount) {
+        if (!container) {
+            return;
+        }
+        container.innerHTML = '';
+        for (let index = 0; index < stepCount; index += 1) {
+            const item = document.createElement('div');
+            item.className = 'star-step';
+            item.innerHTML = `<span class="star-step-label">Step ${index + 1}</span><span class="star-glyphs">☆☆☆</span>`;
+            container.appendChild(item);
+        }
+    }
+
+    function renderStepStars(container, starRatings, popStepNumber) {
+        if (!container) {
+            return;
+        }
+        Array.from(container.querySelectorAll('.star-step')).forEach(
+            function renderStar(element, index) {
+                const stars = Math.max(0, Math.min(3, starRatings[index] || 0));
+                const filled = '★'.repeat(stars);
+                const empty = '☆'.repeat(3 - stars);
+                const glyph = element.querySelector('.star-glyphs');
+                if (glyph) {
+                    glyph.textContent = `${filled}${empty}`;
+                }
+                element.classList.toggle('earned', stars > 0);
+                if (popStepNumber === index + 1) {
+                    element.classList.remove('pop');
+                    void element.offsetWidth;
+                    element.classList.add('pop');
+                }
+            },
+        );
+    }
+
+    function renderAchievements(container, achievementCatalog, unlockedIds) {
+        if (!container) {
+            return;
+        }
+        container.innerHTML = '';
+        achievementCatalog.forEach(function renderAchievement(achievement) {
+            const unlocked = unlockedIds.has(achievement.id);
+            const card = document.createElement('div');
+            card.className = unlocked
+                ? 'achievement-item unlocked'
+                : 'achievement-item';
+            card.innerHTML = `<span class="achievement-name">${unlocked ? '🏆' : '🔒'} ${escapeHtml(achievement.name)}</span><span class="achievement-desc">${escapeHtml(achievement.description)}</span>`;
+            container.appendChild(card);
+        });
+    }
+
+    function launchConfetti(layer, pieceCount, maxDuration) {
+        if (!layer) {
+            return;
+        }
+        const computed = getComputedStyle(document.documentElement);
+        const confettiColors = [
+            computed.getPropertyValue('--accent').trim(),
+            computed.getPropertyValue('--ok').trim(),
+            computed.getPropertyValue('--warn').trim(),
+            computed.getPropertyValue('--accent-strong').trim(),
+        ].filter(Boolean);
+
+        for (let index = 0; index < pieceCount; index += 1) {
+            const piece = document.createElement('span');
+            piece.className = 'confetti-piece';
+            piece.style.left = `${Math.random() * 100}%`;
+            piece.style.animationDuration = `${680 + Math.random() * maxDuration}ms`;
+            piece.style.animationDelay = `${Math.random() * 200}ms`;
+            piece.style.backgroundColor =
+                confettiColors[index % confettiColors.length] || '#1f6f50';
+            layer.appendChild(piece);
+            setTimeout(function removePiece() {
+                piece.remove();
+            }, maxDuration + 1200);
+        }
+    }
+
+    function setHidden(element, hidden) {
+        if (!element) {
+            return;
+        }
+        element.classList.toggle('hidden', hidden);
+        element.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+    }
+
+    window.LessonCore.escapeHtml = escapeHtml;
+    window.LessonCore.shuffle = shuffle;
+    window.LessonCore.setStatus = setStatus;
+    window.LessonCore.setHtmlStatus = setHtmlStatus;
+    window.LessonCore.createStepStarSlots = createStepStarSlots;
+    window.LessonCore.renderStepStars = renderStepStars;
+    window.LessonCore.renderAchievements = renderAchievements;
+    window.LessonCore.launchConfetti = launchConfetti;
+    window.LessonCore.setHidden = setHidden;
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.createStepController = function createStepController(
+        options,
+    ) {
+        const stepElements = options.stepElements || [];
+        const stepCounter = options.stepCounterElement;
+        const progressFill = options.progressFillElement;
+        let currentStep = 1;
+        let initialized = false;
+
+        function scrollActiveStepIntoView() {
+            if (!options.autoScrollOnChange) {
+                return;
+            }
+            window.requestAnimationFrame(function queueStepScroll() {
+                const activeStep = stepElements[currentStep - 1];
+                if (!activeStep) {
+                    return;
+                }
+                const target = options.scrollTargetSelector
+                    ? activeStep.querySelector(options.scrollTargetSelector)
+                    : activeStep;
+                (target || activeStep).scrollIntoView({
+                    behavior: options.scrollBehavior || 'smooth',
+                    block: options.scrollBlock || 'start',
+                });
+            });
+        }
+
+        function showStep(stepNumber) {
+            currentStep = Math.max(
+                1,
+                Math.min(stepElements.length, stepNumber),
+            );
+            stepElements.forEach(function updateStep(stepElement, index) {
+                const active = index === currentStep - 1;
+                stepElement.classList.toggle('active', active);
+                stepElement.setAttribute(
+                    'aria-hidden',
+                    active ? 'false' : 'true',
+                );
+            });
+            if (stepCounter) {
+                stepCounter.textContent = `Step ${currentStep} of ${stepElements.length}`;
+            }
+            if (progressFill) {
+                progressFill.style.width = `${(currentStep / stepElements.length) * 100}%`;
+            }
+            if (typeof options.onStepChange === 'function') {
+                options.onStepChange(currentStep);
+            }
+            if (initialized || !options.preventInitialScroll) {
+                scrollActiveStepIntoView();
+            }
+            initialized = true;
+        }
+
+        showStep(1);
+
+        return {
+            showStep: showStep,
+            getCurrentStep: function getCurrentStep() {
+                return currentStep;
+            },
+        };
+    };
+
+    window.LessonCore.createGameState = function createGameState(options) {
+        const stepCount = options.stepCount;
+        const initialState = options.initialState || {};
+        const state = {
+            totalScore: Number(initialState.totalScore) || 0,
+            streak: Number(initialState.streak) || 0,
+            stepRetries: Array.from({ length: stepCount }, function (_, index) {
+                return Number(initialState.stepRetries?.[index]) || 0;
+            }),
+            starRatings: Array.from({ length: stepCount }, function (_, index) {
+                return Number(initialState.starRatings?.[index]) || 0;
+            }),
+            achievements: new Set(
+                Array.isArray(initialState.achievements)
+                    ? initialState.achievements
+                    : [],
+            ),
+        };
+
+        function updateScoreDisplay() {
+            if (options.scoreDisplay) {
+                options.scoreDisplay.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+        }
+
+        function updateStreakDisplay(animate) {
+            if (options.streakDisplay) {
+                options.streakDisplay.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+                if (animate) {
+                    options.streakDisplay.classList.remove('pulse');
+                    void options.streakDisplay.offsetWidth;
+                    options.streakDisplay.classList.add('pulse');
+                }
+            }
+        }
+
+        function createStarSlots() {
+            if (!options.stepStars) {
+                return;
+            }
+            window.LessonCore.createStepStarSlots(options.stepStars, stepCount);
+            window.LessonCore.renderStepStars(
+                options.stepStars,
+                state.starRatings,
+            );
+        }
+
+        function renderAchievements() {
+            window.LessonCore.renderAchievements(
+                options.achievementList,
+                options.achievementCatalog,
+                state.achievements,
+            );
+        }
+
+        function unlockAchievement(id) {
+            if (state.achievements.has(id)) {
+                return;
+            }
+            state.achievements.add(id);
+            renderAchievements();
+            window.LessonCore.launchConfetti(options.confettiLayer, 16, 820);
+        }
+
+        function addScore(points) {
+            state.totalScore += points;
+            updateScoreDisplay();
+        }
+
+        function incrementStreak() {
+            state.streak += 1;
+            updateStreakDisplay(true);
+            if (state.streak >= options.hotStreakThreshold) {
+                unlockAchievement('hot_streak');
+            }
+        }
+
+        function resetStreak() {
+            if (state.streak !== 0) {
+                state.streak = 0;
+                updateStreakDisplay(false);
+            }
+        }
+
+        function registerRetry(stepNumber) {
+            const index = Math.max(1, Math.min(stepCount, stepNumber)) - 1;
+            state.stepRetries[index] += 1;
+            resetStreak();
+        }
+
+        function markStepComplete(stepNumber) {
+            const index = Math.max(1, Math.min(stepCount, stepNumber)) - 1;
+            if (state.starRatings[index] !== 0) {
+                return;
+            }
+            const retries = state.stepRetries[index];
+            const stars = retries === 0 ? 3 : retries <= 2 ? 2 : 1;
+            state.starRatings[index] = stars;
+            if (options.stepStars) {
+                window.LessonCore.renderStepStars(
+                    options.stepStars,
+                    state.starRatings,
+                    stepNumber,
+                );
+            }
+            window.LessonCore.launchConfetti(options.confettiLayer, 24, 1000);
+            if (stars === 3) {
+                unlockAchievement('triple_star');
+            }
+            if (typeof options.onStepComplete === 'function') {
+                options.onStepComplete(stepNumber, retries, stars, state);
+            }
+        }
+
+        function getTotalRetries() {
+            return state.stepRetries.reduce(function sumRetries(
+                total,
+                retries,
+            ) {
+                return total + retries;
+            }, 0);
+        }
+
+        function isPerfect() {
+            return (
+                state.totalScore === options.perfectScoreTarget &&
+                state.stepRetries.every(function noRetries(retryCount) {
+                    return retryCount === 0;
+                })
+            );
+        }
+
+        function getSnapshot() {
+            return {
+                totalScore: state.totalScore,
+                streak: state.streak,
+                stepRetries: state.stepRetries.slice(),
+                starRatings: state.starRatings.slice(),
+                achievements: Array.from(state.achievements),
+            };
+        }
+
+        function showSummary(optionsForSummary) {
+            const perfect =
+                typeof optionsForSummary.perfect === 'boolean'
+                    ? optionsForSummary.perfect
+                    : isPerfect();
+            if (options.summarySection) {
+                options.summarySection.classList.remove('hidden');
+            }
+            if (options.summaryScore) {
+                options.summaryScore.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+            if (options.summaryStreak) {
+                options.summaryStreak.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+            }
+            if (options.summaryPerfectText) {
+                options.summaryPerfectText.textContent = perfect
+                    ? optionsForSummary.perfectMessage
+                    : optionsForSummary.retryMessage;
+            }
+            if (options.retryPrompt) {
+                options.retryPrompt.classList.toggle('hidden', perfect);
+            }
+            if (options.trophyCase) {
+                options.trophyCase.classList.remove('hidden');
+                options.trophyCase.setAttribute('aria-hidden', 'false');
+            }
+            if (perfect) {
+                unlockAchievement('perfect_score');
+            }
+        }
+
+        function bindOverlayControls() {
+            if (options.toggleTrophyButton && options.trophyCase) {
+                options.toggleTrophyButton.addEventListener(
+                    'click',
+                    function showTrophy() {
+                        options.trophyCase.classList.remove('hidden');
+                        options.trophyCase.setAttribute('aria-hidden', 'false');
+                    },
+                );
+            }
+            if (options.closeTrophyButton && options.trophyCase) {
+                options.closeTrophyButton.addEventListener(
+                    'click',
+                    function hideTrophy() {
+                        options.trophyCase.classList.add('hidden');
+                        options.trophyCase.setAttribute('aria-hidden', 'true');
+                    },
+                );
+            }
+            if (options.trophyCase) {
+                options.trophyCase.addEventListener(
+                    'click',
+                    function closeWhenBackdrop(event) {
+                        if (event.target === options.trophyCase) {
+                            options.trophyCase.classList.add('hidden');
+                            options.trophyCase.setAttribute(
+                                'aria-hidden',
+                                'true',
+                            );
+                        }
+                    },
+                );
+            }
+        }
+
+        createStarSlots();
+        updateScoreDisplay();
+        updateStreakDisplay(false);
+        renderAchievements();
+        bindOverlayControls();
+
+        return {
+            state: state,
+            addScore: addScore,
+            incrementStreak: incrementStreak,
+            registerRetry: registerRetry,
+            markStepComplete: markStepComplete,
+            unlockAchievement: unlockAchievement,
+            getSnapshot: getSnapshot,
+            getTotalRetries: getTotalRetries,
+            isPerfect: isPerfect,
+            showSummary: showSummary,
+        };
+    };
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    function clearLiveResponses(rootElement) {
+        const root = rootElement || document;
+        root.querySelectorAll('input').forEach(function clearInput(input) {
+            const type = (input.type || '').toLowerCase();
+            if (
+                ['button', 'submit', 'reset', 'hidden', 'file'].includes(type)
+            ) {
+                return;
+            }
+            if (type === 'radio' || type === 'checkbox') {
+                input.checked = false;
+                return;
+            }
+            input.value = '';
+        });
+        root.querySelectorAll('textarea').forEach(
+            function clearTextarea(textarea) {
+                textarea.value = '';
+            },
+        );
+    }
+
+    function createSessionStore(options) {
+        const storage = options.storage || window.sessionStorage;
+        const storageKey = options.storageKey;
+        const restartQueryKey = options.restartQueryKey || 'lessonRestart';
+
+        function load() {
+            try {
+                const raw = storage.getItem(storageKey);
+                return raw ? JSON.parse(raw) : {};
+            } catch {
+                return {};
+            }
+        }
+
+        function save(snapshot) {
+            storage.setItem(storageKey, JSON.stringify(snapshot));
+        }
+
+        function clear() {
+            storage.removeItem(storageKey);
+        }
+
+        function stripRestartQueryParam() {
+            const url = new URL(window.location.href);
+            if (!url.searchParams.has(restartQueryKey)) {
+                return;
+            }
+            url.searchParams.delete(restartQueryKey);
+            window.history.replaceState(null, '', url.toString());
+        }
+
+        function restartWithoutRestore() {
+            clear();
+            clearLiveResponses();
+
+            const url = new URL(window.location.href);
+            url.searchParams.set(restartQueryKey, Date.now().toString());
+            window.location.replace(url.toString());
+        }
+
+        function bindAutoSave(callback, eventNames) {
+            const events = Array.isArray(eventNames)
+                ? eventNames
+                : ['beforeunload', 'pagehide'];
+            events.forEach(function bindEvent(eventName) {
+                window.addEventListener(eventName, callback);
+            });
+        }
+
+        return {
+            load: load,
+            save: save,
+            clear: clear,
+            stripRestartQueryParam: stripRestartQueryParam,
+            restartWithoutRestore: restartWithoutRestore,
+            bindAutoSave: bindAutoSave,
+        };
+    }
+
+    function arraysEqual(left, right) {
+        if (left.length !== right.length) {
+            return false;
+        }
+        return left.every(function compare(value, index) {
+            return value === right[index];
+        });
+    }
+
+    function createStableOrderManager(options) {
+        const orders =
+            options && typeof options.initialOrders === 'object'
+                ? options.initialOrders
+                : {};
+
+        function getStableOptionOrder(key, values) {
+            const normalized = values.slice();
+            const existing = Array.isArray(orders[key])
+                ? orders[key].filter(function keepKnown(value) {
+                      return normalized.includes(value);
+                  })
+                : [];
+            if (existing.length === normalized.length) {
+                return existing;
+            }
+
+            let shuffled = window.LessonCore.shuffle(normalized);
+            if (normalized.length > 1 && arraysEqual(shuffled, normalized)) {
+                shuffled = window.LessonCore.shuffle(normalized);
+            }
+            orders[key] = shuffled;
+            return shuffled;
+        }
+
+        function reorderRadioGroup(groupName, rootElement) {
+            const root = rootElement || document;
+            const inputs = Array.from(
+                root.querySelectorAll(`input[name="${groupName}"]`),
+            );
+            if (inputs.length === 0) {
+                return;
+            }
+
+            const labels = inputs
+                .map(function getLabel(input) {
+                    return input.closest('label');
+                })
+                .filter(Boolean);
+            if (labels.length === 0) {
+                return;
+            }
+
+            const container = labels[0].parentElement;
+            if (!container) {
+                return;
+            }
+
+            const labelsByValue = new Map(
+                labels.map(function mapLabel(label) {
+                    const input = label.querySelector('input');
+                    return [input.value, label];
+                }),
+            );
+            const orderedValues = getStableOptionOrder(
+                groupName,
+                labels.map(function mapValue(label) {
+                    return label.querySelector('input').value;
+                }),
+            );
+
+            orderedValues.forEach(function appendLabel(value) {
+                const label = labelsByValue.get(value);
+                if (label) {
+                    container.appendChild(label);
+                }
+            });
+        }
+
+        return {
+            getStableOptionOrder: getStableOptionOrder,
+            reorderRadioGroup: reorderRadioGroup,
+            getState: function getState() {
+                return orders;
+            },
+        };
+    }
+
+    function getCheckedValue(groupName, rootElement) {
+        const root = rootElement || document;
+        const selected = root.querySelector(
+            `input[name="${groupName}"]:checked`,
+        );
+        return selected ? selected.value : '';
+    }
+
+    function setCheckedValue(groupName, value, rootElement) {
+        if (!value) {
+            return;
+        }
+        const root = rootElement || document;
+        const input = root.querySelector(
+            `input[name="${groupName}"][value="${value}"]`,
+        );
+        if (input) {
+            input.checked = true;
+        }
+    }
+
+    window.LessonCore.clearLiveResponses = clearLiveResponses;
+    window.LessonCore.createSessionStore = createSessionStore;
+    window.LessonCore.createStableOrderManager = createStableOrderManager;
+    window.LessonCore.getCheckedValue = getCheckedValue;
+    window.LessonCore.setCheckedValue = setCheckedValue;
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initTeacherSummary = function initTeacherSummary(
+        options,
+    ) {
+        const modal = options.modal;
+        const triggerButton = options.triggerButton;
+        const closeButton = options.closeButton;
+        let unlocked = Boolean(options.initiallyUnlocked);
+
+        function setOpen(open) {
+            window.LessonCore.setHidden(modal, !open);
+        }
+
+        function ensureStepStars() {
+            if (!options.stepStarsElement) {
+                return;
+            }
+            if (
+                options.stepStarsElement.querySelectorAll('.star-step')
+                    .length === options.stepCount
+            ) {
+                return;
+            }
+            window.LessonCore.createStepStarSlots(
+                options.stepStarsElement,
+                options.stepCount,
+            );
+        }
+
+        function renderReflections() {
+            if (!options.reflectionsContainer) {
+                return;
+            }
+            options.reflectionsContainer.innerHTML = '';
+            (options.reflectionSections || []).forEach(
+                function renderSection(section) {
+                    const card = document.createElement('div');
+                    card.className = 'teacher-response-card';
+
+                    const label = document.createElement('p');
+                    label.className = 'teacher-response-label';
+                    label.textContent = section.label;
+
+                    const value = document.createElement('div');
+                    value.className = 'teacher-response-text';
+                    value.textContent =
+                        section.getValue().trim() ||
+                        section.emptyText ||
+                        'No response was saved.';
+
+                    card.appendChild(label);
+                    card.appendChild(value);
+                    options.reflectionsContainer.appendChild(card);
+                },
+            );
+        }
+
+        function render() {
+            const state = options.game.state;
+            const perfect =
+                typeof options.isPerfect === 'function'
+                    ? options.isPerfect()
+                    : options.game.isPerfect();
+            if (options.scoreElement) {
+                options.scoreElement.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+            if (options.streakElement) {
+                options.streakElement.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+            }
+            if (options.retriesElement) {
+                options.retriesElement.textContent = `Retries: ${options.game.getTotalRetries()}`;
+            }
+            if (options.perfectTextElement) {
+                options.perfectTextElement.textContent = perfect
+                    ? options.summaryMessages.perfect
+                    : options.summaryMessages.retry;
+            }
+            ensureStepStars();
+            window.LessonCore.renderStepStars(
+                options.stepStarsElement,
+                state.starRatings,
+            );
+            window.LessonCore.renderAchievements(
+                options.achievementsElement,
+                options.achievementCatalog,
+                state.achievements,
+            );
+            renderReflections();
+        }
+
+        if (triggerButton) {
+            triggerButton.addEventListener(
+                'click',
+                function openTeacherSummary() {
+                    if (!unlocked) {
+                        return;
+                    }
+                    render();
+                    setOpen(true);
+                },
+            );
+        }
+
+        if (closeButton) {
+            closeButton.addEventListener(
+                'click',
+                function closeTeacherSummary() {
+                    setOpen(false);
+                },
+            );
+        }
+
+        if (modal) {
+            modal.addEventListener('click', function closeWhenBackdrop(event) {
+                if (event.target === modal) {
+                    setOpen(false);
+                }
+            });
+        }
+
+        if (unlocked) {
+            render();
+        }
+
+        return {
+            render: render,
+            setUnlocked: function setUnlocked(value) {
+                unlocked = Boolean(value);
+            },
+            isUnlocked: function isUnlocked() {
+                return unlocked;
+            },
+            setOpen: setOpen,
+        };
+    };
+})();
+
+        </script>
+
+
+        <script>
+(function () {
+    const lesson = window.__LESSON_DATA__;
+    const core = window.LessonCore;
+    const spotData = lesson.activityData['spot-the-cs'];
+    const sequenceData = lesson.activityData['human-algorithm'];
+    const sessionStore = core.createSessionStore({
+        storageKey: `lesson-session:${lesson.id}`,
+    });
+    const persistedSession = sessionStore.load();
+    const orderManager = core.createStableOrderManager({
+        initialOrders:
+            persistedSession.optionOrders &&
+            typeof persistedSession.optionOrders === 'object'
+                ? persistedSession.optionOrders
+                : {},
+    });
+    let suppressSessionSave = false;
+    let warmupController;
+    let spotController;
+    let sequenceController;
+    let exitController;
+    sessionStore.stripRestartQueryParam();
+
+    const stepController = core.createStepController({
+        stepElements: Array.from(document.querySelectorAll('.lesson-step')),
+        stepCounterElement: document.getElementById('stepCounter'),
+        progressFillElement: document.getElementById('progressFill'),
+        autoScrollOnChange: true,
+        scrollTargetSelector: '.step-title',
+        scrollBehavior: 'smooth',
+        preventInitialScroll: true,
+    });
+
+    core.initThemeControls({
+        selectElement: document.getElementById('themeSelect'),
+        defaultTheme: 'dark',
+    });
+
+    const game = core.createGameState({
+        stepCount: lesson.steps.length,
+        initialState: persistedSession.game,
+        perfectScoreTarget: lesson.gamification.perfectScoreTarget,
+        perfectStreakTarget: lesson.gamification.perfectStreakTarget,
+        hotStreakThreshold: lesson.gamification.hotStreakThreshold,
+        achievementCatalog: lesson.gamification.achievements,
+        scoreDisplay: document.getElementById('scoreDisplay'),
+        streakDisplay: document.getElementById('streakDisplay'),
+        stepStars: document.getElementById('stepStars'),
+        achievementList: document.getElementById('achievementList'),
+        summarySection: document.getElementById('trophySummary'),
+        summaryScore: document.getElementById('summaryScore'),
+        summaryStreak: document.getElementById('summaryStreak'),
+        summaryPerfectText: document.getElementById('summaryPerfectText'),
+        retryPrompt: document.getElementById('retryPrompt'),
+        confettiLayer: document.getElementById('confettiLayer'),
+        toggleTrophyButton: document.getElementById('toggleTrophyBtn'),
+        closeTrophyButton: document.getElementById('closeTrophyBtn'),
+        trophyCase: document.getElementById('trophyCase'),
+        onStepComplete: function onStepComplete(stepNumber, retries) {
+            if (stepNumber === 1 && retries === 0) {
+                game.unlockAchievement('warmup_ready');
+            }
+        },
+    });
+
+    const completionSummaryMessages = {
+        perfect:
+            'Perfect score. You identified computing with evidence, planned the hallway bot carefully, and transferred the idea to a new system.',
+        retry: 'Solid work. You finished the deeper version of the lesson, and you can refresh the page if you want to aim for every point.',
+    };
+
+    function saveSessionSnapshot() {
+        if (suppressSessionSave) {
+            return;
+        }
+        const snapshot = {
+            currentStep: stepController.getCurrentStep(),
+            optionOrders: orderManager.getState(),
+            game: game.getSnapshot(),
+            warmup: warmupController ? warmupController.getState() : {},
+            spot: spotController ? spotController.getState() : {},
+            sequence: sequenceController ? sequenceController.getState() : {},
+            exit: exitController ? exitController.getState() : {},
+        };
+        sessionStore.save(snapshot);
+    }
+
+    function clearSessionSnapshot() {
+        sessionStore.clear();
+    }
+
+    function handleSessionPersist() {
+        if (suppressSessionSave) {
+            clearSessionSnapshot();
+            return;
+        }
+        saveSessionSnapshot();
+    }
+
+    sessionStore.bindAutoSave(handleSessionPersist);
+
+    document
+        .getElementById('resetLessonBtn')
+        .addEventListener('click', function reloadLesson() {
+            suppressSessionSave = true;
+            sessionStore.restartWithoutRestore();
+        });
+    document
+        .getElementById('tryAgainBtn')
+        .addEventListener('click', function reloadLesson() {
+            suppressSessionSave = true;
+            sessionStore.restartWithoutRestore();
+        });
+
+    function bindStepButtons() {
+        document
+            .getElementById('nextStep1')
+            .addEventListener('click', function showStep2() {
+                stepController.showStep(2);
+            });
+        document
+            .getElementById('backStep2')
+            .addEventListener('click', function showStep1() {
+                stepController.showStep(1);
+            });
+        document
+            .getElementById('nextStep2')
+            .addEventListener('click', function showStep3() {
+                stepController.showStep(3);
+            });
+        document
+            .getElementById('backStep3')
+            .addEventListener('click', function showStep2() {
+                stepController.showStep(2);
+            });
+        document
+            .getElementById('nextStep3')
+            .addEventListener('click', function showStep4() {
+                stepController.showStep(4);
+            });
+        document
+            .getElementById('backStep4')
+            .addEventListener('click', function showStep3() {
+                stepController.showStep(3);
+            });
+    }
+
+    function initWarmup() {
+        const statusElement = document.getElementById('warmupStatus');
+        const nextButton = document.getElementById('nextStep1');
+        const savedWarmup = persistedSession.warmup || {};
+        let completed = Boolean(savedWarmup.completed);
+
+        orderManager.reorderRadioGroup('warmup');
+        core.setCheckedValue('warmup', savedWarmup.selectedValue);
+        if (completed) {
+            nextButton.disabled = false;
+            core.setStatus(statusElement, lesson.warmup.correctFeedback, 'ok');
+        }
+
+        document
+            .getElementById('checkWarmupBtn')
+            .addEventListener('click', function checkWarmup() {
+                const checked = document.querySelector(
+                    'input[name="warmup"]:checked',
+                );
+                if (!checked) {
+                    core.setStatus(
+                        statusElement,
+                        'Choose one answer before you check the warm-up.',
+                        'retry',
+                    );
+                    return;
+                }
+                if (checked.value === lesson.warmup.correct) {
+                    if (!completed) {
+                        completed = true;
+                        game.addScore(20);
+                        game.incrementStreak();
+                        game.markStepComplete(1);
+                    }
+                    core.setStatus(
+                        statusElement,
+                        lesson.warmup.correctFeedback,
+                        'ok',
+                    );
+                    nextButton.disabled = false;
+                } else {
+                    game.registerRetry(1);
+                    core.setStatus(
+                        statusElement,
+                        lesson.warmup.retryFeedback,
+                        'retry',
+                    );
+                }
+            });
+
+        return {
+            getState: function getState() {
+                return {
+                    completed: completed,
+                    selectedValue: core.getCheckedValue('warmup'),
+                };
+            },
+        };
+    }
+
+    function initSpotTheCS() {
+        const sceneChoiceHeading =
+            document.getElementById('sceneChoiceHeading');
+        const sceneChoiceSubheading = document.getElementById(
+            'sceneChoiceSubheading',
+        );
+        const sceneChoiceBank = document.getElementById('sceneChoiceBank');
+        const feedbackStatus = document.getElementById('spotFeedback');
+        const feedbackList = document.getElementById('spotFeedbackList');
+        const hintBox = document.getElementById('spotHintBox');
+        const hintText = document.getElementById('spotHintText');
+        const sceneReasoningPrompt = document.getElementById(
+            'sceneReasoningPrompt',
+        );
+        const sceneReasoningOptions = document.getElementById(
+            'sceneReasoningOptions',
+        );
+        const sceneReasoningStatus = document.getElementById(
+            'sceneReasoningStatus',
+        );
+        const checkSceneReasoningButton = document.getElementById(
+            'checkSceneReasoningBtn',
+        );
+        const nextButton = document.getElementById('nextStep2');
+        const savedSpot = persistedSession.spot || {};
+
+        const state = {
+            currentSceneId: savedSpot.currentSceneId || spotData.scenes[0].id,
+            foundByScene: Object.fromEntries(
+                spotData.scenes.map(function mapScene(scene) {
+                    return [
+                        scene.id,
+                        new Set(savedSpot.foundByScene?.[scene.id] || []),
+                    ];
+                }),
+            ),
+            feedbackByScene: Object.fromEntries(
+                spotData.scenes.map(function mapScene(scene) {
+                    return [
+                        scene.id,
+                        Array.isArray(savedSpot.feedbackByScene?.[scene.id])
+                            ? savedSpot.feedbackByScene[scene.id].slice()
+                            : [],
+                    ];
+                }),
+            ),
+            attemptsByScene: Object.fromEntries(
+                spotData.scenes.map(function mapScene(scene) {
+                    return [
+                        scene.id,
+                        Number(savedSpot.attemptsByScene?.[scene.id]) || 0,
+                    ];
+                }),
+            ),
+            selectionCompleteScenes: new Set(
+                savedSpot.selectionCompleteScenes || [],
+            ),
+            certifiedScenes: new Set(savedSpot.certifiedScenes || []),
+            selectionAwardedScenes: new Set(
+                savedSpot.selectionAwardedScenes || [],
+            ),
+            reasoningAwardedScenes: new Set(
+                savedSpot.reasoningAwardedScenes || [],
+            ),
+            selectedReasoningAnswers:
+                savedSpot.selectedReasoningAnswers &&
+                typeof savedSpot.selectedReasoningAnswers === 'object'
+                    ? { ...savedSpot.selectedReasoningAnswers }
+                    : {},
+            activityEverCompleted: Boolean(savedSpot.activityEverCompleted),
+        };
+
+        function getScene(sceneId) {
+            return spotData.scenes.find((scene) => scene.id === sceneId);
+        }
+
+        function getCurrentScene() {
+            return getScene(state.currentSceneId);
+        }
+
+        function getSceneIndex(sceneId) {
+            return spotData.scenes.findIndex(function matchScene(scene) {
+                return scene.id === sceneId;
+            });
+        }
+
+        function getRequiredTargets(scene) {
+            return scene.targets.filter(
+                (target) => target.classification === 'required',
+            );
+        }
+
+        function isSelectionComplete(sceneId) {
+            return state.selectionCompleteScenes.has(sceneId);
+        }
+
+        function isSceneCertified(sceneId) {
+            return state.certifiedScenes.has(sceneId);
+        }
+
+        function getSceneChoiceHeadingText(scene) {
+            if (scene.id === 'home') {
+                return 'Choose a system you might see in a home';
+            }
+            if (scene.id === 'school') {
+                return 'Choose a system you might see in school';
+            }
+            if (scene.id === 'city') {
+                return 'Choose a system you might see in the city';
+            }
+            return `Choose a system you might see in ${scene.name.toLowerCase()}`;
+        }
+
+        function getSceneChoiceSvg(targetId) {
+            const art = {
+                router: "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='18' y='36' width='84' height='28' rx='12' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><path d='M38 34c8-12 36-12 44 0' fill='none' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/><path d='M48 26c4-6 20-6 24 0' fill='none' stroke='var(--accent-soft)' stroke-width='4' stroke-linecap='round'/><circle cx='42' cy='50' r='3' fill='var(--ok)'/><circle cx='60' cy='50' r='3' fill='var(--ok)'/><circle cx='78' cy='50' r='3' fill='var(--ok)'/></svg>",
+                'smart-speaker':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='36' y='18' width='48' height='52' rx='20' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><circle cx='60' cy='34' r='5' fill='var(--accent)'/><path d='M44 56c10 8 22 8 32 0' fill='none' stroke='var(--accent-soft)' stroke-width='4' stroke-linecap='round'/></svg>",
+                thermostat:
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><circle cx='60' cy='44' r='24' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><circle cx='60' cy='44' r='10' fill='var(--accent-soft)'/><rect x='52' y='22' width='16' height='6' rx='3' fill='var(--accent)'/></svg>",
+                lamp: "<svg viewBox='0 0 120 88' aria-hidden='true'><path d='M40 22h40l-10 20H50Z' fill='var(--warn)' opacity='0.4' stroke='var(--border)' stroke-width='2'/><rect x='58' y='42' width='4' height='18' rx='2' fill='var(--border)'/><rect x='46' y='60' width='28' height='8' rx='4' fill='var(--card)' stroke='var(--border)' stroke-width='2'/></svg>",
+                'attendance-tablet':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='34' y='12' width='52' height='64' rx='10' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><rect x='42' y='22' width='36' height='24' rx='4' fill='var(--accent-soft)'/><path d='M44 56h32' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/><path d='M44 64h24' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/></svg>",
+                'id-badge-reader':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='42' y='16' width='36' height='52' rx='8' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><circle cx='60' cy='34' r='8' fill='var(--accent-soft)'/><path d='M50 52h20' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/></svg>",
+                'smart-board':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='18' y='18' width='84' height='46' rx='8' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><rect x='28' y='28' width='64' height='26' rx='4' fill='var(--accent-soft)'/><path d='M52 64v10M68 64v10' stroke='var(--border)' stroke-width='3' stroke-linecap='round'/></svg>",
+                laptop: "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='28' y='18' width='64' height='38' rx='6' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><rect x='36' y='26' width='48' height='22' rx='3' fill='var(--accent-soft)'/><path d='M22 60h76l-8 10H30Z' fill='var(--card)' stroke='var(--border)' stroke-width='2' stroke-linejoin='round'/></svg>",
+                'poster-board':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='30' y='18' width='60' height='42' rx='6' fill='var(--warn)' opacity='0.35' stroke='var(--border)' stroke-width='2'/><path d='M60 60v12' stroke='var(--border)' stroke-width='3' stroke-linecap='round'/><path d='M46 72h28' stroke='var(--border)' stroke-width='3' stroke-linecap='round'/></svg>",
+                'traffic-sensor':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><path d='M38 70V20' stroke='var(--border)' stroke-width='4' stroke-linecap='round'/><rect x='46' y='22' width='18' height='12' rx='3' fill='var(--accent-soft)' stroke='var(--border)' stroke-width='2'/><circle cx='84' cy='28' r='8' fill='var(--accent)' opacity='0.8'/><circle cx='84' cy='48' r='8' fill='var(--warn)' opacity='0.5'/></svg>",
+                'kiosk-screen':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='30' y='14' width='48' height='56' rx='8' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><rect x='38' y='24' width='32' height='18' rx='4' fill='var(--accent-soft)'/><path d='M40 52h28' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/><path d='M84 30v30' stroke='var(--border)' stroke-width='4' stroke-linecap='round'/></svg>",
+                'tap-reader':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='34' y='22' width='32' height='42' rx='8' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><path d='M76 30c10 4 10 24 0 28' fill='none' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/><path d='M84 24c16 8 16 36 0 44' fill='none' stroke='var(--accent-soft)' stroke-width='4' stroke-linecap='round'/></svg>",
+                'arrival-display':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='32' y='14' width='56' height='42' rx='8' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><path d='M42 28h36M42 38h24' stroke='var(--accent)' stroke-width='4' stroke-linecap='round'/><path d='M60 56v12' stroke='var(--border)' stroke-width='4' stroke-linecap='round'/></svg>",
+                'park-bench':
+                    "<svg viewBox='0 0 120 88' aria-hidden='true'><path d='M34 34h52' stroke='var(--warn)' stroke-width='6' stroke-linecap='round'/><path d='M34 46h52' stroke='var(--warn)' stroke-width='6' stroke-linecap='round'/><path d='M42 46v18M78 46v18' stroke='var(--border)' stroke-width='4' stroke-linecap='round'/></svg>",
+            };
+            return (
+                art[targetId] ||
+                "<svg viewBox='0 0 120 88' aria-hidden='true'><rect x='26' y='18' width='68' height='52' rx='12' fill='var(--card)' stroke='var(--border)' stroke-width='2'/><circle cx='60' cy='44' r='10' fill='var(--accent-soft)'/></svg>"
+            );
+        }
+
+        function renderFeedbackList() {
+            const scene = getCurrentScene();
+            feedbackList.innerHTML = '';
+            state.feedbackByScene[scene.id].forEach(
+                function renderItem(message) {
+                    const item = document.createElement('li');
+                    item.textContent = message;
+                    feedbackList.appendChild(item);
+                },
+            );
+        }
+
+        function renderHint() {
+            const scene = getCurrentScene();
+            if (
+                state.attemptsByScene[scene.id] >= 2 &&
+                !isSceneCertified(scene.id)
+            ) {
+                hintText.textContent = scene.hint;
+                core.setHidden(hintBox, false);
+            } else {
+                core.setHidden(hintBox, true);
+            }
+        }
+
+        function renderSceneChoices() {
+            const scene = getCurrentScene();
+            sceneChoiceBank.innerHTML = '';
+            const targetsById = new Map(
+                scene.targets.map(function mapTarget(target) {
+                    return [target.id, target];
+                }),
+            );
+            const orderedTargetIds = orderManager.getStableOptionOrder(
+                `scene-choice-${scene.id}`,
+                scene.targets.map(function mapId(target) {
+                    return target.id;
+                }),
+            );
+            orderedTargetIds.forEach(function renderChoice(targetId) {
+                const target = targetsById.get(targetId);
+                if (!target) {
+                    return;
+                }
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'scene-choice';
+                button.innerHTML = `
+                    <span class="scene-choice-figure">${getSceneChoiceSvg(target.id)}</span>
+                    <span class="scene-choice-copy">
+                        <span class="scene-choice-name">${core.escapeHtml(target.label)}</span>
+                        <span class="scene-choice-context">Tap to test whether it counts as computing here.</span>
+                    </span>
+                `;
+                if (state.foundByScene[scene.id].has(target.id)) {
+                    button.classList.add('correct');
+                    button.disabled = true;
+                }
+                button.addEventListener('click', function chooseSystem() {
+                    handleSceneChoice(target.id);
+                });
+                sceneChoiceBank.appendChild(button);
+            });
+        }
+
+        function renderSceneReasoning() {
+            const scene = getCurrentScene();
+            const reasoning = scene.reasoningCheck;
+            const inputName = `scene-reasoning-${scene.id}`;
+
+            sceneReasoningOptions.innerHTML = '';
+            if (!isSelectionComplete(scene.id)) {
+                sceneReasoningPrompt.textContent =
+                    'Find every required system in the current scene to unlock its certification question.';
+                checkSceneReasoningButton.disabled = true;
+                core.setStatus(
+                    sceneReasoningStatus,
+                    'Finish identifying the required systems first, then certify the scene with evidence.',
+                    '',
+                );
+                return;
+            }
+
+            sceneReasoningPrompt.textContent = reasoning.prompt;
+            const fieldset = document.createElement('fieldset');
+            fieldset.className = 'question-card';
+
+            const optionsByValue = new Map(
+                reasoning.options.map(function mapOption(option) {
+                    return [option.value, option];
+                }),
+            );
+            const orderedValues = orderManager.getStableOptionOrder(
+                inputName,
+                reasoning.options.map(function mapValue(option) {
+                    return option.value;
+                }),
+            );
+
+            orderedValues.forEach(function renderOption(optionValue) {
+                const option = optionsByValue.get(optionValue);
+                if (!option) {
+                    return;
+                }
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                const span = document.createElement('span');
+                input.type = 'radio';
+                input.name = inputName;
+                input.value = option.value;
+                input.checked =
+                    state.selectedReasoningAnswers[scene.id] === option.value;
+                input.disabled = isSceneCertified(scene.id);
+                input.addEventListener('change', function selectReasoning() {
+                    state.selectedReasoningAnswers[scene.id] = option.value;
+                });
+                span.textContent = option.label;
+                label.appendChild(input);
+                label.appendChild(span);
+                fieldset.appendChild(label);
+            });
+
+            sceneReasoningOptions.appendChild(fieldset);
+            if (isSceneCertified(scene.id)) {
+                checkSceneReasoningButton.disabled = true;
+                core.setStatus(
+                    sceneReasoningStatus,
+                    'Scene certified. You used evidence to explain why it counts as computing.',
+                    'ok',
+                );
+                return;
+            }
+
+            checkSceneReasoningButton.disabled = false;
+            core.setStatus(
+                sceneReasoningStatus,
+                'Choose the best explanation, then certify the scene.',
+                '',
+            );
+        }
+
+        function maybeUnlockSceneSelection(scene) {
+            const allRequiredFound = getRequiredTargets(scene).every((target) =>
+                state.foundByScene[scene.id].has(target.id),
+            );
+            if (!allRequiredFound || isSelectionComplete(scene.id)) {
+                return;
+            }
+
+            state.selectionCompleteScenes.add(scene.id);
+            if (!state.selectionAwardedScenes.has(scene.id)) {
+                state.selectionAwardedScenes.add(scene.id);
+                game.addScore(scene.points);
+                game.incrementStreak();
+            }
+            core.setStatus(
+                feedbackStatus,
+                'You found the required systems. Use the certification question to explain why the scene counts as computing.',
+                'ok',
+            );
+        }
+
+        function maybeCompleteSpotTheCS() {
+            if (state.certifiedScenes.size !== spotData.scenes.length) {
+                return;
+            }
+
+            if (!state.activityEverCompleted) {
+                state.activityEverCompleted = true;
+                game.markStepComplete(2);
+                game.unlockAchievement('scene_spotter');
+            }
+            nextButton.disabled = false;
+            core.setStatus(
+                feedbackStatus,
+                'All three scenes are certified. Move on when you are ready.',
+                'ok',
+            );
+        }
+
+        function handleSceneChoice(targetId) {
+            const scene = getCurrentScene();
+            const target = scene.targets.find((item) => item.id === targetId);
+            if (!target) {
+                return;
+            }
+
+            if (target.classification === 'incorrect') {
+                state.attemptsByScene[scene.id] += 1;
+                game.registerRetry(2);
+                core.setStatus(feedbackStatus, target.feedback, 'retry');
+                state.feedbackByScene[scene.id] = state.feedbackByScene[
+                    scene.id
+                ].filter((message) => !message.startsWith(`${target.label}:`));
+                state.feedbackByScene[scene.id].unshift(
+                    `${target.label}: ${target.feedback}`,
+                );
+                renderFeedbackList();
+                renderHint();
+                return;
+            }
+
+            const firstDiscovery = !state.foundByScene[scene.id].has(target.id);
+            state.foundByScene[scene.id].add(target.id);
+            state.feedbackByScene[scene.id] = state.feedbackByScene[
+                scene.id
+            ].filter((message) => !message.startsWith(`${target.label}:`));
+            state.feedbackByScene[scene.id].unshift(
+                `${target.label}: ${target.feedback}`,
+            );
+
+            if (target.classification === 'optional') {
+                game.unlockAchievement('overlap_reader');
+            }
+
+            if (firstDiscovery) {
+                core.setStatus(feedbackStatus, target.feedback, 'ok');
+            }
+            maybeUnlockSceneSelection(scene);
+            renderCurrentScene();
+            maybeCompleteSpotTheCS();
+        }
+
+        function advanceToNextScene(sceneId) {
+            const currentIndex = getSceneIndex(sceneId);
+            if (currentIndex < 0) {
+                return;
+            }
+            const nextScene = spotData.scenes[currentIndex + 1];
+            if (nextScene) {
+                state.currentSceneId = nextScene.id;
+            }
+        }
+
+        function checkSceneReasoning() {
+            const scene = getCurrentScene();
+            const reasoning = scene.reasoningCheck;
+            const selectedValue = state.selectedReasoningAnswers[scene.id];
+
+            if (!isSelectionComplete(scene.id)) {
+                core.setStatus(
+                    sceneReasoningStatus,
+                    'Finish identifying the required systems first.',
+                    'retry',
+                );
+                return;
+            }
+            if (!selectedValue) {
+                core.setStatus(
+                    sceneReasoningStatus,
+                    'Choose one explanation before you certify the scene.',
+                    'retry',
+                );
+                return;
+            }
+            if (selectedValue !== reasoning.correct) {
+                state.attemptsByScene[scene.id] += 1;
+                game.registerRetry(2);
+                core.setStatus(
+                    sceneReasoningStatus,
+                    reasoning.retryFeedback,
+                    'retry',
+                );
+                core.setStatus(
+                    feedbackStatus,
+                    `${scene.name} is not certified yet. Revise your explanation and try again.`,
+                    'retry',
+                );
+                renderHint();
+                return;
+            }
+
+            if (!state.certifiedScenes.has(scene.id)) {
+                state.certifiedScenes.add(scene.id);
+                if (!state.reasoningAwardedScenes.has(scene.id)) {
+                    state.reasoningAwardedScenes.add(scene.id);
+                    game.addScore(reasoning.points);
+                    game.incrementStreak();
+                }
+            }
+
+            core.setStatus(
+                sceneReasoningStatus,
+                reasoning.correctFeedback,
+                'ok',
+            );
+            if (state.certifiedScenes.size < spotData.scenes.length) {
+                advanceToNextScene(scene.id);
+                renderCurrentScene();
+                core.setStatus(
+                    feedbackStatus,
+                    `${scene.name} certified. Continue with the next scene.`,
+                    'ok',
+                );
+            } else {
+                renderCurrentScene();
+                core.setStatus(
+                    feedbackStatus,
+                    'All three scenes are certified. Move on when you are ready.',
+                    'ok',
+                );
+            }
+            maybeCompleteSpotTheCS();
+        }
+
+        function renderCurrentScene() {
+            const scene = getCurrentScene();
+            sceneChoiceHeading.textContent = getSceneChoiceHeadingText(scene);
+            sceneChoiceSubheading.textContent = scene.prompt;
+            renderSceneChoices();
+            renderFeedbackList();
+            renderHint();
+            renderSceneReasoning();
+        }
+
+        function resetActivity() {
+            state.currentSceneId = spotData.scenes[0].id;
+            state.selectionCompleteScenes.clear();
+            state.certifiedScenes.clear();
+            state.selectedReasoningAnswers = {};
+            spotData.scenes.forEach(function resetScene(scene) {
+                state.foundByScene[scene.id] = new Set();
+                state.feedbackByScene[scene.id] = [];
+                state.attemptsByScene[scene.id] = 0;
+            });
+            nextButton.disabled = !state.activityEverCompleted;
+            core.setStatus(
+                feedbackStatus,
+                'Activity reset. Select a system to see why it is, or is not, a strong example of computing.',
+                '',
+            );
+            renderCurrentScene();
+        }
+
+        document
+            .getElementById('resetSpotBtn')
+            .addEventListener('click', resetActivity);
+        checkSceneReasoningButton.addEventListener(
+            'click',
+            checkSceneReasoning,
+        );
+
+        if (state.activityEverCompleted) {
+            nextButton.disabled = false;
+        }
+        renderCurrentScene();
+
+        return {
+            getState: function getState() {
+                return {
+                    currentSceneId: state.currentSceneId,
+                    foundByScene: Object.fromEntries(
+                        spotData.scenes.map(function mapScene(scene) {
+                            return [
+                                scene.id,
+                                Array.from(state.foundByScene[scene.id]),
+                            ];
+                        }),
+                    ),
+                    feedbackByScene: Object.fromEntries(
+                        spotData.scenes.map(function mapScene(scene) {
+                            return [
+                                scene.id,
+                                state.feedbackByScene[scene.id].slice(),
+                            ];
+                        }),
+                    ),
+                    attemptsByScene: Object.fromEntries(
+                        spotData.scenes.map(function mapScene(scene) {
+                            return [scene.id, state.attemptsByScene[scene.id]];
+                        }),
+                    ),
+                    selectionCompleteScenes: Array.from(
+                        state.selectionCompleteScenes,
+                    ),
+                    certifiedScenes: Array.from(state.certifiedScenes),
+                    selectionAwardedScenes: Array.from(
+                        state.selectionAwardedScenes,
+                    ),
+                    reasoningAwardedScenes: Array.from(
+                        state.reasoningAwardedScenes,
+                    ),
+                    selectedReasoningAnswers: {
+                        ...state.selectedReasoningAnswers,
+                    },
+                    activityEverCompleted: state.activityEverCompleted,
+                };
+            },
+        };
+    }
+
+    function initHumanAlgorithm() {
+        const cardBank = document.getElementById('cardBank');
+        const sequenceLane = document.getElementById('sequenceLane');
+        const routeBoard = document.getElementById('routeBoard');
+        const boardPreview = document.getElementById('boardPreview');
+        const planningStatus = document.getElementById('planningStatus');
+        const sequenceStatus = document.getElementById('sequenceStatus');
+        const sequenceRunStatus = document.getElementById('sequenceRunStatus');
+        const sequenceReflection =
+            document.getElementById('sequenceReflection');
+        const sequenceReflectionInput = document.getElementById(
+            'sequenceReflectionInput',
+        );
+        const sequenceReflectionStatus = document.getElementById(
+            'sequenceReflectionStatus',
+        );
+        const checkSequencePlanButton = document.getElementById(
+            'checkSequencePlanBtn',
+        );
+        const saveSequenceReflectionButton = document.getElementById(
+            'saveSequenceReflectionBtn',
+        );
+        const runButton = document.getElementById('runSequenceBtn');
+        const nextButton = document.getElementById('nextStep3');
+        const hintButton = document.getElementById('sequenceHintBtn');
+        const savedSequence = persistedSession.sequence || {};
+
+        const planningQuestions = sequenceData.planningCheck.questions;
+        planningQuestions.forEach(function reorderQuestion(question) {
+            orderManager.reorderRadioGroup(question.id);
+        });
+        const cardMap = new Map(
+            sequenceData.cards.map((card) => [card.id, card]),
+        );
+        const state = {
+            bankOrder: Array.isArray(savedSequence.bankOrder)
+                ? savedSequence.bankOrder.slice()
+                : core.shuffle(sequenceData.cards.map((card) => card.id)),
+            slots: Array.from(
+                { length: sequenceData.slotCount },
+                function restoreSlot(_, index) {
+                    return savedSequence.slots?.[index] || null;
+                },
+            ),
+            lockedSlots: new Set(savedSequence.lockedSlots || []),
+            failureCount: Number(savedSequence.failureCount) || 0,
+            planningPassed: Boolean(savedSequence.planningPassed),
+            planningAwarded: Boolean(savedSequence.planningAwarded),
+            sequenceAwarded: Boolean(savedSequence.sequenceAwarded),
+            reflectionAwarded: Boolean(savedSequence.reflectionAwarded),
+            stepCompletedOnce: Boolean(savedSequence.stepCompletedOnce),
+            animationToken: 0,
+        };
+
+        const blockedKeys = new Set(
+            sequenceData.board.blocked.map(function mapBlocked(cell) {
+                return `${cell.row}-${cell.col}`;
+            }),
+        );
+        const routeKeys = sequenceData.board.route.map(function mapRoute(cell) {
+            return `${cell.row}-${cell.col}`;
+        });
+        const routeStopsByKey = new Map(
+            sequenceData.board.route.map(function mapStop(cell, index) {
+                return [
+                    `${cell.row}-${cell.col}`,
+                    sequenceData.board.routeStops[index],
+                ];
+            }),
+        );
+
+        function getSequencePreview() {
+            const preview = {
+                hasAnyCards: state.slots.some(Boolean),
+                executedCount: 0,
+                failureIndex: null,
+                missingIndex: null,
+                success: false,
+                nextExpectedId: null,
+            };
+
+            for (
+                let index = 0;
+                index < sequenceData.correctOrder.length;
+                index += 1
+            ) {
+                const cardId = state.slots[index];
+                if (!cardId) {
+                    preview.missingIndex = index;
+                    break;
+                }
+                if (cardId !== sequenceData.correctOrder[index]) {
+                    preview.failureIndex = index;
+                    break;
+                }
+                preview.executedCount = index + 1;
+            }
+
+            if (
+                preview.failureIndex === null &&
+                preview.missingIndex === null &&
+                preview.executedCount === sequenceData.correctOrder.length
+            ) {
+                preview.success = true;
+            }
+
+            if (!preview.success) {
+                preview.nextExpectedId =
+                    sequenceData.correctOrder[preview.executedCount] || null;
+            }
+
+            return preview;
+        }
+
+        function removeCardFromCurrentLocation(cardId) {
+            const slotIndex = state.slots.findIndex(
+                (currentCardId) => currentCardId === cardId,
+            );
+            if (slotIndex >= 0) {
+                state.slots[slotIndex] = null;
+                return;
+            }
+            const bankIndex = state.bankOrder.indexOf(cardId);
+            if (bankIndex >= 0) {
+                state.bankOrder.splice(bankIndex, 1);
+            }
+        }
+
+        function placeCard(cardId, slotIndex) {
+            if (state.lockedSlots.has(slotIndex)) {
+                return;
+            }
+            removeCardFromCurrentLocation(cardId);
+            const displaced = state.slots[slotIndex];
+            state.slots[slotIndex] = cardId;
+            if (displaced) {
+                state.bankOrder.push(displaced);
+            }
+            renderSequence();
+        }
+
+        function fillFirstEmpty(cardId) {
+            const slotIndex = state.slots.findIndex((value) => value === null);
+            if (slotIndex === -1) {
+                core.setStatus(
+                    sequenceStatus,
+                    'The sequence lane is full. Move or remove a command before adding another one.',
+                    'retry',
+                );
+                return;
+            }
+            placeCard(cardId, slotIndex);
+        }
+
+        function returnCardToBank(slotIndex) {
+            if (state.lockedSlots.has(slotIndex)) {
+                return;
+            }
+            const cardId = state.slots[slotIndex];
+            if (!cardId) {
+                return;
+            }
+            state.slots[slotIndex] = null;
+            state.bankOrder.push(cardId);
+            renderSequence();
+        }
+
+        function moveCard(slotIndex, direction) {
+            const targetIndex = slotIndex + direction;
+            if (targetIndex < 0 || targetIndex >= state.slots.length) {
+                return;
+            }
+            if (
+                state.lockedSlots.has(slotIndex) ||
+                state.lockedSlots.has(targetIndex)
+            ) {
+                return;
+            }
+            const currentCardId = state.slots[slotIndex];
+            state.slots[slotIndex] = state.slots[targetIndex];
+            state.slots[targetIndex] = currentCardId;
+            renderSequence();
+        }
+
+        function bindDragHandlers(element, cardId) {
+            element.draggable = true;
+            element.addEventListener('dragstart', function onDragStart(event) {
+                event.dataTransfer.setData('text/plain', cardId);
+            });
+        }
+
+        function renderCardBank() {
+            cardBank.innerHTML = '';
+            state.bankOrder.forEach(function renderBankCard(cardId) {
+                const card = cardMap.get(cardId);
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'sequence-card';
+                button.innerHTML = `<strong>${core.escapeHtml(card.label)}</strong>`;
+                button.addEventListener('click', function addToLane() {
+                    fillFirstEmpty(cardId);
+                });
+                bindDragHandlers(button, cardId);
+                cardBank.appendChild(button);
+            });
+        }
+
+        function renderLane(preview) {
+            sequenceLane.innerHTML = '';
+            state.slots.forEach(function renderSlot(cardId, slotIndex) {
+                const slot = document.createElement('div');
+                slot.className = state.lockedSlots.has(slotIndex)
+                    ? 'slot locked'
+                    : 'slot';
+                if (slotIndex < preview.executedCount) {
+                    slot.classList.add('preview-correct');
+                }
+                if (preview.failureIndex === slotIndex) {
+                    slot.classList.add('preview-error');
+                }
+                if (preview.missingIndex === slotIndex) {
+                    slot.classList.add('preview-next');
+                }
+                slot.innerHTML = `<div class="slot-label">Step ${slotIndex + 1}</div>`;
+                slot.addEventListener('dragover', function allowDrop(event) {
+                    event.preventDefault();
+                });
+                slot.addEventListener('drop', function onDrop(event) {
+                    event.preventDefault();
+                    const droppedCardId =
+                        event.dataTransfer.getData('text/plain');
+                    if (droppedCardId) {
+                        placeCard(droppedCardId, slotIndex);
+                    }
+                });
+                if (!cardId) {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'muted';
+                    placeholder.textContent =
+                        'Drop or click a command here. You can run the bot with a partial sequence once planning is approved.';
+                    slot.appendChild(placeholder);
+                } else {
+                    const card = cardMap.get(cardId);
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'slot-card';
+                    cardElement.innerHTML = `<strong>${core.escapeHtml(card.label)}</strong>`;
+                    bindDragHandlers(cardElement, cardId);
+                    const controls = document.createElement('div');
+                    controls.className = 'move-controls';
+                    controls.innerHTML = `
+                        <button type="button" data-move="-1">Move up</button>
+                        <button type="button" data-move="1">Move down</button>
+                        <button type="button" data-remove="true">Remove</button>
+                    `;
+                    controls
+                        .querySelector('[data-move="-1"]')
+                        .addEventListener('click', function moveUp() {
+                            moveCard(slotIndex, -1);
+                        });
+                    controls
+                        .querySelector('[data-move="1"]')
+                        .addEventListener('click', function moveDown() {
+                            moveCard(slotIndex, 1);
+                        });
+                    controls
+                        .querySelector('[data-remove="true"]')
+                        .addEventListener('click', function removeCard() {
+                            returnCardToBank(slotIndex);
+                        });
+                    if (state.lockedSlots.has(slotIndex)) {
+                        controls
+                            .querySelectorAll('button')
+                            .forEach(function disableButton(button) {
+                                button.disabled = true;
+                            });
+                    }
+                    slot.appendChild(cardElement);
+                    slot.appendChild(controls);
+                }
+                sequenceLane.appendChild(slot);
+            });
+        }
+
+        function renderRouteGuide(preview, activeStopIndex) {
+            const currentStopIndex =
+                typeof activeStopIndex === 'number'
+                    ? activeStopIndex
+                    : preview.executedCount;
+            boardPreview.innerHTML = '';
+            sequenceData.board.routeStops.forEach(
+                function renderStop(stop, index) {
+                    const node = document.createElement('div');
+                    node.className = 'route-node';
+                    if (index < currentStopIndex) {
+                        node.classList.add('complete');
+                    }
+                    if (index === currentStopIndex) {
+                        node.classList.add('active');
+                    }
+                    if (
+                        preview.failureIndex !== null &&
+                        index === currentStopIndex
+                    ) {
+                        node.classList.add('error');
+                    }
+                    node.innerHTML = `<span class="route-node-label">${core.escapeHtml(stop.title)}</span><span class="route-node-title">${core.escapeHtml(stop.label)}</span>`;
+                    boardPreview.appendChild(node);
+                    if (index < sequenceData.board.routeStops.length - 1) {
+                        const arrow = document.createElement('span');
+                        arrow.className = 'route-arrow';
+                        arrow.textContent = '→';
+                        boardPreview.appendChild(arrow);
+                    }
+                },
+            );
+        }
+
+        function renderRouteBoard(preview, animatedExecutedCount) {
+            const activeCount =
+                typeof animatedExecutedCount === 'number'
+                    ? animatedExecutedCount
+                    : preview.executedCount;
+            const activeStopIndex = Math.min(
+                activeCount,
+                sequenceData.board.route.length - 1,
+            );
+            const currentStop = sequenceData.board.route[activeStopIndex];
+            const currentKey = `${currentStop.row}-${currentStop.col}`;
+            const nextStop =
+                preview.missingIndex !== null &&
+                preview.hasAnyCards &&
+                activeStopIndex < sequenceData.board.route.length - 1
+                    ? sequenceData.board.route[activeStopIndex + 1]
+                    : null;
+            const nextKey = nextStop ? `${nextStop.row}-${nextStop.col}` : null;
+            const traversedKeys = new Set(routeKeys.slice(0, activeCount + 1));
+
+            routeBoard.style.setProperty(
+                '--board-cols',
+                sequenceData.board.cols,
+            );
+            routeBoard.innerHTML = '';
+
+            for (let row = 0; row < sequenceData.board.rows; row += 1) {
+                for (let col = 0; col < sequenceData.board.cols; col += 1) {
+                    const cell = document.createElement('div');
+                    const key = `${row}-${col}`;
+                    cell.className = 'route-cell';
+
+                    if (blockedKeys.has(key)) {
+                        cell.classList.add('blocked');
+                    }
+                    if (routeStopsByKey.has(key)) {
+                        cell.classList.add('route-path');
+                    }
+                    if (traversedKeys.has(key)) {
+                        cell.classList.add('traversed');
+                    }
+                    if (key === routeKeys[0]) {
+                        cell.classList.add('start');
+                    }
+                    if (key === routeKeys[routeKeys.length - 1]) {
+                        cell.classList.add('target');
+                    }
+                    if (key === nextKey) {
+                        cell.classList.add('upcoming');
+                    }
+                    if (key === currentKey) {
+                        cell.classList.add('bot');
+                    }
+                    if (preview.failureIndex !== null && key === currentKey) {
+                        cell.classList.add('bot-error');
+                    }
+
+                    const stop = routeStopsByKey.get(key);
+                    if (stop) {
+                        const label = document.createElement('div');
+                        label.className = 'route-cell-label';
+                        label.textContent = stop.label;
+                        cell.appendChild(label);
+                    }
+
+                    if (key === currentKey) {
+                        const token = document.createElement('span');
+                        token.className =
+                            preview.failureIndex !== null
+                                ? 'route-cell-token bot error'
+                                : 'route-cell-token bot';
+                        token.textContent = 'BOT';
+                        cell.appendChild(token);
+                    } else if (key === routeKeys[0]) {
+                        const token = document.createElement('span');
+                        token.className = 'route-cell-token';
+                        token.textContent = 'START';
+                        cell.appendChild(token);
+                    } else if (key === routeKeys[routeKeys.length - 1]) {
+                        const token = document.createElement('span');
+                        token.className = 'route-cell-token';
+                        token.textContent = 'GOAL';
+                        cell.appendChild(token);
+                    }
+
+                    if (key === nextKey) {
+                        const note = document.createElement('div');
+                        note.className = 'route-cell-note';
+                        note.textContent = 'Next needed move';
+                        cell.appendChild(note);
+                    }
+
+                    routeBoard.appendChild(cell);
+                }
+            }
+        }
+
+        function renderSequence(previewOverride) {
+            const preview = previewOverride || getSequencePreview();
+            renderCardBank();
+            renderLane(preview);
+            renderRouteGuide(preview);
+            renderRouteBoard(preview);
+        }
+
+        function lockPlanningCheck() {
+            planningQuestions.forEach(function disableQuestion(question) {
+                document
+                    .querySelectorAll(`input[name="${question.id}"]`)
+                    .forEach(function disableInput(input) {
+                        input.disabled = true;
+                    });
+            });
+            checkSequencePlanButton.disabled = true;
+        }
+
+        async function animateRoute(preview) {
+            const token = state.animationToken + 1;
+            state.animationToken = token;
+            for (let index = 0; index <= preview.executedCount; index += 1) {
+                if (state.animationToken !== token) {
+                    return;
+                }
+                renderRouteGuide(preview, index);
+                renderRouteBoard(preview, index);
+                await new Promise(function wait(resolve) {
+                    window.setTimeout(resolve, 240);
+                });
+            }
+            renderRouteGuide(preview);
+            renderRouteBoard(preview);
+        }
+
+        function checkPlanning() {
+            const unanswered = [];
+            const wrong = [];
+
+            planningQuestions.forEach(
+                function inspectQuestion(question, index) {
+                    const selected = document.querySelector(
+                        `input[name="${question.id}"]:checked`,
+                    );
+                    if (!selected) {
+                        unanswered.push(index + 1);
+                        return;
+                    }
+                    if (selected.value !== question.correct) {
+                        wrong.push(index + 1);
+                    }
+                },
+            );
+
+            if (unanswered.length > 0) {
+                core.setStatus(
+                    planningStatus,
+                    `Answer planning question ${unanswered.join(', ')} before you unlock Run.`,
+                    'retry',
+                );
+                return;
+            }
+
+            if (wrong.length > 0) {
+                game.registerRetry(3);
+                runButton.disabled = true;
+                core.setStatus(
+                    planningStatus,
+                    `${sequenceData.planningCheck.retryFeedback} Review question ${wrong.join(', ')}.`,
+                    'retry',
+                );
+                core.setStatus(
+                    sequenceStatus,
+                    'Revise your plan before you rely on trial and error in the sequence lane.',
+                    'retry',
+                );
+                return;
+            }
+
+            state.planningPassed = true;
+            runButton.disabled = false;
+            lockPlanningCheck();
+            if (!state.planningAwarded) {
+                state.planningAwarded = true;
+                game.addScore(sequenceData.planningCheck.points);
+                game.incrementStreak();
+            }
+            core.setStatus(
+                planningStatus,
+                sequenceData.planningCheck.successFeedback,
+                'ok',
+            );
+            core.setStatus(
+                sequenceStatus,
+                'Plan approved. Arrange the commands and run the bot when you are ready.',
+                'ok',
+            );
+            core.setStatus(
+                sequenceRunStatus,
+                'The bot follows each command in order and stops the moment the route is incomplete or out of order.',
+                '',
+            );
+        }
+
+        function evaluateSequence() {
+            const preview = getSequencePreview();
+            if (!state.planningPassed) {
+                core.setStatus(
+                    sequenceRunStatus,
+                    'Answer the planning questions first, then run the bot.',
+                    'retry',
+                );
+                return;
+            }
+            if (!preview.hasAnyCards) {
+                core.setStatus(
+                    sequenceRunStatus,
+                    'Add at least one command before you run the bot.',
+                    'retry',
+                );
+                return;
+            }
+
+            if (preview.failureIndex !== null) {
+                const failedCard = cardMap.get(
+                    state.slots[preview.failureIndex],
+                );
+                state.failureCount += 1;
+                game.registerRetry(3);
+                core.setStatus(
+                    sequenceRunStatus,
+                    `Step ${preview.failureIndex + 1} fails: ${failedCard.failureReason}`,
+                    'retry',
+                );
+                core.setStatus(
+                    sequenceStatus,
+                    'Reorder the sequence and run it again. The route stops at the first invalid transition.',
+                    'retry',
+                );
+                hintButton.disabled = state.failureCount < 2;
+                void animateRoute(preview);
+                core.setHidden(sequenceReflection, true);
+                return;
+            }
+
+            if (!preview.success) {
+                state.failureCount += 1;
+                game.registerRetry(3);
+                const nextExpected = cardMap.get(preview.nextExpectedId);
+                core.setStatus(
+                    sequenceRunStatus,
+                    `Good start. The bot stopped because the next needed command is missing: ${nextExpected.label}.`,
+                    'retry',
+                );
+                core.setStatus(
+                    sequenceStatus,
+                    'Use the stopping point to decide which command has to come next.',
+                    'retry',
+                );
+                hintButton.disabled = state.failureCount < 2;
+                void animateRoute(preview);
+                core.setHidden(sequenceReflection, true);
+                return;
+            }
+
+            if (!state.sequenceAwarded) {
+                state.sequenceAwarded = true;
+                game.addScore(sequenceData.points);
+                game.incrementStreak();
+            }
+            core.setStatus(
+                sequenceRunStatus,
+                'The bot reached the laptop. Each command happened in the right order.',
+                'ok',
+            );
+            core.setStatus(
+                sequenceStatus,
+                'Success. Save a short reflection about which dependency mattered most before you move on.',
+                'ok',
+            );
+            core.setHidden(sequenceReflection, false);
+            core.setStatus(
+                sequenceReflectionStatus,
+                `Write at least ${sequenceData.reflection.minLength} characters about a step that had to happen before another step.`,
+                '',
+            );
+            nextButton.disabled = !state.stepCompletedOnce;
+            void animateRoute(preview);
+        }
+
+        function saveSequenceReflection() {
+            const reflectionText = sequenceReflectionInput.value.trim();
+
+            if (!state.sequenceAwarded) {
+                core.setStatus(
+                    sequenceReflectionStatus,
+                    'Run a successful route before you save the reflection.',
+                    'retry',
+                );
+                return;
+            }
+
+            if (reflectionText.length < sequenceData.reflection.minLength) {
+                game.registerRetry(3);
+                core.setStatus(
+                    sequenceReflectionStatus,
+                    sequenceData.reflection.retryFeedback,
+                    'retry',
+                );
+                return;
+            }
+
+            if (!state.reflectionAwarded) {
+                state.reflectionAwarded = true;
+                game.addScore(sequenceData.reflection.points);
+                game.incrementStreak();
+            }
+            if (!state.stepCompletedOnce) {
+                state.stepCompletedOnce = true;
+                game.markStepComplete(3);
+                game.unlockAchievement('hallway_builder');
+            }
+            core.setStatus(
+                sequenceReflectionStatus,
+                sequenceData.reflection.successFeedback,
+                'ok',
+            );
+            nextButton.disabled = false;
+        }
+
+        function applyFirstStepHint() {
+            const correctFirstCard = sequenceData.correctOrder[0];
+            state.lockedSlots.add(0);
+            removeCardFromCurrentLocation(correctFirstCard);
+            state.slots[0] = correctFirstCard;
+            renderSequence();
+            core.setStatus(
+                sequenceStatus,
+                `Hint applied. The first step is now locked: ${cardMap.get(correctFirstCard).label}.`,
+                'ok',
+            );
+            hintButton.disabled = true;
+        }
+
+        function resetActivity() {
+            state.animationToken += 1;
+            state.bankOrder = core.shuffle(
+                sequenceData.cards.map((card) => card.id),
+            );
+            state.slots = Array(sequenceData.slotCount).fill(null);
+            state.lockedSlots.clear();
+            state.failureCount = 0;
+            hintButton.disabled = true;
+            runButton.disabled = !state.planningPassed;
+            nextButton.disabled = !state.stepCompletedOnce;
+            sequenceReflectionInput.value = '';
+            core.setStatus(
+                sequenceStatus,
+                state.planningPassed
+                    ? 'Activity reset. Rebuild the route and run it again.'
+                    : 'You can arrange cards now, but Run unlocks only after the planning check passes.',
+                '',
+            );
+            core.setStatus(
+                sequenceRunStatus,
+                state.planningPassed
+                    ? 'The bot follows each command in order and stops the moment the route is incomplete or out of order.'
+                    : 'Answer the planning questions first, then run the bot to test your sequence.',
+                '',
+            );
+            core.setStatus(
+                sequenceReflectionStatus,
+                'Run a working sequence, then save a short explanation to complete Step 3.',
+                '',
+            );
+            core.setHidden(sequenceReflection, true);
+            renderSequence();
+        }
+
+        planningQuestions.forEach(function restoreQuestion(question) {
+            core.setCheckedValue(
+                question.id,
+                savedSequence.planningAnswers?.[question.id],
+            );
+        });
+        sequenceReflectionInput.value = savedSequence.reflectionText || '';
+
+        checkSequencePlanButton.addEventListener('click', checkPlanning);
+        hintButton.addEventListener('click', applyFirstStepHint);
+        runButton.addEventListener('click', evaluateSequence);
+        saveSequenceReflectionButton.addEventListener(
+            'click',
+            saveSequenceReflection,
+        );
+        document
+            .getElementById('resetSequenceBtn')
+            .addEventListener('click', resetActivity);
+
+        hintButton.disabled = state.failureCount < 2;
+        runButton.disabled = !state.planningPassed;
+        nextButton.disabled = !state.stepCompletedOnce;
+        if (state.planningPassed) {
+            lockPlanningCheck();
+            core.setStatus(
+                planningStatus,
+                sequenceData.planningCheck.successFeedback,
+                'ok',
+            );
+            core.setStatus(
+                sequenceRunStatus,
+                'The bot follows each command in order and stops the moment the route is incomplete or out of order.',
+                '',
+            );
+        }
+        if (state.sequenceAwarded) {
+            core.setHidden(sequenceReflection, false);
+            core.setStatus(
+                sequenceStatus,
+                state.reflectionAwarded
+                    ? 'Success. Your reflection is saved.'
+                    : 'Success. Save a short reflection about which dependency mattered most before you move on.',
+                'ok',
+            );
+            core.setStatus(
+                sequenceRunStatus,
+                'The bot reached the laptop. Each command happened in the right order.',
+                'ok',
+            );
+        }
+        if (state.reflectionAwarded) {
+            core.setStatus(
+                sequenceReflectionStatus,
+                sequenceData.reflection.successFeedback,
+                'ok',
+            );
+        }
+        renderSequence();
+
+        return {
+            getState: function getState() {
+                return {
+                    bankOrder: state.bankOrder.slice(),
+                    slots: state.slots.slice(),
+                    lockedSlots: Array.from(state.lockedSlots),
+                    failureCount: state.failureCount,
+                    planningPassed: state.planningPassed,
+                    planningAwarded: state.planningAwarded,
+                    sequenceAwarded: state.sequenceAwarded,
+                    reflectionAwarded: state.reflectionAwarded,
+                    stepCompletedOnce: state.stepCompletedOnce,
+                    planningAnswers: Object.fromEntries(
+                        planningQuestions.map(function mapQuestion(question) {
+                            return [
+                                question.id,
+                                core.getCheckedValue(question.id),
+                            ];
+                        }),
+                    ),
+                    reflectionText: sequenceReflectionInput.value,
+                };
+            },
+        };
+    }
+
+    function initExitCheck() {
+        const statusElement = document.getElementById('exitStatus');
+        const completeBanner = document.getElementById('completeBanner');
+        const finalReflection = document.getElementById('finalReflection');
+        const sequenceReflectionInput = document.getElementById(
+            'sequenceReflectionInput',
+        );
+        const savedExit = persistedSession.exit || {};
+        let completed = Boolean(savedExit.completed);
+        const teacherSummary = core.initTeacherSummary({
+            triggerButton: document.getElementById('openTeacherSummaryBtn'),
+            modal: document.getElementById('teacherSummaryModal'),
+            closeButton: document.getElementById('closeTeacherSummaryBtn'),
+            scoreElement: document.getElementById('teacherSummaryScore'),
+            streakElement: document.getElementById('teacherSummaryStreak'),
+            retriesElement: document.getElementById('teacherSummaryRetries'),
+            perfectTextElement: document.getElementById(
+                'teacherSummaryPerfectText',
+            ),
+            achievementsElement: document.getElementById(
+                'teacherSummaryAchievements',
+            ),
+            stepStarsElement: document.getElementById(
+                'teacherSummaryStepStars',
+            ),
+            reflectionsContainer: document.getElementById(
+                'teacherSummaryReflections',
+            ),
+            achievementCatalog: lesson.gamification.achievements,
+            perfectScoreTarget: lesson.gamification.perfectScoreTarget,
+            perfectStreakTarget: lesson.gamification.perfectStreakTarget,
+            stepCount: lesson.steps.length,
+            game: game,
+            summaryMessages: completionSummaryMessages,
+            reflectionSections: [
+                {
+                    label: 'Step 3 reflection',
+                    getValue: function getSequenceReflection() {
+                        return sequenceReflectionInput.value;
+                    },
+                    emptyText: 'No Step 3 reflection was saved.',
+                },
+                {
+                    label: 'Final reflection',
+                    getValue: function getFinalReflection() {
+                        return finalReflection.value;
+                    },
+                    emptyText: 'No final reflection was saved.',
+                },
+            ],
+            initiallyUnlocked: completed,
+        });
+
+        lesson.exitCheck.questions.forEach(function reorderQuestion(question) {
+            orderManager.reorderRadioGroup(question.id);
+            core.setCheckedValue(question.id, savedExit.answers?.[question.id]);
+        });
+        finalReflection.value = savedExit.finalReflection || '';
+        if (completed) {
+            core.setStatus(
+                statusElement,
+                lesson.exitCheck.reflectionSuccessFeedback,
+                'ok',
+            );
+            completeBanner.classList.remove('hidden');
+            completeBanner.setAttribute('aria-hidden', 'false');
+            teacherSummary.render();
+        }
+
+        function countMatchedReflectionTerms(text) {
+            const lowerText = text.toLowerCase();
+            const matches = new Set();
+            lesson.exitCheck.reflectionTerms.forEach(
+                function inspectTerm(term) {
+                    if (lowerText.includes(term.toLowerCase())) {
+                        matches.add(term);
+                    }
+                },
+            );
+            return matches.size;
+        }
+
+        document
+            .getElementById('submitExitCheckBtn')
+            .addEventListener('click', function submitExitCheck() {
+                const unanswered = [];
+                const wrong = [];
+
+                lesson.exitCheck.questions.forEach(
+                    function inspectQuestion(question, index) {
+                        const selected = document.querySelector(
+                            `input[name="${question.id}"]:checked`,
+                        );
+                        if (!selected) {
+                            unanswered.push(index + 1);
+                            return;
+                        }
+                        if (selected.value !== question.correct) {
+                            wrong.push(index + 1);
+                        }
+                    },
+                );
+
+                if (unanswered.length > 0) {
+                    core.setStatus(
+                        statusElement,
+                        `Answer every wrap-up question before you submit. Missing: ${unanswered.join(', ')}.`,
+                        'retry',
+                    );
+                    return;
+                }
+
+                if (wrong.length > 0) {
+                    game.registerRetry(4);
+                    core.setStatus(
+                        statusElement,
+                        `Review question ${wrong.join(', ')} and use the evidence from the scenes and sequence feedback.`,
+                        'retry',
+                    );
+                    return;
+                }
+
+                const reflectionText = finalReflection.value.trim();
+                const matchedTermCount =
+                    countMatchedReflectionTerms(reflectionText);
+                if (
+                    reflectionText.length <
+                        lesson.exitCheck.reflectionMinLength ||
+                    matchedTermCount <
+                        lesson.exitCheck.reflectionRequiredTermCount
+                ) {
+                    game.registerRetry(4);
+                    core.setStatus(
+                        statusElement,
+                        `${lesson.exitCheck.reflectionRetryFeedback} Current check: ${reflectionText.length}/${lesson.exitCheck.reflectionMinLength} characters and ${matchedTermCount}/${lesson.exitCheck.reflectionRequiredTermCount} concept terms.`,
+                        'retry',
+                    );
+                    return;
+                }
+
+                if (!completed) {
+                    completed = true;
+                    game.addScore(lesson.exitCheck.points);
+                    game.incrementStreak();
+                    game.markStepComplete(4);
+                }
+                core.setStatus(
+                    statusElement,
+                    lesson.exitCheck.reflectionSuccessFeedback,
+                    'ok',
+                );
+                completeBanner.classList.remove('hidden');
+                completeBanner.setAttribute('aria-hidden', 'false');
+
+                game.showSummary({
+                    perfect: game.isPerfect(),
+                    perfectMessage: completionSummaryMessages.perfect,
+                    retryMessage: completionSummaryMessages.retry,
+                });
+                teacherSummary.setUnlocked(true);
+                teacherSummary.render();
+            });
+
+        return {
+            getState: function getState() {
+                return {
+                    completed: completed,
+                    answers: Object.fromEntries(
+                        lesson.exitCheck.questions.map(
+                            function mapQuestion(question) {
+                                return [
+                                    question.id,
+                                    core.getCheckedValue(question.id),
+                                ];
+                            },
+                        ),
+                    ),
+                    finalReflection: finalReflection.value,
+                };
+            },
+        };
+    }
+
+    bindStepButtons();
+    warmupController = initWarmup();
+    spotController = initSpotTheCS();
+    sequenceController = initHumanAlgorithm();
+    exitController = initExitCheck();
+    if (Number(persistedSession.currentStep) > 1) {
+        stepController.showStep(Number(persistedSession.currentStep));
+    }
+    saveSessionSnapshot();
+})();
+
+        </script>
+
+    </body>
+</html>
