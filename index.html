@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Jib's Courses</title>
+        <style>
+            :root {
+                --bg: #f2e8d3;
+                --bg-accent: #e4d3af;
+                --surface: rgba(255, 250, 240, 0.82);
+                --surface-strong: #fff9ec;
+                --surface-soft: rgba(245, 238, 220, 0.9);
+                --text: #1b251f;
+                --muted: #57635d;
+                --accent: #295f49;
+                --accent-strong: #1d4636;
+                --accent-soft: rgba(41, 95, 73, 0.12);
+                --accent-line: rgba(41, 95, 73, 0.26);
+                --border: rgba(30, 52, 42, 0.16);
+                --shadow: 0 18px 40px rgba(53, 39, 21, 0.12);
+                --shadow-strong: 0 22px 50px rgba(53, 39, 21, 0.18);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                color-scheme: light;
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background:
+                    radial-gradient(
+                        circle at top,
+                        rgba(255, 255, 255, 0.55),
+                        transparent 34%
+                    ),
+                    linear-gradient(180deg, var(--bg), var(--bg-accent));
+                color: var(--text);
+                font-family: Georgia, 'Times New Roman', serif;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            h1,
+            h2,
+            h3,
+            p,
+            ul {
+                margin: 0;
+            }
+
+            .page-shell {
+                width: min(1160px, calc(100% - 2rem));
+                margin: 0 auto;
+                padding: 2rem 0 3rem;
+            }
+
+            .hero {
+                position: relative;
+                overflow: hidden;
+                padding: 1.5rem;
+                border: 1px solid var(--border);
+                border-radius: 28px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 252, 245, 0.92),
+                    rgba(239, 228, 198, 0.88)
+                );
+                box-shadow: var(--shadow-strong);
+            }
+
+            .hero::after {
+                content: '';
+                position: absolute;
+                inset: auto -12% -30% auto;
+                width: 280px;
+                height: 280px;
+                border-radius: 999px;
+                background: radial-gradient(
+                    circle,
+                    rgba(41, 95, 73, 0.14),
+                    transparent 68%
+                );
+                pointer-events: none;
+            }
+
+            .hero-copy {
+                position: relative;
+                display: grid;
+                gap: 0.85rem;
+                max-width: 44rem;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                width: fit-content;
+                padding: 0.35rem 0.75rem;
+                border: 1px solid var(--accent-line);
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.48);
+                color: var(--accent-strong);
+                font-size: 0.9rem;
+                letter-spacing: 0.03em;
+                text-transform: uppercase;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 4vw, 4.2rem);
+                line-height: 0.95;
+            }
+
+            .hero p {
+                max-width: 62ch;
+                font-size: 1.05rem;
+                color: var(--muted);
+            }
+
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.85rem;
+                margin-top: 1.35rem;
+            }
+
+            .stat {
+                padding: 0.95rem 1rem;
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.56);
+                backdrop-filter: blur(8px);
+            }
+
+            .stat-label {
+                display: block;
+                margin-bottom: 0.25rem;
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+
+            .stat-value {
+                font-size: clamp(1.4rem, 2vw, 2rem);
+                font-weight: 700;
+                color: var(--accent-strong);
+            }
+
+            .content-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .panel {
+                border: 1px solid var(--border);
+                border-radius: 26px;
+                background: var(--surface);
+                backdrop-filter: blur(10px);
+                box-shadow: var(--shadow);
+            }
+
+            .tree-panel {
+                padding: 1.2rem;
+            }
+
+            .panel-header {
+                display: grid;
+                gap: 0.45rem;
+                margin-bottom: 1rem;
+            }
+
+            .panel-header p,
+            .sidebar p,
+            .empty-state {
+                color: var(--muted);
+            }
+
+            .course-tree {
+                display: grid;
+                gap: 1rem;
+            }
+
+            .unit-card,
+            .module-card,
+            .lesson-item {
+                position: relative;
+                border: 1px solid var(--border);
+                border-radius: 22px;
+                background: var(--surface-strong);
+            }
+
+            .unit-card {
+                padding: 1rem;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.72),
+                        rgba(253, 246, 230, 0.92)
+                    ),
+                    var(--surface-strong);
+            }
+
+            .unit-card::before {
+                content: '';
+                position: absolute;
+                left: 1.25rem;
+                top: 4.2rem;
+                bottom: 1.25rem;
+                width: 2px;
+                background: linear-gradient(
+                    180deg,
+                    var(--accent-line),
+                    transparent
+                );
+            }
+
+            .unit-header,
+            .module-header,
+            .lesson-meta {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            .tier-label {
+                display: inline-flex;
+                width: fit-content;
+                padding: 0.25rem 0.55rem;
+                border-radius: 999px;
+                background: var(--accent-soft);
+                color: var(--accent);
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+
+            .tier-count {
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+
+            .unit-title,
+            .module-title,
+            .lesson-title {
+                font-size: 1.2rem;
+                line-height: 1.2;
+            }
+
+            .module-list,
+            .lesson-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .module-list {
+                display: grid;
+                gap: 0.85rem;
+                margin-top: 1rem;
+                padding-left: 1.4rem;
+            }
+
+            .module-card {
+                padding: 0.95rem;
+                background: linear-gradient(
+                    180deg,
+                    rgba(244, 249, 246, 0.82),
+                    rgba(255, 255, 255, 0.95)
+                );
+            }
+
+            .module-card::before {
+                content: '';
+                position: absolute;
+                left: -1rem;
+                top: 1.6rem;
+                width: 1rem;
+                height: 2px;
+                background: var(--accent-line);
+            }
+
+            .lesson-list {
+                display: grid;
+                gap: 0.7rem;
+                margin-top: 0.85rem;
+                padding-left: 1.4rem;
+            }
+
+            .lesson-item {
+                padding: 0.85rem 0.9rem;
+                background: var(--surface-soft);
+                transition:
+                    transform 160ms ease,
+                    box-shadow 160ms ease,
+                    border-color 160ms ease;
+            }
+
+            .lesson-item::before {
+                content: '';
+                position: absolute;
+                left: -1rem;
+                top: 1.4rem;
+                width: 1rem;
+                height: 2px;
+                background: var(--accent-line);
+            }
+
+            .lesson-item:hover,
+            .lesson-item:focus-within {
+                transform: translateY(-2px);
+                border-color: rgba(41, 95, 73, 0.28);
+                box-shadow: 0 12px 24px rgba(41, 95, 73, 0.12);
+            }
+
+            .lesson-link {
+                display: grid;
+                gap: 0.45rem;
+            }
+
+            .lesson-code {
+                color: var(--accent);
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+
+            .lesson-path {
+                color: var(--muted);
+                font-size: 0.9rem;
+                word-break: break-word;
+            }
+
+            .sidebar {
+                padding: 1.2rem;
+                display: grid;
+                gap: 1rem;
+                align-content: start;
+            }
+
+            .sidebar-block {
+                padding: 1rem;
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.52);
+            }
+
+            .sidebar-block h3 {
+                margin-bottom: 0.45rem;
+                font-size: 1rem;
+            }
+
+            .sidebar-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                gap: 0.55rem;
+                color: var(--muted);
+            }
+
+            .sidebar-list strong {
+                color: var(--text);
+            }
+
+            .footer-note {
+                margin-top: 0.9rem;
+                text-align: center;
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+
+            @media (max-width: 900px) {
+                .content-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .stats {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 640px) {
+                .page-shell {
+                    width: min(100% - 1rem, 1160px);
+                    padding-top: 1rem;
+                }
+
+                .hero,
+                .tree-panel,
+                .sidebar {
+                    padding: 1rem;
+                }
+
+                .module-list,
+                .lesson-list {
+                    padding-left: 0.9rem;
+                }
+
+                .unit-card::before,
+                .module-card::before,
+                .lesson-item::before {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page-shell">
+            <section class="hero">
+                <div class="hero-copy">
+                    <span class="eyebrow">Course Index</span>
+                    <h1>
+                        Units, modules, and lessons from the current repo
+                        structure.
+                    </h1>
+                    <p>
+                        This landing page reflects the course folders currently
+                        present in the site and gives students a direct path
+                        into each lesson.
+                    </p>
+                </div>
+                <div class="stats" id="stats"></div>
+            </section>
+
+            <section class="content-grid">
+                <section class="panel tree-panel">
+                    <div class="panel-header">
+                        <span class="tier-label">Course Map</span>
+                        <h2>Browse the curriculum tree</h2>
+                        <p>
+                            Each unit expands into its modules, and each module
+                            lists the lesson pages found in the repository.
+                        </p>
+                    </div>
+                    <div id="courseTree" class="course-tree"></div>
+                </section>
+
+                <aside class="panel sidebar">
+                    <section class="sidebar-block">
+                        <h3>How this page is organized</h3>
+                        <p>
+                            The navigation is rendered in three levels to match
+                            the folder structure already in the repository.
+                        </p>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <h3>Current structure</h3>
+                        <ul id="structureFacts" class="sidebar-list"></ul>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <h3>Link behavior</h3>
+                        <p>
+                            Lesson cards open the existing HTML files directly,
+                            so this page works as a lightweight site homepage
+                            for GitHub Pages or local previews.
+                        </p>
+                    </section>
+                </aside>
+            </section>
+
+            <p class="footer-note">
+                Built from the current folder layout at the repository root.
+            </p>
+        </main>
+
+        <script>
+            const courseTree = [
+                {
+                    title: 'Unit 1 - Foundations of Computing & Digital Systems',
+                    modules: [
+                        {
+                            title: 'Module 1.1 - What Is Computer Science',
+                            lessons: [
+                                {
+                                    code: '1.1.1',
+                                    title: 'Defining Computer Science in Everyday Life',
+                                    path: 'Unit 1 - Foundations of Computing & Digital Systems/Module 1.1 - What Is Computer Science/1.1.1-defining-computer-science-in-everyday-life.html',
+                                    href: 'Unit%201%20-%20Foundations%20of%20Computing%20%26%20Digital%20Systems/Module%201.1%20-%20What%20Is%20Computer%20Science/1.1.1-defining-computer-science-in-everyday-life.html',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ];
+
+            const statsElement = document.getElementById('stats');
+            const courseTreeElement = document.getElementById('courseTree');
+            const structureFactsElement =
+                document.getElementById('structureFacts');
+
+            const unitCount = courseTree.length;
+            const moduleCount = courseTree.reduce(
+                (count, unit) => count + unit.modules.length,
+                0,
+            );
+            const lessonCount = courseTree.reduce(
+                (count, unit) =>
+                    count +
+                    unit.modules.reduce(
+                        (moduleTotal, module) =>
+                            moduleTotal + module.lessons.length,
+                        0,
+                    ),
+                0,
+            );
+
+            const statCards = [
+                { label: 'Units', value: unitCount },
+                { label: 'Modules', value: moduleCount },
+                { label: 'Lessons', value: lessonCount },
+            ];
+
+            statsElement.innerHTML = statCards
+                .map(
+                    (stat) => `
+                        <article class="stat">
+                            <span class="stat-label">${stat.label}</span>
+                            <span class="stat-value">${stat.value}</span>
+                        </article>
+                    `,
+                )
+                .join('');
+
+            structureFactsElement.innerHTML = [
+                `<li><strong>${unitCount}</strong> unit folder at the site root</li>`,
+                `<li><strong>${moduleCount}</strong> module folder nested under the current unit</li>`,
+                `<li><strong>${lessonCount}</strong> lesson page available to open</li>`,
+            ].join('');
+
+            if (lessonCount === 0) {
+                courseTreeElement.innerHTML =
+                    '<p class="empty-state">No lesson pages were listed yet.</p>';
+            } else {
+                courseTreeElement.innerHTML = courseTree
+                    .map(
+                        (unit) => `
+                            <article class="unit-card">
+                                <div class="unit-header">
+                                    <div>
+                                        <span class="tier-label">Unit</span>
+                                        <h3 class="unit-title">${unit.title}</h3>
+                                    </div>
+                                    <span class="tier-count">${unit.modules.length} module${unit.modules.length === 1 ? '' : 's'}</span>
+                                </div>
+                                <ul class="module-list">
+                                    ${unit.modules
+                                        .map(
+                                            (module) => `
+                                                <li>
+                                                    <article class="module-card">
+                                                        <div class="module-header">
+                                                            <div>
+                                                                <span class="tier-label">Module</span>
+                                                                <h4 class="module-title">${module.title}</h4>
+                                                            </div>
+                                                            <span class="tier-count">${module.lessons.length} lesson${module.lessons.length === 1 ? '' : 's'}</span>
+                                                        </div>
+                                                        <ul class="lesson-list">
+                                                            ${module.lessons
+                                                                .map(
+                                                                    (
+                                                                        lesson,
+                                                                    ) => `
+                                                                        <li>
+                                                                            <article class="lesson-item">
+                                                                                <a class="lesson-link" href="${lesson.href}">
+                                                                                    <div class="lesson-meta">
+                                                                                        <span class="lesson-code">Lesson ${lesson.code}</span>
+                                                                                        <span class="tier-label">HTML</span>
+                                                                                    </div>
+                                                                                    <h5 class="lesson-title">${lesson.title}</h5>
+                                                                                    <p class="lesson-path">${lesson.path}</p>
+                                                                                </a>
+                                                                            </article>
+                                                                        </li>
+                                                                    `,
+                                                                )
+                                                                .join('')}
+                                                        </ul>
+                                                    </article>
+                                                </li>
+                                            `,
+                                        )
+                                        .join('')}
+                                </ul>
+                            </article>
+                        `,
+                    )
+                    .join('');
+            }
+        </script>
+    </body>
+</html>
