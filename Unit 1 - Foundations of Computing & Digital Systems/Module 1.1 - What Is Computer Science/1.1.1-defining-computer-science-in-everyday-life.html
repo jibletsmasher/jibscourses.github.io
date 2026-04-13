@@ -5,17 +5,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>1.1.1 — Defining Computer Science in Everyday Life</title>
         <style>
+:root {
+    --color-primary: #1D9E75;
+    --color-primary-light: #E1F5EE;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0F6E56;
+
+    --color-teacher: #7F77DD;
+    --color-teacher-light: #EEEDFE;
+    --color-teacher-dark: #3C3489;
+    --color-teacher-text: #534AB7;
+
+    --color-success: #1D9E75;
+    --color-success-light: #E1F5EE;
+    --color-success-dark: #085041;
+    --color-success-text: #0F6E56;
+
+    --color-hint: #EF9F27;
+    --color-hint-light: #FAEEDA;
+    --color-hint-dark: #633806;
+    --color-hint-text: #854F0B;
+
+    --color-error: #E24B4A;
+    --color-error-light: #FCEBEB;
+    --color-error-dark: #501313;
+    --color-error-text: #A32D2D;
+
+    --color-scene-bg: #1a1a2e;
+    --color-scene-text: #c8b8f5;
+    --color-scene-muted: #7a6fa8;
+
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-pill: 20px;
+}
 
 :root {
+    --color-primary: #1d9e75;
+    --color-primary-light: #e1f5ee;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0f6e56;
+
+    --color-teacher: #7f77dd;
+    --color-teacher-light: #eeedfe;
+    --color-teacher-dark: #3c3489;
+    --color-teacher-text: #534ab7;
+
     --bg: #0f1a17;
     --bg-accent: #172522;
     --card: #13211d;
     --card-strong: #193028;
     --text: #ebf4ee;
     --muted: #9db4a8;
-    --accent: #7ad0a0;
-    --accent-strong: #4eb57d;
-    --accent-soft: #173328;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(in srgb, var(--color-primary) 24%, var(--card));
     --border: #28453d;
     --ok: #6fdf95;
     --warn: #f0a560;
@@ -25,13 +69,17 @@
     --button-text: #ebf4ee;
     --button-border: #35564c;
     --button-hover-bg: #193028;
-    --button-hover-border: #7ad0a0;
+    --button-hover-border: var(--color-primary);
     --status-bg: #10211b;
     --status-text: #d5e5dc;
     --status-border: #33554a;
-    --chip-bg: #173328;
-    --chip-text: #9ee1b8;
-    --chip-border: #356a54;
+    --chip-bg: color-mix(in srgb, var(--color-primary) 18%, var(--card));
+    --chip-text: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--text)
+    );
+    --chip-border: color-mix(in srgb, var(--color-primary) 44%, var(--border));
     --exercise-bg: #10201b;
     --exercise-border: #35564c;
     --input-bg: #0d1714;
@@ -39,6 +87,17 @@
     --input-border: #35564c;
     --code-bg: #163328;
     --footer-text: #8ea49a;
+
+    --teacher-surface: #221f3b;
+    --teacher-surface-strong: #2b2650;
+    --teacher-border: #5f58a8;
+    --teacher-text: var(--color-teacher-light);
+    --teacher-muted: #c6c0ee;
+    --teacher-button-bg: #2f2958;
+    --teacher-button-text: var(--color-teacher-light);
+    --teacher-button-border: #6a62be;
+    --teacher-button-hover-bg: var(--color-teacher-dark);
+    --teacher-button-hover-border: var(--color-teacher);
 }
 
 [data-theme='light'] {
@@ -48,9 +107,13 @@
     --card-strong: #fff2d8;
     --text: #1e2a23;
     --muted: #5f6b61;
-    --accent: #1f6f50;
-    --accent-strong: #16543c;
-    --accent-soft: #dff0e6;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--card)
+    );
     --border: #c8d3c4;
     --ok: #1e7a45;
     --warn: #a45b18;
@@ -60,13 +123,13 @@
     --button-text: #163328;
     --button-border: #b9c9bb;
     --button-hover-bg: #eef7f0;
-    --button-hover-border: #1f6f50;
+    --button-hover-border: var(--color-primary);
     --status-bg: #f8f5ec;
     --status-text: #31433a;
     --status-border: #cfd8d1;
-    --chip-bg: #e5f3ea;
-    --chip-text: #1f6f50;
-    --chip-border: #a6cdb6;
+    --chip-bg: color-mix(in srgb, var(--color-primary-light) 86%, var(--card));
+    --chip-text: var(--color-primary-text);
+    --chip-border: color-mix(in srgb, var(--color-primary) 38%, var(--border));
     --exercise-bg: #fffdf7;
     --exercise-border: #cfdbc7;
     --input-bg: #fffdf8;
@@ -74,6 +137,17 @@
     --input-border: #b9c9bb;
     --code-bg: #ecf7f0;
     --footer-text: #68756c;
+
+    --teacher-surface: #f6f4ff;
+    --teacher-surface-strong: #eeedfe;
+    --teacher-border: #b8b1ee;
+    --teacher-text: var(--color-teacher-dark);
+    --teacher-muted: var(--color-teacher-text);
+    --teacher-button-bg: var(--color-teacher-light);
+    --teacher-button-text: var(--color-teacher-text);
+    --teacher-button-border: #a79fe7;
+    --teacher-button-hover-bg: #e3defd;
+    --teacher-button-hover-border: var(--color-teacher);
 }
 
 * {
@@ -166,6 +240,9 @@ a {
     padding: 1.25rem;
     display: grid;
     gap: 0.9rem;
+    position: relative;
+    overflow: visible;
+    z-index: 12;
 }
 
 .hero-controls {
@@ -591,6 +668,120 @@ button:disabled {
     }
 }
 
+.teacher-panel {
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    left: 1.25rem;
+    right: 1.25rem;
+    z-index: 18;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-card);
+    background: var(--teacher-surface);
+    color: var(--teacher-text);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.85rem);
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.teacher-panel-standalone {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    z-index: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+}
+
+.teacher-panel.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.teacher-panel-heading,
+.teacher-panel-section {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.teacher-panel-label,
+.teacher-panel-section-label {
+    color: var(--teacher-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.teacher-panel-intro {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.teacher-panel-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.teacher-panel-section {
+    min-height: 100%;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: var(--teacher-surface-strong);
+}
+
+.teacher-panel-section-debrief {
+    grid-column: 1 / -1;
+}
+
+.teacher-panel-list {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.teacher-panel-debrief-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-panel-debrief-item {
+    display: grid;
+    gap: 0.45rem;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 82%,
+        transparent
+    );
+}
+
+.teacher-panel-debrief-question {
+    color: var(--teacher-text);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.teacher-panel-debrief-answer {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
 .trophy-case {
     position: fixed;
     inset: 0;
@@ -636,17 +827,18 @@ button:disabled {
     width: min(960px, 100%);
     max-height: calc(100vh - 2rem);
     overflow: auto;
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--teacher-surface);
+    border: 1px solid var(--teacher-border);
     border-radius: 18px;
     box-shadow: var(--shadow);
     padding: 1rem;
+    color: var(--teacher-text);
 }
 
 .teacher-summary-section {
-    border: 1px solid var(--exercise-border);
+    border: 1px solid var(--teacher-border);
     border-radius: 16px;
-    background: var(--exercise-bg);
+    background: var(--teacher-surface-strong);
     padding: 0.9rem;
 }
 
@@ -657,20 +849,74 @@ button:disabled {
 .teacher-response-card {
     display: grid;
     gap: 0.45rem;
-    border: 1px dashed var(--exercise-border);
+    border: 1px dashed var(--teacher-border);
     border-radius: 14px;
-    background: color-mix(in srgb, var(--card) 76%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 78%,
+        transparent
+    );
     padding: 0.8rem;
 }
 
 .teacher-response-label {
     font-weight: 700;
-    color: var(--muted);
+    color: var(--teacher-muted);
 }
 
 .teacher-response-text {
+    color: var(--teacher-text);
     white-space: pre-wrap;
     line-height: 1.55;
+}
+
+.teacher-summary-card .muted {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .summary-item,
+.teacher-summary-card .achievement-item,
+.teacher-summary-card .star-step {
+    border-color: var(--teacher-border);
+    background: var(--teacher-surface-strong);
+    color: var(--teacher-text);
+}
+
+.teacher-summary-card .star-step.earned {
+    border-color: var(--color-teacher);
+    background: color-mix(
+        in srgb,
+        var(--color-teacher) 18%,
+        var(--teacher-surface-strong)
+    );
+}
+
+.teacher-summary-card .star-step-label,
+.teacher-summary-card .star-glyphs,
+.teacher-summary-card .achievement-desc {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .achievement-name {
+    color: var(--teacher-text);
+}
+
+.teacher-summary-actions button,
+.teacher-guide-actions .primary,
+.teacher-summary-card .trophy-head button {
+    background: var(--teacher-button-bg);
+    border-color: var(--teacher-button-border);
+    color: var(--teacher-button-text);
+}
+
+.teacher-summary-actions button:hover,
+.teacher-summary-actions button:focus-visible,
+.teacher-guide-actions .primary:hover,
+.teacher-guide-actions .primary:focus-visible,
+.teacher-summary-card .trophy-head button:hover,
+.teacher-summary-card .trophy-head button:focus-visible {
+    background: var(--teacher-button-hover-bg);
+    border-color: var(--teacher-button-hover-border);
 }
 
 .trophy-card {
@@ -762,6 +1008,13 @@ button:disabled {
     display: none;
 }
 
+@media (max-width: 720px) {
+    .teacher-panel {
+        left: 0.75rem;
+        right: 0.75rem;
+    }
+}
+
 
 
 .intro-grid,
@@ -781,6 +1034,124 @@ button:disabled {
     gap: 0.85rem;
 }
 
+.scene-flow-strip,
+.sequence-checkpoint-head,
+.reflection-checklist,
+.step-help {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.scene-flow-strip {
+    margin-bottom: 0.35rem;
+}
+
+.scene-flow-chip,
+.checkpoint-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: fit-content;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--chip-border);
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.scene-flow-chip.active,
+.checkpoint-badge {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-strong);
+}
+
+.scene-flow-chip.complete,
+.checkpoint-badge.complete {
+    border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+    background: color-mix(in srgb, var(--ok) 14%, transparent);
+    color: var(--ok);
+}
+
+.scene-progress-text,
+.action-hint {
+    margin: 0;
+}
+
+.step-help {
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    padding: 0.75rem 0.85rem;
+}
+
+.step-help summary {
+    cursor: pointer;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.step-help[open] summary {
+    color: var(--text);
+}
+
+.compact-help {
+    margin-top: 0.2rem;
+}
+
+.quick-start-panel {
+    margin-bottom: 0.85rem;
+}
+
+.reflection-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reflection-checklist li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.55rem;
+    align-items: start;
+    border: 1px solid var(--exercise-border);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    padding: 0.7rem 0.8rem;
+}
+
+.reflection-checklist li::before {
+    content: '○';
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.reflection-checklist li.completed {
+    border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+    background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+
+.reflection-checklist li.completed::before {
+    content: '✓';
+    color: var(--ok);
+}
+
+.locked-panel {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+}
+
+.locked-panel:not(.ready-panel) {
+    opacity: 0.82;
+}
+
+.attention-panel {
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--warn) 12%, transparent);
+}
+
 .warmup-options,
 .warmup-actions {
     display: grid;
@@ -796,11 +1167,12 @@ button:disabled {
 
 @media (min-width: 980px) {
     .spot-workspace-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr) minmax(
-                0,
-                0.85fr
-            );
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
         align-items: start;
+    }
+
+    .spot-choice-panel {
+        grid-column: 1 / -1;
     }
 
     .sequence-stage {
@@ -809,6 +1181,17 @@ button:disabled {
     }
 
     .sequence-visual-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+    }
+
+    .scene-flow-strip,
+    .sequence-checkpoint-head {
+        grid-template-columns: auto auto minmax(0, 1fr);
+        align-items: center;
+    }
+
+    .sequence-checkpoint-head {
         grid-template-columns: minmax(0, 1fr) auto;
         align-items: start;
     }
@@ -1229,19 +1612,6 @@ button:disabled {
     <p class="muted">Foundations of Computing & Digital Systems · What Is Computer Science?</p>
     <h1>1.1.1 — Defining Computer Science in Everyday Life</h1>
     <p>Students identify computing where no code is visible, defend their choices with evidence from everyday scenes, plan and test a practical sequence, and transfer the idea of input, rules, and output to a new device.</p>
-    
-<div class="chips">
-    
-    <span class="chip">Predict -> inspect -> certify</span>
-    
-    <span class="chip">Evidence-based scene reasoning</span>
-    
-    <span class="chip">Plan -> run -> revise</span>
-    
-    <span class="chip">Transfer with concept vocabulary</span>
-    
-</div>
-
 </div>
 
             </section>
@@ -1264,50 +1634,56 @@ button:disabled {
     <div>
         <h2>Set the Lesson Goal</h2>
         
-        <p class="muted">Predict what counts as computer science before you inspect the scenes.</p>
+        <p class="muted">Pick the best definition, then test it in real scenes.</p>
         
     </div>
 </div>
 
     <div class="intro-grid">
         <div class="exercise">
-            <h3>Objectives</h3>
-            
+            <h3>Quick goal</h3>
+            <p>Look for systems that take in information, follow <span class="term-tip" tabindex="0" data-tip="Rules are the instructions a system follows to decide what to do next.">rules</span>, and change what they do.</p>
+            <details class="step-help">
+                <summary>See the full lesson goals</summary>
+                
 <ol class="objective-list">
     
-    <li>Identify examples of computing embedded in ordinary environments.</li>
+    <li>Identify examples of <span class="term-tip" tabindex="0" data-tip="Computing means a system takes in information, uses rules, and produces a result.">computing</span> embedded in ordinary environments.</li>
     
-    <li>Distinguish computational systems from non-computational tools using evidence.</li>
+    <li>Distinguish <span class="term-tip" tabindex="0" data-tip="A computational system is a tool or device that takes in information and changes what it does based on rules.">computational systems</span> from non-computational tools using <span class="term-tip" tabindex="0" data-tip="Evidence is the specific detail you can point to that supports your answer.">evidence</span>.</li>
     
-    <li>Translate an everyday process into an ordered set of actionable steps.</li>
+    <li>Translate an everyday process into an <span class="term-tip" tabindex="0" data-tip="An ordered set of actionable steps means the steps are in the right sequence and clear enough for someone to follow.">ordered set of actionable steps</span>.</li>
     
-    <li>Use computing terms such as input, data, rules, output, and sensor to justify claims.</li>
+    <li>Use computing terms such as <span class="term-tip" tabindex="0" data-tip="An input is information a system receives before it reacts.">input</span>, <span class="term-tip" tabindex="0" data-tip="Data is information a system can use to help make a decision or produce a result.">data</span>, <span class="term-tip" tabindex="0" data-tip="Rules are the instructions a system follows to decide what to do next.">rules</span>, <span class="term-tip" tabindex="0" data-tip="An output is the result a system produces after it processes an input.">output</span>, and <span class="term-tip" tabindex="0" data-tip="A sensor is a part of a system that detects something, like light, temperature, or motion.">sensor</span> to justify claims.</li>
     
 </ol>
 
+            </details>
         </div>
         <div class="reflection-box">
             <h3>Warm-up prompt</h3>
-            <p>
-                In this lesson, a <span class="term-tip" tabindex="0" data-tip="An input is information a system receives before it reacts.">system input</span>, a rule, and an output matter more than whether you can see code running on a screen.
-            </p>
+            <p>Start with the idea that <span class="term-tip" tabindex="0" data-tip="Computing means a system takes in information, uses rules, and produces a result.">computing</span> is about input, rules, and <span class="term-tip" tabindex="0" data-tip="An output is the result a system produces after it processes an input.">output</span>, not just visible code.</p>
+            <details class="step-help compact-help">
+                <summary>Need a reminder?</summary>
+                <p>A <span class="term-tip" tabindex="0" data-tip="An input is information a system receives before it reacts.">system input</span> is information a system receives before it reacts.</p>
+            </details>
             <div class="question-card">
-                <p><strong>Which description best matches computer science in everyday life?</strong></p>
+                <p><strong>Which statement best matches computer science in everyday life?</strong></p>
                 <div class="warmup-options">
                     
                     <label>
                         <input type="radio" name="warmup" value="apps-only" />
-                        <span>It only counts when someone is typing code on a screen.</span>
+                        <span>Only when someone is writing code on a screen.</span>
                     </label>
                     
                     <label>
                         <input type="radio" name="warmup" value="systems-and-rules" />
-                        <span>It includes systems that collect data, follow rules, and produce outputs even when no code is visible.</span>
+                        <span>Whenever a system takes in data, follows rules, and changes its output.</span>
                     </label>
                     
                     <label>
                         <input type="radio" name="warmup" value="internet-only" />
-                        <span>It is mostly about being connected to the internet.</span>
+                        <span>Mostly when devices are connected to the internet.</span>
                     </label>
                     
                 </div>
@@ -1333,24 +1709,30 @@ button:disabled {
     <div>
         <h2>Spot the CS</h2>
         
-        <p class="muted">Inspect three scenes, confirm the systems that compute, then certify each scene with evidence.</p>
+        <p class="muted">Pick the computing systems first. Certify the scene after.</p>
         
     </div>
 </div>
 
-    <p>
-        You will move through the home, school, and city scenes in order. Select one system at a time, read the feedback right away, and then pass a short reasoning check before the scene is fully certified.
-    </p>
+    <div class="scene-flow-strip" aria-label="Step 2 flow">
+        <div id="sceneSelectionChip" class="scene-flow-chip active">1. Find the computing systems</div>
+        <div id="sceneCertificationChip" class="scene-flow-chip">2. Certify with evidence</div>
+        <p id="sceneProgressText" class="scene-progress-text">Start by tapping one item in the scene.</p>
+    </div>
+    <details class="step-help compact-help">
+        <summary>What counts as computing here?</summary>
+        <p>Look for something that takes input or <span class="term-tip" tabindex="0" data-tip="Data is information a system can use to help make a decision or produce a result.">data</span> and changes what it does because of <span class="term-tip" tabindex="0" data-tip="Rules are the instructions a system follows to decide what to do next.">rules</span>.</p>
+    </details>
     <div class="spot-workspace-grid">
         <div class="panel workspace-panel spot-choice-panel">
             <h3 id="sceneChoiceHeading">Choose a system you might see in a home</h3>
-            <p id="sceneChoiceSubheading" class="muted">Pick the device or tool that best fits the current location, then use the feedback to revise if needed.</p>
+            <p id="sceneChoiceSubheading" class="muted">Tap one item to test whether it counts as computing here.</p>
             <div class="controls">
                 <button id="resetSpotBtn" type="button">Reset activity</button>
             </div>
             <div id="sceneChoiceBank" class="scene-choice-bank"></div>
         </div>
-        <div class="panel">
+        <div class="panel scene-feedback-panel">
             <h3>Feedback</h3>
             <div id="spotFeedback" class="status">Select a system to see why it is, or is not, a strong example of computing.</div>
             <ul id="spotFeedbackList" class="feedback-list"></ul>
@@ -1359,14 +1741,14 @@ button:disabled {
                 <p id="spotHintText"></p>
             </div>
         </div>
-        <div class="panel scene-certification-panel">
+        <div id="sceneCertificationPanel" class="panel scene-certification-panel locked-panel">
             <h3>Certify this scene</h3>
-            <p id="sceneReasoningPrompt" class="muted">Find every required system in the current scene to unlock its certification question.</p>
+            <p id="sceneReasoningPrompt" class="muted">Finish the required picks first. Then <span class="term-tip" tabindex="0" data-tip="Certify means prove your answer with clear evidence from what you observed.">certify</span> why the scene counts as computing.</p>
             <div id="sceneReasoningOptions" class="question-stack"></div>
             <div class="controls">
                 <button id="checkSceneReasoningBtn" type="button">Certify scene</button>
             </div>
-            <div id="sceneReasoningStatus" class="status">Finish identifying the required systems first, then certify the scene with evidence.</div>
+            <div id="sceneReasoningStatus" class="status">Finish identifying the required systems first, then certify the scene with <span class="term-tip" tabindex="0" data-tip="Evidence is the specific detail you can point to that supports your answer.">evidence</span>.</div>
         </div>
     </div>
     <div class="step-actions">
@@ -1386,114 +1768,122 @@ button:disabled {
     <div>
         <h2>Human Algorithm</h2>
         
-        <p class="muted">Plan the route, test it, then explain the dependency that mattered most.</p>
+        <p class="muted">Build the route, test it, reflect, then finish with two follow-up questions.</p>
         
     </div>
 </div>
 
-    <div class="scenario-strip">
-        <div class="scenario-brief">
-            <h3>What is going on?</h3>
-            <p>
-                A helper bot starts at the classroom door and needs to reach the laptop in the lab area.
-                The bot only follows the commands you give it, in order, and it stops as soon as a step is missing
-                or out of place.
-            </p>
-            <p class="muted">
-                Goal: Build a sequence that gets the helper bot from the classroom door to the laptop.
-            </p>
-            <p class="muted">
-                First think through the route, then build it, run it, and revise it based on the feedback.
-            </p>
-        </div>
-        <div class="scenario-plan">
-            <h3>Plan first</h3>
-            <p>Before you run the bot, answer these two questions so you have to think about the route dependencies instead of guessing.</p>
-            <div class="question-stack planning-grid">
-                
-                <fieldset class="question-card" id="plan-q1">
-                    <legend><strong>1. Before the bot can turn toward the lab wing, what must already be true?</strong></legend>
-                    
-                    <label>
-                        <input type="radio" name="plan-q1" value="in-hallway" />
-                        <span>The bot must have already moved out of the classroom and into the hallway.</span>
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="plan-q1" value="knows-cart" />
-                        <span>The bot must know where the laptop is.</span>
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="plan-q1" value="all-steps-planned" />
-                        <span>All five steps must already be filled in.</span>
-                    </label>
-                    
-                </fieldset>
-                
-                <fieldset class="question-card" id="plan-q2">
-                    <legend><strong>2. If the bot reaches the lab door and then repeats the step 'Move out to the hallway,' what should you expect?</strong></legend>
-                    
-                    <label>
-                        <input type="radio" name="plan-q2" value="still-works" />
-                        <span>The route still works because the step is always useful.</span>
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="plan-q2" value="backward" />
-                        <span>The bot would move backward in the route, undoing progress toward the laptop.</span>
-                    </label>
-                    
-                    <label>
-                        <input type="radio" name="plan-q2" value="auto-finish" />
-                        <span>The bot skips ahead to the laptop automatically.</span>
-                    </label>
-                    
-                </fieldset>
-                
-            </div>
-            <div class="controls">
-                <button id="checkSequencePlanBtn" type="button">Check plan</button>
-            </div>
-            <div id="planningStatus" class="status">Answer both planning questions to unlock Run.</div>
-        </div>
+    <div class="scenario-brief quick-start-panel">
+        <h3>Start here</h3>
+        <p>Build a <span class="term-tip" tabindex="0" data-tip="A route is the path or ordered set of moves the bot should follow.">route</span>, run the bot, save a short <span class="term-tip" tabindex="0" data-tip="A reflection is a short explanation of what you noticed, learned, or changed.">reflection</span>, then finish with the two <span class="term-tip" tabindex="0" data-tip="Follow-up questions come after the main task and ask you to explain your thinking.">follow-up questions</span>.</p>
+        <p class="muted">Goal: Get the helper bot from the classroom door to the laptop.</p>
+        <details class="step-help compact-help">
+            <summary>Need the full scenario?</summary>
+            <p>A helper bot starts at the classroom door and needs to reach the laptop in the lab area. It follows each command in order and stops as soon as a step is missing or out of place.</p>
+        </details>
     </div>
     <div class="sequence-stage">
         <div class="panel sequence-builder-panel">
             <h3>Command bank</h3>
-            <p>Select the commands and arrange them in the correct order, then run the bot. You can run the bot even if some later slots are blank.</p>
+            <p>Build the route and run the bot. After one successful run, save your reflection to unlock the last two questions.</p>
             <div id="cardBank" class="card-bank"></div>
             <h3>Build the route</h3>
-            <p class="muted">Place commands in order. The route board updates immediately when you add, move, or remove a command.</p>
+            <p class="muted">Place commands in order. The route preview updates immediately when you add, move, or remove a command.</p>
             <div id="sequenceLane" class="sequence-lane"></div>
             <div class="controls">
                 <button id="sequenceHintBtn" type="button">Show me the first step</button>
                 <button id="resetSequenceBtn" type="button">Reset activity</button>
             </div>
-            <div id="sequenceStatus" class="status">You can arrange cards now, but Run unlocks only after the planning check passes.</div>
+            <div id="sequenceStatus" class="status">Build a route, then run the bot to test it.</div>
         </div>
         <div class="panel workspace-panel sequence-visual-panel">
             <div class="sequence-visual-header">
                 <div>
                     <h3>Live route preview</h3>
-                    <p class="muted">The board shows where the bot would be after the commands currently in the lane.</p>
+                    <p class="muted">The board shows where the bot would be after the <span class="term-tip" tabindex="0" data-tip="A command is a single instruction that tells the bot what action to take.">commands</span> currently in the lane.</p>
                 </div>
-                <button id="runSequenceBtn" type="button" class="primary" disabled>Run the bot</button>
+                <button id="runSequenceBtn" type="button" class="primary">Run the bot</button>
             </div>
-            <p class="muted">Goal: Build a sequence that gets the helper bot from the classroom door to the laptop.</p>
+            <p id="sequenceActionHint" class="action-hint muted">1. Build the route. 2. Run the bot. 3. Save your <span class="term-tip" tabindex="0" data-tip="A reflection is a short explanation of what you noticed, learned, or changed.">reflection</span>. 4. Finish the two <span class="term-tip" tabindex="0" data-tip="Follow-up questions come after the main task and ask you to explain your thinking.">follow-up questions</span>.</p>
+            <p class="muted">Goal: Get the helper bot from the classroom door to the laptop.</p>
             <div id="routeBoard" class="route-board" aria-label="Hallway helper route board"></div>
             <div id="boardPreview" class="route-strip" aria-label="Hallway helper route checkpoints"></div>
-            <div id="sequenceRunStatus" class="status">Answer the planning questions first, then run the bot to test your sequence.</div>
+            <div id="sequenceRunStatus" class="status">Run the bot to see where the route stops or succeeds.</div>
             <div id="sequenceReflection" class="reflection-box hidden" aria-hidden="true">
                 <h3>Reflect</h3>
                 <p>Which instruction or dependency was easiest to overlook, and how did the run feedback help you revise the sequence?</p>
+                <ul id="sequenceReflectionChecklist" class="reflection-checklist">
+                    
+                    <li>Write at least 45 characters.</li>
+                    
+                    <li>Name one step that had to happen before another.</li>
+                    
+                    <li>Mention how the run feedback helped you revise.</li>
+                    
+                </ul>
                 <textarea id="sequenceReflectionInput" placeholder="Write one or two sentences about which step relationship mattered most, such as a move that had to happen before a turn."></textarea>
                 <div class="controls reflection-actions">
                     <button id="saveSequenceReflectionBtn" type="button">Save reflection</button>
                 </div>
-                <div id="sequenceReflectionStatus" class="status">Run a working sequence, then save a short explanation to complete Step 3.</div>
+                <div id="sequenceReflectionStatus" class="status">After a successful run, save a short <span class="term-tip" tabindex="0" data-tip="A reflection is a short explanation of what you noticed, learned, or changed.">reflection</span> to unlock the last two questions.</div>
             </div>
         </div>
+    </div>
+    <div id="sequenceCheckpointPanel" class="panel scenario-plan sequence-checkpoint-panel hidden" aria-hidden="true">
+        <div class="sequence-checkpoint-head">
+            <div>
+                <h3>Follow-up questions</h3>
+                <p>These two <span class="term-tip" tabindex="0" data-tip="Follow-up questions come after the main task and ask you to explain your thinking.">follow-up questions</span> unlock after you save your reflection.</p>
+            </div>
+            <div id="sequenceCheckpointBadge" class="checkpoint-badge">Locked</div>
+        </div>
+        <div class="question-stack planning-grid">
+            
+            <fieldset class="question-card" id="plan-q1">
+                <legend><strong>1. Before the bot can turn toward the lab wing, what must already be true?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="plan-q1" value="in-hallway" />
+                    <span>The bot must have already moved out of the classroom and into the hallway.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="plan-q1" value="knows-cart" />
+                    <span>The bot must know where the laptop is.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="plan-q1" value="all-steps-planned" />
+                    <span>All five steps must already be filled in.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="plan-q2">
+                <legend><strong>2. If the bot reaches the lab door and then repeats the step 'Move out to the hallway,' what should you expect?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="plan-q2" value="still-works" />
+                    <span>The route still works because the step is always useful.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="plan-q2" value="backward" />
+                    <span>The bot would move backward in the route, undoing progress toward the laptop.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="plan-q2" value="auto-finish" />
+                    <span>The bot skips ahead to the laptop automatically.</span>
+                </label>
+                
+            </fieldset>
+            
+        </div>
+        <div class="controls">
+            <button id="checkSequencePlanBtn" type="button">Check follow-up answers</button>
+        </div>
+        <div id="planningStatus" class="status">These questions appear after you save the <span class="term-tip" tabindex="0" data-tip="A reflection is a short explanation of what you noticed, learned, or changed.">reflection</span> from a successful run.</div>
     </div>
     <div class="step-actions">
         <div class="left">
@@ -1512,7 +1902,7 @@ button:disabled {
     <div>
         <h2>Wrap Up</h2>
         
-        <p class="muted">Use the evidence from both activities and transfer the idea to a new system.</p>
+        <p class="muted">Use the activity evidence to explain one new example.</p>
         
     </div>
 </div>
@@ -1604,8 +1994,21 @@ button:disabled {
         </div>
         <div class="reflection-box">
             <h3>Reflection</h3>
-            <p>Choose one computing system from this lesson or from your own life. Explain why it counts as computing by naming at least two of these ideas: input, data, rules, output, or sensor.</p>
-            <p class="muted">Write at least 80 characters and use at least 2 concept terms from this lesson: input, data, rules, output, sensor.</p>
+            <p>Choose one computing system from this lesson or your own life. Explain why it counts as computing using at least two of these ideas: input, data, rules, output, or sensor.</p>
+            <p class="muted">Checklist: write at least 80 characters and use at least 2 lesson terms: input, data, rules, output, sensor.</p>
+            <ul id="finalReflectionChecklist" class="reflection-checklist">
+                
+                <li>Write at least 80 characters.</li>
+                
+                <li>Use at least 2 lesson terms: input, data, rules, output, sensor.</li>
+                
+                <li>Name the system and explain why it computes.</li>
+                
+            </ul>
+            <details class="step-help compact-help">
+                <summary>Need the term list?</summary>
+                <p>Useful words: input, data, rules, output, sensor.</p>
+            </details>
             <textarea id="finalReflection" placeholder="Example: The traffic sensor uses a sensor to collect input about vehicles, then rules help change the signal output when traffic builds up."></textarea>
             <button id="submitExitCheckBtn" type="button" class="primary">Submit wrap-up</button>
             <div id="exitStatus" class="status">Answer all four questions and complete the reflection, then submit the wrap-up.</div>
@@ -1684,7 +2087,7 @@ button:disabled {
     </div>
 </div>
         <script>
-            window.__LESSON_DATA__ = {"id":"1.1.1","template":"lesson.njk","title":"Defining Computer Science in Everyday Life","moduleTitle":"What Is Computer Science?","unitTitle":"Foundations of Computing & Digital Systems","description":"Students identify computing where no code is visible, defend their choices with evidence from everyday scenes, plan and test a practical sequence, and transfer the idea of input, rules, and output to a new device.","chips":["Predict -> inspect -> certify","Evidence-based scene reasoning","Plan -> run -> revise","Transfer with concept vocabulary"],"objectives":["Identify examples of computing embedded in ordinary environments.","Distinguish computational systems from non-computational tools using evidence.","Translate an everyday process into an ordered set of actionable steps.","Use computing terms such as input, data, rules, output, and sensor to justify claims."],"footerNote":"Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24","steps":[{"id":"step1","title":"Set the Lesson Goal"},{"id":"step2","title":"Spot the CS"},{"id":"step3","title":"Human Algorithm"},{"id":"step4","title":"Wrap Up"}],"warmup":{"prompt":"Which description best matches computer science in everyday life?","options":[{"value":"apps-only","label":"It only counts when someone is typing code on a screen."},{"value":"systems-and-rules","label":"It includes systems that collect data, follow rules, and produce outputs even when no code is visible."},{"value":"internet-only","label":"It is mostly about being connected to the internet."}],"correct":"systems-and-rules","correctFeedback":"Yes. Computer science shows up whenever data, rules, and automated processes shape what a system does.","retryFeedback":"Look for the answer that mentions data, rules, and outputs instead of visible programming alone."},"exitCheck":{"questions":[{"id":"exit-q1","prompt":"Which item is the strongest evidence that a system is computing?","options":[{"value":"decorative","label":"It lights up in the room."},{"value":"processes-data","label":"It takes in information, applies rules, and changes output based on that information."},{"value":"plugged-in","label":"It is connected to a wall outlet."}],"correct":"processes-data"},{"id":"exit-q2","prompt":"Why was the plain lamp in the home scene not the best example of computer science?","options":[{"value":"too-small","label":"It was too small to notice."},{"value":"no-data-rules","label":"By itself it does not collect data or follow changing rules the way the router or thermostat does."},{"value":"not-online","label":"It was not connected to the internet."}],"correct":"no-data-rules"},{"id":"exit-q3","prompt":"What made the hallway bot sequence work?","options":[{"value":"longest-sequence","label":"It used the most steps available."},{"value":"correct-order","label":"Each instruction happened in a useful order so later actions had the right setup."},{"value":"fastest-clicks","label":"The cards were placed quickly."}],"correct":"correct-order"},{"id":"exit-q4","prompt":"A smart refrigerator shows what food is inside, reminds you when milk is close to expiring, and sends a phone alert if the door stays open. Why is that a strong example of computing?","options":[{"value":"has-screen","label":"It has a screen and uses electricity."},{"value":"data-rules-output","label":"It collects data about food and door status, applies rules, and changes its alerts or display based on that data."},{"value":"expensive","label":"It costs more than a regular refrigerator."}],"correct":"data-rules-output"}],"reflectionPrompt":"Choose one computing system from this lesson or from your own life. Explain why it counts as computing by naming at least two of these ideas: input, data, rules, output, or sensor.","reflectionPlaceholder":"Example: The traffic sensor uses a sensor to collect input about vehicles, then rules help change the signal output when traffic builds up.","reflectionRequirement":"Write at least 80 characters and use at least 2 concept terms from this lesson: input, data, rules, output, sensor.","reflectionMinLength":80,"reflectionTerms":["input","data","rules","output","sensor"],"reflectionRequiredTermCount":2,"reflectionSuccessFeedback":"Reflection complete. You used lesson vocabulary to explain why the system counts as computing.","reflectionRetryFeedback":"Be more specific. Use at least two lesson terms such as input, data, rules, output, or sensor.","points":50},"gamification":{"perfectScoreTarget":285,"perfectStreakTarget":11,"hotStreakThreshold":4,"achievements":[{"id":"warmup_ready","name":"Warm-Up Ready","description":"Complete Step 1 without a retry."},{"id":"scene_spotter","name":"Scene Spotter","description":"Finish all three everyday scenes."},{"id":"overlap_reader","name":"Evidence Hunter","description":"Find an extra computing example that still fits the scene evidence."},{"id":"hallway_builder","name":"Hallway Builder","description":"Guide the helper bot to the laptop."},{"id":"hot_streak","name":"Hot Streak","description":"Reach a streak of 4 correct actions."},{"id":"triple_star","name":"Triple Star","description":"Earn 3 stars on any step."},{"id":"perfect_score","name":"Perfect Score","description":"Finish the lesson with every point and no retries."}]},"activityData":{"human-algorithm":{"title":"Hallway Helper Bot","goal":"Build a sequence that gets the helper bot from the classroom door to the laptop.","prompt":"Select the commands and arrange them in the correct order, then run the bot. You can run the bot even if some later slots are blank.","points":70,"planningCheck":{"intro":"Before you run the bot, answer these two questions so you have to think about the route dependencies instead of guessing.","points":20,"successFeedback":"Plan approved. Now build or revise the route and use Run to test it.","retryFeedback":"At least one planning answer needs revision. Use the route goal and the command wording to think through what must happen first.","questions":[{"id":"plan-q1","prompt":"Before the bot can turn toward the lab wing, what must already be true?","options":[{"value":"in-hallway","label":"The bot must have already moved out of the classroom and into the hallway."},{"value":"knows-cart","label":"The bot must know where the laptop is."},{"value":"all-steps-planned","label":"All five steps must already be filled in."}],"correct":"in-hallway"},{"id":"plan-q2","prompt":"If the bot reaches the lab door and then repeats the step 'Move out to the hallway,' what should you expect?","options":[{"value":"still-works","label":"The route still works because the step is always useful."},{"value":"backward","label":"The bot would move backward in the route, undoing progress toward the laptop."},{"value":"auto-finish","label":"The bot skips ahead to the laptop automatically."}],"correct":"backward"}]},"reflection":{"points":20,"minLength":45,"prompt":"Which instruction or dependency was easiest to overlook, and how did the run feedback help you revise the sequence?","placeholder":"Write one or two sentences about which step relationship mattered most, such as a move that had to happen before a turn.","successFeedback":"Reflection saved. You explained a dependency behind the working route.","retryFeedback":"Be more specific about which step had to come before another step and how the feedback helped you revise."},"slotCount":5,"hint":"The bot must leave the classroom before it can turn toward the lab hall.","board":{"rows":4,"cols":5,"start":{"row":2,"col":0},"target":{"row":0,"col":4},"blocked":[{"row":1,"col":1},{"row":1,"col":3}],"route":[{"row":2,"col":0},{"row":2,"col":1},{"row":2,"col":2},{"row":1,"col":2},{"row":0,"col":2},{"row":0,"col":4}],"routeStops":[{"label":"Classroom door","title":"Start"},{"label":"Main hallway","title":"Move"},{"label":"Hall branch","title":"Move"},{"label":"Turn toward lab","title":"Turn"},{"label":"Lab door","title":"Move"},{"label":"Laptop","title":"Finish"}]},"cards":[{"id":"leave-classroom","label":"Move out to the hallway","dependsOn":[],"failureReason":"The bot cannot turn toward the hall until it has actually moved out of the classroom."},{"id":"move-down-hall","label":"Move forward past the first classroom","dependsOn":["leave-classroom"],"failureReason":"This hallway move only makes sense after the bot has entered the hall."},{"id":"turn-to-lab","label":"Turn left toward the lab wing","dependsOn":["move-down-hall"],"failureReason":"Turning toward the lab works only after the bot reaches the hallway branch."},{"id":"move-to-door","label":"Move to the lab door","dependsOn":["turn-to-lab"],"failureReason":"The bot has to face the lab wing before it can move to the lab door."},{"id":"move-to-cart","label":"Move right to the laptop","dependsOn":["move-to-door"],"failureReason":"The final move happens after the bot reaches the lab door, not before."}],"correctOrder":["leave-classroom","move-down-hall","turn-to-lab","move-to-door","move-to-cart"],"reflectionPrompt":"Which instruction was easiest to overlook, and how did the feedback help you revise the sequence?"},"spot-the-cs":{"revealMode":"immediate","scenes":[{"id":"home","name":"Home","prompt":"Select the home systems that sense, store, or exchange information in a way that changes what the system does.","hint":"Look for a device that routes information, a device that listens for a command, and a device that reacts to changing temperature data.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='30' y='40' width='560' height='280' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='68' y='92' width='136' height='88' rx='12' fill='color-mix(in srgb, var(--accent-soft) 60%, transparent)' stroke='var(--border)' />\u003crect x='232' y='86' width='156' height='72' rx='14' fill='color-mix(in srgb, var(--accent) 10%, var(--card))' stroke='var(--border)' />\u003crect x='420' y='86' width='108' height='150' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ccircle cx='500' cy='132' r='24' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003crect x='238' y='218' width='120' height='64' rx='12' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003crect x='80' y='222' width='76' height='48' rx='10' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ctext x='104' y='84' font-size='18' fill='var(--muted)'>Router shelf\u003c/text>\u003ctext x='256' y='76' font-size='18' fill='var(--muted)'>TV corner\u003c/text>\u003ctext x='430' y='76' font-size='18' fill='var(--muted)'>Thermostat wall\u003c/text>\u003ctext x='84' y='214' font-size='18' fill='var(--muted)'>Lamp\u003c/text>\u003ctext x='245' y='210' font-size='18' fill='var(--muted)'>Speaker table\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"Why is the plain lamp not one of the strongest examples of computing in this home scene?","options":[{"value":"lighting-only","label":"Because lamps are only used for lighting, not for science."},{"value":"no-input-rules","label":"Because by itself it does not collect input or apply changing rules the way the router and thermostat do."},{"value":"not-main-focus","label":"Because it was not the main object drawn in the scene."},{"value":"no-wifi","label":"Because it was not connected to Wi-Fi."}],"correct":"no-input-rules","correctFeedback":"Correct. Electricity alone is not enough. The stronger examples in this scene respond to input or rules that change what the system does.","retryFeedback":"Look for the choice that focuses on input and changing rules, not on size, location, or internet access."},"targets":[{"id":"router","label":"Wi-Fi router","classification":"required","top":"22%","left":"9%","width":"22%","height":"22%","feedback":"The router moves packets between devices, so it is constantly making decisions about data flow."},{"id":"smart-speaker","label":"Smart speaker","classification":"required","top":"60%","left":"36%","width":"23%","height":"21%","feedback":"The speaker captures voice input, sends it for processing, and changes output based on what it hears."},{"id":"thermostat","label":"Smart thermostat","classification":"required","top":"18%","left":"66%","width":"20%","height":"34%","feedback":"The thermostat reads sensor data and applies rules to decide when heating or cooling should change."},{"id":"lamp","label":"Plain lamp","classification":"incorrect","top":"63%","left":"8%","width":"15%","height":"20%","feedback":"A plain lamp can be electrical without actually processing changing input data or following software rules."}]},{"id":"school","name":"School","prompt":"Inspect the classroom entry and learning tools. Select the items that collect, process, or organize information.","hint":"Look for the item that records attendance, the device that stores classwork, and the display that changes based on software.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='26' y='36' width='568' height='286' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='74' y='78' width='128' height='182' rx='16' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003crect x='232' y='74' width='242' height='116' rx='16' fill='color-mix(in srgb, var(--accent) 12%, var(--card))' stroke='var(--border)' />\u003crect x='252' y='214' width='142' height='66' rx='14' fill='color-mix(in srgb, var(--accent-soft) 58%, transparent)' stroke='var(--border)' />\u003crect x='434' y='214' width='112' height='72' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ctext x='82' y='68' font-size='18' fill='var(--muted)'>Entry station\u003c/text>\u003ctext x='244' y='66' font-size='18' fill='var(--muted)'>Smart board\u003c/text>\u003ctext x='278' y='206' font-size='18' fill='var(--muted)'>Laptop\u003c/text>\u003ctext x='444' y='206' font-size='18' fill='var(--muted)'>Poster board\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"What makes the attendance tablet a computing system in a way the printed poster board is not?","options":[{"value":"newer-tech","label":"The tablet is newer technology."},{"value":"stores-processes-info","label":"The tablet records, stores, and retrieves information according to rules, while the poster just displays fixed words."},{"value":"connected-screen","label":"The tablet is closer to the interactive board."},{"value":"important-room-item","label":"The tablet is a more important classroom item."}],"correct":"stores-processes-info","correctFeedback":"Correct. The tablet handles information and can change records over time, while the poster stays static.","retryFeedback":"Focus on what the system does with information, not whether it looks newer or more important."},"targets":[{"id":"attendance-tablet","label":"Attendance tablet","classification":"required","group":"entry-station","top":"20%","left":"10%","width":"18%","height":"42%","feedback":"The attendance tablet records data about who entered class and stores it for later review."},{"id":"id-badge-reader","label":"Badge reader","classification":"optional","group":"entry-station","top":"20%","left":"10%","width":"18%","height":"42%","feedback":"The badge reader scans identity information and compares it against stored records."},{"id":"smart-board","label":"Interactive board","classification":"required","top":"18%","left":"39%","width":"40%","height":"30%","feedback":"The board changes what it displays based on software, touch input, and saved lesson materials."},{"id":"laptop","label":"Laptop","classification":"required","top":"58%","left":"42%","width":"24%","height":"20%","feedback":"A laptop stores files, runs applications, and changes what it does based on user input and software rules."},{"id":"poster-board","label":"Printed poster board","classification":"incorrect","top":"58%","left":"72%","width":"20%","height":"23%","feedback":"A printed poster can communicate ideas, but it does not change behavior by processing new information."}]},{"id":"city","name":"City","prompt":"Select the city systems that help the environment respond to information, movement, or payments.","hint":"Focus on the parts of the street scene that sense traffic, take payment, or update information for travelers.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='30' y='30' width='560' height='300' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='40' y='206' width='540' height='74' rx='20' fill='color-mix(in srgb, var(--accent) 10%, var(--card))' stroke='var(--border)' />\u003crect x='92' y='82' width='74' height='144' rx='14' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003crect x='230' y='88' width='146' height='112' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003crect x='430' y='74' width='78' height='164' rx='16' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003ccircle cx='280' cy='128' r='22' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003ctext x='96' y='70' font-size='18' fill='var(--muted)'>Traffic pole\u003c/text>\u003ctext x='236' y='74' font-size='18' fill='var(--muted)'>Transit kiosk\u003c/text>\u003ctext x='420' y='60' font-size='18' fill='var(--muted)'>Arrival display\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"Why does the park bench not count as part of the city's computing systems, while the traffic sensor does?","options":[{"value":"indoors-outdoors","label":"Because the bench is outdoors and the traffic sensor is not."},{"value":"no-sensing-or-rules","label":"Because the bench provides physical support, but it does not sense conditions or use data to change behavior."},{"value":"different-material","label":"Because the bench and sensor are made from different materials."},{"value":"less-helpful","label":"Because the bench is less helpful to the city."}],"correct":"no-sensing-or-rules","correctFeedback":"Correct. The traffic system changes based on sensed conditions, while the bench stays the same unless a person acts on it.","retryFeedback":"Look for the answer about sensing conditions and using data or rules to change what happens next."},"targets":[{"id":"traffic-sensor","label":"Traffic sensor","classification":"required","top":"18%","left":"12%","width":"16%","height":"42%","feedback":"Traffic systems measure timing and vehicle flow so signal rules can change based on what the street needs."},{"id":"kiosk-screen","label":"Transit kiosk screen","classification":"required","group":"transit-kiosk","top":"20%","left":"38%","width":"22%","height":"30%","feedback":"The kiosk screen shows stored route data and updates what riders see based on the system state."},{"id":"tap-reader","label":"Tap payment reader","classification":"optional","group":"transit-kiosk","top":"20%","left":"38%","width":"22%","height":"30%","feedback":"The payment reader checks a fare card and confirms whether the rider can continue."},{"id":"arrival-display","label":"Arrival display","classification":"required","top":"16%","left":"72%","width":"16%","height":"48%","feedback":"The arrival display changes when new route or timing data arrives."},{"id":"park-bench","label":"Park bench","classification":"incorrect","top":"70%","left":"62%","width":"24%","height":"14%","feedback":"The bench supports people physically, but it does not process information or apply rules by itself."}]}]}}};
+            window.__LESSON_DATA__ = {"id":"1.1.1","template":"lesson.njk","title":"Defining Computer Science in Everyday Life","moduleTitle":"What Is Computer Science?","unitTitle":"Foundations of Computing & Digital Systems","description":"Students identify computing where no code is visible, defend their choices with evidence from everyday scenes, plan and test a practical sequence, and transfer the idea of input, rules, and output to a new device.","chips":[],"objectives":["Identify examples of \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Computing means a system takes in information, uses rules, and produces a result.\">computing\u003c/span> embedded in ordinary environments.","Distinguish \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"A computational system is a tool or device that takes in information and changes what it does based on rules.\">computational systems\u003c/span> from non-computational tools using \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Evidence is the specific detail you can point to that supports your answer.\">evidence\u003c/span>.","Translate an everyday process into an \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"An ordered set of actionable steps means the steps are in the right sequence and clear enough for someone to follow.\">ordered set of actionable steps\u003c/span>.","Use computing terms such as \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"An input is information a system receives before it reacts.\">input\u003c/span>, \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Data is information a system can use to help make a decision or produce a result.\">data\u003c/span>, \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Rules are the instructions a system follows to decide what to do next.\">rules\u003c/span>, \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"An output is the result a system produces after it processes an input.\">output\u003c/span>, and \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"A sensor is a part of a system that detects something, like light, temperature, or motion.\">sensor\u003c/span> to justify claims."],"footerNote":"Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24","teacherPanel":{"estimatedTime":"40-54 minutes","prerequisites":"None","cstaStandards":["2-DA-01","2-AP-10","3A-IC-24"],"pacingSuggestion":"One class period. Warm-up (5 min) -> activities (35 min) -> wrap-up (10 min)","debriefQuestions":[{"question":"Which clue most strongly showed that an everyday system was computing instead of just using electricity?","answer":"The strongest clue was that the system took in information and changed what it did based on rules. A thermostat or traffic sensor is stronger evidence than a plain lamp because it uses input data to decide on an output."},{"question":"How did the hallway bot activity show why precise order matters in an algorithm?","answer":"Students saw that even correct actions fail if they happen in the wrong sequence. The bot could only reach the goal when each step set up the next one, which makes the role of order in an algorithm concrete."},{"question":"Where else at home or school do you see input, rules, and output working together?","answer":"Examples may include automatic doors, attendance scanners, smart speakers, or cafeteria checkout systems. In each case, a sensor or input is read, rules are applied, and the system changes its display, access, or alert output."}],"howToAssign":"Direct link to this lesson. No account required. Progress saves locally in the browser."},"steps":[{"id":"step1","title":"Set the Lesson Goal"},{"id":"step2","title":"Spot the CS"},{"id":"step3","title":"Human Algorithm"},{"id":"step4","title":"Wrap Up"}],"warmup":{"prompt":"Which statement best matches computer science in everyday life?","options":[{"value":"apps-only","label":"Only when someone is writing code on a screen."},{"value":"systems-and-rules","label":"Whenever a system takes in data, follows rules, and changes its output."},{"value":"internet-only","label":"Mostly when devices are connected to the internet."}],"correct":"systems-and-rules","correctFeedback":"Yes. Computer science shows up whenever data, rules, and automated processes shape what a system does.","retryFeedback":"Look for the answer that mentions data, rules, and outputs instead of visible programming alone."},"exitCheck":{"questions":[{"id":"exit-q1","prompt":"Which item is the strongest evidence that a system is computing?","options":[{"value":"decorative","label":"It lights up in the room."},{"value":"processes-data","label":"It takes in information, applies rules, and changes output based on that information."},{"value":"plugged-in","label":"It is connected to a wall outlet."}],"correct":"processes-data"},{"id":"exit-q2","prompt":"Why was the plain lamp in the home scene not the best example of computer science?","options":[{"value":"too-small","label":"It was too small to notice."},{"value":"no-data-rules","label":"By itself it does not collect data or follow changing rules the way the router or thermostat does."},{"value":"not-online","label":"It was not connected to the internet."}],"correct":"no-data-rules"},{"id":"exit-q3","prompt":"What made the hallway bot sequence work?","options":[{"value":"longest-sequence","label":"It used the most steps available."},{"value":"correct-order","label":"Each instruction happened in a useful order so later actions had the right setup."},{"value":"fastest-clicks","label":"The cards were placed quickly."}],"correct":"correct-order"},{"id":"exit-q4","prompt":"A smart refrigerator shows what food is inside, reminds you when milk is close to expiring, and sends a phone alert if the door stays open. Why is that a strong example of computing?","options":[{"value":"has-screen","label":"It has a screen and uses electricity."},{"value":"data-rules-output","label":"It collects data about food and door status, applies rules, and changes its alerts or display based on that data."},{"value":"expensive","label":"It costs more than a regular refrigerator."}],"correct":"data-rules-output"}],"reflectionPrompt":"Choose one computing system from this lesson or your own life. Explain why it counts as computing using at least two of these ideas: input, data, rules, output, or sensor.","reflectionPlaceholder":"Example: The traffic sensor uses a sensor to collect input about vehicles, then rules help change the signal output when traffic builds up.","reflectionRequirement":"Checklist: write at least 80 characters and use at least 2 lesson terms: input, data, rules, output, sensor.","reflectionMinLength":80,"reflectionTerms":["input","data","rules","output","sensor"],"reflectionRequiredTermCount":2,"reflectionChecklist":["Write at least 80 characters.","Use at least 2 lesson terms: input, data, rules, output, sensor.","Name the system and explain why it computes."],"reflectionSuccessFeedback":"Reflection complete. You used lesson vocabulary to explain why the system counts as computing.","reflectionRetryFeedback":"Be more specific. Use at least two lesson terms such as input, data, rules, output, or sensor.","points":50},"gamification":{"perfectScoreTarget":285,"perfectStreakTarget":11,"hotStreakThreshold":4,"achievements":[{"id":"warmup_ready","name":"Warm-Up Ready","description":"Complete Step 1 without a retry."},{"id":"scene_spotter","name":"Scene Spotter","description":"Finish all three everyday scenes."},{"id":"overlap_reader","name":"Evidence Hunter","description":"Find an extra computing example that still fits the scene evidence."},{"id":"hallway_builder","name":"Hallway Builder","description":"Guide the helper bot to the laptop."},{"id":"hot_streak","name":"Hot Streak","description":"Reach a streak of 4 correct actions."},{"id":"triple_star","name":"Triple Star","description":"Earn 3 stars on any step."},{"id":"perfect_score","name":"Perfect Score","description":"Finish the lesson with every point and no retries."}]},"activityData":{"human-algorithm":{"title":"Hallway Helper Bot","goal":"Get the helper bot from the classroom door to the laptop.","prompt":"Build the route and run the bot. After one successful run, save your reflection to unlock the last two questions.","points":70,"planningCheck":{"intro":"These two follow-up questions unlock after you save your reflection.","points":20,"successFeedback":"Follow-up questions complete. Step 3 is done.","retryFeedback":"At least one follow-up answer needs revision. Use your successful run and reflection to decide what had to happen first.","questions":[{"id":"plan-q1","prompt":"Before the bot can turn toward the lab wing, what must already be true?","options":[{"value":"in-hallway","label":"The bot must have already moved out of the classroom and into the hallway."},{"value":"knows-cart","label":"The bot must know where the laptop is."},{"value":"all-steps-planned","label":"All five steps must already be filled in."}],"correct":"in-hallway"},{"id":"plan-q2","prompt":"If the bot reaches the lab door and then repeats the step 'Move out to the hallway,' what should you expect?","options":[{"value":"still-works","label":"The route still works because the step is always useful."},{"value":"backward","label":"The bot would move backward in the route, undoing progress toward the laptop."},{"value":"auto-finish","label":"The bot skips ahead to the laptop automatically."}],"correct":"backward"}]},"reflection":{"points":20,"minLength":45,"prompt":"Which instruction or dependency was easiest to overlook, and how did the run feedback help you revise the sequence?","placeholder":"Write one or two sentences about which step relationship mattered most, such as a move that had to happen before a turn.","checklist":["Write at least 45 characters.","Name one step that had to happen before another.","Mention how the run feedback helped you revise."],"successFeedback":"Reflection saved. You explained a dependency behind the working route.","retryFeedback":"Be more specific about which step had to come before another step and how the feedback helped you revise."},"slotCount":5,"hint":"The bot must leave the classroom before it can turn toward the lab hall.","board":{"rows":4,"cols":5,"start":{"row":2,"col":0},"target":{"row":0,"col":4},"blocked":[{"row":1,"col":1},{"row":1,"col":3}],"route":[{"row":2,"col":0},{"row":2,"col":1},{"row":2,"col":2},{"row":1,"col":2},{"row":0,"col":2},{"row":0,"col":4}],"routeStops":[{"label":"Classroom door","title":"Start"},{"label":"Main hallway","title":"Move"},{"label":"Hall branch","title":"Move"},{"label":"Turn toward lab","title":"Turn"},{"label":"Lab door","title":"Move"},{"label":"Laptop","title":"Finish"}]},"cards":[{"id":"leave-classroom","label":"Move out to the hallway","dependsOn":[],"failureReason":"The bot cannot turn toward the hall until it has actually moved out of the classroom."},{"id":"move-down-hall","label":"Move forward past the first classroom","dependsOn":["leave-classroom"],"failureReason":"This hallway move only makes sense after the bot has entered the hall."},{"id":"turn-to-lab","label":"Turn left toward the lab wing","dependsOn":["move-down-hall"],"failureReason":"Turning toward the lab works only after the bot reaches the hallway branch."},{"id":"move-to-door","label":"Move to the lab door","dependsOn":["turn-to-lab"],"failureReason":"The bot has to face the lab wing before it can move to the lab door."},{"id":"move-to-cart","label":"Move right to the laptop","dependsOn":["move-to-door"],"failureReason":"The final move happens after the bot reaches the lab door, not before."}],"correctOrder":["leave-classroom","move-down-hall","turn-to-lab","move-to-door","move-to-cart"],"reflectionPrompt":"Which instruction was easiest to overlook, and how did the feedback help you revise the sequence?"},"spot-the-cs":{"revealMode":"immediate","scenes":[{"id":"home","name":"Home","prompt":"Tap the home items that collect information and change what they do.","hint":"Look for a device that routes information, a device that listens for a command, and a device that reacts to changing temperature data.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='30' y='40' width='560' height='280' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='68' y='92' width='136' height='88' rx='12' fill='color-mix(in srgb, var(--accent-soft) 60%, transparent)' stroke='var(--border)' />\u003crect x='232' y='86' width='156' height='72' rx='14' fill='color-mix(in srgb, var(--accent) 10%, var(--card))' stroke='var(--border)' />\u003crect x='420' y='86' width='108' height='150' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ccircle cx='500' cy='132' r='24' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003crect x='238' y='218' width='120' height='64' rx='12' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003crect x='80' y='222' width='76' height='48' rx='10' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ctext x='104' y='84' font-size='18' fill='var(--muted)'>Router shelf\u003c/text>\u003ctext x='256' y='76' font-size='18' fill='var(--muted)'>TV corner\u003c/text>\u003ctext x='430' y='76' font-size='18' fill='var(--muted)'>Thermostat wall\u003c/text>\u003ctext x='84' y='214' font-size='18' fill='var(--muted)'>Lamp\u003c/text>\u003ctext x='245' y='210' font-size='18' fill='var(--muted)'>Speaker table\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"Why is the plain lamp not one of the strongest examples of computing in this home scene?","options":[{"value":"lighting-only","label":"Because lamps are only used for lighting, not for science."},{"value":"no-input-rules","label":"Because by itself it does not collect input or apply changing rules the way the router and thermostat do."},{"value":"not-main-focus","label":"Because it was not the main object drawn in the scene."},{"value":"no-wifi","label":"Because it was not connected to Wi-Fi."}],"correct":"no-input-rules","correctFeedback":"Correct. Electricity alone is not enough. The stronger examples in this scene respond to input or rules that change what the system does.","retryFeedback":"Look for the choice that focuses on input and changing rules, not on size, location, or internet access."},"targets":[{"id":"router","label":"Wi-Fi router","classification":"required","top":"22%","left":"9%","width":"22%","height":"22%","feedback":"The router moves packets between devices, so it is constantly making decisions about data flow."},{"id":"smart-speaker","label":"Smart speaker","classification":"required","top":"60%","left":"36%","width":"23%","height":"21%","feedback":"The speaker captures voice input, sends it for processing, and changes output based on what it hears."},{"id":"thermostat","label":"Smart thermostat","classification":"required","top":"18%","left":"66%","width":"20%","height":"34%","feedback":"The thermostat reads sensor data and applies rules to decide when heating or cooling should change."},{"id":"lamp","label":"Plain lamp","classification":"incorrect","top":"63%","left":"8%","width":"15%","height":"20%","feedback":"A plain lamp can be electrical without actually processing changing input data or following software rules."}]},{"id":"school","name":"School","prompt":"Tap the school items that record, store, or update information.","hint":"Look for the item that records attendance, the device that stores classwork, and the display that changes based on software.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='26' y='36' width='568' height='286' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='74' y='78' width='128' height='182' rx='16' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003crect x='232' y='74' width='242' height='116' rx='16' fill='color-mix(in srgb, var(--accent) 12%, var(--card))' stroke='var(--border)' />\u003crect x='252' y='214' width='142' height='66' rx='14' fill='color-mix(in srgb, var(--accent-soft) 58%, transparent)' stroke='var(--border)' />\u003crect x='434' y='214' width='112' height='72' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003ctext x='82' y='68' font-size='18' fill='var(--muted)'>Entry station\u003c/text>\u003ctext x='244' y='66' font-size='18' fill='var(--muted)'>Smart board\u003c/text>\u003ctext x='278' y='206' font-size='18' fill='var(--muted)'>Laptop\u003c/text>\u003ctext x='444' y='206' font-size='18' fill='var(--muted)'>Poster board\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"What makes the attendance tablet a computing system in a way the printed poster board is not?","options":[{"value":"newer-tech","label":"The tablet is newer technology."},{"value":"stores-processes-info","label":"The tablet records, stores, and retrieves information according to rules, while the poster just displays fixed words."},{"value":"connected-screen","label":"The tablet is closer to the interactive board."},{"value":"important-room-item","label":"The tablet is a more important classroom item."}],"correct":"stores-processes-info","correctFeedback":"Correct. The tablet handles information and can change records over time, while the poster stays static.","retryFeedback":"Focus on what the system does with information, not whether it looks newer or more important."},"targets":[{"id":"attendance-tablet","label":"Attendance tablet","classification":"required","group":"entry-station","top":"20%","left":"10%","width":"18%","height":"42%","feedback":"The attendance tablet records data about who entered class and stores it for later review."},{"id":"id-badge-reader","label":"Badge reader","classification":"optional","group":"entry-station","top":"20%","left":"10%","width":"18%","height":"42%","feedback":"The badge reader scans identity information and compares it against stored records."},{"id":"smart-board","label":"Interactive board","classification":"required","top":"18%","left":"39%","width":"40%","height":"30%","feedback":"The board changes what it displays based on software, touch input, and saved lesson materials."},{"id":"laptop","label":"Laptop","classification":"required","top":"58%","left":"42%","width":"24%","height":"20%","feedback":"A laptop stores files, runs applications, and changes what it does based on user input and software rules."},{"id":"poster-board","label":"Printed poster board","classification":"incorrect","top":"58%","left":"72%","width":"20%","height":"23%","feedback":"A printed poster can communicate ideas, but it does not change behavior by processing new information."}]},{"id":"city","name":"City","prompt":"Tap the city systems that sense conditions or update information.","hint":"Focus on the parts of the street scene that sense traffic, take payment, or update information for travelers.","points":15,"illustration":"\u003csvg viewBox='0 0 620 360' aria-hidden='true' class='scene-art'>\u003crect x='30' y='30' width='560' height='300' rx='26' fill='var(--card-strong)' stroke='var(--border)' />\u003crect x='40' y='206' width='540' height='74' rx='20' fill='color-mix(in srgb, var(--accent) 10%, var(--card))' stroke='var(--border)' />\u003crect x='92' y='82' width='74' height='144' rx='14' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003crect x='230' y='88' width='146' height='112' rx='14' fill='color-mix(in srgb, var(--warn) 10%, var(--card))' stroke='var(--border)' />\u003crect x='430' y='74' width='78' height='164' rx='16' fill='color-mix(in srgb, var(--accent-soft) 64%, transparent)' stroke='var(--border)' />\u003ccircle cx='280' cy='128' r='22' fill='color-mix(in srgb, var(--accent-soft) 70%, transparent)' stroke='var(--border)' />\u003ctext x='96' y='70' font-size='18' fill='var(--muted)'>Traffic pole\u003c/text>\u003ctext x='236' y='74' font-size='18' fill='var(--muted)'>Transit kiosk\u003c/text>\u003ctext x='420' y='60' font-size='18' fill='var(--muted)'>Arrival display\u003c/text>\u003c/svg>","reasoningCheck":{"points":20,"prompt":"Why does the park bench not count as part of the city's computing systems, while the traffic sensor does?","options":[{"value":"indoors-outdoors","label":"Because the bench is outdoors and the traffic sensor is not."},{"value":"no-sensing-or-rules","label":"Because the bench provides physical support, but it does not sense conditions or use data to change behavior."},{"value":"different-material","label":"Because the bench and sensor are made from different materials."},{"value":"less-helpful","label":"Because the bench is less helpful to the city."}],"correct":"no-sensing-or-rules","correctFeedback":"Correct. The traffic system changes based on sensed conditions, while the bench stays the same unless a person acts on it.","retryFeedback":"Look for the answer about sensing conditions and using data or rules to change what happens next."},"targets":[{"id":"traffic-sensor","label":"Traffic sensor","classification":"required","top":"18%","left":"12%","width":"16%","height":"42%","feedback":"Traffic systems measure timing and vehicle flow so signal rules can change based on what the street needs."},{"id":"kiosk-screen","label":"Transit kiosk screen","classification":"required","group":"transit-kiosk","top":"20%","left":"38%","width":"22%","height":"30%","feedback":"The kiosk screen shows stored route data and updates what riders see based on the system state."},{"id":"tap-reader","label":"Tap payment reader","classification":"optional","group":"transit-kiosk","top":"20%","left":"38%","width":"22%","height":"30%","feedback":"The payment reader checks a fare card and confirms whether the rider can continue."},{"id":"arrival-display","label":"Arrival display","classification":"required","top":"16%","left":"72%","width":"16%","height":"48%","feedback":"The arrival display changes when new route or timing data arrives."},{"id":"park-bench","label":"Park bench","classification":"incorrect","top":"70%","left":"62%","width":"24%","height":"14%","feedback":"The bench supports people physically, but it does not process information or apply rules by itself."}]}]}}};
         </script>
 
         <script>
@@ -2195,25 +2598,141 @@ button:disabled {
     }
 
     function createSessionStore(options) {
-        const storage = options.storage || window.sessionStorage;
+        const storage = options.storage || window.localStorage;
         const storageKey = options.storageKey;
+        const lessonId = options.lessonId;
+        const legacyStorage = options.legacyStorage || window.sessionStorage;
+        const legacyStorageKey = options.legacyStorageKey;
+        const progressKey =
+            options.progressKey ||
+            (lessonId ? `jibscourses_progress_${lessonId}` : '');
+        const courseProgressKey =
+            options.courseProgressKey || 'jibscourses_course_progress';
         const restartQueryKey = options.restartQueryKey || 'lessonRestart';
+        const initialProgressState = {
+            score: 0,
+            streak: 0,
+            stepsCompleted: [],
+            reflections: {},
+            achievementsUnlocked: [],
+            ...(options.initialProgressState || {}),
+        };
+
+        function readStorageJson(targetStorage, key) {
+            if (!targetStorage || !key) {
+                return null;
+            }
+            try {
+                const raw = targetStorage.getItem(key);
+                return raw ? JSON.parse(raw) : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function hasObjectEntries(value) {
+            return (
+                Boolean(value) &&
+                typeof value === 'object' &&
+                Object.keys(value).length > 0
+            );
+        }
+
+        function normalizeProgressState(progressState) {
+            const source =
+                progressState && typeof progressState === 'object'
+                    ? progressState
+                    : {};
+            return {
+                score: Number(source.score) || 0,
+                streak: Number(source.streak) || 0,
+                stepsCompleted: Array.isArray(source.stepsCompleted)
+                    ? source.stepsCompleted.slice()
+                    : initialProgressState.stepsCompleted.slice(),
+                reflections:
+                    source.reflections && typeof source.reflections === 'object'
+                        ? { ...source.reflections }
+                        : { ...initialProgressState.reflections },
+                achievementsUnlocked: Array.isArray(source.achievementsUnlocked)
+                    ? source.achievementsUnlocked.slice()
+                    : initialProgressState.achievementsUnlocked.slice(),
+            };
+        }
 
         function load() {
-            try {
-                const raw = storage.getItem(storageKey);
-                return raw ? JSON.parse(raw) : {};
-            } catch {
-                return {};
+            const saved = readStorageJson(storage, storageKey);
+            if (hasObjectEntries(saved)) {
+                return saved;
             }
+            const legacy = readStorageJson(
+                legacyStorage,
+                legacyStorageKey || storageKey,
+            );
+            return hasObjectEntries(legacy) ? legacy : {};
         }
 
         function save(snapshot) {
             storage.setItem(storageKey, JSON.stringify(snapshot));
+            if (legacyStorageKey) {
+                legacyStorage.removeItem(legacyStorageKey);
+            }
+        }
+
+        function loadProgress() {
+            return normalizeProgressState(
+                readStorageJson(storage, progressKey),
+            );
+        }
+
+        function saveProgress(progressState) {
+            if (!progressKey) {
+                return;
+            }
+            storage.setItem(
+                progressKey,
+                JSON.stringify(normalizeProgressState(progressState)),
+            );
+        }
+
+        function updateCourseProgress(status) {
+            if (!lessonId) {
+                return;
+            }
+            const normalizedStatus =
+                status === 'complete'
+                    ? 'complete'
+                    : status === 'in-progress'
+                      ? 'in-progress'
+                      : '';
+            const courseProgress =
+                readStorageJson(storage, courseProgressKey) || {};
+
+            if (!normalizedStatus) {
+                delete courseProgress[lessonId];
+                if (Object.keys(courseProgress).length === 0) {
+                    storage.removeItem(courseProgressKey);
+                } else {
+                    storage.setItem(
+                        courseProgressKey,
+                        JSON.stringify(courseProgress),
+                    );
+                }
+                return;
+            }
+
+            courseProgress[lessonId] = normalizedStatus;
+            storage.setItem(courseProgressKey, JSON.stringify(courseProgress));
         }
 
         function clear() {
             storage.removeItem(storageKey);
+            if (progressKey) {
+                storage.removeItem(progressKey);
+            }
+            updateCourseProgress('');
+            if (legacyStorageKey) {
+                legacyStorage.removeItem(legacyStorageKey);
+            }
         }
 
         function stripRestartQueryParam() {
@@ -2246,6 +2765,9 @@ button:disabled {
         return {
             load: load,
             save: save,
+            loadProgress: loadProgress,
+            saveProgress: saveProgress,
+            updateCourseProgress: updateCourseProgress,
             clear: clear,
             stripRestartQueryParam: stripRestartQueryParam,
             restartWithoutRestore: restartWithoutRestore,
@@ -2520,7 +3042,16 @@ button:disabled {
     const spotData = lesson.activityData['spot-the-cs'];
     const sequenceData = lesson.activityData['human-algorithm'];
     const sessionStore = core.createSessionStore({
-        storageKey: `lesson-session:${lesson.id}`,
+        lessonId: lesson.id,
+        storageKey: `jibscourses_lesson_state_${lesson.id}`,
+        legacyStorageKey: `lesson-session:${lesson.id}`,
+        initialProgressState: {
+            score: 0,
+            streak: 0,
+            stepsCompleted: [],
+            reflections: {},
+            achievementsUnlocked: [],
+        },
     });
     const persistedSession = sessionStore.load();
     const orderManager = core.createStableOrderManager({
@@ -2530,12 +3061,65 @@ button:disabled {
                 ? persistedSession.optionOrders
                 : {},
     });
+    let game;
     let suppressSessionSave = false;
+    let persistTimeoutId = 0;
     let warmupController;
     let spotController;
     let sequenceController;
     let exitController;
     sessionStore.stripRestartQueryParam();
+
+    function buildProgressState() {
+        const sequenceState = sequenceController
+            ? sequenceController.getState()
+            : {};
+        const exitState = exitController ? exitController.getState() : {};
+        const reflections = {};
+        const sequenceReflection = (sequenceState.reflectionText || '').trim();
+        const finalReflection = (exitState.finalReflection || '').trim();
+
+        if (sequenceReflection) {
+            reflections.sequence = sequenceReflection;
+        }
+        if (finalReflection) {
+            reflections.final = finalReflection;
+        }
+
+        return {
+            score: game ? game.state.totalScore : 0,
+            streak: game ? game.state.streak : 0,
+            stepsCompleted: lesson.steps
+                .filter(function filterCompletedStep(step, index) {
+                    return Boolean(game && game.state.starRatings[index] > 0);
+                })
+                .map(function mapCompletedStep(step) {
+                    return step.id;
+                }),
+            reflections: reflections,
+            achievementsUnlocked: game
+                ? Array.from(game.state.achievements)
+                : [],
+        };
+    }
+
+    function getCourseProgressStatus(snapshot, progressState) {
+        const hasProgress =
+            progressState.score > 0 ||
+            progressState.stepsCompleted.length > 0 ||
+            progressState.achievementsUnlocked.length > 0 ||
+            Object.keys(progressState.reflections).length > 0 ||
+            Number(snapshot.currentStep) > 1 ||
+            snapshot.game?.stepRetries?.some(function hasRetry(retryCount) {
+                return retryCount > 0;
+            });
+
+        if (snapshot.exit?.completed) {
+            return 'complete';
+        }
+
+        return hasProgress ? 'in-progress' : '';
+    }
 
     const stepController = core.createStepController({
         stepElements: Array.from(document.querySelectorAll('.lesson-step')),
@@ -2552,7 +3136,7 @@ button:disabled {
         defaultTheme: 'dark',
     });
 
-    const game = core.createGameState({
+    game = core.createGameState({
         stepCount: lesson.steps.length,
         initialState: persistedSession.game,
         perfectScoreTarget: lesson.gamification.perfectScoreTarget,
@@ -2585,8 +3169,27 @@ button:disabled {
         retry: 'Solid work. You finished the deeper version of the lesson, and you can refresh the page if you want to aim for every point.',
     };
 
+    function scrollToElement(element) {
+        if (!element) {
+            return;
+        }
+        window.requestAnimationFrame(function queueScroll() {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
+    function setChecklistItemState(item, complete, text) {
+        if (!item) {
+            return;
+        }
+        item.classList.toggle('completed', complete);
+        if (typeof text === 'string') {
+            item.textContent = text;
+        }
+    }
+
     function saveSessionSnapshot() {
-        if (suppressSessionSave) {
+        if (suppressSessionSave || !game) {
             return;
         }
         const snapshot = {
@@ -2598,11 +3201,29 @@ button:disabled {
             sequence: sequenceController ? sequenceController.getState() : {},
             exit: exitController ? exitController.getState() : {},
         };
+        const progressState = buildProgressState();
         sessionStore.save(snapshot);
+        sessionStore.saveProgress(progressState);
+        sessionStore.updateCourseProgress(
+            getCourseProgressStatus(snapshot, progressState),
+        );
     }
 
     function clearSessionSnapshot() {
         sessionStore.clear();
+    }
+
+    function scheduleSessionPersist() {
+        if (suppressSessionSave) {
+            return;
+        }
+        if (persistTimeoutId) {
+            window.clearTimeout(persistTimeoutId);
+        }
+        persistTimeoutId = window.setTimeout(function persistSoon() {
+            persistTimeoutId = 0;
+            saveSessionSnapshot();
+        }, 120);
     }
 
     function handleSessionPersist() {
@@ -2610,10 +3231,21 @@ button:disabled {
             clearSessionSnapshot();
             return;
         }
+        if (persistTimeoutId) {
+            window.clearTimeout(persistTimeoutId);
+            persistTimeoutId = 0;
+        }
         saveSessionSnapshot();
     }
 
     sessionStore.bindAutoSave(handleSessionPersist);
+    document.addEventListener('input', scheduleSessionPersist);
+    document.addEventListener('change', scheduleSessionPersist);
+    document.addEventListener('click', function persistAfterButtonClick(event) {
+        if (event.target.closest('button')) {
+            scheduleSessionPersist();
+        }
+    });
 
     document
         .getElementById('resetLessonBtn')
@@ -2726,6 +3358,15 @@ button:disabled {
             document.getElementById('sceneChoiceHeading');
         const sceneChoiceSubheading = document.getElementById(
             'sceneChoiceSubheading',
+        );
+        const sceneSelectionChip =
+            document.getElementById('sceneSelectionChip');
+        const sceneCertificationChip = document.getElementById(
+            'sceneCertificationChip',
+        );
+        const sceneProgressText = document.getElementById('sceneProgressText');
+        const sceneCertificationPanel = document.getElementById(
+            'sceneCertificationPanel',
         );
         const sceneChoiceBank = document.getElementById('sceneChoiceBank');
         const feedbackStatus = document.getElementById('spotFeedback');
@@ -2880,6 +3521,44 @@ button:disabled {
             );
         }
 
+        function renderSceneProgress() {
+            const scene = getCurrentScene();
+            const requiredCount = getRequiredTargets(scene).length;
+            const foundCount = getRequiredTargets(scene).filter(
+                function countFound(target) {
+                    return state.foundByScene[scene.id].has(target.id);
+                },
+            ).length;
+            const selectionComplete = isSelectionComplete(scene.id);
+            const certified = isSceneCertified(scene.id);
+
+            sceneSelectionChip.classList.toggle('active', !selectionComplete);
+            sceneSelectionChip.classList.toggle('complete', selectionComplete);
+            sceneCertificationChip.classList.toggle(
+                'active',
+                selectionComplete && !certified,
+            );
+            sceneCertificationChip.classList.toggle('complete', certified);
+            sceneCertificationPanel.classList.toggle(
+                'locked-panel',
+                !selectionComplete,
+            );
+            sceneCertificationPanel.classList.toggle(
+                'ready-panel',
+                selectionComplete,
+            );
+
+            if (certified) {
+                sceneProgressText.textContent = `${scene.name} certified. Continue when you are ready.`;
+                return;
+            }
+            if (!selectionComplete) {
+                sceneProgressText.textContent = `${scene.name}: find ${requiredCount} computing systems. ${foundCount}/${requiredCount} found.`;
+                return;
+            }
+            sceneProgressText.textContent = `${scene.name}: systems found. Answer one evidence question to certify the scene.`;
+        }
+
         function renderHint() {
             const scene = getCurrentScene();
             if (
@@ -2941,11 +3620,11 @@ button:disabled {
             sceneReasoningOptions.innerHTML = '';
             if (!isSelectionComplete(scene.id)) {
                 sceneReasoningPrompt.textContent =
-                    'Find every required system in the current scene to unlock its certification question.';
-                checkSceneReasoningButton.disabled = true;
+                    'Finish the required picks first. Then answer one evidence question.';
+                checkSceneReasoningButton.disabled = false;
                 core.setStatus(
                     sceneReasoningStatus,
-                    'Finish identifying the required systems first, then certify the scene with evidence.',
+                    'Finish the required picks first. Then certify the scene with evidence.',
                     '',
                 );
                 return;
@@ -3110,7 +3789,7 @@ button:disabled {
             if (!isSelectionComplete(scene.id)) {
                 core.setStatus(
                     sceneReasoningStatus,
-                    'Finish identifying the required systems first.',
+                    'Finish the required picks first. Then certify the scene.',
                     'retry',
                 );
                 return;
@@ -3178,6 +3857,7 @@ button:disabled {
             sceneChoiceHeading.textContent = getSceneChoiceHeadingText(scene);
             sceneChoiceSubheading.textContent = scene.prompt;
             renderSceneChoices();
+            renderSceneProgress();
             renderFeedbackList();
             renderHint();
             renderSceneReasoning();
@@ -3196,7 +3876,7 @@ button:disabled {
             nextButton.disabled = !state.activityEverCompleted;
             core.setStatus(
                 feedbackStatus,
-                'Activity reset. Select a system to see why it is, or is not, a strong example of computing.',
+                'Activity reset. Start by tapping one item in the scene.',
                 '',
             );
             renderCurrentScene();
@@ -3267,10 +3947,21 @@ button:disabled {
         const planningStatus = document.getElementById('planningStatus');
         const sequenceStatus = document.getElementById('sequenceStatus');
         const sequenceRunStatus = document.getElementById('sequenceRunStatus');
+        const sequenceActionHint =
+            document.getElementById('sequenceActionHint');
+        const sequenceCheckpointPanel = document.getElementById(
+            'sequenceCheckpointPanel',
+        );
+        const sequenceCheckpointBadge = document.getElementById(
+            'sequenceCheckpointBadge',
+        );
         const sequenceReflection =
             document.getElementById('sequenceReflection');
         const sequenceReflectionInput = document.getElementById(
             'sequenceReflectionInput',
+        );
+        const sequenceReflectionChecklist = Array.from(
+            document.querySelectorAll('#sequenceReflectionChecklist li'),
         );
         const sequenceReflectionStatus = document.getElementById(
             'sequenceReflectionStatus',
@@ -3371,6 +4062,67 @@ button:disabled {
             }
 
             return preview;
+        }
+
+        function updatePlanningInterface() {
+            const checkpointUnlocked = state.reflectionAwarded;
+            const planningReady = state.planningPassed;
+            core.setHidden(
+                sequenceCheckpointPanel,
+                !checkpointUnlocked && !planningReady,
+            );
+            sequenceCheckpointBadge.textContent = planningReady
+                ? 'Complete'
+                : checkpointUnlocked
+                  ? 'Follow-up'
+                  : 'Locked';
+            sequenceCheckpointBadge.classList.toggle('complete', planningReady);
+            if (!checkpointUnlocked && !planningReady) {
+                sequenceCheckpointPanel.classList.remove('attention-panel');
+            }
+            if (planningReady) {
+                sequenceCheckpointPanel.classList.remove('attention-panel');
+                sequenceActionHint.textContent =
+                    'Step 3 complete. Move on or rerun the route for more practice.';
+                return;
+            }
+            if (state.sequenceAwarded && !state.reflectionAwarded) {
+                sequenceActionHint.textContent =
+                    'Successful run complete. Save your reflection to unlock the last two questions.';
+                return;
+            }
+            if (checkpointUnlocked) {
+                sequenceActionHint.textContent =
+                    'Reflection saved. Finish the two follow-up questions below to complete Step 3.';
+                return;
+            }
+            sequenceActionHint.textContent =
+                '1. Build the route. 2. Run the bot. 3. Save your reflection. 4. Finish the two follow-up questions.';
+        }
+
+        function updateSequenceReflectionChecklist() {
+            const text = sequenceReflectionInput.value.trim();
+            const lower = text.toLowerCase();
+            const dependencyMentioned =
+                /(before|after|first|then|next|had to)/.test(lower);
+            const feedbackMentioned =
+                /(feedback|run|stopp|revis|wrong|order)/.test(lower);
+
+            setChecklistItemState(
+                sequenceReflectionChecklist[0],
+                text.length >= sequenceData.reflection.minLength,
+                `Write at least ${sequenceData.reflection.minLength} characters. ${Math.min(text.length, sequenceData.reflection.minLength)}/${sequenceData.reflection.minLength}`,
+            );
+            setChecklistItemState(
+                sequenceReflectionChecklist[1],
+                dependencyMentioned,
+                sequenceData.reflection.checklist[1],
+            );
+            setChecklistItemState(
+                sequenceReflectionChecklist[2],
+                feedbackMentioned,
+                sequenceData.reflection.checklist[2],
+            );
         }
 
         function removeCardFromCurrentLocation(cardId) {
@@ -3498,7 +4250,7 @@ button:disabled {
                     const placeholder = document.createElement('div');
                     placeholder.className = 'muted';
                     placeholder.textContent =
-                        'Drop or click a command here. You can run the bot with a partial sequence once planning is approved.';
+                        'Drop or click a command here. You can run the bot with a partial sequence to see where it stops.';
                     slot.appendChild(placeholder);
                 } else {
                     const card = cardMap.get(cardId);
@@ -3710,6 +4462,15 @@ button:disabled {
         }
 
         function checkPlanning() {
+            if (!state.reflectionAwarded) {
+                core.setStatus(
+                    planningStatus,
+                    'Save your reflection after a successful run to unlock the two follow-up questions.',
+                    'retry',
+                );
+                return;
+            }
+
             const unanswered = [];
             const wrong = [];
 
@@ -3731,15 +4492,16 @@ button:disabled {
             if (unanswered.length > 0) {
                 core.setStatus(
                     planningStatus,
-                    `Answer planning question ${unanswered.join(', ')} before you unlock Run.`,
+                    `Answer follow-up question${unanswered.length > 1 ? 's' : ''} ${unanswered.join(', ')} to complete Step 3.`,
                     'retry',
                 );
+                sequenceCheckpointPanel.classList.add('attention-panel');
+                scrollToElement(sequenceCheckpointPanel);
                 return;
             }
 
             if (wrong.length > 0) {
                 game.registerRetry(3);
-                runButton.disabled = true;
                 core.setStatus(
                     planningStatus,
                     `${sequenceData.planningCheck.retryFeedback} Review question ${wrong.join(', ')}.`,
@@ -3747,14 +4509,16 @@ button:disabled {
                 );
                 core.setStatus(
                     sequenceStatus,
-                    'Revise your plan before you rely on trial and error in the sequence lane.',
+                    'Use your successful run and reflection to revise the follow-up answers.',
                     'retry',
                 );
+                sequenceCheckpointPanel.classList.add('attention-panel');
+                scrollToElement(sequenceCheckpointPanel);
+                updatePlanningInterface();
                 return;
             }
 
             state.planningPassed = true;
-            runButton.disabled = false;
             lockPlanningCheck();
             if (!state.planningAwarded) {
                 state.planningAwarded = true;
@@ -3766,28 +4530,23 @@ button:disabled {
                 sequenceData.planningCheck.successFeedback,
                 'ok',
             );
+            if (!state.stepCompletedOnce) {
+                state.stepCompletedOnce = true;
+                game.markStepComplete(3);
+                game.unlockAchievement('hallway_builder');
+            }
             core.setStatus(
                 sequenceStatus,
-                'Plan approved. Arrange the commands and run the bot when you are ready.',
+                'Step 3 complete. Move on or rerun the route for more practice.',
                 'ok',
             );
-            core.setStatus(
-                sequenceRunStatus,
-                'The bot follows each command in order and stops the moment the route is incomplete or out of order.',
-                '',
-            );
+            sequenceCheckpointPanel.classList.remove('attention-panel');
+            nextButton.disabled = false;
+            updatePlanningInterface();
         }
 
         function evaluateSequence() {
             const preview = getSequencePreview();
-            if (!state.planningPassed) {
-                core.setStatus(
-                    sequenceRunStatus,
-                    'Answer the planning questions first, then run the bot.',
-                    'retry',
-                );
-                return;
-            }
             if (!preview.hasAnyCards) {
                 core.setStatus(
                     sequenceRunStatus,
@@ -3851,16 +4610,21 @@ button:disabled {
             );
             core.setStatus(
                 sequenceStatus,
-                'Success. Save a short reflection about which dependency mattered most before you move on.',
+                state.reflectionAwarded
+                    ? 'Successful run complete. Finish the two follow-up questions below to complete Step 3.'
+                    : 'Successful run complete. Save a short reflection to unlock the last two questions.',
                 'ok',
             );
             core.setHidden(sequenceReflection, false);
             core.setStatus(
                 sequenceReflectionStatus,
-                `Write at least ${sequenceData.reflection.minLength} characters about a step that had to happen before another step.`,
-                '',
+                state.reflectionAwarded
+                    ? sequenceData.reflection.successFeedback
+                    : `Write at least ${sequenceData.reflection.minLength} characters about one step that had to happen before another.`,
+                state.reflectionAwarded ? 'ok' : '',
             );
             nextButton.disabled = !state.stepCompletedOnce;
+            updatePlanningInterface();
             void animateRoute(preview);
         }
 
@@ -3870,7 +4634,7 @@ button:disabled {
             if (!state.sequenceAwarded) {
                 core.setStatus(
                     sequenceReflectionStatus,
-                    'Run a successful route before you save the reflection.',
+                    'Get one successful run before you save the reflection.',
                     'retry',
                 );
                 return;
@@ -3891,17 +4655,24 @@ button:disabled {
                 game.addScore(sequenceData.reflection.points);
                 game.incrementStreak();
             }
-            if (!state.stepCompletedOnce) {
-                state.stepCompletedOnce = true;
-                game.markStepComplete(3);
-                game.unlockAchievement('hallway_builder');
-            }
             core.setStatus(
                 sequenceReflectionStatus,
                 sequenceData.reflection.successFeedback,
                 'ok',
             );
-            nextButton.disabled = false;
+            core.setStatus(
+                sequenceStatus,
+                state.planningPassed
+                    ? 'Step 3 complete. Move on or rerun the route for more practice.'
+                    : 'Reflection saved. Finish the two follow-up questions below to complete Step 3.',
+                'ok',
+            );
+            updatePlanningInterface();
+            if (!state.planningPassed) {
+                sequenceCheckpointPanel.classList.add('attention-panel');
+                scrollToElement(sequenceCheckpointPanel);
+            }
+            nextButton.disabled = !state.stepCompletedOnce;
         }
 
         function applyFirstStepHint() {
@@ -3927,29 +4698,36 @@ button:disabled {
             state.lockedSlots.clear();
             state.failureCount = 0;
             hintButton.disabled = true;
-            runButton.disabled = !state.planningPassed;
             nextButton.disabled = !state.stepCompletedOnce;
-            sequenceReflectionInput.value = '';
+            if (!state.reflectionAwarded) {
+                sequenceReflectionInput.value = '';
+            }
             core.setStatus(
                 sequenceStatus,
                 state.planningPassed
-                    ? 'Activity reset. Rebuild the route and run it again.'
-                    : 'You can arrange cards now, but Run unlocks only after the planning check passes.',
+                    ? 'Activity reset. Rebuild the route and run it again if you want more practice.'
+                    : 'Activity reset. Build the route, then run the bot to test it.',
                 '',
             );
             core.setStatus(
                 sequenceRunStatus,
-                state.planningPassed
-                    ? 'The bot follows each command in order and stops the moment the route is incomplete or out of order.'
-                    : 'Answer the planning questions first, then run the bot to test your sequence.',
+                'The bot follows each command in order and stops the moment the route is incomplete or out of order.',
                 '',
             );
             core.setStatus(
                 sequenceReflectionStatus,
-                'Run a working sequence, then save a short explanation to complete Step 3.',
-                '',
+                state.reflectionAwarded
+                    ? sequenceData.reflection.successFeedback
+                    : 'After a successful run, save a short explanation to unlock the last two questions.',
+                state.reflectionAwarded ? 'ok' : '',
             );
-            core.setHidden(sequenceReflection, true);
+            core.setHidden(sequenceReflection, !state.sequenceAwarded);
+            sequenceCheckpointPanel.classList.toggle(
+                'attention-panel',
+                state.reflectionAwarded && !state.planningPassed,
+            );
+            updatePlanningInterface();
+            updateSequenceReflectionChecklist();
             renderSequence();
         }
 
@@ -3960,6 +4738,10 @@ button:disabled {
             );
         });
         sequenceReflectionInput.value = savedSequence.reflectionText || '';
+        sequenceReflectionInput.addEventListener(
+            'input',
+            updateSequenceReflectionChecklist,
+        );
 
         checkSequencePlanButton.addEventListener('click', checkPlanning);
         hintButton.addEventListener('click', applyFirstStepHint);
@@ -3973,8 +4755,9 @@ button:disabled {
             .addEventListener('click', resetActivity);
 
         hintButton.disabled = state.failureCount < 2;
-        runButton.disabled = !state.planningPassed;
         nextButton.disabled = !state.stepCompletedOnce;
+        updatePlanningInterface();
+        updateSequenceReflectionChecklist();
         if (state.planningPassed) {
             lockPlanningCheck();
             core.setStatus(
@@ -3982,19 +4765,17 @@ button:disabled {
                 sequenceData.planningCheck.successFeedback,
                 'ok',
             );
-            core.setStatus(
-                sequenceRunStatus,
-                'The bot follows each command in order and stops the moment the route is incomplete or out of order.',
-                '',
-            );
+            updatePlanningInterface();
         }
         if (state.sequenceAwarded) {
             core.setHidden(sequenceReflection, false);
             core.setStatus(
                 sequenceStatus,
-                state.reflectionAwarded
-                    ? 'Success. Your reflection is saved.'
-                    : 'Success. Save a short reflection about which dependency mattered most before you move on.',
+                state.planningPassed
+                    ? 'Step 3 complete. Move on or rerun the route for more practice.'
+                    : state.reflectionAwarded
+                      ? 'Successful run complete. Finish the two follow-up questions below to complete Step 3.'
+                      : 'Successful run complete. Save a short reflection to unlock the last two questions.',
                 'ok',
             );
             core.setStatus(
@@ -4042,6 +4823,9 @@ button:disabled {
         const statusElement = document.getElementById('exitStatus');
         const completeBanner = document.getElementById('completeBanner');
         const finalReflection = document.getElementById('finalReflection');
+        const finalReflectionChecklist = Array.from(
+            document.querySelectorAll('#finalReflectionChecklist li'),
+        );
         const sequenceReflectionInput = document.getElementById(
             'sequenceReflectionInput',
         );
@@ -4096,6 +4880,11 @@ button:disabled {
             core.setCheckedValue(question.id, savedExit.answers?.[question.id]);
         });
         finalReflection.value = savedExit.finalReflection || '';
+        finalReflection.addEventListener(
+            'input',
+            updateFinalReflectionChecklist,
+        );
+        updateFinalReflectionChecklist();
         if (completed) {
             core.setStatus(
                 statusElement,
@@ -4118,6 +4907,32 @@ button:disabled {
                 },
             );
             return matches.size;
+        }
+
+        function updateFinalReflectionChecklist() {
+            const text = finalReflection.value.trim();
+            const matchedTermCount = countMatchedReflectionTerms(text);
+            const mentionsSystem =
+                /(router|speaker|thermostat|tablet|board|laptop|sensor|display|kiosk|reader|refrigerator|fridge|traffic|lamp|bench|system)/i.test(
+                    text,
+                );
+
+            setChecklistItemState(
+                finalReflectionChecklist[0],
+                text.length >= lesson.exitCheck.reflectionMinLength,
+                `Write at least ${lesson.exitCheck.reflectionMinLength} characters. ${Math.min(text.length, lesson.exitCheck.reflectionMinLength)}/${lesson.exitCheck.reflectionMinLength}`,
+            );
+            setChecklistItemState(
+                finalReflectionChecklist[1],
+                matchedTermCount >=
+                    lesson.exitCheck.reflectionRequiredTermCount,
+                `Use at least ${lesson.exitCheck.reflectionRequiredTermCount} lesson terms: input, data, rules, output, sensor. ${Math.min(matchedTermCount, lesson.exitCheck.reflectionRequiredTermCount)}/${lesson.exitCheck.reflectionRequiredTermCount}`,
+            );
+            setChecklistItemState(
+                finalReflectionChecklist[2],
+                mentionsSystem,
+                lesson.exitCheck.reflectionChecklist[2],
+            );
         }
 
         document
