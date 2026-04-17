@@ -6,20 +6,20 @@
         <title>1.1.1 — Defining Computer Science in Everyday Life — Resources</title>
         <style>
             :root {
-                --color-primary: #1d9e75;
-                --color-primary-light: #e1f5ee;
-                --color-primary-dark: #085041;
-                --color-primary-text: #0f6e56;
+                --color-primary: #7f77dd;
+                --color-primary-light: #eeedfe;
+                --color-primary-dark: #3c3489;
+                --color-primary-text: #534ab7;
 
-                --color-teacher: #7f77dd;
-                --color-teacher-light: #eeedfe;
-                --color-teacher-dark: #3c3489;
-                --color-teacher-text: #534ab7;
+                --color-teacher: #1d9e75;
+                --color-teacher-light: #e1f5ee;
+                --color-teacher-dark: #085041;
+                --color-teacher-text: #0f6e56;
 
-                --bg: #0f1a17;
-                --bg-accent: #172522;
-                --card: #13211d;
-                --card-strong: #193028;
+                --bg: #121124;
+                --bg-accent: #1a1936;
+                --card: #1f1d3d;
+                --card-strong: #2b2955;
                 --text: #ebf4ee;
                 --muted: #9db4a8;
                 --accent: var(--color-primary);
@@ -124,7 +124,7 @@
             .resource-card:hover {
                 transform: translateY(-8px);
                 border-color: var(--color-primary);
-                box-shadow: 0 12px 30px rgba(29, 158, 117, 0.2);
+                box-shadow: 0 12px 30px rgba(127, 119, 221, 0.2);
             }
 
             .resource-card::before {
@@ -139,7 +139,7 @@
             }
 
             .resource-card.teacher::before {
-                background: var(--color-teacher);
+                background: #ffcc00; /* Gold/Amber for attention resources */
             }
 
             .resource-card.pdf::before {
@@ -183,8 +183,8 @@
             }
 
             .resource-card.teacher:hover .btn {
-                background: var(--color-teacher);
-                border-color: var(--color-teacher);
+                background: var(--color-primary-dark);
+                border-color: var(--color-primary);
             }
 
             .back-link {
