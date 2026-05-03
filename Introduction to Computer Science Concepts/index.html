@@ -162,7 +162,8 @@
             color: var(--text-secondary);
         }
 
-        .is-open .caret {
+        .is-open > .accordion-header .caret,
+        .is-open > .module-header .caret {
             transform: rotate(180deg);
         }
 
@@ -173,7 +174,7 @@
             transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .is-open .accordion-content-wrapper {
+        .is-open > .accordion-content-wrapper {
             grid-template-rows: 1fr;
         }
 
@@ -346,7 +347,7 @@
                         <div class="accordion-content">
                             <div class="accordion-inner">
                                 ${unit.modules.map((module, mIdx) => `
-                                    <div class="module-item is-open" id="module-${uIdx}-${mIdx}">
+                                    <div class="module-item" id="module-${uIdx}-${mIdx}">
                                         <div class="module-header" onclick="toggleAccordion('module-${uIdx}-${mIdx}')">
                                             <div class="header-content">
                                                 <span class="tier-label">Module</span>
