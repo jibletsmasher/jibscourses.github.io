@@ -1,5 +1,3 @@
-// To Run: node build_course_tree.js
-// Run when new course content has been added to any course folder
 const fs = require('fs');
 const path = require('path');
 
