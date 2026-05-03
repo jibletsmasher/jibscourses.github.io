@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum | Introduction to Computer Science Concepts</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #050505;
+            --bg-surface: #121212;
+            --bg-surface-light: #1a1a1a;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent-color: #8b5cf6;
+            --accent-hover: #a78bfa;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --gradient-primary: linear-gradient(135deg, #6d28d9 0%, #d946ef 100%);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 4rem 0 3rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+        }
+
+        /* Tree Styles */
+        .curriculum-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-bottom: 6rem;
+        }
+
+        .accordion-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: background 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tier-label {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-hover);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .caret {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-secondary);
+        }
+
+        .is-open .caret {
+            transform: rotate(180deg);
+        }
+
+        /* Slide Animation Container using CSS Grid */
+        .accordion-content-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .is-open .accordion-content-wrapper {
+            grid-template-rows: 1fr;
+        }
+
+        .accordion-content {
+            overflow: hidden;
+        }
+
+        .accordion-inner {
+            padding: 0 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Module Items */
+        .module-item {
+            background: var(--bg-surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .module-header {
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .module-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .module-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Lesson Items */
+        .lesson-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        .lesson-item {
+            display: block;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .lesson-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-code {
+            color: var(--accent-hover);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .lesson-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .lesson-path {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="logo">Jib's <span>Courses</span></a>
+            <a href="../directory.html" class="nav-cta">Back to Directory</a>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>Introduction to Computer Science Concepts</h1>
+                <p>Explore the units, modules, and lessons. Click to expand and access specific "grab and go" lesson pages and teacher guides.</p>
+            </section>
+
+            <div id="curriculumTree" class="curriculum-tree"></div>
+        </main>
+    </div>
+
+    <script>
+        const courseTree = [
+            {
+                title: 'Unit 1 - Foundations of Computing & Digital Systems',
+                modules: [
+                    {
+                        title: 'Module 1.1 - What Is Computer Science',
+                        lessons: [
+                            {
+                                code: '1.1.1',
+                                title: 'Defining Computer Science in Everyday Life',
+                                path: 'Unit 1 - Foundations of Computing & Digital Systems/Module 1.1 - What Is Computer Science/1.1.1/1.1.1-teacher-guide.html',
+                                href: 'Unit%201%20-%20Foundations%20of%20Computing%20%26%20Digital%20Systems/Module%201.1%20-%20What%20Is%20Computer%20Science/1.1.1/1.1.1-teacher-guide.html',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ];
+
+        const treeContainer = document.getElementById('curriculumTree');
+
+        const caretIcon = `
+            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        `;
+
+        function renderTree() {
+            treeContainer.innerHTML = courseTree.map((unit, uIdx) => `
+                <div class="accordion-item is-open" id="unit-${uIdx}">
+                    <div class="accordion-header" onclick="toggleAccordion('unit-${uIdx}')">
+                        <div class="header-content">
+                            <span class="tier-label">Unit</span>
+                            <h2 class="header-title">${unit.title}</h2>
+                        </div>
+                        ${caretIcon}
+                    </div>
+                    <div class="accordion-content-wrapper">
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                ${unit.modules.map((module, mIdx) => `
+                                    <div class="module-item is-open" id="module-${uIdx}-${mIdx}">
+                                        <div class="module-header" onclick="toggleAccordion('module-${uIdx}-${mIdx}')">
+                                            <div class="header-content">
+                                                <span class="tier-label">Module</span>
+                                                <h3 class="module-title">${module.title}</h3>
+                                            </div>
+                                            ${caretIcon}
+                                        </div>
+                                        <div class="accordion-content-wrapper">
+                                            <div class="accordion-content">
+                                                <div class="lesson-list">
+                                                    ${module.lessons.map(lesson => `
+                                                        <a href="${lesson.href}" class="lesson-item">
+                                                            <div class="lesson-meta">
+                                                                <span class="lesson-code">Lesson ${lesson.code}</span>
+                                                                <span class="tier-label">HTML</span>
+                                                            </div>
+                                                            <h4 class="lesson-title">${lesson.title}</h4>
+                                                            <p class="lesson-path">${lesson.path}</p>
+                                                        </a>
+                                                    `).join('')}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.toggleAccordion = function(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('is-open')) {
+                el.classList.remove('is-open');
+            } else {
+                el.classList.add('is-open');
+            }
+        };
+
+        renderTree();
+    </script>
+</body>
+</html>
