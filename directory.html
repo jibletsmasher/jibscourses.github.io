@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6VPTWZXEV"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-G6VPTWZXEV');
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Course Directory | Jib's Courses</title>
+        <style>
+            :root {
+                --bg: #f2e8d3;
+                --bg-accent: #e4d3af;
+                --surface: rgba(255, 250, 240, 0.82);
+                --surface-strong: #fff9ec;
+                --surface-soft: rgba(245, 238, 220, 0.9);
+                --text: #1b251f;
+                --muted: #57635d;
+                --accent: #295f49;
+                --accent-strong: #1d4636;
+                --accent-soft: rgba(41, 95, 73, 0.12);
+                --accent-line: rgba(41, 95, 73, 0.26);
+                --border: rgba(30, 52, 42, 0.16);
+                --shadow: 0 18px 40px rgba(53, 39, 21, 0.12);
+                --shadow-strong: 0 22px 50px rgba(53, 39, 21, 0.18);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                color-scheme: light;
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background:
+                    radial-gradient(
+                        circle at top,
+                        rgba(255, 255, 255, 0.55),
+                        transparent 34%
+                    ),
+                    linear-gradient(180deg, var(--bg), var(--bg-accent));
+                color: var(--text);
+                font-family: Georgia, 'Times New Roman', serif;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            h1,
+            h2,
+            h3,
+            p,
+            ul {
+                margin: 0;
+            }
+
+            .page-shell {
+                width: min(1160px, calc(100% - 2rem));
+                margin: 0 auto;
+                padding: 2rem 0 3rem;
+            }
+
+            .nav-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                background: var(--surface-strong);
+                color: var(--accent-strong);
+                font-weight: bold;
+                font-family: system-ui, -apple-system, sans-serif;
+                margin-bottom: 1.5rem;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .nav-link:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .hero {
+                position: relative;
+                overflow: hidden;
+                padding: 1.5rem;
+                border: 1px solid var(--border);
+                border-radius: 28px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 252, 245, 0.92),
+                    rgba(239, 228, 198, 0.88)
+                );
+                box-shadow: var(--shadow-strong);
+            }
+
+            .hero-copy {
+                position: relative;
+                display: grid;
+                gap: 0.85rem;
+                max-width: 44rem;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                width: fit-content;
+                padding: 0.35rem 0.75rem;
+                border: 1px solid var(--accent-line);
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.48);
+                color: var(--accent-strong);
+                font-size: 0.9rem;
+                letter-spacing: 0.03em;
+                text-transform: uppercase;
+                font-family: system-ui, -apple-system, sans-serif;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 4vw, 4.2rem);
+                line-height: 0.95;
+            }
+
+            .hero p {
+                max-width: 62ch;
+                font-size: 1.05rem;
+                color: var(--muted);
+            }
+
+            .content-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .panel {
+                border: 1px solid var(--border);
+                border-radius: 26px;
+                background: var(--surface);
+                backdrop-filter: blur(10px);
+                box-shadow: var(--shadow);
+            }
+
+            .tree-panel {
+                padding: 1.2rem;
+            }
+
+            .panel-header {
+                display: grid;
+                gap: 0.45rem;
+                margin-bottom: 1rem;
+            }
+
+            .panel-header p,
+            .sidebar p,
+            .empty-state {
+                color: var(--muted);
+            }
+
+            .course-tree {
+                display: grid;
+                gap: 1rem;
+            }
+
+            .unit-card,
+            .module-card,
+            .lesson-item {
+                position: relative;
+                border: 1px solid var(--border);
+                border-radius: 22px;
+                background: var(--surface-strong);
+            }
+
+            .unit-card {
+                padding: 1rem;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.72),
+                        rgba(253, 246, 230, 0.92)
+                    ),
+                    var(--surface-strong);
+            }
+
+            .unit-card::before {
+                content: '';
+                position: absolute;
+                left: 1.25rem;
+                top: 4.2rem;
+                bottom: 1.25rem;
+                width: 2px;
+                background: linear-gradient(
+                    180deg,
+                    var(--accent-line),
+                    transparent
+                );
+            }
+
+            .unit-header,
+            .module-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+                cursor: pointer;
+                user-select: none;
+                list-style: none; /* Hide default triangle */
+                padding: 0.5rem;
+                border-radius: 12px;
+                transition: background 0.2s ease;
+            }
+            
+            /* Remove default summary markers for WebKit */
+            .unit-header::-webkit-details-marker,
+            .module-header::-webkit-details-marker {
+                display: none;
+            }
+
+            .unit-header:hover, .module-header:hover {
+                background: rgba(255, 255, 255, 0.6);
+            }
+
+            /* Custom caret indicator */
+            .header-content {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .caret {
+                display: inline-block;
+                width: 0;
+                height: 0;
+                border-top: 6px solid transparent;
+                border-bottom: 6px solid transparent;
+                border-left: 8px solid var(--accent);
+                transition: transform 0.3s ease;
+            }
+
+            details[open] > summary .caret {
+                transform: rotate(90deg);
+            }
+
+            .tier-label {
+                display: inline-flex;
+                width: fit-content;
+                padding: 0.25rem 0.55rem;
+                border-radius: 999px;
+                background: var(--accent-soft);
+                color: var(--accent);
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                font-family: system-ui, -apple-system, sans-serif;
+            }
+
+            .tier-count {
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+
+            .unit-title,
+            .module-title,
+            .lesson-title {
+                font-size: 1.2rem;
+                line-height: 1.2;
+                margin: 0;
+            }
+
+            .module-list,
+            .lesson-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .module-list {
+                display: grid;
+                gap: 0.85rem;
+                margin-top: 1rem;
+                padding-left: 1.4rem;
+            }
+
+            .module-card {
+                padding: 0.5rem;
+                background: linear-gradient(
+                    180deg,
+                    rgba(244, 249, 246, 0.82),
+                    rgba(255, 255, 255, 0.95)
+                );
+            }
+
+            .module-card::before {
+                content: '';
+                position: absolute;
+                left: -1rem;
+                top: 1.6rem;
+                width: 1rem;
+                height: 2px;
+                background: var(--accent-line);
+            }
+
+            .lesson-list {
+                display: grid;
+                gap: 0.7rem;
+                margin-top: 0.85rem;
+                padding-left: 1.4rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .lesson-item {
+                padding: 0.85rem 0.9rem;
+                background: var(--surface-soft);
+                transition:
+                    transform 160ms ease,
+                    box-shadow 160ms ease,
+                    border-color 160ms ease;
+                display: block;
+            }
+
+            .lesson-item::before {
+                content: '';
+                position: absolute;
+                left: -1rem;
+                top: 1.4rem;
+                width: 1rem;
+                height: 2px;
+                background: var(--accent-line);
+            }
+
+            .lesson-item:hover,
+            .lesson-item:focus-within {
+                transform: translateY(-2px);
+                border-color: rgba(41, 95, 73, 0.28);
+                box-shadow: 0 12px 24px rgba(41, 95, 73, 0.12);
+            }
+
+            .lesson-link {
+                display: grid;
+                gap: 0.45rem;
+            }
+
+            .lesson-meta {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            .lesson-code {
+                color: var(--accent);
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                font-family: system-ui, -apple-system, sans-serif;
+            }
+
+            .lesson-path {
+                color: var(--muted);
+                font-size: 0.9rem;
+                word-break: break-word;
+            }
+
+            .sidebar {
+                padding: 1.2rem;
+                display: grid;
+                gap: 1rem;
+                align-content: start;
+            }
+
+            .sidebar-block {
+                padding: 1rem;
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.52);
+            }
+
+            .sidebar-block h3 {
+                margin-bottom: 0.45rem;
+                font-size: 1rem;
+            }
+
+            .sidebar-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                gap: 0.55rem;
+                color: var(--muted);
+            }
+
+            .sidebar-list strong {
+                color: var(--text);
+            }
+
+            .footer-note {
+                margin-top: 0.9rem;
+                text-align: center;
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+
+            /* Animations for details/summary */
+            details[open] summary ~ * {
+                animation: sweep .3s ease-in-out;
+            }
+
+            @keyframes sweep {
+                0%    {opacity: 0; transform: translateY(-10px)}
+                100%  {opacity: 1; transform: translateY(0)}
+            }
+
+            @media (max-width: 900px) {
+                .content-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 640px) {
+                .page-shell {
+                    width: min(100% - 1rem, 1160px);
+                    padding-top: 1rem;
+                }
+
+                .hero,
+                .tree-panel,
+                .sidebar {
+                    padding: 1rem;
+                }
+
+                .module-list,
+                .lesson-list {
+                    padding-left: 0.9rem;
+                }
+
+                .unit-card::before,
+                .module-card::before,
+                .lesson-item::before {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page-shell">
+            <a href="index.html" class="nav-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Home
+            </a>
+            <section class="hero">
+                <div class="hero-copy">
+                    <span class="eyebrow">Course Directory</span>
+                    <h1>
+                        Browse the Interactive Curriculum
+                    </h1>
+                    <p>
+                        Explore the units, modules, and lessons. Click on units and modules to expand or collapse them to easily find exactly what you need.
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <section class="panel tree-panel">
+                    <div class="panel-header">
+                        <span class="tier-label">Course Map</span>
+                        <h2>Curriculum Explorer</h2>
+                        <p>
+                            Select a unit below to see its modules. Open a module to access specific "grab and go" lesson pages and teacher guides.
+                        </p>
+                    </div>
+                    <div id="courseTree" class="course-tree"></div>
+                </section>
+
+                <aside class="panel sidebar">
+                    <section class="sidebar-block">
+                        <h3>How this page works</h3>
+                        <p>
+                            This is an interactive directory of the complete curriculum. 
+                            You can collapse sections to keep your view organized.
+                        </p>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <h3>Quick Navigation</h3>
+                        <p>
+                            Units and modules are clickable. Opening a lesson will take you directly into its environment.
+                        </p>
+                    </section>
+                </aside>
+            </section>
+
+            <p class="footer-note">
+                Built from the current folder layout at the repository root.
+            </p>
+        </main>
+
+        <script>
+            // Hardcoded curriculum data (can be dynamically updated later if needed)
+            const courseTree = [
+                {
+                    title: 'Unit 1 - Foundations of Computing & Digital Systems',
+                    modules: [
+                        {
+                            title: 'Module 1.1 - What Is Computer Science',
+                            lessons: [
+                                {
+                                    code: '1.1.1',
+                                    title: 'Defining Computer Science in Everyday Life',
+                                    path: 'Unit 1 - Foundations of Computing & Digital Systems/Module 1.1 - What Is Computer Science/1.1.1/',
+                                    href: 'Unit%201%20-%20Foundations%20of%20Computing%20%26%20Digital%20Systems/Module%201.1%20-%20What%20Is%20Computer%20Science/1.1.1/index.html',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ];
+
+            const courseTreeElement = document.getElementById('courseTree');
+
+            let lessonCount = 0;
+            courseTree.forEach(unit => {
+                unit.modules.forEach(module => {
+                    lessonCount += module.lessons.length;
+                });
+            });
+
+            if (lessonCount === 0) {
+                courseTreeElement.innerHTML =
+                    '<p class="empty-state">No lesson pages were listed yet.</p>';
+            } else {
+                courseTreeElement.innerHTML = courseTree
+                    .map(
+                        (unit) => `
+                            <details class="unit-card" open>
+                                <summary class="unit-header">
+                                    <div class="header-content">
+                                        <span class="caret"></span>
+                                        <div>
+                                            <span class="tier-label">Unit</span>
+                                            <h3 class="unit-title">${unit.title}</h3>
+                                        </div>
+                                    </div>
+                                    <span class="tier-count">${unit.modules.length} module${unit.modules.length === 1 ? '' : 's'}</span>
+                                </summary>
+                                <ul class="module-list">
+                                    ${unit.modules
+                                        .map(
+                                            (module) => `
+                                                <li>
+                                                    <details class="module-card">
+                                                        <summary class="module-header">
+                                                            <div class="header-content">
+                                                                <span class="caret"></span>
+                                                                <div>
+                                                                    <span class="tier-label">Module</span>
+                                                                    <h4 class="module-title">${module.title}</h4>
+                                                                </div>
+                                                            </div>
+                                                            <span class="tier-count">${module.lessons.length} lesson${module.lessons.length === 1 ? '' : 's'}</span>
+                                                        </summary>
+                                                        <ul class="lesson-list">
+                                                            ${module.lessons
+                                                                .map(
+                                                                    (
+                                                                        lesson,
+                                                                    ) => `
+                                                                        <li>
+                                                                            <article class="lesson-item">
+                                                                                <a class="lesson-link" href="${lesson.href}">
+                                                                                    <div class="lesson-meta">
+                                                                                        <span class="lesson-code">Lesson ${lesson.code}</span>
+                                                                                        <span class="tier-label">HTML</span>
+                                                                                    </div>
+                                                                                    <h5 class="lesson-title">${lesson.title}</h5>
+                                                                                    <p class="lesson-path">${lesson.path}</p>
+                                                                                </a>
+                                                                            </article>
+                                                                        </li>
+                                                                    `,
+                                                                )
+                                                                .join('')}
+                                                        </ul>
+                                                    </details>
+                                                </li>
+                                            `,
+                                        )
+                                        .join('')}
+                                </ul>
+                            </details>
+                        `,
+                    )
+                    .join('');
+            }
+        </script>
+    </body>
+</html>
