@@ -1,0 +1,1222 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1.1.2 — Data, Information & Representation — For teachers</title>
+        <style>
+:root {
+    --color-primary: #1D9E75;
+    --color-primary-light: #E1F5EE;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0F6E56;
+
+    --color-teacher: #7F77DD;
+    --color-teacher-light: #EEEDFE;
+    --color-teacher-dark: #3C3489;
+    --color-teacher-text: #534AB7;
+
+    --color-success: #1D9E75;
+    --color-success-light: #E1F5EE;
+    --color-success-dark: #085041;
+    --color-success-text: #0F6E56;
+
+    --color-hint: #EF9F27;
+    --color-hint-light: #FAEEDA;
+    --color-hint-dark: #633806;
+    --color-hint-text: #854F0B;
+
+    --color-error: #E24B4A;
+    --color-error-light: #FCEBEB;
+    --color-error-dark: #501313;
+    --color-error-text: #A32D2D;
+
+    --color-scene-bg: #1a1a2e;
+    --color-scene-text: #c8b8f5;
+    --color-scene-muted: #7a6fa8;
+
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-pill: 20px;
+}
+
+:root {
+    --color-primary: #1d9e75;
+    --color-primary-light: #e1f5ee;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0f6e56;
+
+    --color-teacher: #7f77dd;
+    --color-teacher-light: #eeedfe;
+    --color-teacher-dark: #3c3489;
+    --color-teacher-text: #534ab7;
+
+    --bg: #0f1a17;
+    --bg-accent: #172522;
+    --card: #13211d;
+    --card-strong: #193028;
+    --text: #ebf4ee;
+    --muted: #9db4a8;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(in srgb, var(--color-primary) 24%, var(--card));
+    --border: #28453d;
+    --ok: #6fdf95;
+    --warn: #f0a560;
+    --danger: #ff8b7d;
+    --shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+    --button-bg: #13211d;
+    --button-text: #ebf4ee;
+    --button-border: #35564c;
+    --button-hover-bg: #193028;
+    --button-hover-border: var(--color-primary);
+    --status-bg: #10211b;
+    --status-text: #d5e5dc;
+    --status-border: #33554a;
+    --chip-bg: color-mix(in srgb, var(--color-primary) 18%, var(--card));
+    --chip-text: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--text)
+    );
+    --chip-border: color-mix(in srgb, var(--color-primary) 44%, var(--border));
+    --exercise-bg: #10201b;
+    --exercise-border: #35564c;
+    --input-bg: #0d1714;
+    --input-text: #ebf4ee;
+    --input-border: #35564c;
+    --code-bg: #163328;
+    --footer-text: #8ea49a;
+
+    --teacher-surface: #221f3b;
+    --teacher-surface-strong: #2b2650;
+    --teacher-border: #5f58a8;
+    --teacher-text: var(--color-teacher-light);
+    --teacher-muted: #c6c0ee;
+    --teacher-button-bg: #2f2958;
+    --teacher-button-text: var(--color-teacher-light);
+    --teacher-button-border: #6a62be;
+    --teacher-button-hover-bg: var(--color-teacher-dark);
+    --teacher-button-hover-border: var(--color-teacher);
+}
+
+[data-theme='light'] {
+    --bg: #f4efe2;
+    --bg-accent: #efe3c8;
+    --card: #fffaf0;
+    --card-strong: #fff2d8;
+    --text: #1e2a23;
+    --muted: #5f6b61;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--card)
+    );
+    --border: #c8d3c4;
+    --ok: #1e7a45;
+    --warn: #a45b18;
+    --danger: #aa2e25;
+    --shadow: 0 18px 40px rgba(30, 42, 35, 0.12);
+    --button-bg: #fff8ea;
+    --button-text: #163328;
+    --button-border: #b9c9bb;
+    --button-hover-bg: #eef7f0;
+    --button-hover-border: var(--color-primary);
+    --status-bg: #f8f5ec;
+    --status-text: #31433a;
+    --status-border: #cfd8d1;
+    --chip-bg: color-mix(in srgb, var(--color-primary-light) 86%, var(--card));
+    --chip-text: var(--color-primary-text);
+    --chip-border: color-mix(in srgb, var(--color-primary) 38%, var(--border));
+    --exercise-bg: #fffdf7;
+    --exercise-border: #cfdbc7;
+    --input-bg: #fffdf8;
+    --input-text: #1e2a23;
+    --input-border: #b9c9bb;
+    --code-bg: #ecf7f0;
+    --footer-text: #68756c;
+
+    --teacher-surface: #f6f4ff;
+    --teacher-surface-strong: #eeedfe;
+    --teacher-border: #b8b1ee;
+    --teacher-text: var(--color-teacher-dark);
+    --teacher-muted: var(--color-teacher-text);
+    --teacher-button-bg: var(--color-teacher-light);
+    --teacher-button-text: var(--color-teacher-text);
+    --teacher-button-border: #a79fe7;
+    --teacher-button-hover-bg: #e3defd;
+    --teacher-button-hover-border: var(--color-teacher);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light;
+}
+
+html[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top left, var(--bg-accent), transparent 34%),
+        linear-gradient(180deg, var(--bg), var(--bg-accent));
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+.wrap {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.hero,
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    padding: 1.25rem;
+    display: grid;
+    gap: 0.9rem;
+    position: relative;
+    overflow: visible;
+    z-index: 12;
+}
+
+.hero-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls,
+.hero-action-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls {
+    margin-right: auto;
+}
+
+.hero-copy {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.hero-copy h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero-copy p {
+    max-width: 70ch;
+}
+
+.card {
+    padding: 1rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.lesson-step {
+    display: none;
+    gap: 0.85rem;
+}
+
+.lesson-step.active {
+    display: grid;
+}
+
+.lesson-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (min-width: 980px) {
+    .lesson-grid {
+        grid-template-columns: 0.95fr 1.25fr 0.9fr;
+        align-items: start;
+    }
+}
+
+.panel {
+    display: grid;
+    gap: 0.75rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.workspace-panel {
+    min-height: 420px;
+}
+
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.step-actions .left,
+.step-actions .right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.footer-note {
+    color: var(--footer-text);
+    font-size: 0.92rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+
+.theme-label,
+.step-meta,
+.muted,
+.fact-label {
+    color: var(--muted);
+}
+
+.theme-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.theme-select {
+    width: auto;
+    min-width: 8rem;
+    max-width: 100%;
+}
+
+.theme-select,
+.text-input,
+.select-input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    padding: 0.65rem 0.75rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button,
+.btn-link {
+    border: 1px solid var(--button-border);
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+button:hover,
+button:focus-visible,
+.btn-link:hover,
+.btn-link:focus-visible {
+    background: var(--button-hover-bg);
+    border-color: var(--button-hover-border);
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.primary:hover,
+.primary:focus-visible {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+}
+
+.ghost {
+    background: transparent;
+}
+
+.chips,
+.controls,
+.tab-row,
+.game-bar,
+.facts,
+.mini-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chip,
+.game-pill,
+.tab-btn,
+.fact-chip {
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--chip-border);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.fact-chip.complete {
+    background: color-mix(in srgb, var(--ok) 15%, var(--chip-bg));
+    color: var(--ok);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.progress-track {
+    width: 100%;
+    height: 0.8rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-soft) 58%, transparent);
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    transition: width 180ms ease;
+}
+
+.step-title {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border: 1px solid var(--chip-border);
+    font-weight: 700;
+}
+
+.exercise,
+.checkpoint,
+.reflection-box,
+.summary-item {
+    display: grid;
+    gap: 0.6rem;
+    border: 1px dashed var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.objective-list {
+    margin: 0;
+    padding-left: 0.1rem;
+    list-style-position: inside;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.status {
+    border: 1px solid var(--status-border);
+    background: var(--status-bg);
+    color: var(--status-text);
+    border-radius: 14px;
+    padding: 0.75rem 0.85rem;
+}
+
+.status.ok {
+    border-color: color-mix(in srgb, var(--ok) 58%, transparent);
+    color: var(--ok);
+}
+
+.status.retry {
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+    color: var(--warn);
+}
+
+.status.error {
+    border-color: color-mix(in srgb, var(--danger) 55%, transparent);
+    color: var(--danger);
+}
+
+.term-tip {
+    position: relative;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+}
+
+.term-tip::after {
+    content: ' ⓘ';
+    font-size: 0.78rem;
+}
+
+.term-tip::before {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    min-width: 14rem;
+    max-width: 18rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    background: var(--card-strong);
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease;
+    z-index: 5;
+}
+
+.term-tip:hover::before,
+.term-tip:focus-visible::before {
+    opacity: 1;
+}
+
+.star-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.star-step {
+    border: 1px solid var(--button-border);
+    border-radius: 8px;
+    padding: 0.35rem 0.45rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+    justify-items: center;
+}
+
+.star-step.earned {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.star-glyphs {
+    color: var(--muted);
+    font-size: 0.84rem;
+    letter-spacing: 0.07rem;
+    font-weight: 700;
+}
+
+.star-step-label {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.star-step.earned .star-glyphs {
+    color: var(--accent);
+}
+
+.star-step.pop {
+    animation: star-pop 260ms ease;
+}
+
+.streak-display.pulse {
+    animation: streak-pop 260ms ease;
+}
+
+@keyframes streak-pop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes star-pop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -1rem;
+    width: 0.6rem;
+    height: 0.9rem;
+    border-radius: 0.2rem;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh) rotate(320deg);
+        opacity: 0;
+    }
+}
+
+.teacher-panel {
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    left: 1.25rem;
+    right: 1.25rem;
+    z-index: 18;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-card);
+    background: var(--teacher-surface);
+    color: var(--teacher-text);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.85rem);
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.teacher-panel-standalone {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    z-index: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+}
+
+.teacher-panel.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.teacher-panel-heading,
+.teacher-panel-section {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.teacher-panel-label,
+.teacher-panel-section-label {
+    color: var(--teacher-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.teacher-panel-intro {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.teacher-panel-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.teacher-panel-section {
+    min-height: 100%;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: var(--teacher-surface-strong);
+}
+
+.teacher-panel-section-debrief {
+    grid-column: 1 / -1;
+}
+
+.teacher-panel-list {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.teacher-panel-debrief-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-panel-debrief-item {
+    display: grid;
+    gap: 0.45rem;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 82%,
+        transparent
+    );
+}
+
+.teacher-panel-debrief-question {
+    color: var(--teacher-text);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.teacher-panel-debrief-answer {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.trophy-case {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 35;
+}
+
+.trophy-case.hidden {
+    display: none;
+}
+
+.teacher-summary-grid,
+.teacher-summary-section,
+.teacher-summary-actions,
+.teacher-summary-card,
+.teacher-response-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.teacher-summary-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 38;
+}
+
+.teacher-summary-modal.hidden {
+    display: none;
+}
+
+.teacher-summary-card {
+    width: min(960px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    background: var(--teacher-surface);
+    border: 1px solid var(--teacher-border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    color: var(--teacher-text);
+}
+
+.teacher-summary-section {
+    border: 1px solid var(--teacher-border);
+    border-radius: 16px;
+    background: var(--teacher-surface-strong);
+    padding: 0.9rem;
+}
+
+.teacher-summary-section h4 {
+    margin: 0;
+}
+
+.teacher-response-card {
+    display: grid;
+    gap: 0.45rem;
+    border: 1px dashed var(--teacher-border);
+    border-radius: 14px;
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 78%,
+        transparent
+    );
+    padding: 0.8rem;
+}
+
+.teacher-response-label {
+    font-weight: 700;
+    color: var(--teacher-muted);
+}
+
+.teacher-response-text {
+    color: var(--teacher-text);
+    white-space: pre-wrap;
+    line-height: 1.55;
+}
+
+.teacher-summary-card .muted {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .summary-item,
+.teacher-summary-card .achievement-item,
+.teacher-summary-card .star-step {
+    border-color: var(--teacher-border);
+    background: var(--teacher-surface-strong);
+    color: var(--teacher-text);
+}
+
+.teacher-summary-card .star-step.earned {
+    border-color: var(--color-teacher);
+    background: color-mix(
+        in srgb,
+        var(--color-teacher) 18%,
+        var(--teacher-surface-strong)
+    );
+}
+
+.teacher-summary-card .star-step-label,
+.teacher-summary-card .star-glyphs,
+.teacher-summary-card .achievement-desc {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .achievement-name {
+    color: var(--teacher-text);
+}
+
+.teacher-summary-actions button,
+.teacher-guide-actions .primary,
+.teacher-summary-card .trophy-head button {
+    background: var(--teacher-button-bg);
+    border-color: var(--teacher-button-border);
+    color: var(--teacher-button-text);
+}
+
+.teacher-summary-actions button:hover,
+.teacher-summary-actions button:focus-visible,
+.teacher-guide-actions .primary:hover,
+.teacher-guide-actions .primary:focus-visible,
+.teacher-summary-card .trophy-head button:hover,
+.teacher-summary-card .trophy-head button:focus-visible {
+    background: var(--teacher-button-hover-bg);
+    border-color: var(--teacher-button-hover-border);
+}
+
+.trophy-card {
+    width: min(760px, 100%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.9rem;
+}
+
+.trophy-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.achievement-list {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.achievement-item {
+    border: 1px solid var(--button-border);
+    border-radius: 10px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+}
+
+.achievement-item.unlocked {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.achievement-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.achievement-desc {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.trophy-summary {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--exercise-bg);
+    padding: 0.65rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.summary-title {
+    font-weight: 700;
+}
+
+.summary-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    min-width: 190px;
+    border: 1px solid var(--button-border);
+    border-radius: 14px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    font-weight: 700;
+}
+
+.retry-prompt {
+    border-top: 1px solid var(--border);
+    padding-top: 0.55rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.trophy-summary.hidden,
+.retry-prompt.hidden {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .teacher-panel {
+        left: 0.75rem;
+        right: 0.75rem;
+    }
+}
+
+
+
+.teacher-guide-shell {
+    display: grid;
+    gap: 1rem;
+}
+
+.teacher-role-page {
+    --bg: #141225;
+    --bg-accent: color-mix(in srgb, var(--color-teacher) 18%, var(--bg));
+    --card: var(--teacher-surface);
+    --card-strong: var(--teacher-surface-strong);
+    --text: var(--teacher-text);
+    --muted: var(--teacher-muted);
+    --accent: var(--color-teacher);
+    --accent-strong: var(--color-teacher-dark);
+    --accent-soft: color-mix(in srgb, var(--color-teacher) 18%, var(--card));
+    --border: var(--teacher-border);
+    --button-bg: var(--teacher-button-bg);
+    --button-text: var(--teacher-button-text);
+    --button-border: var(--teacher-button-border);
+    --button-hover-bg: var(--teacher-button-hover-bg);
+    --button-hover-border: var(--teacher-button-hover-border);
+    --chip-bg: var(--teacher-surface-strong);
+    --chip-text: var(--teacher-text);
+    --chip-border: var(--teacher-border);
+    --exercise-bg: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 84%,
+        var(--teacher-surface)
+    );
+    --exercise-border: var(--teacher-border);
+    --input-bg: var(--teacher-surface-strong);
+    --input-text: var(--teacher-text);
+    --input-border: var(--teacher-border);
+    --footer-text: var(--teacher-muted);
+}
+
+html[data-theme='light'] body.teacher-role-page {
+    --bg: #f3f0ff;
+    --bg-accent: #e9e4ff;
+}
+
+.teacher-guide-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.teacher-guide-copy {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.teacher-guide-copy h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.teacher-role-page .teacher-panel-debrief-question {
+    font-weight: 700;
+}
+        </style>
+    </head>
+    <body class="teacher-role-page">
+        <main class="wrap">
+            <section class="hero teacher-guide-shell">
+                <div class="hero-controls">
+                    <div class="hero-theme-controls">
+                        <span class="theme-label">Theme</span>
+                        <select id="themeSelect" class="theme-select" aria-label="Select theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="teacher-guide-actions">
+                        <a class="btn-link primary" href="./1.1.2-data-information-representation.html">Open student lesson</a>
+                    </div>
+                </div>
+                <div class="teacher-guide-copy">
+                    <p class="muted">Foundations of Computing & Digital Systems · What Is Computer Science?</p>
+                    <h1>1.1.2 — Data, Information & Representation</h1>
+                    <p>Teacher guide for lesson setup, pacing, standards alignment, and debrief support.</p>
+                </div>
+            </section>
+
+            
+
+
+
+<div id="teacherPanel" class="teacher-panel teacher-panel-standalone" aria-labelledby="teacherPanelTitle">
+    <h2 class="visually-hidden">Teacher lesson details</h2>
+    <div class="teacher-panel-heading">
+        <p class="teacher-panel-label">For teachers</p>
+        <h3 id="teacherPanelTitle">Lesson planning notes</h3>
+        <p class="teacher-panel-intro">Use this panel for quick lesson timing, standards, pacing, and debrief support.</p>
+    </div>
+    <div class="teacher-panel-grid">
+        <section class="teacher-panel-section" aria-labelledby="teacherPanelTimeLabel">
+            <p id="teacherPanelTimeLabel" class="teacher-panel-section-label">Estimated time</p>
+            <p>40-54 minutes</p>
+        </section>
+        <section class="teacher-panel-section" aria-labelledby="teacherPanelPrereqLabel">
+            <p id="teacherPanelPrereqLabel" class="teacher-panel-section-label">Prerequisites</p>
+            <p>Completion of Lesson 1.1.1</p>
+        </section>
+        <section class="teacher-panel-section" aria-labelledby="teacherPanelStandardsLabel">
+            <p id="teacherPanelStandardsLabel" class="teacher-panel-section-label">CSTA standards</p>
+            <ul class="teacher-panel-list">
+                
+                <li>2-DA-01</li>
+                
+                <li>2-AP-10</li>
+                
+                <li>3A-IC-24</li>
+                
+            </ul>
+        </section>
+        <section class="teacher-panel-section" aria-labelledby="teacherPanelPacingLabel">
+            <p id="teacherPanelPacingLabel" class="teacher-panel-section-label">Pacing suggestion</p>
+            <p>One class period. Warm-up (5 min) -> activities (35 min) -> wrap-up (10 min)</p>
+        </section>
+        <section class="teacher-panel-section" aria-labelledby="teacherPanelAssignLabel">
+            <p id="teacherPanelAssignLabel" class="teacher-panel-section-label">How to assign</p>
+            <p>Direct link to this lesson. No account required. Progress saves locally in the browser.</p>
+        </section>
+        <section class="teacher-panel-section teacher-panel-section-debrief" aria-labelledby="teacherPanelDebriefLabel">
+            <p id="teacherPanelDebriefLabel" class="teacher-panel-section-label">Debrief questions</p>
+            <div class="teacher-panel-debrief-list">
+                
+                <article class="teacher-panel-debrief-item">
+                    <p class="teacher-panel-debrief-question">What is the difference between raw data and information?</p>
+                    
+                    <p class="teacher-panel-debrief-answer">Sample answer: Raw data is just facts and numbers. It becomes information when it is organized or presented in a way that gives it meaning and helps answer a question.</p>
+                    
+                </article>
+                
+                <article class="teacher-panel-debrief-item">
+                    <p class="teacher-panel-debrief-question">Why would someone choose to use a chart instead of a table of numbers?</p>
+                    
+                    <p class="teacher-panel-debrief-answer">Sample answer: A chart makes patterns and trends easier to see quickly. While the raw data is the same, the chart representation makes the meaning clearer.</p>
+                    
+                </article>
+                
+                <article class="teacher-panel-debrief-item">
+                    <p class="teacher-panel-debrief-question">How did changing the values in the transformation activity affect the output?</p>
+                    
+                    <p class="teacher-panel-debrief-answer">Sample answer: Changing a single value in the raw data caused the entire visualization to update. This shows how visualizations depend directly on the underlying data.</p>
+                    
+                </article>
+                
+            </div>
+        </section>
+    </div>
+</div>
+        </main>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initThemeControls = function initThemeControls(options) {
+        const root = options.rootElement || document.documentElement;
+        const selectElement = options.selectElement;
+        const storageKey = options.storageKey || 'lessonTheme';
+        const defaultTheme = options.defaultTheme || 'light';
+
+        function applyTheme(theme) {
+            const selectedTheme = theme === 'dark' ? 'dark' : 'light';
+            root.setAttribute('data-theme', selectedTheme);
+            if (selectElement) {
+                selectElement.value = selectedTheme;
+            }
+            localStorage.setItem(storageKey, selectedTheme);
+            return selectedTheme;
+        }
+
+        const savedTheme = localStorage.getItem(storageKey) || defaultTheme;
+        applyTheme(savedTheme);
+
+        if (selectElement) {
+            selectElement.addEventListener('change', function onThemeChange() {
+                applyTheme(selectElement.value);
+            });
+        }
+
+        return {
+            applyTheme: applyTheme,
+            getTheme: function getTheme() {
+                return root.getAttribute('data-theme') || defaultTheme;
+            },
+        };
+    };
+})();
+
+        </script>
+        <script>
+            window.LessonCore.initThemeControls({
+                selectElement: document.getElementById('themeSelect'),
+                defaultTheme: 'dark',
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,3551 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1.1.3 — Binary & Encoding</title>
+        <style>
+:root {
+    --color-primary: #1D9E75;
+    --color-primary-light: #E1F5EE;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0F6E56;
+
+    --color-teacher: #7F77DD;
+    --color-teacher-light: #EEEDFE;
+    --color-teacher-dark: #3C3489;
+    --color-teacher-text: #534AB7;
+
+    --color-success: #1D9E75;
+    --color-success-light: #E1F5EE;
+    --color-success-dark: #085041;
+    --color-success-text: #0F6E56;
+
+    --color-hint: #EF9F27;
+    --color-hint-light: #FAEEDA;
+    --color-hint-dark: #633806;
+    --color-hint-text: #854F0B;
+
+    --color-error: #E24B4A;
+    --color-error-light: #FCEBEB;
+    --color-error-dark: #501313;
+    --color-error-text: #A32D2D;
+
+    --color-scene-bg: #1a1a2e;
+    --color-scene-text: #c8b8f5;
+    --color-scene-muted: #7a6fa8;
+
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-pill: 20px;
+}
+
+:root {
+    --color-primary: #1d9e75;
+    --color-primary-light: #e1f5ee;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0f6e56;
+
+    --color-teacher: #7f77dd;
+    --color-teacher-light: #eeedfe;
+    --color-teacher-dark: #3c3489;
+    --color-teacher-text: #534ab7;
+
+    --bg: #0f1a17;
+    --bg-accent: #172522;
+    --card: #13211d;
+    --card-strong: #193028;
+    --text: #ebf4ee;
+    --muted: #9db4a8;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(in srgb, var(--color-primary) 24%, var(--card));
+    --border: #28453d;
+    --ok: #6fdf95;
+    --warn: #f0a560;
+    --danger: #ff8b7d;
+    --shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+    --button-bg: #13211d;
+    --button-text: #ebf4ee;
+    --button-border: #35564c;
+    --button-hover-bg: #193028;
+    --button-hover-border: var(--color-primary);
+    --status-bg: #10211b;
+    --status-text: #d5e5dc;
+    --status-border: #33554a;
+    --chip-bg: color-mix(in srgb, var(--color-primary) 18%, var(--card));
+    --chip-text: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--text)
+    );
+    --chip-border: color-mix(in srgb, var(--color-primary) 44%, var(--border));
+    --exercise-bg: #10201b;
+    --exercise-border: #35564c;
+    --input-bg: #0d1714;
+    --input-text: #ebf4ee;
+    --input-border: #35564c;
+    --code-bg: #163328;
+    --footer-text: #8ea49a;
+
+    --teacher-surface: #221f3b;
+    --teacher-surface-strong: #2b2650;
+    --teacher-border: #5f58a8;
+    --teacher-text: var(--color-teacher-light);
+    --teacher-muted: #c6c0ee;
+    --teacher-button-bg: #2f2958;
+    --teacher-button-text: var(--color-teacher-light);
+    --teacher-button-border: #6a62be;
+    --teacher-button-hover-bg: var(--color-teacher-dark);
+    --teacher-button-hover-border: var(--color-teacher);
+}
+
+[data-theme='light'] {
+    --bg: #f4efe2;
+    --bg-accent: #efe3c8;
+    --card: #fffaf0;
+    --card-strong: #fff2d8;
+    --text: #1e2a23;
+    --muted: #5f6b61;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--card)
+    );
+    --border: #c8d3c4;
+    --ok: #1e7a45;
+    --warn: #a45b18;
+    --danger: #aa2e25;
+    --shadow: 0 18px 40px rgba(30, 42, 35, 0.12);
+    --button-bg: #fff8ea;
+    --button-text: #163328;
+    --button-border: #b9c9bb;
+    --button-hover-bg: #eef7f0;
+    --button-hover-border: var(--color-primary);
+    --status-bg: #f8f5ec;
+    --status-text: #31433a;
+    --status-border: #cfd8d1;
+    --chip-bg: color-mix(in srgb, var(--color-primary-light) 86%, var(--card));
+    --chip-text: var(--color-primary-text);
+    --chip-border: color-mix(in srgb, var(--color-primary) 38%, var(--border));
+    --exercise-bg: #fffdf7;
+    --exercise-border: #cfdbc7;
+    --input-bg: #fffdf8;
+    --input-text: #1e2a23;
+    --input-border: #b9c9bb;
+    --code-bg: #ecf7f0;
+    --footer-text: #68756c;
+
+    --teacher-surface: #f6f4ff;
+    --teacher-surface-strong: #eeedfe;
+    --teacher-border: #b8b1ee;
+    --teacher-text: var(--color-teacher-dark);
+    --teacher-muted: var(--color-teacher-text);
+    --teacher-button-bg: var(--color-teacher-light);
+    --teacher-button-text: var(--color-teacher-text);
+    --teacher-button-border: #a79fe7;
+    --teacher-button-hover-bg: #e3defd;
+    --teacher-button-hover-border: var(--color-teacher);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light;
+}
+
+html[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top left, var(--bg-accent), transparent 34%),
+        linear-gradient(180deg, var(--bg), var(--bg-accent));
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+.wrap {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.hero,
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    padding: 1.25rem;
+    display: grid;
+    gap: 0.9rem;
+    position: relative;
+    overflow: visible;
+    z-index: 12;
+}
+
+.hero-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls,
+.hero-action-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls {
+    margin-right: auto;
+}
+
+.hero-copy {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.hero-copy h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero-copy p {
+    max-width: 70ch;
+}
+
+.card {
+    padding: 1rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.lesson-step {
+    display: none;
+    gap: 0.85rem;
+}
+
+.lesson-step.active {
+    display: grid;
+}
+
+.lesson-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (min-width: 980px) {
+    .lesson-grid {
+        grid-template-columns: 0.95fr 1.25fr 0.9fr;
+        align-items: start;
+    }
+}
+
+.panel {
+    display: grid;
+    gap: 0.75rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.workspace-panel {
+    min-height: 420px;
+}
+
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.step-actions .left,
+.step-actions .right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.footer-note {
+    color: var(--footer-text);
+    font-size: 0.92rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+
+.theme-label,
+.step-meta,
+.muted,
+.fact-label {
+    color: var(--muted);
+}
+
+.theme-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.theme-select {
+    width: auto;
+    min-width: 8rem;
+    max-width: 100%;
+}
+
+.theme-select,
+.text-input,
+.select-input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    padding: 0.65rem 0.75rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button,
+.btn-link {
+    border: 1px solid var(--button-border);
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+button:hover,
+button:focus-visible,
+.btn-link:hover,
+.btn-link:focus-visible {
+    background: var(--button-hover-bg);
+    border-color: var(--button-hover-border);
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.primary:hover,
+.primary:focus-visible {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+}
+
+.ghost {
+    background: transparent;
+}
+
+.chips,
+.controls,
+.tab-row,
+.game-bar,
+.facts,
+.mini-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chip,
+.game-pill,
+.tab-btn,
+.fact-chip {
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--chip-border);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.fact-chip.complete {
+    background: color-mix(in srgb, var(--ok) 15%, var(--chip-bg));
+    color: var(--ok);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.progress-track {
+    width: 100%;
+    height: 0.8rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-soft) 58%, transparent);
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    transition: width 180ms ease;
+}
+
+.step-title {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border: 1px solid var(--chip-border);
+    font-weight: 700;
+}
+
+.exercise,
+.checkpoint,
+.reflection-box,
+.summary-item {
+    display: grid;
+    gap: 0.6rem;
+    border: 1px dashed var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.objective-list {
+    margin: 0;
+    padding-left: 0.1rem;
+    list-style-position: inside;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.status {
+    border: 1px solid var(--status-border);
+    background: var(--status-bg);
+    color: var(--status-text);
+    border-radius: 14px;
+    padding: 0.75rem 0.85rem;
+}
+
+.status.ok {
+    border-color: color-mix(in srgb, var(--ok) 58%, transparent);
+    color: var(--ok);
+}
+
+.status.retry {
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+    color: var(--warn);
+}
+
+.status.error {
+    border-color: color-mix(in srgb, var(--danger) 55%, transparent);
+    color: var(--danger);
+}
+
+.term-tip {
+    position: relative;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+}
+
+.term-tip::after {
+    content: ' ⓘ';
+    font-size: 0.78rem;
+}
+
+.term-tip::before {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    min-width: 14rem;
+    max-width: 18rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    background: var(--card-strong);
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease;
+    z-index: 5;
+}
+
+.term-tip:hover::before,
+.term-tip:focus-visible::before {
+    opacity: 1;
+}
+
+.star-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.star-step {
+    border: 1px solid var(--button-border);
+    border-radius: 8px;
+    padding: 0.35rem 0.45rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+    justify-items: center;
+}
+
+.star-step.earned {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.star-glyphs {
+    color: var(--muted);
+    font-size: 0.84rem;
+    letter-spacing: 0.07rem;
+    font-weight: 700;
+}
+
+.star-step-label {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.star-step.earned .star-glyphs {
+    color: var(--accent);
+}
+
+.star-step.pop {
+    animation: star-pop 260ms ease;
+}
+
+.streak-display.pulse {
+    animation: streak-pop 260ms ease;
+}
+
+@keyframes streak-pop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes star-pop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -1rem;
+    width: 0.6rem;
+    height: 0.9rem;
+    border-radius: 0.2rem;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh) rotate(320deg);
+        opacity: 0;
+    }
+}
+
+.teacher-panel {
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    left: 1.25rem;
+    right: 1.25rem;
+    z-index: 18;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-card);
+    background: var(--teacher-surface);
+    color: var(--teacher-text);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.85rem);
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.teacher-panel-standalone {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    z-index: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+}
+
+.teacher-panel.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.teacher-panel-heading,
+.teacher-panel-section {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.teacher-panel-label,
+.teacher-panel-section-label {
+    color: var(--teacher-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.teacher-panel-intro {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.teacher-panel-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.teacher-panel-section {
+    min-height: 100%;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: var(--teacher-surface-strong);
+}
+
+.teacher-panel-section-debrief {
+    grid-column: 1 / -1;
+}
+
+.teacher-panel-list {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.teacher-panel-debrief-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-panel-debrief-item {
+    display: grid;
+    gap: 0.45rem;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 82%,
+        transparent
+    );
+}
+
+.teacher-panel-debrief-question {
+    color: var(--teacher-text);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.teacher-panel-debrief-answer {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.trophy-case {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 35;
+}
+
+.trophy-case.hidden {
+    display: none;
+}
+
+.teacher-summary-grid,
+.teacher-summary-section,
+.teacher-summary-actions,
+.teacher-summary-card,
+.teacher-response-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.teacher-summary-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 38;
+}
+
+.teacher-summary-modal.hidden {
+    display: none;
+}
+
+.teacher-summary-card {
+    width: min(960px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    background: var(--teacher-surface);
+    border: 1px solid var(--teacher-border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    color: var(--teacher-text);
+}
+
+.teacher-summary-section {
+    border: 1px solid var(--teacher-border);
+    border-radius: 16px;
+    background: var(--teacher-surface-strong);
+    padding: 0.9rem;
+}
+
+.teacher-summary-section h4 {
+    margin: 0;
+}
+
+.teacher-response-card {
+    display: grid;
+    gap: 0.45rem;
+    border: 1px dashed var(--teacher-border);
+    border-radius: 14px;
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 78%,
+        transparent
+    );
+    padding: 0.8rem;
+}
+
+.teacher-response-label {
+    font-weight: 700;
+    color: var(--teacher-muted);
+}
+
+.teacher-response-text {
+    color: var(--teacher-text);
+    white-space: pre-wrap;
+    line-height: 1.55;
+}
+
+.teacher-summary-card .muted {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .summary-item,
+.teacher-summary-card .achievement-item,
+.teacher-summary-card .star-step {
+    border-color: var(--teacher-border);
+    background: var(--teacher-surface-strong);
+    color: var(--teacher-text);
+}
+
+.teacher-summary-card .star-step.earned {
+    border-color: var(--color-teacher);
+    background: color-mix(
+        in srgb,
+        var(--color-teacher) 18%,
+        var(--teacher-surface-strong)
+    );
+}
+
+.teacher-summary-card .star-step-label,
+.teacher-summary-card .star-glyphs,
+.teacher-summary-card .achievement-desc {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .achievement-name {
+    color: var(--teacher-text);
+}
+
+.teacher-summary-actions button,
+.teacher-guide-actions .primary,
+.teacher-summary-card .trophy-head button {
+    background: var(--teacher-button-bg);
+    border-color: var(--teacher-button-border);
+    color: var(--teacher-button-text);
+}
+
+.teacher-summary-actions button:hover,
+.teacher-summary-actions button:focus-visible,
+.teacher-guide-actions .primary:hover,
+.teacher-guide-actions .primary:focus-visible,
+.teacher-summary-card .trophy-head button:hover,
+.teacher-summary-card .trophy-head button:focus-visible {
+    background: var(--teacher-button-hover-bg);
+    border-color: var(--teacher-button-hover-border);
+}
+
+.trophy-card {
+    width: min(760px, 100%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.9rem;
+}
+
+.trophy-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.achievement-list {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.achievement-item {
+    border: 1px solid var(--button-border);
+    border-radius: 10px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+}
+
+.achievement-item.unlocked {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.achievement-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.achievement-desc {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.trophy-summary {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--exercise-bg);
+    padding: 0.65rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.summary-title {
+    font-weight: 700;
+}
+
+.summary-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    min-width: 190px;
+    border: 1px solid var(--button-border);
+    border-radius: 14px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    font-weight: 700;
+}
+
+.retry-prompt {
+    border-top: 1px solid var(--border);
+    padding-top: 0.55rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.trophy-summary.hidden,
+.retry-prompt.hidden {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .teacher-panel {
+        left: 0.75rem;
+        right: 0.75rem;
+    }
+}
+
+
+
+/* Core Layout & Question Styling (Cloned from 1.1.2) */
+.intro-grid,
+.wrap-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (min-width: 860px) {
+    .intro-grid,
+    .wrap-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.step-help {
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    padding: 0.75rem 0.85rem;
+}
+
+.step-help summary {
+    cursor: pointer;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.step-help[open] summary {
+    color: var(--text);
+}
+
+.compact-help {
+    margin-top: 0.2rem;
+}
+
+.quick-start-panel {
+    margin-bottom: 0.85rem;
+}
+
+.reflection-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reflection-checklist li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.55rem;
+    align-items: start;
+    border: 1px solid var(--exercise-border);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    padding: 0.7rem 0.8rem;
+}
+
+.reflection-checklist li::before {
+    content: '○';
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.reflection-checklist li.completed {
+    border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+    background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+
+.reflection-checklist li.completed::before {
+    content: '✓';
+    color: var(--ok);
+}
+
+.warmup-options,
+.warmup-actions {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.question-card {
+    display: grid;
+    gap: 0.55rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    padding: 0.85rem;
+    background: var(--exercise-bg);
+}
+
+.question-card label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: start;
+}
+
+.question-card legend {
+    margin-bottom: 0.4rem;
+}
+
+/* Binary & Encoding Specific Layouts */
+.switchboard-workspace-grid,
+.encoder-workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+@media (min-width: 900px) {
+    .switchboard-workspace-grid,
+    .encoder-workspace-grid {
+        grid-template-columns: 3fr 2fr;
+    }
+}
+
+/* Switchboard Styles */
+.switches-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-surface-hover);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-xl) 0;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .switches-container {
+        justify-content: center;
+    }
+}
+
+.bit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.bit-toggle {
+    width: 44px;
+    height: 60px;
+    font-size: 1.5rem;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 var(--color-border);
+}
+
+.bit-toggle:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.bit-toggle[data-state="1"] {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary-dark);
+    box-shadow: 0 4px 0 var(--color-primary-dark);
+}
+
+.bit-toggle[data-state="1"]:active {
+    box-shadow: 0 0 0 transparent;
+}
+
+.bit-weight {
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.binary-sum-display {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    padding: var(--spacing-xl);
+    background: var(--color-surface-hover);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+    transition: color 0.3s ease;
+}
+
+.target-box {
+    text-align: center;
+    border: 2px dashed var(--color-border);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.target-title {
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text-secondary);
+}
+
+.target-display {
+    font-size: 2.5rem;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.target-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-border);
+}
+
+.target-dot.filled {
+    background: var(--color-success);
+}
+
+
+/* Encoder Styles */
+.depth-slider {
+    width: 100%;
+    margin: var(--spacing-xl) 0 var(--spacing-sm) 0;
+    accent-color: var(--color-primary);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.depth-readout {
+    background: var(--color-surface-hover);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.depth-readout h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.depth-readout p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.small-hint {
+    font-size: 0.82rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.data-stats {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.pixel-probe {
+    background: var(--color-surface-hover);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-primary);
+    font-size: 0.85rem;
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.binary-value {
+    font-family: var(--font-mono);
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.pixel-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 4px solid var(--color-border);
+    background: #000;
+}
+
+.pixel {
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.1s ease;
+}
+
+.pixel:hover {
+    outline: 2px solid var(--color-primary);
+    z-index: 2;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <main class="wrap">
+            <section class="hero">
+                <div class="hero-controls">
+                    <div class="hero-theme-controls">
+                        <span class="theme-label">Theme</span>
+                        <select id="themeSelect" class="theme-select" aria-label="Select theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="hero-action-controls">
+                        <button id="toggleTrophyBtn" type="button">Achievements</button>
+                        <button id="resetLessonBtn" type="button" class="ghost">Reset lesson</button>
+                    </div>
+                </div>
+                
+<div class="hero-copy">
+    <p class="muted">Foundations of Computing & Digital Systems · What Is Computer Science?</p>
+    <h1>1.1.3 — Binary & Encoding</h1>
+    <p>Students convert between bit patterns and values, learn how binary decisions encode images, and relate bit depth to the fidelity of represented information.</p>
+</div>
+
+            </section>
+
+            <section class="card">
+                <div class="game-bar" aria-label="Lesson status bar">
+                    <span id="stepCounter" class="game-pill">Step 1 of 4</span>
+                    <span id="scoreDisplay" class="game-pill">Score: 0 / 150</span>
+                    <span id="streakDisplay" class="game-pill streak-display">Streak: 0 / 7</span>
+                </div>
+                <div class="progress-track" aria-hidden="true">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="stepStars" class="star-row"></div>
+                
+<section id="step1" class="lesson-step active" aria-hidden="false">
+    
+<div class="step-title">
+    <span class="badge">1</span>
+    <div>
+        <h2>Set the Lesson Goal</h2>
+        
+        <p class="muted">Answer the prompt below to get started.</p>
+        
+    </div>
+</div>
+
+    <div class="intro-grid">
+        <div class="exercise">
+            <h3>Quick goal</h3>
+            <p>Conquer the fundamentals of <span class="term-tip" tabindex="0" data-tip="A pattern of bits (1s and 0s) that represent a specific value.">binary</span> to control outcomes.</p>
+            <details class="step-help">
+                <summary>See the full lesson goals</summary>
+                
+<ol class="objective-list">
+    
+    <li>Convert between <span class="term-tip" tabindex="0" data-tip="A pattern of bits (1s and 0s) that represent a specific value.">bit patterns</span> and represented values.</li>
+    
+    <li>Explain how <span class="term-tip" tabindex="0" data-tip="Using binary systems to represent information such as text or images.">binary encoding</span> can recreate complex data.</li>
+    
+    <li>Relate <span class="term-tip" tabindex="0" data-tip="The number of bits used to represent something, detailing its resolution or accuracy.">bit depth</span> to the fidelity of a represented output.</li>
+    
+</ol>
+
+            </details>
+        </div>
+        <div class="reflection-box">
+            <h3>Warm-up prompt</h3>
+            <p>Start with the idea that computers only deal in zeros and ones.</p>
+            <div class="question-card">
+                <p><strong>If a computer can only use switches that are strictly ON or OFF, how do you think it is able to store complex things like large numbers or colorful photos?</strong></p>
+                <div class="warmup-options">
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="magic" />
+                        <span>It uses special switches that can have hundreds of different states.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="combine" />
+                        <span>It combines many simple ON/OFF switches together to create complex patterns.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="analog" />
+                        <span>It actually stores photos on tiny pieces of physical film inside the hard drive.</span>
+                    </label>
+                    
+                </div>
+                <div class="warmup-actions">
+                    <button id="checkWarmupBtn" type="button" class="primary">Check warm-up</button>
+                    <div id="warmupStatus" class="status">Choose the best description, then check your answer.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left"></div>
+        <div class="right">
+            <button id="nextStep1" type="button" class="primary" disabled>Go to Binary Switchboard</button>
+        </div>
+    </div>
+</section>
+
+<section id="step2" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">2</span>
+    <div>
+        <h2>Binary Switchboard</h2>
+        
+        <p class="muted">Turn the bits ON or OFF to match the target.</p>
+        
+    </div>
+</div>
+
+    <div class="scenario-brief quick-start-panel">
+        <h3>Target Goal</h3>
+        <p>Toggle the <span class="term-tip" tabindex="0" data-tip="A bit is the smallest unit of data, taking the state of 0 or 1.">bits</span> to match the target decimal numbers using binary <span class="term-tip" tabindex="0" data-tip="Encoding is the process of translating data from one format into another.">encoding</span> rules.</p>
+    </div>
+    
+    <div class="switchboard-workspace-grid">
+        <div class="panel switch-panel">
+            <h3>Binary Toggles</h3>
+            <p class="muted">Click to toggle bits. Look at their values below them.</p>
+            
+            <div class="switches-container">
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="128" data-state="0">0</button>
+                    <span class="bit-weight">128</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="64" data-state="0">0</button>
+                    <span class="bit-weight">64</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="32" data-state="0">0</button>
+                    <span class="bit-weight">32</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="16" data-state="0">0</button>
+                    <span class="bit-weight">16</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="8" data-state="0">0</button>
+                    <span class="bit-weight">8</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="4" data-state="0">0</button>
+                    <span class="bit-weight">4</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="2" data-state="0">0</button>
+                    <span class="bit-weight">2</span>
+                </div>
+                <div class="bit-container">
+                    <button class="bit-toggle" data-weight="1" data-state="0">0</button>
+                    <span class="bit-weight">1</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="resetBinaryBtn" type="button">Reset All Bits</button>
+            </div>
+        </div>
+        
+        <div class="panel score-panel">
+            <h3>Current Value</h3>
+            <div id="currentBinarySum" class="binary-sum-display">0</div>
+            
+            <div class="target-box">
+                <h4 class="target-title">Match this number:</h4>
+                <div id="activeBinaryTarget" class="target-display">--</div>
+                <p id="binaryHint" class="muted hint-text"></p>
+                <div id="binaryProgress" class="progress-dots"></div>
+            </div>
+            
+            <div class="controls">
+                <button id="checkBinaryBtn" type="button" class="primary">Submit Match</button>
+                <div id="binaryStatus" class="status">Toggle the bits to equal the target value.</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep2" type="button">Back</button>
+        </div>
+        <div class="right">
+            <button id="nextStep2" type="button" class="primary" disabled>Go to Pixel Encoder</button>
+        </div>
+    </div>
+</section>
+
+<section id="step3" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">3</span>
+    <div>
+        <h2>Pixel Encoder</h2>
+        
+        <p class="muted">See how encoding constraints affect representation fidelity.</p>
+        
+    </div>
+</div>
+
+    <div class="scenario-brief quick-start-panel">
+        <h3>Mission</h3>
+        <p>Adjust the <span class="term-tip" tabindex="0" data-tip="Bit depth determines how much distinct data is used to encode a single unit/pixel.">bit depth</span> slider to see how many bits are used for each <span class="term-tip" tabindex="0" data-tip="Pixels are the tiny dots that make up a digital image.">pixel</span>.</p>
+        <p class="muted"><strong>Objective:</strong> Find the lowest bit depth where the face is represented with at least 16 shades of gray (Target depth: 4-bit).</p>
+    </div>
+    
+    <div class="encoder-workspace-grid">
+        <div class="panel controls-panel">
+            <h3>System Settings</h3>
+            <p class="muted">Slide to increase Bit Depth (more data allocated per pixel).</p>
+            
+            <input type="range" id="depthSlider" class="depth-slider" min="0" max="3" value="1" step="1">
+            <div class="slider-labels">
+                <span>1-bit</span>
+                <span>2-bit</span>
+                <span>4-bit</span>
+                <span>8-bit</span>
+            </div>
+            
+            <div class="depth-readout">
+                <h4>System Status: <span id="depthStatusLabel">Medium Res</span></h4>
+                <p id="depthStatusDesc" class="muted">8 bits per pixel. Rough outlines visible.</p>
+                <div class="data-stats">
+                    <strong>Total Bits:</strong> <span id="totalBitsDisplay">0</span> bits
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="submitDepthBtn" type="button" class="primary">Submit System Lock</button>
+                <div id="depthStatus" class="status">Find the correct target depth constraint.</div>
+            </div>
+
+            <div id="step3ReflectionBox" class="reflection-box hidden" aria-hidden="true" style="margin-top: var(--spacing-xl);">
+                <h3>Mid-Activity Reflection</h3>
+                <p id="step3ReflectionPrompt">Why does a 2-bit encoding allow for exactly 4 distinct levels of gray?</p>
+                <ul id="step3ReflectionChecklist" class="reflection-checklist">
+                    
+                    <li>Write at least 40 characters.</li>
+                    
+                    <li>Use lesson terms (e.g. binary, pixel, bit depth, encoding).</li>
+                    
+                    <li>Explain how 2 bits create 4 arrangements (00, 01, 10, 11).</li>
+                    
+                </ul>
+                <textarea id="step3Reflection" placeholder="Explain the relationship between bits and patterns..."></textarea>
+                <div class="controls reflection-actions">
+                    <button id="saveStep3ReflectionBtn" type="button">Save reflection</button>
+                </div>
+                <div id="step3ReflectionStatus" class="status">Find the correct target depth constraint above first.</div>
+            </div>
+        </div>
+        
+        <div class="panel output-panel">
+            <div class="output-header">
+                <h3>Visual Output</h3>
+                <div id="pixelProbe" class="pixel-probe hidden">
+                    <span class="probe-label">Pixel Binary:</span>
+                    <span id="probeBinaryValue" class="binary-value">0000</span>
+                </div>
+            </div>
+            <p class="muted small-hint">Hover over the image below to inspect individual pixel bit values.</p>
+            
+            <div class="simulation-workspace">
+                <div id="pixelGrid" class="pixel-grid" data-depth="2">
+                    <!-- JS will populate 256 pixels here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep3" type="button">Back</button>
+        </div>
+        <div class="right">
+            <button id="nextStep3" type="button" class="primary" disabled>Go to Wrap Up</button>
+        </div>
+    </div>
+</section>
+
+<section id="step4" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">4</span>
+    <div>
+        <h2>Wrap Up</h2>
+        
+        <p class="muted">Show what you know.</p>
+        
+    </div>
+</div>
+
+    <div class="wrap-grid">
+        <div class="exercise">
+            <h3>Exit check</h3>
+            
+            <fieldset class="question-card" id="exit-q1">
+                <legend><strong>1. In a binary system, what does a single bit represent?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="amount" />
+                    <span>An exact amount of electricity ranging from 1 to 10 volts.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="state" />
+                    <span>A single state, usually represented as 0 or 1 (Off or On).</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="byte" />
+                    <span>Eight different numbers at the same time.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q2">
+                <legend><strong>2. If you add more bits to an encoding system, what happens to the amount of information it can represent?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="decrease" />
+                    <span>It decreases because things get too crowded.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="same" />
+                    <span>It stays the same, bits don't affect capacity.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="increase" />
+                    <span>It increases exponentially, allowing for much finer detail or larger numbers.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q3">
+                <legend><strong>3. What happened to the pixel encoder image when the bit depth was at its lowest setting?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="blocky" />
+                    <span>It was only able to display two colors: black and white</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="clear" />
+                    <span>It became perfectly clear like a high-definition photograph.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="color" />
+                    <span>It suddenly gained millions of colors.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q4">
+                <legend><strong>4. How does the binary switchboard (like 0101) translate into a decimal number (like 5)?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="count" />
+                    <span>You just count how many 1s there are.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="weights" />
+                    <span>You add up the specific value 'weights' for every switch that is turned ON.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="random" />
+                    <span>The computer randomly assigns a number.</span>
+                </label>
+                
+            </fieldset>
+            
+        </div>
+        <div class="reflection-box">
+            <h3>Reflection</h3>
+            <p>Explain how a computer could use binary (just 0's and 1's) to represent a color photograph. Use at least two lesson terms: binary, pixel, bit depth, encoding.</p>
+            <p class="muted">Checklist: write at least 80 characters and use at least 2 lesson terms: binary, pixel, bit depth, encoding.</p>
+            <ul id="finalReflectionChecklist" class="reflection-checklist">
+                
+                <li>Write at least 80 characters.</li>
+                
+                <li>Use at least 2 lesson terms: binary, pixel, bit depth, encoding.</li>
+                
+                <li>Explain the connection between 0's/1's and images.</li>
+                
+            </ul>
+            <details class="step-help compact-help">
+                <summary>Need the term list?</summary>
+                <p>Useful words: binary, pixel, bit depth, encoding.</p>
+            </details>
+            <textarea id="finalReflection" placeholder="Start your explanation here"></textarea>
+            <button id="submitExitCheckBtn" type="button" class="primary">Submit wrap-up</button>
+            <div id="exitStatus" class="status">Answer all four questions and complete the reflection, then submit the wrap-up.</div>
+            <div id="completeBanner" class="complete-banner hidden" aria-hidden="true">
+                <h3>Lesson complete</h3>
+                <p>You finished Lesson 1.1.3. Open the achievement case to review your stars and score.</p>
+                <div class="controls teacher-summary-actions">
+                    <button id="openTeacherSummaryBtn" type="button">Open teacher summary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep4" type="button">Back</button>
+        </div>
+        <div class="right"></div>
+    </div>
+</section>
+
+            </section>
+
+            <p class="footer-note">Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24</p>
+        </main>
+
+        <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+        <div id="trophyCase" class="trophy-case hidden" aria-hidden="true">
+    <div class="trophy-card">
+        <div class="trophy-head">
+            <h3>Achievements</h3>
+            <button id="closeTrophyBtn" type="button">Close</button>
+        </div>
+        <div id="trophySummary" class="trophy-summary hidden">
+            <p class="summary-title">Lesson Summary</p>
+            <div class="summary-grid">
+                <div id="summaryScore" class="summary-item">Score: 0/0</div>
+                <div id="summaryStreak" class="summary-item">Streak: 0/0</div>
+            </div>
+            <p id="summaryPerfectText" class="muted"></p>
+            <div id="retryPrompt" class="retry-prompt hidden">
+                <p class="muted">You did not get a perfect score. Want to try again?</p>
+                <button id="tryAgainBtn" type="button" class="primary">
+                    Yes, try again
+                </button>
+            </div>
+        </div>
+        <div id="achievementList" class="achievement-list"></div>
+    </div>
+</div>
+
+        <div id="teacherSummaryModal" class="teacher-summary-modal hidden" aria-hidden="true">
+    <div class="teacher-summary-card">
+        <div class="trophy-head">
+            <h3>Teacher Summary</h3>
+            <button id="closeTeacherSummaryBtn" type="button">Close</button>
+        </div>
+        <p class="muted">Use this summary to review the student's overall performance, unlocked achievements, and written reflections.</p>
+        <div class="teacher-summary-grid">
+            <div id="teacherSummaryScore" class="summary-item">Score: 0 / 0</div>
+            <div id="teacherSummaryStreak" class="summary-item">Streak: 0 / 0</div>
+            <div id="teacherSummaryRetries" class="summary-item">Retries: 0</div>
+        </div>
+        <p id="teacherSummaryPerfectText" class="muted"></p>
+        <div class="teacher-summary-section">
+            <h4>Step stars</h4>
+            <div id="teacherSummaryStepStars" class="star-row"></div>
+        </div>
+        <div class="teacher-summary-section">
+            <h4>Achievements</h4>
+            <div id="teacherSummaryAchievements" class="achievement-list"></div>
+        </div>
+        <div class="teacher-summary-section">
+            <h4>Student reflections</h4>
+            <div id="teacherSummaryReflections" class="teacher-response-list"></div>
+        </div>
+    </div>
+</div>
+        <script>
+            window.__LESSON_DATA__ = {"id":"1.1.3","template":"lesson.njk","title":"Binary & Encoding","moduleTitle":"What Is Computer Science?","unitTitle":"Foundations of Computing & Digital Systems","description":"Students convert between bit patterns and values, learn how binary decisions encode images, and relate bit depth to the fidelity of represented information.","chips":[],"objectives":["Convert between \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"A pattern of bits (1s and 0s) that represent a specific value.\">bit patterns\u003c/span> and represented values.","Explain how \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Using binary systems to represent information such as text or images.\">binary encoding\u003c/span> can recreate complex data.","Relate \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"The number of bits used to represent something, detailing its resolution or accuracy.\">bit depth\u003c/span> to the fidelity of a represented output."],"footerNote":"Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24","teacherPanel":{"estimatedTime":"40-54 minutes","prerequisites":"Completion of Lesson 1.1.2","cstaStandards":["2-DA-01","2-AP-10","3A-IC-24"],"pacingSuggestion":"One class period. Warm-up (5 min) -> activities (35 min) -> wrap-up (10 min)","debriefQuestions":[{"question":"How did turning a bit on or off change the final number?","answer":"Each bit position has a specific value. Turning it on adds that value to the total sum."},{"question":"What happened to the pixel image as you increased the bit depth?","answer":"The image became clearer and could show more detail or colors, because there were more bits available to represent each pixel."},{"question":"Why do computers use binary to encode information?","answer":"Digital circuits rely on switches that are either on or off, making binary (base-2) the most reliable way to store and transmit data natively."}],"howToAssign":"Direct link to this lesson. No account required. Progress saves locally in the browser."},"steps":[{"id":"step1","title":"Set the Lesson Goal"},{"id":"step2","title":"Binary Switchboard"},{"id":"step3","title":"Pixel Encoder"},{"id":"step4","title":"Wrap Up"}],"warmup":{"prompt":"If a computer can only use switches that are strictly ON or OFF, how do you think it is able to store complex things like large numbers or colorful photos?","options":[{"value":"magic","label":"It uses special switches that can have hundreds of different states."},{"value":"combine","label":"It combines many simple ON/OFF switches together to create complex patterns."},{"value":"analog","label":"It actually stores photos on tiny pieces of physical film inside the hard drive."}],"correct":"combine","correctFeedback":"Exactly right. Complex data is just massive patterns built from simple building blocks.","retryFeedback":"Think about how we build complex words out of just 26 simple letters."},"exitCheck":{"questions":[{"id":"exit-q1","prompt":"In a binary system, what does a single bit represent?","options":[{"value":"amount","label":"An exact amount of electricity ranging from 1 to 10 volts."},{"value":"state","label":"A single state, usually represented as 0 or 1 (Off or On)."},{"value":"byte","label":"Eight different numbers at the same time."}],"correct":"state"},{"id":"exit-q2","prompt":"If you add more bits to an encoding system, what happens to the amount of information it can represent?","options":[{"value":"decrease","label":"It decreases because things get too crowded."},{"value":"same","label":"It stays the same, bits don't affect capacity."},{"value":"increase","label":"It increases exponentially, allowing for much finer detail or larger numbers."}],"correct":"increase"},{"id":"exit-q3","prompt":"What happened to the pixel encoder image when the bit depth was at its lowest setting?","options":[{"value":"blocky","label":"It was only able to display two colors: black and white"},{"value":"clear","label":"It became perfectly clear like a high-definition photograph."},{"value":"color","label":"It suddenly gained millions of colors."}],"correct":"blocky"},{"id":"exit-q4","prompt":"How does the binary switchboard (like 0101) translate into a decimal number (like 5)?","options":[{"value":"count","label":"You just count how many 1s there are."},{"value":"weights","label":"You add up the specific value 'weights' for every switch that is turned ON."},{"value":"random","label":"The computer randomly assigns a number."}],"correct":"weights"}],"reflectionPrompt":"Explain how a computer could use binary (just 0's and 1's) to represent a color photograph. Use at least two lesson terms: binary, pixel, bit depth, encoding.","reflectionPlaceholder":"Start your explanation here","reflectionRequirement":"Checklist: write at least 80 characters and use at least 2 lesson terms: binary, pixel, bit depth, encoding.","reflectionMinLength":80,"reflectionTerms":["binary","pixel","bit depth","encoding"],"reflectionRequiredTermCount":2,"reflectionChecklist":["Write at least 80 characters.","Use at least 2 lesson terms: binary, pixel, bit depth, encoding.","Explain the connection between 0's/1's and images."],"reflectionSuccessFeedback":"Reflection complete. You clearly explained binary encoding and used lesson vocabulary.","reflectionRetryFeedback":"Be more specific. Use at least two lesson terms such as binary, pixel, bit depth, or encoding.","points":50},"gamification":{"perfectScoreTarget":150,"perfectStreakTarget":7,"hotStreakThreshold":4,"achievements":[{"id":"warmup_ready","name":"Warm-Up Ready","description":"Complete Step 1 without a retry."},{"id":"binary_master","name":"Binary Master","description":"Correctly match all targets in the Binary Switchboard."},{"id":"pixel_perfect","name":"Pixel Perfect","description":"Successfully tune the encoder to the target depth."},{"id":"hot_streak","name":"Hot Streak","description":"Reach a streak of 4 correct actions."},{"id":"triple_star","name":"Triple Star","description":"Earn 3 stars on any step."},{"id":"perfect_score","name":"Perfect Score","description":"Finish the lesson with every point and no retries."}]},"activityData":{"binary-switchboard":{"switchboardActivity":{"goal":"Toggle the \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"A bit is the smallest unit of data, taking the state of 0 or 1.\">bits\u003c/span> to match the target decimal numbers using binary \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Encoding is the process of translating data from one format into another.\">encoding\u003c/span> rules.","bits":8,"weights":[128,64,32,16,8,4,2,1],"targets":[{"id":"target1","value":11,"hint":"Try turning on 8, 2, and 1."},{"id":"target2","value":42,"hint":"Start with 32, then add what you need."},{"id":"target3","value":150,"hint":"You'll definitely need the 128 bit."}]}},"pixel-encoder":{"encoderActivity":{"prompt":"Adjust the \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Bit depth determines how much distinct data is used to encode a single unit/pixel.\">bit depth\u003c/span> slider to see how many bits are used for each \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Pixels are the tiny dots that make up a digital image.\">pixel\u003c/span>.","targetDescription":"Find the lowest bit depth where the face is represented with at least 16 shades of gray (Target depth: 4-bit).","targetDepth":4,"states":[{"depth":1,"label":"1-bit (B&W)","description":"Each pixel is either 0 or 1. Only 2 shades available."},{"depth":2,"label":"2-bit (4 Levels)","description":"Each pixel uses 2 bits. Allows for 4 distinct levels of gray."},{"depth":4,"label":"4-bit (16 Levels)","description":"Each pixel uses 4 bits. Allows for 16 shades. Recognizable target fidelity."},{"depth":8,"label":"8-bit (256 Levels)","description":"Each pixel uses 8 bits. High fidelity with 256 shades of gray."}],"step3Reflection":{"prompt":"Why does a 2-bit encoding allow for exactly 4 distinct levels of gray?","placeholder":"Explain the relationship between bits and patterns...","minLength":40,"terms":["binary","pixel","bit depth","encoding"],"requiredTermCount":2,"checklist":["Write at least 40 characters.","Use lesson terms (e.g. binary, pixel, bit depth, encoding).","Explain how 2 bits create 4 arrangements (00, 01, 10, 11)."]}}}}};
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initThemeControls = function initThemeControls(options) {
+        const root = options.rootElement || document.documentElement;
+        const selectElement = options.selectElement;
+        const storageKey = options.storageKey || 'lessonTheme';
+        const defaultTheme = options.defaultTheme || 'light';
+
+        function applyTheme(theme) {
+            const selectedTheme = theme === 'dark' ? 'dark' : 'light';
+            root.setAttribute('data-theme', selectedTheme);
+            if (selectElement) {
+                selectElement.value = selectedTheme;
+            }
+            localStorage.setItem(storageKey, selectedTheme);
+            return selectedTheme;
+        }
+
+        const savedTheme = localStorage.getItem(storageKey) || defaultTheme;
+        applyTheme(savedTheme);
+
+        if (selectElement) {
+            selectElement.addEventListener('change', function onThemeChange() {
+                applyTheme(selectElement.value);
+            });
+        }
+
+        return {
+            applyTheme: applyTheme,
+            getTheme: function getTheme() {
+                return root.getAttribute('data-theme') || defaultTheme;
+            },
+        };
+    };
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    function escapeHtml(value) {
+        return String(value)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#39;');
+    }
+
+    function shuffle(array) {
+        const copy = array.slice();
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+            const swapIndex = Math.floor(Math.random() * (index + 1));
+            const current = copy[index];
+            copy[index] = copy[swapIndex];
+            copy[swapIndex] = current;
+        }
+        return copy;
+    }
+
+    function setStatus(element, text, kind) {
+        if (!element) {
+            return;
+        }
+        element.textContent = text;
+        element.className = kind ? `status ${kind}` : 'status';
+    }
+
+    function setHtmlStatus(element, html, kind) {
+        if (!element) {
+            return;
+        }
+        element.innerHTML = html;
+        element.className = kind ? `status ${kind}` : 'status';
+    }
+
+    function createStepStarSlots(container, stepCount) {
+        if (!container) {
+            return;
+        }
+        container.innerHTML = '';
+        for (let index = 0; index < stepCount; index += 1) {
+            const item = document.createElement('div');
+            item.className = 'star-step';
+            item.innerHTML = `<span class="star-step-label">Step ${index + 1}</span><span class="star-glyphs">☆☆☆</span>`;
+            container.appendChild(item);
+        }
+    }
+
+    function renderStepStars(container, starRatings, popStepNumber) {
+        if (!container) {
+            return;
+        }
+        Array.from(container.querySelectorAll('.star-step')).forEach(
+            function renderStar(element, index) {
+                const stars = Math.max(0, Math.min(3, starRatings[index] || 0));
+                const filled = '★'.repeat(stars);
+                const empty = '☆'.repeat(3 - stars);
+                const glyph = element.querySelector('.star-glyphs');
+                if (glyph) {
+                    glyph.textContent = `${filled}${empty}`;
+                }
+                element.classList.toggle('earned', stars > 0);
+                if (popStepNumber === index + 1) {
+                    element.classList.remove('pop');
+                    void element.offsetWidth;
+                    element.classList.add('pop');
+                }
+            },
+        );
+    }
+
+    function renderAchievements(container, achievementCatalog, unlockedIds) {
+        if (!container) {
+            return;
+        }
+        container.innerHTML = '';
+        achievementCatalog.forEach(function renderAchievement(achievement) {
+            const unlocked = unlockedIds.has(achievement.id);
+            const card = document.createElement('div');
+            card.className = unlocked
+                ? 'achievement-item unlocked'
+                : 'achievement-item';
+            card.innerHTML = `<span class="achievement-name">${unlocked ? '🏆' : '🔒'} ${escapeHtml(achievement.name)}</span><span class="achievement-desc">${escapeHtml(achievement.description)}</span>`;
+            container.appendChild(card);
+        });
+    }
+
+    function launchConfetti(layer, pieceCount, maxDuration) {
+        if (!layer) {
+            return;
+        }
+        const computed = getComputedStyle(document.documentElement);
+        const confettiColors = [
+            computed.getPropertyValue('--accent').trim(),
+            computed.getPropertyValue('--ok').trim(),
+            computed.getPropertyValue('--warn').trim(),
+            computed.getPropertyValue('--accent-strong').trim(),
+        ].filter(Boolean);
+
+        for (let index = 0; index < pieceCount; index += 1) {
+            const piece = document.createElement('span');
+            piece.className = 'confetti-piece';
+            piece.style.left = `${Math.random() * 100}%`;
+            piece.style.animationDuration = `${680 + Math.random() * maxDuration}ms`;
+            piece.style.animationDelay = `${Math.random() * 200}ms`;
+            piece.style.backgroundColor =
+                confettiColors[index % confettiColors.length] || '#1f6f50';
+            layer.appendChild(piece);
+            setTimeout(function removePiece() {
+                piece.remove();
+            }, maxDuration + 1200);
+        }
+    }
+
+    function setHidden(element, hidden) {
+        if (!element) {
+            return;
+        }
+        element.classList.toggle('hidden', hidden);
+        element.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+    }
+
+    window.LessonCore.escapeHtml = escapeHtml;
+    window.LessonCore.shuffle = shuffle;
+    window.LessonCore.setStatus = setStatus;
+    window.LessonCore.setHtmlStatus = setHtmlStatus;
+    window.LessonCore.createStepStarSlots = createStepStarSlots;
+    window.LessonCore.renderStepStars = renderStepStars;
+    window.LessonCore.renderAchievements = renderAchievements;
+    window.LessonCore.launchConfetti = launchConfetti;
+    window.LessonCore.setHidden = setHidden;
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.createStepController = function createStepController(
+        options,
+    ) {
+        const stepElements = options.stepElements || [];
+        const stepCounter = options.stepCounterElement;
+        const progressFill = options.progressFillElement;
+        let currentStep = 1;
+        let initialized = false;
+
+        function scrollActiveStepIntoView() {
+            if (!options.autoScrollOnChange) {
+                return;
+            }
+            window.requestAnimationFrame(function queueStepScroll() {
+                const activeStep = stepElements[currentStep - 1];
+                if (!activeStep) {
+                    return;
+                }
+                const target = options.scrollTargetSelector
+                    ? activeStep.querySelector(options.scrollTargetSelector)
+                    : activeStep;
+                (target || activeStep).scrollIntoView({
+                    behavior: options.scrollBehavior || 'smooth',
+                    block: options.scrollBlock || 'start',
+                });
+            });
+        }
+
+        function showStep(stepNumber) {
+            currentStep = Math.max(
+                1,
+                Math.min(stepElements.length, stepNumber),
+            );
+            stepElements.forEach(function updateStep(stepElement, index) {
+                const active = index === currentStep - 1;
+                stepElement.classList.toggle('active', active);
+                stepElement.setAttribute(
+                    'aria-hidden',
+                    active ? 'false' : 'true',
+                );
+            });
+            if (stepCounter) {
+                stepCounter.textContent = `Step ${currentStep} of ${stepElements.length}`;
+            }
+            if (progressFill) {
+                progressFill.style.width = `${(currentStep / stepElements.length) * 100}%`;
+            }
+            if (typeof options.onStepChange === 'function') {
+                options.onStepChange(currentStep);
+            }
+            if (initialized || !options.preventInitialScroll) {
+                scrollActiveStepIntoView();
+            }
+            initialized = true;
+        }
+
+        showStep(1);
+
+        return {
+            showStep: showStep,
+            getCurrentStep: function getCurrentStep() {
+                return currentStep;
+            },
+        };
+    };
+
+    window.LessonCore.createGameState = function createGameState(options) {
+        const stepCount = options.stepCount;
+        const initialState = options.initialState || {};
+        const state = {
+            totalScore: Number(initialState.totalScore) || 0,
+            streak: Number(initialState.streak) || 0,
+            stepRetries: Array.from({ length: stepCount }, function (_, index) {
+                return Number(initialState.stepRetries?.[index]) || 0;
+            }),
+            starRatings: Array.from({ length: stepCount }, function (_, index) {
+                return Number(initialState.starRatings?.[index]) || 0;
+            }),
+            achievements: new Set(
+                Array.isArray(initialState.achievements)
+                    ? initialState.achievements
+                    : [],
+            ),
+        };
+
+        function updateScoreDisplay() {
+            if (options.scoreDisplay) {
+                options.scoreDisplay.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+        }
+
+        function updateStreakDisplay(animate) {
+            if (options.streakDisplay) {
+                options.streakDisplay.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+                if (animate) {
+                    options.streakDisplay.classList.remove('pulse');
+                    void options.streakDisplay.offsetWidth;
+                    options.streakDisplay.classList.add('pulse');
+                }
+            }
+        }
+
+        function createStarSlots() {
+            if (!options.stepStars) {
+                return;
+            }
+            window.LessonCore.createStepStarSlots(options.stepStars, stepCount);
+            window.LessonCore.renderStepStars(
+                options.stepStars,
+                state.starRatings,
+            );
+        }
+
+        function renderAchievements() {
+            window.LessonCore.renderAchievements(
+                options.achievementList,
+                options.achievementCatalog,
+                state.achievements,
+            );
+        }
+
+        function unlockAchievement(id) {
+            if (state.achievements.has(id)) {
+                return;
+            }
+            state.achievements.add(id);
+            renderAchievements();
+            window.LessonCore.launchConfetti(options.confettiLayer, 16, 820);
+        }
+
+        function addScore(points) {
+            state.totalScore += points;
+            updateScoreDisplay();
+        }
+
+        function incrementStreak() {
+            state.streak += 1;
+            updateStreakDisplay(true);
+            if (state.streak >= options.hotStreakThreshold) {
+                unlockAchievement('hot_streak');
+            }
+        }
+
+        function resetStreak() {
+            if (state.streak !== 0) {
+                state.streak = 0;
+                updateStreakDisplay(false);
+            }
+        }
+
+        function registerRetry(stepNumber) {
+            const index = Math.max(1, Math.min(stepCount, stepNumber)) - 1;
+            state.stepRetries[index] += 1;
+            resetStreak();
+        }
+
+        function markStepComplete(stepNumber) {
+            const index = Math.max(1, Math.min(stepCount, stepNumber)) - 1;
+            if (state.starRatings[index] !== 0) {
+                return;
+            }
+            const retries = state.stepRetries[index];
+            const stars = retries === 0 ? 3 : retries <= 2 ? 2 : 1;
+            state.starRatings[index] = stars;
+            if (options.stepStars) {
+                window.LessonCore.renderStepStars(
+                    options.stepStars,
+                    state.starRatings,
+                    stepNumber,
+                );
+            }
+            window.LessonCore.launchConfetti(options.confettiLayer, 24, 1000);
+            if (stars === 3) {
+                unlockAchievement('triple_star');
+            }
+            if (typeof options.onStepComplete === 'function') {
+                options.onStepComplete(stepNumber, retries, stars, state);
+            }
+        }
+
+        function getTotalRetries() {
+            return state.stepRetries.reduce(function sumRetries(
+                total,
+                retries,
+            ) {
+                return total + retries;
+            }, 0);
+        }
+
+        function isPerfect() {
+            return (
+                state.totalScore === options.perfectScoreTarget &&
+                state.stepRetries.every(function noRetries(retryCount) {
+                    return retryCount === 0;
+                })
+            );
+        }
+
+        function getSnapshot() {
+            return {
+                totalScore: state.totalScore,
+                streak: state.streak,
+                stepRetries: state.stepRetries.slice(),
+                starRatings: state.starRatings.slice(),
+                achievements: Array.from(state.achievements),
+            };
+        }
+
+        function showSummary(optionsForSummary) {
+            const perfect =
+                typeof optionsForSummary.perfect === 'boolean'
+                    ? optionsForSummary.perfect
+                    : isPerfect();
+            if (options.summarySection) {
+                options.summarySection.classList.remove('hidden');
+            }
+            if (options.summaryScore) {
+                options.summaryScore.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+            if (options.summaryStreak) {
+                options.summaryStreak.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+            }
+            if (options.summaryPerfectText) {
+                options.summaryPerfectText.textContent = perfect
+                    ? optionsForSummary.perfectMessage
+                    : optionsForSummary.retryMessage;
+            }
+            if (options.retryPrompt) {
+                options.retryPrompt.classList.toggle('hidden', perfect);
+            }
+            if (options.trophyCase) {
+                options.trophyCase.classList.remove('hidden');
+                options.trophyCase.setAttribute('aria-hidden', 'false');
+            }
+            if (perfect) {
+                unlockAchievement('perfect_score');
+            }
+        }
+
+        function bindOverlayControls() {
+            if (options.toggleTrophyButton && options.trophyCase) {
+                options.toggleTrophyButton.addEventListener(
+                    'click',
+                    function showTrophy() {
+                        options.trophyCase.classList.remove('hidden');
+                        options.trophyCase.setAttribute('aria-hidden', 'false');
+                    },
+                );
+            }
+            if (options.closeTrophyButton && options.trophyCase) {
+                options.closeTrophyButton.addEventListener(
+                    'click',
+                    function hideTrophy() {
+                        options.trophyCase.classList.add('hidden');
+                        options.trophyCase.setAttribute('aria-hidden', 'true');
+                    },
+                );
+            }
+            if (options.trophyCase) {
+                options.trophyCase.addEventListener(
+                    'click',
+                    function closeWhenBackdrop(event) {
+                        if (event.target === options.trophyCase) {
+                            options.trophyCase.classList.add('hidden');
+                            options.trophyCase.setAttribute(
+                                'aria-hidden',
+                                'true',
+                            );
+                        }
+                    },
+                );
+            }
+        }
+
+        createStarSlots();
+        updateScoreDisplay();
+        updateStreakDisplay(false);
+        renderAchievements();
+        bindOverlayControls();
+
+        return {
+            state: state,
+            addScore: addScore,
+            incrementStreak: incrementStreak,
+            registerRetry: registerRetry,
+            markStepComplete: markStepComplete,
+            unlockAchievement: unlockAchievement,
+            getSnapshot: getSnapshot,
+            getTotalRetries: getTotalRetries,
+            isPerfect: isPerfect,
+            showSummary: showSummary,
+        };
+    };
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    function clearLiveResponses(rootElement) {
+        const root = rootElement || document;
+        root.querySelectorAll('input').forEach(function clearInput(input) {
+            const type = (input.type || '').toLowerCase();
+            if (
+                ['button', 'submit', 'reset', 'hidden', 'file'].includes(type)
+            ) {
+                return;
+            }
+            if (type === 'radio' || type === 'checkbox') {
+                input.checked = false;
+                return;
+            }
+            input.value = '';
+        });
+        root.querySelectorAll('textarea').forEach(
+            function clearTextarea(textarea) {
+                textarea.value = '';
+            },
+        );
+    }
+
+    function createSessionStore(options) {
+        const storage = options.storage || window.localStorage;
+        const storageKey = options.storageKey;
+        const lessonId = options.lessonId;
+        const legacyStorage = options.legacyStorage || window.sessionStorage;
+        const legacyStorageKey = options.legacyStorageKey;
+        const progressKey =
+            options.progressKey ||
+            (lessonId ? `jibscourses_progress_${lessonId}` : '');
+        const courseProgressKey =
+            options.courseProgressKey || 'jibscourses_course_progress';
+        const restartQueryKey = options.restartQueryKey || 'lessonRestart';
+        const initialProgressState = {
+            score: 0,
+            streak: 0,
+            stepsCompleted: [],
+            reflections: {},
+            achievementsUnlocked: [],
+            ...(options.initialProgressState || {}),
+        };
+
+        function readStorageJson(targetStorage, key) {
+            if (!targetStorage || !key) {
+                return null;
+            }
+            try {
+                const raw = targetStorage.getItem(key);
+                return raw ? JSON.parse(raw) : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function hasObjectEntries(value) {
+            return (
+                Boolean(value) &&
+                typeof value === 'object' &&
+                Object.keys(value).length > 0
+            );
+        }
+
+        function normalizeProgressState(progressState) {
+            const source =
+                progressState && typeof progressState === 'object'
+                    ? progressState
+                    : {};
+            return {
+                score: Number(source.score) || 0,
+                streak: Number(source.streak) || 0,
+                stepsCompleted: Array.isArray(source.stepsCompleted)
+                    ? source.stepsCompleted.slice()
+                    : initialProgressState.stepsCompleted.slice(),
+                reflections:
+                    source.reflections && typeof source.reflections === 'object'
+                        ? { ...source.reflections }
+                        : { ...initialProgressState.reflections },
+                achievementsUnlocked: Array.isArray(source.achievementsUnlocked)
+                    ? source.achievementsUnlocked.slice()
+                    : initialProgressState.achievementsUnlocked.slice(),
+            };
+        }
+
+        function load() {
+            const saved = readStorageJson(storage, storageKey);
+            if (hasObjectEntries(saved)) {
+                return saved;
+            }
+            const legacy = readStorageJson(
+                legacyStorage,
+                legacyStorageKey || storageKey,
+            );
+            return hasObjectEntries(legacy) ? legacy : {};
+        }
+
+        function save(snapshot) {
+            storage.setItem(storageKey, JSON.stringify(snapshot));
+            if (legacyStorageKey) {
+                legacyStorage.removeItem(legacyStorageKey);
+            }
+        }
+
+        function loadProgress() {
+            return normalizeProgressState(
+                readStorageJson(storage, progressKey),
+            );
+        }
+
+        function saveProgress(progressState) {
+            if (!progressKey) {
+                return;
+            }
+            storage.setItem(
+                progressKey,
+                JSON.stringify(normalizeProgressState(progressState)),
+            );
+        }
+
+        function updateCourseProgress(status) {
+            if (!lessonId) {
+                return;
+            }
+            const normalizedStatus =
+                status === 'complete'
+                    ? 'complete'
+                    : status === 'in-progress'
+                      ? 'in-progress'
+                      : '';
+            const courseProgress =
+                readStorageJson(storage, courseProgressKey) || {};
+
+            if (!normalizedStatus) {
+                delete courseProgress[lessonId];
+                if (Object.keys(courseProgress).length === 0) {
+                    storage.removeItem(courseProgressKey);
+                } else {
+                    storage.setItem(
+                        courseProgressKey,
+                        JSON.stringify(courseProgress),
+                    );
+                }
+                return;
+            }
+
+            courseProgress[lessonId] = normalizedStatus;
+            storage.setItem(courseProgressKey, JSON.stringify(courseProgress));
+        }
+
+        function clear() {
+            storage.removeItem(storageKey);
+            if (progressKey) {
+                storage.removeItem(progressKey);
+            }
+            updateCourseProgress('');
+            if (legacyStorageKey) {
+                legacyStorage.removeItem(legacyStorageKey);
+            }
+        }
+
+        function stripRestartQueryParam() {
+            const url = new URL(window.location.href);
+            if (!url.searchParams.has(restartQueryKey)) {
+                return;
+            }
+            url.searchParams.delete(restartQueryKey);
+            window.history.replaceState(null, '', url.toString());
+        }
+
+        function restartWithoutRestore() {
+            clear();
+            clearLiveResponses();
+
+            const url = new URL(window.location.href);
+            url.searchParams.set(restartQueryKey, Date.now().toString());
+            window.location.replace(url.toString());
+        }
+
+        function bindAutoSave(callback, eventNames) {
+            const events = Array.isArray(eventNames)
+                ? eventNames
+                : ['beforeunload', 'pagehide'];
+            events.forEach(function bindEvent(eventName) {
+                window.addEventListener(eventName, callback);
+            });
+        }
+
+        return {
+            load: load,
+            save: save,
+            loadProgress: loadProgress,
+            saveProgress: saveProgress,
+            updateCourseProgress: updateCourseProgress,
+            clear: clear,
+            stripRestartQueryParam: stripRestartQueryParam,
+            restartWithoutRestore: restartWithoutRestore,
+            bindAutoSave: bindAutoSave,
+        };
+    }
+
+    function arraysEqual(left, right) {
+        if (left.length !== right.length) {
+            return false;
+        }
+        return left.every(function compare(value, index) {
+            return value === right[index];
+        });
+    }
+
+    function createStableOrderManager(options) {
+        const orders =
+            options && typeof options.initialOrders === 'object'
+                ? options.initialOrders
+                : {};
+
+        function getStableOptionOrder(key, values) {
+            const normalized = values.slice();
+            const existing = Array.isArray(orders[key])
+                ? orders[key].filter(function keepKnown(value) {
+                      return normalized.includes(value);
+                  })
+                : [];
+            if (existing.length === normalized.length) {
+                return existing;
+            }
+
+            let shuffled = window.LessonCore.shuffle(normalized);
+            if (normalized.length > 1 && arraysEqual(shuffled, normalized)) {
+                shuffled = window.LessonCore.shuffle(normalized);
+            }
+            orders[key] = shuffled;
+            return shuffled;
+        }
+
+        function reorderRadioGroup(groupName, rootElement) {
+            const root = rootElement || document;
+            const inputs = Array.from(
+                root.querySelectorAll(`input[name="${groupName}"]`),
+            );
+            if (inputs.length === 0) {
+                return;
+            }
+
+            const labels = inputs
+                .map(function getLabel(input) {
+                    return input.closest('label');
+                })
+                .filter(Boolean);
+            if (labels.length === 0) {
+                return;
+            }
+
+            const container = labels[0].parentElement;
+            if (!container) {
+                return;
+            }
+
+            const labelsByValue = new Map(
+                labels.map(function mapLabel(label) {
+                    const input = label.querySelector('input');
+                    return [input.value, label];
+                }),
+            );
+            const orderedValues = getStableOptionOrder(
+                groupName,
+                labels.map(function mapValue(label) {
+                    return label.querySelector('input').value;
+                }),
+            );
+
+            orderedValues.forEach(function appendLabel(value) {
+                const label = labelsByValue.get(value);
+                if (label) {
+                    container.appendChild(label);
+                }
+            });
+        }
+
+        return {
+            getStableOptionOrder: getStableOptionOrder,
+            reorderRadioGroup: reorderRadioGroup,
+            getState: function getState() {
+                return orders;
+            },
+        };
+    }
+
+    function getCheckedValue(groupName, rootElement) {
+        const root = rootElement || document;
+        const selected = root.querySelector(
+            `input[name="${groupName}"]:checked`,
+        );
+        return selected ? selected.value : '';
+    }
+
+    function setCheckedValue(groupName, value, rootElement) {
+        if (!value) {
+            return;
+        }
+        const root = rootElement || document;
+        const input = root.querySelector(
+            `input[name="${groupName}"][value="${value}"]`,
+        );
+        if (input) {
+            input.checked = true;
+        }
+    }
+
+    window.LessonCore.clearLiveResponses = clearLiveResponses;
+    window.LessonCore.createSessionStore = createSessionStore;
+    window.LessonCore.createStableOrderManager = createStableOrderManager;
+    window.LessonCore.getCheckedValue = getCheckedValue;
+    window.LessonCore.setCheckedValue = setCheckedValue;
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initTeacherSummary = function initTeacherSummary(
+        options,
+    ) {
+        const modal = options.modal;
+        const triggerButton = options.triggerButton;
+        const closeButton = options.closeButton;
+        let unlocked = Boolean(options.initiallyUnlocked);
+
+        function setOpen(open) {
+            window.LessonCore.setHidden(modal, !open);
+        }
+
+        function ensureStepStars() {
+            if (!options.stepStarsElement) {
+                return;
+            }
+            if (
+                options.stepStarsElement.querySelectorAll('.star-step')
+                    .length === options.stepCount
+            ) {
+                return;
+            }
+            window.LessonCore.createStepStarSlots(
+                options.stepStarsElement,
+                options.stepCount,
+            );
+        }
+
+        function renderReflections() {
+            if (!options.reflectionsContainer) {
+                return;
+            }
+            options.reflectionsContainer.innerHTML = '';
+            (options.reflectionSections || []).forEach(
+                function renderSection(section) {
+                    const card = document.createElement('div');
+                    card.className = 'teacher-response-card';
+
+                    const label = document.createElement('p');
+                    label.className = 'teacher-response-label';
+                    label.textContent = section.label;
+
+                    const value = document.createElement('div');
+                    value.className = 'teacher-response-text';
+                    value.textContent =
+                        section.getValue().trim() ||
+                        section.emptyText ||
+                        'No response was saved.';
+
+                    card.appendChild(label);
+                    card.appendChild(value);
+                    options.reflectionsContainer.appendChild(card);
+                },
+            );
+        }
+
+        function render() {
+            const state = options.game.state;
+            const perfect =
+                typeof options.isPerfect === 'function'
+                    ? options.isPerfect()
+                    : options.game.isPerfect();
+            if (options.scoreElement) {
+                options.scoreElement.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+            if (options.streakElement) {
+                options.streakElement.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+            }
+            if (options.retriesElement) {
+                options.retriesElement.textContent = `Retries: ${options.game.getTotalRetries()}`;
+            }
+            if (options.perfectTextElement) {
+                options.perfectTextElement.textContent = perfect
+                    ? options.summaryMessages.perfect
+                    : options.summaryMessages.retry;
+            }
+            ensureStepStars();
+            window.LessonCore.renderStepStars(
+                options.stepStarsElement,
+                state.starRatings,
+            );
+            window.LessonCore.renderAchievements(
+                options.achievementsElement,
+                options.achievementCatalog,
+                state.achievements,
+            );
+            renderReflections();
+        }
+
+        if (triggerButton) {
+            triggerButton.addEventListener(
+                'click',
+                function openTeacherSummary() {
+                    if (!unlocked) {
+                        return;
+                    }
+                    render();
+                    setOpen(true);
+                },
+            );
+        }
+
+        if (closeButton) {
+            closeButton.addEventListener(
+                'click',
+                function closeTeacherSummary() {
+                    setOpen(false);
+                },
+            );
+        }
+
+        if (modal) {
+            modal.addEventListener('click', function closeWhenBackdrop(event) {
+                if (event.target === modal) {
+                    setOpen(false);
+                }
+            });
+        }
+
+        if (unlocked) {
+            render();
+        }
+
+        return {
+            render: render,
+            setUnlocked: function setUnlocked(value) {
+                unlocked = Boolean(value);
+            },
+            isUnlocked: function isUnlocked() {
+                return unlocked;
+            },
+            setOpen: setOpen,
+        };
+    };
+})();
+
+        </script>
+
+
+        <script>
+(function () {
+    const lesson = window.__LESSON_DATA__;
+    const core = window.LessonCore;
+    const switchboardData = lesson.activityData['binary-switchboard'].switchboardActivity;
+    const encoderData = lesson.activityData['pixel-encoder'].encoderActivity;
+
+    const completionSummaryMessages = {
+        perfect: "Perfect! You accurately manipulated binary weights and resolved encoding depths.",
+        good: "Great job! You successfully completed the binary and encoding activities.",
+        average: "You finished! Review how simple bit states can build up complex systems.",
+    };
+
+    const sessionStore = core.createSessionStore({
+        lessonId: lesson.id,
+        storageKey: `jibscourses_lesson_state_${lesson.id}`,
+        legacyStorageKey: `lesson-session:${lesson.id}`,
+        initialProgressState: {
+            score: 0,
+            streak: 0,
+            stepsCompleted: [],
+            reflections: {},
+            achievementsUnlocked: [],
+        },
+    });
+
+    const persistedSession = sessionStore.load();
+    const orderManager = core.createStableOrderManager({
+        initialOrders:
+            persistedSession.optionOrders &&
+            typeof persistedSession.optionOrders === 'object'
+                ? persistedSession.optionOrders
+                : {},
+    });
+
+    let game;
+    let suppressSessionSave = false;
+    let persistTimeoutId = 0;
+    let warmupController;
+    let switchboardController;
+    let encoderController;
+    let exitController;
+
+    sessionStore.stripRestartQueryParam();
+
+    function buildProgressState() {
+        const exitState = exitController ? exitController.getState() : {};
+        const reflections = {};
+        const step3Reflection = (encoderController ? encoderController.getState().reflection || '' : '').trim();
+        const finalReflection = (exitState.finalReflection || '').trim();
+
+        if (step3Reflection) {
+            reflections.step3 = step3Reflection;
+        }
+        if (finalReflection) {
+            reflections.final = finalReflection;
+        }
+
+        return {
+            score: game ? game.state.totalScore : 0,
+            streak: game ? game.state.streak : 0,
+            stepsCompleted: lesson.steps
+                .filter(function filterCompletedStep(step, index) {
+                    return Boolean(game && game.state.starRatings[index] > 0);
+                })
+                .map(function mapCompletedStep(step) {
+                    return step.id;
+                }),
+            reflections: reflections,
+            achievementsUnlocked: game
+                ? Array.from(game.state.achievements)
+                : [],
+        };
+    }
+
+    function getCourseProgressStatus(snapshot, progressState) {
+        const hasProgress =
+            progressState.score > 0 ||
+            progressState.stepsCompleted.length > 0 ||
+            progressState.achievementsUnlocked.length > 0 ||
+            Object.keys(progressState.reflections).length > 0 ||
+            Number(snapshot.currentStep) > 1 ||
+            snapshot.game?.stepRetries?.some(function hasRetry(retryCount) {
+                return retryCount > 0;
+            });
+
+        if (snapshot.exit?.completed) {
+            return 'complete';
+        }
+
+        return hasProgress ? 'in-progress' : '';
+    }
+
+    const stepController = core.createStepController({
+        stepElements: Array.from(document.querySelectorAll('.lesson-step')),
+        stepCounterElement: document.getElementById('stepCounter'),
+        progressFillElement: document.getElementById('progressFill'),
+        autoScrollOnChange: true,
+        scrollTargetSelector: '.step-title',
+        scrollBehavior: 'smooth',
+        preventInitialScroll: true,
+    });
+
+    core.initThemeControls({
+        selectElement: document.getElementById('themeSelect'),
+        defaultTheme: 'dark',
+    });
+
+    game = core.createGameState({
+        stepCount: lesson.steps.length,
+        initialState: persistedSession.game,
+        perfectScoreTarget: lesson.gamification.perfectScoreTarget,
+        perfectStreakTarget: lesson.gamification.perfectStreakTarget,
+        hotStreakThreshold: lesson.gamification.hotStreakThreshold,
+        achievementCatalog: lesson.gamification.achievements,
+        scoreDisplay: document.getElementById('scoreDisplay'),
+        streakDisplay: document.getElementById('streakDisplay'),
+        stepStars: document.getElementById('stepStars'),
+        achievementList: document.getElementById('achievementList'),
+        summarySection: document.getElementById('trophySummary'),
+        summaryScore: document.getElementById('summaryScore'),
+        summaryStreak: document.getElementById('summaryStreak'),
+        summaryPerfectText: document.getElementById('summaryPerfectText'),
+        retryPrompt: document.getElementById('retryPrompt'),
+        confettiLayer: document.getElementById('confettiLayer'),
+        toggleTrophyButton: document.getElementById('toggleTrophyBtn'),
+        closeTrophyButton: document.getElementById('closeTrophyBtn'),
+        trophyCase: document.getElementById('trophyCase'),
+        onStepComplete: function onStepComplete(stepNumber, retries) {
+            if (stepNumber === 1 && retries === 0) {
+                game.unlockAchievement('warmup_ready');
+            }
+        },
+    });
+
+    function setChecklistItemState(item, complete, text) {
+        if (!item) {
+            return;
+        }
+        item.classList.toggle('completed', complete);
+        if (typeof text === 'string') {
+            item.textContent = text;
+        }
+    }
+
+    function saveSessionSnapshot() {
+        if (suppressSessionSave || !game) {
+            return;
+        }
+        const snapshot = {
+            currentStep: stepController.getCurrentStep(),
+            optionOrders: orderManager.getState(),
+            game: game.getSnapshot(),
+            warmup: warmupController ? warmupController.getState() : {},
+            switchboard: switchboardController ? switchboardController.getState() : {},
+            encoder: encoderController ? encoderController.getState() : {},
+            exit: exitController ? exitController.getState() : {},
+        };
+        const progressState = buildProgressState();
+        sessionStore.save(snapshot);
+        sessionStore.saveProgress(progressState);
+        sessionStore.updateCourseProgress(
+            getCourseProgressStatus(snapshot, progressState),
+        );
+    }
+
+    function clearSessionSnapshot() {
+        sessionStore.clear();
+    }
+
+    function scheduleSessionPersist() {
+        if (suppressSessionSave) {
+            return;
+        }
+        if (persistTimeoutId) {
+            window.clearTimeout(persistTimeoutId);
+        }
+        persistTimeoutId = window.setTimeout(function persistSoon() {
+            persistTimeoutId = 0;
+            saveSessionSnapshot();
+        }, 120);
+    }
+
+    function handleSessionPersist() {
+        if (suppressSessionSave) {
+            clearSessionSnapshot();
+            return;
+        }
+        if (persistTimeoutId) {
+            window.clearTimeout(persistTimeoutId);
+            persistTimeoutId = 0;
+        }
+        saveSessionSnapshot();
+    }
+
+    sessionStore.bindAutoSave(handleSessionPersist);
+    document.addEventListener('input', scheduleSessionPersist);
+    document.addEventListener('change', scheduleSessionPersist);
+    document.addEventListener('click', function persistAfterButtonClick(event) {
+        if (event.target.closest('button')) {
+            scheduleSessionPersist();
+        }
+    });
+
+    document
+        .getElementById('resetLessonBtn')
+        .addEventListener('click', function () {
+            suppressSessionSave = true;
+            sessionStore.restartWithoutRestore();
+        });
+    document
+        .getElementById('tryAgainBtn')
+        .addEventListener('click', function () {
+            suppressSessionSave = true;
+            sessionStore.restartWithoutRestore();
+        });
+
+    function bindStepButtons() {
+        document.getElementById('nextStep1').addEventListener('click', () => stepController.showStep(2));
+        document.getElementById('backStep2').addEventListener('click', () => stepController.showStep(1));
+        document.getElementById('nextStep2').addEventListener('click', () => stepController.showStep(3));
+        document.getElementById('backStep3').addEventListener('click', () => stepController.showStep(2));
+        document.getElementById('nextStep3').addEventListener('click', () => stepController.showStep(4));
+        document.getElementById('backStep4').addEventListener('click', () => stepController.showStep(3));
+    }
+
+    function initWarmup() {
+        const statusElement = document.getElementById('warmupStatus');
+        const nextButton = document.getElementById('nextStep1');
+        const savedWarmup = persistedSession.warmup || {};
+        let completed = Boolean(savedWarmup.completed);
+
+        orderManager.reorderRadioGroup('warmup');
+        core.setCheckedValue('warmup', savedWarmup.selectedValue);
+        if (completed) {
+            nextButton.disabled = false;
+            core.setStatus(statusElement, lesson.warmup.correctFeedback, 'ok');
+        }
+
+        document.getElementById('checkWarmupBtn').addEventListener('click', () => {
+            const checked = document.querySelector('input[name="warmup"]:checked');
+            if (!checked) {
+                core.setStatus(statusElement, 'Choose one answer before you check the warm-up.', 'retry');
+                return;
+            }
+            if (checked.value === lesson.warmup.correct) {
+                if (!completed) {
+                    completed = true;
+                    game.addScore(10);
+                    game.incrementStreak();
+                    game.markStepComplete(1);
+                }
+                core.setStatus(statusElement, lesson.warmup.correctFeedback, 'ok');
+                nextButton.disabled = false;
+            } else {
+                game.registerRetry(1);
+                core.setStatus(statusElement, lesson.warmup.retryFeedback, 'retry');
+            }
+        });
+
+        return {
+            getState: () => ({
+                completed: completed,
+                selectedValue: core.getCheckedValue('warmup'),
+            }),
+        };
+    }
+
+    function initBinaryActivity() {
+        const toggles = document.querySelectorAll('.bit-toggle');
+        const sumDisplay = document.getElementById('currentBinarySum');
+        const targetDisplay = document.getElementById('activeBinaryTarget');
+        const hintDisplay = document.getElementById('binaryHint');
+        const submitBtn = document.getElementById('checkBinaryBtn');
+        const resetBtn = document.getElementById('resetBinaryBtn');
+        const status = document.getElementById('binaryStatus');
+        const nextStepBtn = document.getElementById('nextStep2');
+        const progressDots = document.getElementById('binaryProgress');
+
+        const savedBoard = persistedSession.switchboard || {};
+        let completed = Boolean(savedBoard.completed);
+        let targetsMatched = savedBoard.targetsMatched || 0;
+        const totalTargets = switchboardData.targets.length;
+        
+        let currentToggleStates = savedBoard.states || [0,0,0,0,0,0,0,0];
+
+        function renderDots() {
+            progressDots.innerHTML = '';
+            for(let i=0; i<totalTargets; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'target-dot';
+                if(i < targetsMatched) dot.classList.add('filled');
+                progressDots.appendChild(dot);
+            }
+        }
+
+        function calculateSum() {
+            let sum = 0;
+            toggles.forEach((btn, index) => {
+                const state = currentToggleStates[index];
+                btn.setAttribute('data-state', state);
+                btn.textContent = state;
+                if (state === 1) {
+                    sum += parseInt(btn.getAttribute('data-weight'), 10);
+                }
+            });
+            sumDisplay.textContent = sum;
+            return sum;
+        }
+
+        function renderTarget() {
+            if (targetsMatched >= totalTargets) {
+                targetDisplay.textContent = '--';
+                hintDisplay.textContent = '';
+                return;
+            }
+            const activeTarget = switchboardData.targets[targetsMatched];
+            targetDisplay.textContent = activeTarget.value;
+            hintDisplay.textContent = activeTarget.hint;
+        }
+
+        toggles.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (completed) return;
+                currentToggleStates[index] = currentToggleStates[index] === 1 ? 0 : 1;
+                calculateSum();
+            });
+        });
+
+        submitBtn.addEventListener('click', () => {
+            if (completed) return;
+            const currentSum = calculateSum();
+            const activeTarget = switchboardData.targets[targetsMatched];
+            
+            if (currentSum === activeTarget.value) {
+                targetsMatched++;
+                game.addScore(10);
+                game.incrementStreak();
+                renderDots();
+                
+                if (targetsMatched >= totalTargets) {
+                    completed = true;
+                    game.markStepComplete(2);
+                    game.unlockAchievement('binary_master');
+                    core.setStatus(status, "Excellent! You matched all the targets.", "ok");
+                    submitBtn.disabled = true;
+                    nextStepBtn.disabled = false;
+                    sumDisplay.style.color = 'var(--color-success)';
+                } else {
+                    core.setStatus(status, `Matched! Try the next target. (${targetsMatched}/${totalTargets})`, "ok");
+                    currentToggleStates = [0,0,0,0,0,0,0,0];
+                    calculateSum();
+                    renderTarget();
+                }
+            } else {
+                game.registerRetry(2);
+                core.setStatus(status, "The current sum doesn't match the target perfectly.", "retry");
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            if (completed) return;
+            currentToggleStates = [0,0,0,0,0,0,0,0];
+            calculateSum();
+            core.setStatus(status, "Bits reset.", "");
+        });
+
+        // Initialize state
+        calculateSum();
+        renderTarget();
+        renderDots();
+
+        if (completed) {
+            submitBtn.disabled = true;
+            nextStepBtn.disabled = false;
+            sumDisplay.style.color = 'var(--color-success)';
+            core.setStatus(status, "Binary Switchboard complete.", "ok");
+        }
+
+        return {
+            getState: () => ({
+                completed,
+                targetsMatched,
+                states: [...currentToggleStates]
+            })
+        };
+    }
+
+    function initEncoderActivity() {
+        const FACE_DATA = [
+            0,0,0,0,0,100,100,100,100,100,100,0,0,0,0,0,
+            0,0,0,150,150,150,150,150,150,150,150,150,150,0,0,0,
+            0,0,200,200,200,220,220,220,220,220,220,200,200,200,0,0,
+            0,200,220,220,220,220,220,220,220,220,220,220,220,220,200,0,
+            0,200,220,40,40,220,220,220,220,220,220,40,40,220,200,0,
+            150,220,220,40,40,220,220,220,220,220,220,40,40,220,220,150,
+            150,220,220,220,220,220,220,220,220,220,220,220,220,220,220,150,
+            150,220,220,220,220,220,150,150,150,150,220,220,220,220,220,150,
+            150,220,220,220,220,220,150,150,150,150,220,220,220,220,220,150,
+            150,220,220,220,220,220,220,220,220,220,220,220,220,220,220,150,
+            0,200,220,60,220,220,220,220,220,220,220,220,60,220,200,0,
+            0,200,220,220,60,60,60,60,60,60,60,60,220,220,200,0,
+            0,0,200,200,220,220,220,220,220,220,220,220,200,200,0,0,
+            0,0,0,150,150,150,150,150,150,150,150,150,150,0,0,0,
+            0,0,0,0,0,100,100,100,100,100,100,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        ];
+
+        const slider = document.getElementById('depthSlider');
+        const statusLabel = document.getElementById('depthStatusLabel');
+        const statusDesc = document.getElementById('depthStatusDesc');
+        const grid = document.getElementById('pixelGrid');
+        const totalBitsDisplay = document.getElementById('totalBitsDisplay');
+        const probePane = document.getElementById('pixelProbe');
+        const probeBinaryValue = document.getElementById('probeBinaryValue');
+        
+        const submitBtn = document.getElementById('submitDepthBtn');
+        const status = document.getElementById('depthStatus');
+        const nextStepBtn = document.getElementById('nextStep3');
+
+        const savedEncoder = persistedSession.encoder || {};
+        let completed = Boolean(savedEncoder.completed);
+        let currentLevel = savedEncoder.index !== undefined ? savedEncoder.index : 1;
+
+        function getBinaryString(val, bits) {
+            return val.toString(2).padStart(bits, '0');
+        }
+
+        function renderGrid() {
+            const state = encoderData.states[currentLevel];
+            const bits = state.depth;
+            const shades = Math.pow(2, bits);
+            
+            statusLabel.textContent = state.label;
+            statusDesc.textContent = state.description;
+            
+            totalBitsDisplay.textContent = (256 * bits).toLocaleString();
+
+            grid.innerHTML = '';
+            FACE_DATA.forEach((intensity) => {
+                const pixel = document.createElement('div');
+                pixel.className = 'pixel';
+                
+                // Quantization: Map 0-255 to 0-(shades-1)
+                const quantizedValue = Math.floor(intensity / (256 / shades));
+                const displayGray = Math.round(quantizedValue * (255 / (shades - 1)));
+                
+                pixel.style.backgroundColor = `rgb(${displayGray}, ${displayGray}, ${displayGray})`;
+                
+                pixel.addEventListener('mouseenter', () => {
+                    probePane.classList.remove('hidden');
+                    probeBinaryValue.textContent = getBinaryString(quantizedValue, bits);
+                });
+                
+                pixel.addEventListener('mouseleave', () => {
+                    probePane.classList.add('hidden');
+                });
+
+                grid.appendChild(pixel);
+            });
+        }
+
+        slider.addEventListener('input', (e) => {
+            currentLevel = parseInt(e.target.value, 10);
+            renderGrid();
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const state = encoderData.states[currentLevel];
+            
+            if (state.depth === encoderData.targetDepth) {
+                if (!completed) {
+                    completed = true;
+                    game.addScore(40);
+                    game.incrementStreak();
+                    game.markStepComplete(3);
+                    game.unlockAchievement('pixel_perfect');
+                }
+                core.setStatus(status, "Target depth identified successfully!", "ok");
+                submitBtn.disabled = true;
+                updateReflectionLogic();
+            } else {
+                if (!completed) {
+                    game.registerRetry(3);
+                    core.setStatus(status, `Not quite. ${state.depth}-bit depth doesn't provide enough shades for the requirement.`, "retry");
+                }
+            }
+        });
+
+        renderGrid();
+
+        if (completed) {
+            submitBtn.disabled = true;
+            nextStepBtn.disabled = false;
+            slider.disabled = true;
+            core.setStatus(status, "Target depth identified successfully!", "ok");
+        }
+
+        const reflectionData = encoderData.step3Reflection;
+        const reflectionBox = document.getElementById('step3ReflectionBox');
+        const reflectionInput = document.getElementById('step3Reflection');
+        const reflectionChecklist = document.getElementById('step3ReflectionChecklist')?.children;
+        const saveReflectionBtn = document.getElementById('saveStep3ReflectionBtn');
+        const reflectionStatus = document.getElementById('step3ReflectionStatus');
+
+        let reflectionAwarded = Boolean(savedEncoder.reflectionAwarded);
+
+        function updateReflectionLogic() {
+            const isSystemLocked = completed;
+            core.setHidden(reflectionBox, !isSystemLocked);
+            
+            if (!isSystemLocked) {
+                core.setStatus(reflectionStatus, "Find the correct target depth constraint above first.", "");
+                return;
+            }
+
+            const text = reflectionInput.value.trim();
+            let matchedTermCount = 0;
+            const lowerText = text.toLowerCase();
+            reflectionData.terms.forEach(w => {
+                if (lowerText.includes(w)) matchedTermCount++;
+            });
+
+            const lengthOk = text.length >= reflectionData.minLength;
+            const termsOk = matchedTermCount >= reflectionData.requiredTermCount;
+            const contentOk = text.length > 5 && (lowerText.includes('combinations') || lowerText.includes('arrangements') || lowerText.includes('patterns') || lowerText.includes('00'));
+
+            if (reflectionChecklist) {
+                setChecklistItemState(
+                    reflectionChecklist[0], 
+                    lengthOk, 
+                    `Write at least ${reflectionData.minLength} characters. ${Math.min(text.length, reflectionData.minLength)}/${reflectionData.minLength}`
+                );
+                setChecklistItemState(
+                    reflectionChecklist[1], 
+                    termsOk, 
+                    `Use at least ${reflectionData.requiredTermCount} lesson terms: ${reflectionData.terms.join(', ')}. ${Math.min(matchedTermCount, reflectionData.requiredTermCount)}/${reflectionData.requiredTermCount}`
+                );
+                setChecklistItemState(
+                    reflectionChecklist[2], 
+                    contentOk, 
+                    "Explain how 2 bits create 4 arrangements (00, 01, 10, 11)."
+                );
+            }
+
+            const allOk = lengthOk && termsOk && contentOk;
+            saveReflectionBtn.disabled = !allOk || reflectionAwarded;
+            
+            if (reflectionAwarded) {
+                core.setStatus(reflectionStatus, "Reflection saved successfully.", "ok");
+                reflectionInput.disabled = true;
+            } else {
+                core.setStatus(reflectionStatus, allOk ? "Checklist complete! Save your reflection to finish Step 3." : "Continue writing to satisfy the checklist.", "");
+            }
+
+            nextStepBtn.disabled = !(completed && reflectionAwarded);
+        }
+
+        reflectionInput.addEventListener('input', updateReflectionLogic);
+        
+        saveReflectionBtn.addEventListener('click', () => {
+            if (reflectionAwarded) return;
+            reflectionAwarded = true;
+            game.addScore(20);
+            game.incrementStreak();
+            updateReflectionLogic();
+            core.setStatus(reflectionStatus, "Reflection saved! Step 3 is now complete.", "ok");
+        });
+
+        if (savedEncoder.reflection) {
+            reflectionInput.value = savedEncoder.reflection;
+        }
+
+        updateReflectionLogic();
+
+        if (completed) {
+            submitBtn.disabled = true;
+            core.setStatus(status, "Target depth identified successfully!", "ok");
+        }
+
+        return {
+            getState: () => ({
+                completed,
+                index: currentLevel,
+                reflection: reflectionInput.value.trim(),
+                reflectionAwarded
+            })
+        };
+    }
+
+    function initExitCheck() {
+        const savedExit = persistedSession.exit || {};
+        let completed = Boolean(savedExit.completed);
+        const submitBtn = document.getElementById('submitExitCheckBtn');
+        const status = document.getElementById('exitStatus');
+        const completeBanner = document.getElementById('completeBanner');
+        const reflectionInput = document.getElementById('finalReflection');
+        
+        lesson.exitCheck.questions.forEach(q => {
+            orderManager.reorderRadioGroup(q.id);
+            if (savedExit.answers && savedExit.answers[q.id]) {
+                core.setCheckedValue(q.id, savedExit.answers[q.id]);
+            }
+        });
+        
+        if (savedExit.finalReflection) {
+            reflectionInput.value = savedExit.finalReflection;
+        }
+
+        const teacherSummary = core.initTeacherSummary({
+            triggerButton: document.getElementById('openTeacherSummaryBtn'),
+            modal: document.getElementById('teacherSummaryModal'),
+            closeButton: document.getElementById('closeTeacherSummaryBtn'),
+            scoreElement: document.getElementById('teacherSummaryScore'),
+            streakElement: document.getElementById('teacherSummaryStreak'),
+            retriesElement: document.getElementById('teacherSummaryRetries'),
+            perfectTextElement: document.getElementById('teacherSummaryPerfectText'),
+            achievementsElement: document.getElementById('teacherSummaryAchievements'),
+            stepStarsElement: document.getElementById('teacherSummaryStepStars'),
+            reflectionsContainer: document.getElementById('teacherSummaryReflections'),
+            achievementCatalog: lesson.gamification.achievements,
+            perfectScoreTarget: lesson.gamification.perfectScoreTarget,
+            perfectStreakTarget: lesson.gamification.perfectStreakTarget,
+            stepCount: lesson.steps.length,
+            game: game,
+            summaryMessages: completionSummaryMessages,
+            reflectionSections: [
+                {
+                    label: 'Mid-activity reflection (Step 3)',
+                    getValue: () => encoderController ? encoderController.getState().reflection : '',
+                    emptyText: 'No mid-activity reflection was saved.',
+                },
+                {
+                    label: 'Final reflection',
+                    getValue: () => reflectionInput.value,
+                    emptyText: 'No final reflection was saved.',
+                },
+            ],
+            initiallyUnlocked: completed,
+        });
+
+        const finalReflectionChecklist = document.getElementById('finalReflectionChecklist')?.children;
+
+        function updateFinalReflectionChecklist() {
+            const text = reflectionInput.value.trim();
+            const wordsObj = ['binary', 'pixel', 'bit depth', 'encoding'];
+            let matchedTermCount = 0;
+            const lowerText = text.toLowerCase();
+            wordsObj.forEach(w => {
+                if (lowerText.includes(w)) matchedTermCount++;
+            });
+
+            if (finalReflectionChecklist) {
+                setChecklistItemState(
+                    finalReflectionChecklist[0],
+                    text.length >= 80,
+                    `Write at least 80 characters. ${Math.min(text.length, 80)}/80`
+                );
+                setChecklistItemState(
+                    finalReflectionChecklist[1],
+                    matchedTermCount >= 2,
+                    `Use at least 2 lesson terms: binary, pixel, bit depth, encoding. ${Math.min(matchedTermCount, 2)}/2`
+                );
+                setChecklistItemState(
+                    finalReflectionChecklist[2], 
+                    text.length > 5 && (lowerText.includes('image') || lowerText.includes('photo') || lowerText.includes('color')),
+                    "Explain the connection between 0's/1's and images."
+                );
+            }
+        }
+
+        reflectionInput.addEventListener('input', updateFinalReflectionChecklist);
+        updateFinalReflectionChecklist();
+
+        submitBtn.addEventListener('click', () => {
+            let allCorrect = true;
+            let answeredAll = true;
+            
+            lesson.exitCheck.questions.forEach(q => {
+                const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+                const fieldset = document.getElementById(q.id);
+                if (!checked) {
+                    answeredAll = false;
+                    fieldset.classList.add('error');
+                } else if (checked.value !== q.correct) {
+                    allCorrect = false;
+                    fieldset.classList.add('error');
+                    fieldset.style.borderColor = 'var(--color-danger)';
+                } else {
+                    fieldset.classList.remove('error');
+                    fieldset.style.borderColor = 'var(--color-success)';
+                }
+            });
+
+            const reflectionStr = reflectionInput.value.trim();
+            const wordsObj = ['binary', 'pixel', 'bit depth', 'encoding'];
+            let count = 0;
+            wordsObj.forEach(w => {
+                if (reflectionStr.toLowerCase().includes(w)) count++;
+            });
+
+            const refValid = reflectionStr.length >= 80 && count >= 2;
+
+            if (!answeredAll) {
+                core.setStatus(status, "Answer all questions before submitting.", "retry");
+                return;
+            }
+
+            if (!allCorrect) {
+                game.registerRetry(4);
+                core.setStatus(status, "Some answers are incorrect. Review the lesson and try again.", "retry");
+                return;
+            }
+
+            if (!refValid) {
+                game.registerRetry(4);
+                core.setStatus(status, "Please include at least 80 characters and 2 keyword terms in your reflection.", "retry");
+                return;
+            }
+
+            if (!completed) {
+                completed = true;
+                game.addScore(lesson.exitCheck.points);
+                game.incrementStreak();
+                game.markStepComplete(4);
+            }
+
+            core.setStatus(status, "Wrap-up accepted. Well done!", "ok");
+            core.setHidden(completeBanner, false);
+            submitBtn.disabled = true;
+            
+            document.querySelectorAll('#step4 input').forEach(inp => inp.disabled = true);
+            reflectionInput.disabled = true;
+
+            game.showSummary({
+                perfect: game.isPerfect(),
+                perfectMessage: completionSummaryMessages.perfect,
+                retryMessage: completionSummaryMessages.good,
+            });
+            teacherSummary.setUnlocked(true);
+            teacherSummary.render();
+        });
+
+        if (completed) {
+            core.setStatus(status, "Wrap-up accepted. Well done!", "ok");
+            core.setHidden(completeBanner, false);
+            submitBtn.disabled = true;
+            document.querySelectorAll('#step4 input').forEach(inp => inp.disabled = true);
+            reflectionInput.disabled = true;
+            teacherSummary.render();
+        }
+
+        return {
+            getState: () => {
+                const answers = {};
+                lesson.exitCheck.questions.forEach(q => {
+                    answers[q.id] = core.getCheckedValue(q.id);
+                });
+                return {
+                    completed,
+                    answers,
+                    finalReflection: reflectionInput.value.trim()
+                };
+            }
+        };
+    }
+
+    bindStepButtons();
+    warmupController = initWarmup();
+    switchboardController = initBinaryActivity();
+    encoderController = initEncoderActivity();
+    exitController = initExitCheck();
+
+    if (Number(persistedSession.currentStep) > 1) {
+        stepController.showStep(Number(persistedSession.currentStep));
+    }
+    saveSessionSnapshot();
+})();
+
+        </script>
+
+    </body>
+</html>

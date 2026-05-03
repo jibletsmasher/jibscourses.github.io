@@ -1,0 +1,3336 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1.1.2 — Data, Information & Representation</title>
+        <style>
+:root {
+    --color-primary: #1D9E75;
+    --color-primary-light: #E1F5EE;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0F6E56;
+
+    --color-teacher: #7F77DD;
+    --color-teacher-light: #EEEDFE;
+    --color-teacher-dark: #3C3489;
+    --color-teacher-text: #534AB7;
+
+    --color-success: #1D9E75;
+    --color-success-light: #E1F5EE;
+    --color-success-dark: #085041;
+    --color-success-text: #0F6E56;
+
+    --color-hint: #EF9F27;
+    --color-hint-light: #FAEEDA;
+    --color-hint-dark: #633806;
+    --color-hint-text: #854F0B;
+
+    --color-error: #E24B4A;
+    --color-error-light: #FCEBEB;
+    --color-error-dark: #501313;
+    --color-error-text: #A32D2D;
+
+    --color-scene-bg: #1a1a2e;
+    --color-scene-text: #c8b8f5;
+    --color-scene-muted: #7a6fa8;
+
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-pill: 20px;
+}
+
+:root {
+    --color-primary: #1d9e75;
+    --color-primary-light: #e1f5ee;
+    --color-primary-dark: #085041;
+    --color-primary-text: #0f6e56;
+
+    --color-teacher: #7f77dd;
+    --color-teacher-light: #eeedfe;
+    --color-teacher-dark: #3c3489;
+    --color-teacher-text: #534ab7;
+
+    --bg: #0f1a17;
+    --bg-accent: #172522;
+    --card: #13211d;
+    --card-strong: #193028;
+    --text: #ebf4ee;
+    --muted: #9db4a8;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(in srgb, var(--color-primary) 24%, var(--card));
+    --border: #28453d;
+    --ok: #6fdf95;
+    --warn: #f0a560;
+    --danger: #ff8b7d;
+    --shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+    --button-bg: #13211d;
+    --button-text: #ebf4ee;
+    --button-border: #35564c;
+    --button-hover-bg: #193028;
+    --button-hover-border: var(--color-primary);
+    --status-bg: #10211b;
+    --status-text: #d5e5dc;
+    --status-border: #33554a;
+    --chip-bg: color-mix(in srgb, var(--color-primary) 18%, var(--card));
+    --chip-text: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--text)
+    );
+    --chip-border: color-mix(in srgb, var(--color-primary) 44%, var(--border));
+    --exercise-bg: #10201b;
+    --exercise-border: #35564c;
+    --input-bg: #0d1714;
+    --input-text: #ebf4ee;
+    --input-border: #35564c;
+    --code-bg: #163328;
+    --footer-text: #8ea49a;
+
+    --teacher-surface: #221f3b;
+    --teacher-surface-strong: #2b2650;
+    --teacher-border: #5f58a8;
+    --teacher-text: var(--color-teacher-light);
+    --teacher-muted: #c6c0ee;
+    --teacher-button-bg: #2f2958;
+    --teacher-button-text: var(--color-teacher-light);
+    --teacher-button-border: #6a62be;
+    --teacher-button-hover-bg: var(--color-teacher-dark);
+    --teacher-button-hover-border: var(--color-teacher);
+}
+
+[data-theme='light'] {
+    --bg: #f4efe2;
+    --bg-accent: #efe3c8;
+    --card: #fffaf0;
+    --card-strong: #fff2d8;
+    --text: #1e2a23;
+    --muted: #5f6b61;
+    --accent: var(--color-primary);
+    --accent-strong: var(--color-primary-dark);
+    --accent-soft: color-mix(
+        in srgb,
+        var(--color-primary-light) 78%,
+        var(--card)
+    );
+    --border: #c8d3c4;
+    --ok: #1e7a45;
+    --warn: #a45b18;
+    --danger: #aa2e25;
+    --shadow: 0 18px 40px rgba(30, 42, 35, 0.12);
+    --button-bg: #fff8ea;
+    --button-text: #163328;
+    --button-border: #b9c9bb;
+    --button-hover-bg: #eef7f0;
+    --button-hover-border: var(--color-primary);
+    --status-bg: #f8f5ec;
+    --status-text: #31433a;
+    --status-border: #cfd8d1;
+    --chip-bg: color-mix(in srgb, var(--color-primary-light) 86%, var(--card));
+    --chip-text: var(--color-primary-text);
+    --chip-border: color-mix(in srgb, var(--color-primary) 38%, var(--border));
+    --exercise-bg: #fffdf7;
+    --exercise-border: #cfdbc7;
+    --input-bg: #fffdf8;
+    --input-text: #1e2a23;
+    --input-border: #b9c9bb;
+    --code-bg: #ecf7f0;
+    --footer-text: #68756c;
+
+    --teacher-surface: #f6f4ff;
+    --teacher-surface-strong: #eeedfe;
+    --teacher-border: #b8b1ee;
+    --teacher-text: var(--color-teacher-dark);
+    --teacher-muted: var(--color-teacher-text);
+    --teacher-button-bg: var(--color-teacher-light);
+    --teacher-button-text: var(--color-teacher-text);
+    --teacher-button-border: #a79fe7;
+    --teacher-button-hover-bg: #e3defd;
+    --teacher-button-hover-border: var(--color-teacher);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light;
+}
+
+html[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top left, var(--bg-accent), transparent 34%),
+        linear-gradient(180deg, var(--bg), var(--bg-accent));
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+.wrap {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.hero,
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    padding: 1.25rem;
+    display: grid;
+    gap: 0.9rem;
+    position: relative;
+    overflow: visible;
+    z-index: 12;
+}
+
+.hero-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls,
+.hero-action-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.hero-theme-controls {
+    margin-right: auto;
+}
+
+.hero-copy {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.hero-copy h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero-copy p {
+    max-width: 70ch;
+}
+
+.card {
+    padding: 1rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.lesson-step {
+    display: none;
+    gap: 0.85rem;
+}
+
+.lesson-step.active {
+    display: grid;
+}
+
+.lesson-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (min-width: 980px) {
+    .lesson-grid {
+        grid-template-columns: 0.95fr 1.25fr 0.9fr;
+        align-items: start;
+    }
+}
+
+.panel {
+    display: grid;
+    gap: 0.75rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.workspace-panel {
+    min-height: 420px;
+}
+
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.step-actions .left,
+.step-actions .right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.footer-note {
+    color: var(--footer-text);
+    font-size: 0.92rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+
+.theme-label,
+.step-meta,
+.muted,
+.fact-label {
+    color: var(--muted);
+}
+
+.theme-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.theme-select {
+    width: auto;
+    min-width: 8rem;
+    max-width: 100%;
+}
+
+.theme-select,
+.text-input,
+.select-input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    padding: 0.65rem 0.75rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button,
+.btn-link {
+    border: 1px solid var(--button-border);
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+button:hover,
+button:focus-visible,
+.btn-link:hover,
+.btn-link:focus-visible {
+    background: var(--button-hover-bg);
+    border-color: var(--button-hover-border);
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.primary:hover,
+.primary:focus-visible {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+}
+
+.ghost {
+    background: transparent;
+}
+
+.chips,
+.controls,
+.tab-row,
+.game-bar,
+.facts,
+.mini-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chip,
+.game-pill,
+.tab-btn,
+.fact-chip {
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--chip-border);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.fact-chip.complete {
+    background: color-mix(in srgb, var(--ok) 15%, var(--chip-bg));
+    color: var(--ok);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fffdf8;
+}
+
+.progress-track {
+    width: 100%;
+    height: 0.8rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-soft) 58%, transparent);
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    transition: width 180ms ease;
+}
+
+.step-title {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border: 1px solid var(--chip-border);
+    font-weight: 700;
+}
+
+.exercise,
+.checkpoint,
+.reflection-box,
+.summary-item {
+    display: grid;
+    gap: 0.6rem;
+    border: 1px dashed var(--exercise-border);
+    border-radius: 16px;
+    background: var(--exercise-bg);
+    padding: 0.9rem;
+}
+
+.objective-list {
+    margin: 0;
+    padding-left: 0.1rem;
+    list-style-position: inside;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.status {
+    border: 1px solid var(--status-border);
+    background: var(--status-bg);
+    color: var(--status-text);
+    border-radius: 14px;
+    padding: 0.75rem 0.85rem;
+}
+
+.status.ok {
+    border-color: color-mix(in srgb, var(--ok) 58%, transparent);
+    color: var(--ok);
+}
+
+.status.retry {
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+    color: var(--warn);
+}
+
+.status.error {
+    border-color: color-mix(in srgb, var(--danger) 55%, transparent);
+    color: var(--danger);
+}
+
+.term-tip {
+    position: relative;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+}
+
+.term-tip::after {
+    content: ' ⓘ';
+    font-size: 0.78rem;
+}
+
+.term-tip::before {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    min-width: 14rem;
+    max-width: 18rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    background: var(--card-strong);
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease;
+    z-index: 5;
+}
+
+.term-tip:hover::before,
+.term-tip:focus-visible::before {
+    opacity: 1;
+}
+
+.star-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.star-step {
+    border: 1px solid var(--button-border);
+    border-radius: 8px;
+    padding: 0.35rem 0.45rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+    justify-items: center;
+}
+
+.star-step.earned {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.star-glyphs {
+    color: var(--muted);
+    font-size: 0.84rem;
+    letter-spacing: 0.07rem;
+    font-weight: 700;
+}
+
+.star-step-label {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.star-step.earned .star-glyphs {
+    color: var(--accent);
+}
+
+.star-step.pop {
+    animation: star-pop 260ms ease;
+}
+
+.streak-display.pulse {
+    animation: streak-pop 260ms ease;
+}
+
+@keyframes streak-pop {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes star-pop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -1rem;
+    width: 0.6rem;
+    height: 0.9rem;
+    border-radius: 0.2rem;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh) rotate(320deg);
+        opacity: 0;
+    }
+}
+
+.teacher-panel {
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    left: 1.25rem;
+    right: 1.25rem;
+    z-index: 18;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-card);
+    background: var(--teacher-surface);
+    color: var(--teacher-text);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.85rem);
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.teacher-panel-standalone {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    z-index: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+}
+
+.teacher-panel.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.teacher-panel-heading,
+.teacher-panel-section {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.teacher-panel-label,
+.teacher-panel-section-label {
+    color: var(--teacher-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.teacher-panel-intro {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.teacher-panel-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.teacher-panel-section {
+    min-height: 100%;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: var(--teacher-surface-strong);
+}
+
+.teacher-panel-section-debrief {
+    grid-column: 1 / -1;
+}
+
+.teacher-panel-list {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.teacher-panel-debrief-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-panel-debrief-item {
+    display: grid;
+    gap: 0.45rem;
+    padding: 0.85rem;
+    border: 0.5px solid var(--teacher-border);
+    border-radius: var(--radius-button);
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 82%,
+        transparent
+    );
+}
+
+.teacher-panel-debrief-question {
+    color: var(--teacher-text);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.teacher-panel-debrief-answer {
+    color: var(--teacher-text);
+    line-height: 1.6;
+}
+
+.trophy-case {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 35;
+}
+
+.trophy-case.hidden {
+    display: none;
+}
+
+.teacher-summary-grid,
+.teacher-summary-section,
+.teacher-summary-actions,
+.teacher-summary-card,
+.teacher-response-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.teacher-summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.teacher-summary-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    z-index: 38;
+}
+
+.teacher-summary-modal.hidden {
+    display: none;
+}
+
+.teacher-summary-card {
+    width: min(960px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    background: var(--teacher-surface);
+    border: 1px solid var(--teacher-border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    color: var(--teacher-text);
+}
+
+.teacher-summary-section {
+    border: 1px solid var(--teacher-border);
+    border-radius: 16px;
+    background: var(--teacher-surface-strong);
+    padding: 0.9rem;
+}
+
+.teacher-summary-section h4 {
+    margin: 0;
+}
+
+.teacher-response-card {
+    display: grid;
+    gap: 0.45rem;
+    border: 1px dashed var(--teacher-border);
+    border-radius: 14px;
+    background: color-mix(
+        in srgb,
+        var(--teacher-surface-strong) 78%,
+        transparent
+    );
+    padding: 0.8rem;
+}
+
+.teacher-response-label {
+    font-weight: 700;
+    color: var(--teacher-muted);
+}
+
+.teacher-response-text {
+    color: var(--teacher-text);
+    white-space: pre-wrap;
+    line-height: 1.55;
+}
+
+.teacher-summary-card .muted {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .summary-item,
+.teacher-summary-card .achievement-item,
+.teacher-summary-card .star-step {
+    border-color: var(--teacher-border);
+    background: var(--teacher-surface-strong);
+    color: var(--teacher-text);
+}
+
+.teacher-summary-card .star-step.earned {
+    border-color: var(--color-teacher);
+    background: color-mix(
+        in srgb,
+        var(--color-teacher) 18%,
+        var(--teacher-surface-strong)
+    );
+}
+
+.teacher-summary-card .star-step-label,
+.teacher-summary-card .star-glyphs,
+.teacher-summary-card .achievement-desc {
+    color: var(--teacher-muted);
+}
+
+.teacher-summary-card .achievement-name {
+    color: var(--teacher-text);
+}
+
+.teacher-summary-actions button,
+.teacher-guide-actions .primary,
+.teacher-summary-card .trophy-head button {
+    background: var(--teacher-button-bg);
+    border-color: var(--teacher-button-border);
+    color: var(--teacher-button-text);
+}
+
+.teacher-summary-actions button:hover,
+.teacher-summary-actions button:focus-visible,
+.teacher-guide-actions .primary:hover,
+.teacher-guide-actions .primary:focus-visible,
+.teacher-summary-card .trophy-head button:hover,
+.teacher-summary-card .trophy-head button:focus-visible {
+    background: var(--teacher-button-hover-bg);
+    border-color: var(--teacher-button-hover-border);
+}
+
+.trophy-card {
+    width: min(760px, 100%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.9rem;
+}
+
+.trophy-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.achievement-list {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.achievement-item {
+    border: 1px solid var(--button-border);
+    border-radius: 10px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    display: grid;
+    gap: 0.25rem;
+}
+
+.achievement-item.unlocked {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.achievement-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.achievement-desc {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.trophy-summary {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--exercise-bg);
+    padding: 0.65rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.summary-title {
+    font-weight: 700;
+}
+
+.summary-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    min-width: 190px;
+    border: 1px solid var(--button-border);
+    border-radius: 14px;
+    padding: 0.55rem 0.6rem;
+    background: var(--exercise-bg);
+    font-weight: 700;
+}
+
+.retry-prompt {
+    border-top: 1px solid var(--border);
+    padding-top: 0.55rem;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.trophy-summary.hidden,
+.retry-prompt.hidden {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .teacher-panel {
+        left: 0.75rem;
+        right: 0.75rem;
+    }
+}
+
+
+
+/* Data vs Info Sort layout */
+.intro-grid,
+.wrap-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+@media (min-width: 860px) {
+    .intro-grid,
+    .wrap-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.step-help {
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    padding: 0.75rem 0.85rem;
+}
+
+.step-help summary {
+    cursor: pointer;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.step-help[open] summary {
+    color: var(--text);
+}
+
+.compact-help {
+    margin-top: 0.2rem;
+}
+
+.quick-start-panel {
+    margin-bottom: 0.85rem;
+}
+
+.reflection-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reflection-checklist li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.55rem;
+    align-items: start;
+    border: 1px solid var(--exercise-border);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    padding: 0.7rem 0.8rem;
+}
+
+.reflection-checklist li::before {
+    content: '○';
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.reflection-checklist li.completed {
+    border-color: color-mix(in srgb, var(--ok) 55%, transparent);
+    background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+
+.reflection-checklist li.completed::before {
+    content: '✓';
+    color: var(--ok);
+}
+
+.locked-panel {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+}
+
+.locked-panel:not(.ready-panel) {
+    opacity: 0.82;
+}
+
+.attention-panel {
+    border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--warn) 12%, transparent);
+}
+
+.warmup-options,
+.warmup-actions {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.question-card {
+    display: grid;
+    gap: 0.55rem;
+    border: 1px solid var(--exercise-border);
+    border-radius: 16px;
+    padding: 0.85rem;
+    background: var(--exercise-bg);
+}
+
+.question-card label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: start;
+}
+
+.question-card legend {
+    margin-bottom: 0.4rem;
+}
+
+.sort-workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-top: 0.85rem;
+}
+.sort-item-tray {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 150px;
+    padding: 0.85rem;
+    background-color: color-mix(in srgb, var(--card) 72%, transparent);
+    border: 1px dashed var(--exercise-border);
+    border-radius: 16px;
+}
+.sortable-card {
+    background-color: var(--button-bg);
+    border: 1px solid var(--button-border);
+    border-radius: 16px;
+    padding: 0.75rem;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.sortable-card:active {
+    cursor: grabbing;
+}
+.sortable-card.dragging {
+    opacity: 0.5;
+}
+.bins-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.sort-bin {
+    border: 2px dashed transparent;
+    transition: border-color 0.2s ease-out;
+}
+.sort-bin.drag-over {
+    border-color: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.bin-drop-zone {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+    padding: 0.85rem;
+    background-color: color-mix(in srgb, var(--card) 72%, transparent);
+    border-radius: 16px;
+}
+.sortable-card.correct {
+    border-color: color-mix(in srgb, var(--ok) 60%, transparent);
+    background-color: color-mix(in srgb, var(--ok) 14%, transparent);
+}
+.sortable-card.incorrect {
+    border-color: color-mix(in srgb, var(--warn) 60%, transparent);
+    background-color: color-mix(in srgb, var(--warn) 14%, transparent);
+}
+.card-explanation {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    display: none;
+}
+.sortable-card.graded .card-explanation {
+    display: block;
+}
+
+/* Data Transformation layout */
+.transform-workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-top: 0.85rem;
+}
+.data-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+}
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.input-row label {
+    font-weight: 700;
+}
+.input-row input[type="range"] {
+    flex-grow: 1;
+    margin: 0 0.85rem;
+}
+.input-row .value-display {
+    min-width: 40px;
+    text-align: right;
+    font-family: monospace;
+}
+.chart-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 300px;
+    padding: 0.85rem 0 0 0;
+    border-bottom: 2px solid var(--border);
+    border-left: 2px solid var(--border);
+    background-color: color-mix(in srgb, var(--card) 72%, transparent);
+    position: relative;
+    border-radius: 16px;
+}
+.chart-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    justify-content: flex-end;
+}
+.chart-bar {
+    width: 100%;
+    background-color: var(--accent);
+    border-radius: 6px 6px 0 0;
+    transition: height 0.3s ease-out, background-color 0.2s ease-out;
+}
+.chart-label {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <main class="wrap">
+            <section class="hero">
+                <div class="hero-controls">
+                    <div class="hero-theme-controls">
+                        <span class="theme-label">Theme</span>
+                        <select id="themeSelect" class="theme-select" aria-label="Select theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="hero-action-controls">
+                        <button id="toggleTrophyBtn" type="button">Achievements</button>
+                        <button id="resetLessonBtn" type="button" class="ghost">Reset lesson</button>
+                    </div>
+                </div>
+                
+<div class="hero-copy">
+    <p class="muted">Foundations of Computing & Digital Systems · What Is Computer Science?</p>
+    <h1>1.1.2 — Data, Information & Representation</h1>
+    <p>Students sort raw data from processed information, manipulate raw numbers to see how charts adapt, and discover how representation choices change what patterns are visible.</p>
+</div>
+
+            </section>
+
+            <section class="card">
+                <div class="game-bar" aria-label="Lesson status bar">
+                    <span id="stepCounter" class="game-pill">Step 1 of 4</span>
+                    <span id="scoreDisplay" class="game-pill">Score: 0 / 130</span>
+                    <span id="streakDisplay" class="game-pill streak-display">Streak: 0 / 4</span>
+                </div>
+                <div class="progress-track" aria-hidden="true">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="stepStars" class="star-row"></div>
+                
+<section id="step1" class="lesson-step active" aria-hidden="false">
+    
+<div class="step-title">
+    <span class="badge">1</span>
+    <div>
+        <h2>Set the Lesson Goal</h2>
+        
+        <p class="muted">Answer the prompt below to get started.</p>
+        
+    </div>
+</div>
+
+    <div class="intro-grid">
+        <div class="exercise">
+            <h3>Quick goal</h3>
+            <p>Understand the difference between <span class="term-tip" tabindex="0" data-tip="Raw data refers to facts or numbers collected before they have been organized or explained.">raw data</span> and interpreted <span class="term-tip" tabindex="0" data-tip="Information is data that has been organized or processed to have meaning.">information</span>, and see how representations change what we learn from data.</p>
+            <details class="step-help">
+                <summary>See the full lesson goals</summary>
+                
+<ol class="objective-list">
+    
+    <li>Differentiate <span class="term-tip" tabindex="0" data-tip="Raw data refers to facts or numbers collected before they have been organized or explained.">raw data</span> from interpreted <span class="term-tip" tabindex="0" data-tip="Information is data that has been organized or processed to have meaning.">information</span>.</li>
+    
+    <li>Explain how <span class="term-tip" tabindex="0" data-tip="Representation is the way data is shown, such as a chart, graph, or list.">representation choices</span> change what patterns are visible.</li>
+    
+    <li>Transform simple <span class="term-tip" tabindex="0" data-tip="Values are the raw numbers or text facts in a dataset.">values</span> into more informative displays.</li>
+    
+</ol>
+
+            </details>
+        </div>
+        <div class="reflection-box">
+            <h3>Warm-up prompt</h3>
+            <p>Start with the idea that <span class="term-tip" tabindex="0" data-tip="Data is raw facts and numbers. Information adds meaning.">data becomes information</span> when we organize it.</p>
+            <div class="question-card">
+                <p><strong>Which statement best explains the difference between data and information?</strong></p>
+                <div class="warmup-options">
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="same" />
+                        <span>They are exactly the same thing; the words can be used interchangeably.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="meaning" />
+                        <span>Data is raw facts and numbers; information is data organized so it has meaning.</span>
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="warmup" value="sensors" />
+                        <span>Information is only collected by sensors, while data is only typed by humans.</span>
+                    </label>
+                    
+                </div>
+                <div class="warmup-actions">
+                    <button id="checkWarmupBtn" type="button" class="primary">Check warm-up</button>
+                    <div id="warmupStatus" class="status">Choose the best description, then check your answer.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left"></div>
+        <div class="right">
+            <button id="nextStep1" type="button" class="primary" disabled>Go to Data vs Info Sort</button>
+        </div>
+    </div>
+</section>
+
+<section id="step2" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">2</span>
+    <div>
+        <h2>Data vs Info Sort</h2>
+        
+        <p class="muted">Drag the cards into the correct bins.</p>
+        
+    </div>
+</div>
+
+    <div class="scenario-brief quick-start-panel">
+        <h3>Start here</h3>
+        <p>Sort the items into the <span class="term-tip" tabindex="0" data-tip="Raw data is an unorganized fact or measurement.">Raw Data</span> or <span class="term-tip" tabindex="0" data-tip="Information is data that has been organized or processed to have meaning.">Information</span> bins based on whether they are isolated facts or organized insights.</p>
+    </div>
+    
+    <div class="sort-workspace-grid">
+        <div class="panel sort-tray-panel">
+            <h3>Items to Sort</h3>
+            <p class="muted">Drag each card from here into one of the bins.</p>
+            <div id="sortItemTray" class="sort-item-tray"></div>
+            <div class="controls">
+                <button id="checkSortBtn" type="button" class="primary" disabled>Submit Sort</button>
+                <button id="resetSortBtn" type="button">Reset</button>
+            </div>
+            <div id="sortStatus" class="status">Place all cards into bins before submitting.</div>
+        </div>
+        <div class="bins-container">
+            
+            <div class="panel sort-bin" data-bin-id="raw-data">
+                <h3>Raw Data</h3>
+                <p class="muted">Isolated facts, numbers, or text without much context.</p>
+                <div class="bin-drop-zone"></div>
+            </div>
+            
+            <div class="panel sort-bin" data-bin-id="information">
+                <h3>Information</h3>
+                <p class="muted">Data that has been processed or organized to give it meaning.</p>
+                <div class="bin-drop-zone"></div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep2" type="button">Back</button>
+        </div>
+        <div class="right">
+            <button id="nextStep2" type="button" class="primary" disabled>Go to Data Transformation</button>
+        </div>
+    </div>
+</section>
+
+<section id="step3" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">3</span>
+    <div>
+        <h2>Data Transformation</h2>
+        
+        <p class="muted">Change values to see how the chart responds.</p>
+        
+    </div>
+</div>
+
+    <div class="scenario-brief quick-start-panel">
+        <h3>Goal</h3>
+        <p>Change the weekly sales <span class="term-tip" tabindex="0" data-tip="Data are the facts or numbers.">data</span> using the inputs below, and watch the bar chart update. Try to hit the target <span class="term-tip" tabindex="0" data-tip="Representation is how data is displayed visually.">representation</span>.</p>
+        <p class="muted"><strong>Target:</strong> Create a symmetric 'bell curve' shape: Wednesday peaks at 90 items. Tuesday and Thursday match at 55 items. Monday and Friday match at 20 items.</p>
+    </div>
+    
+    <div class="transform-workspace-grid">
+        <div class="panel data-input-panel">
+            <h3>Raw Data Input</h3>
+            <p class="muted">Change the values below to update the chart.</p>
+            <div id="dataInputsContainer" class="data-inputs"></div>
+            <div class="controls">
+                <button id="resetDataBtn" type="button">Reset Data</button>
+            </div>
+            <div id="transformTargetStatus" class="status">Adjust the data to match the target.</div>
+        </div>
+        <div class="panel visual-output-panel">
+            <h3>Data Representation (Chart)</h3>
+            <div id="chartContainer" class="chart-container"></div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep3" type="button">Back</button>
+        </div>
+        <div class="right">
+            <button id="nextStep3" type="button" class="primary" disabled>Go to Wrap Up</button>
+        </div>
+    </div>
+</section>
+
+<section id="step4" class="lesson-step" aria-hidden="true">
+    
+<div class="step-title">
+    <span class="badge">4</span>
+    <div>
+        <h2>Wrap Up</h2>
+        
+        <p class="muted">Show what you know.</p>
+        
+    </div>
+</div>
+
+    <div class="wrap-grid">
+        <div class="exercise">
+            <h3>Exit check</h3>
+            
+            <fieldset class="question-card" id="exit-q1">
+                <legend><strong>1. Which of the following is an example of raw data rather than information?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="raw" />
+                    <span>A list of the numbers 72, 68, 71, 65, 70.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="info-graph" />
+                    <span>A line graph showing the temperature changing over a week.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q1" value="info-summary" />
+                    <span>A summary stating that Tuesday was the hottest day.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q2">
+                <legend><strong>2. Why might a city choose to release a map of traffic accidents rather than just a spreadsheet of the locations?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="saves-space" />
+                    <span>A map takes up less storage space on the computer.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="patterns" />
+                    <span>The map representation makes it easier to see patterns, like dangerous intersections.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q2" value="required" />
+                    <span>Spreadsheets are only allowed for financial data.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q3">
+                <legend><strong>3. When sorting the cards in the first activity, what rule best separated data from information?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="format" />
+                    <span>Whether the text was long or short.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="meaning" />
+                    <span>Whether it was an isolated fact or an organized pattern with context.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q3" value="digital" />
+                    <span>Whether it was on a screen or on paper.</span>
+                </label>
+                
+            </fieldset>
+            
+            <fieldset class="question-card" id="exit-q4">
+                <legend><strong>4. In the data transformation activity, what happened when you changed the raw input values?</strong></legend>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="nothing" />
+                    <span>The visualization stayed the same.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="linked" />
+                    <span>The chart completely changed to match the new rules and immediately showed the updated numbers.</span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="exit-q4" value="broken" />
+                    <span>The system broke because it only works with the original data.</span>
+                </label>
+                
+            </fieldset>
+            
+        </div>
+        <div class="reflection-box">
+            <h3>Reflection</h3>
+            <p>Choose one dataset you encountered in this lesson or your own life. Explain the difference between its raw data form and its information form. Use at least two lesson terms: data, information, representation, values.</p>
+            <p class="muted">Checklist: write at least 80 characters and use at least 2 lesson terms: data, information, representation, values.</p>
+            <ul id="finalReflectionChecklist" class="reflection-checklist">
+                
+                <li>Write at least 80 characters.</li>
+                
+                <li>Use at least 2 lesson terms: data, information, representation, values.</li>
+                
+                <li>Name the dataset and explain its raw vs representation form.</li>
+                
+            </ul>
+            <details class="step-help compact-help">
+                <summary>Need the term list?</summary>
+                <p>Useful words: data, information, representation, values.</p>
+            </details>
+            <textarea id="finalReflection" placeholder="Start your explanation here"></textarea>
+            <button id="submitExitCheckBtn" type="button" class="primary">Submit wrap-up</button>
+            <div id="exitStatus" class="status">Answer all four questions and complete the reflection, then submit the wrap-up.</div>
+            <div id="completeBanner" class="complete-banner hidden" aria-hidden="true">
+                <h3>Lesson complete</h3>
+                <p>You finished Lesson 1.1.2. Open the achievement case to review your stars and score.</p>
+                <div class="controls teacher-summary-actions">
+                    <button id="openTeacherSummaryBtn" type="button">Open teacher summary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step-actions">
+        <div class="left">
+            <button id="backStep4" type="button">Back</button>
+        </div>
+        <div class="right"></div>
+    </div>
+</section>
+
+            </section>
+
+            <p class="footer-note">Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24</p>
+        </main>
+
+        <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+        <div id="trophyCase" class="trophy-case hidden" aria-hidden="true">
+    <div class="trophy-card">
+        <div class="trophy-head">
+            <h3>Achievements</h3>
+            <button id="closeTrophyBtn" type="button">Close</button>
+        </div>
+        <div id="trophySummary" class="trophy-summary hidden">
+            <p class="summary-title">Lesson Summary</p>
+            <div class="summary-grid">
+                <div id="summaryScore" class="summary-item">Score: 0/0</div>
+                <div id="summaryStreak" class="summary-item">Streak: 0/0</div>
+            </div>
+            <p id="summaryPerfectText" class="muted"></p>
+            <div id="retryPrompt" class="retry-prompt hidden">
+                <p class="muted">You did not get a perfect score. Want to try again?</p>
+                <button id="tryAgainBtn" type="button" class="primary">
+                    Yes, try again
+                </button>
+            </div>
+        </div>
+        <div id="achievementList" class="achievement-list"></div>
+    </div>
+</div>
+
+        <div id="teacherSummaryModal" class="teacher-summary-modal hidden" aria-hidden="true">
+    <div class="teacher-summary-card">
+        <div class="trophy-head">
+            <h3>Teacher Summary</h3>
+            <button id="closeTeacherSummaryBtn" type="button">Close</button>
+        </div>
+        <p class="muted">Use this summary to review the student's overall performance, unlocked achievements, and written reflections.</p>
+        <div class="teacher-summary-grid">
+            <div id="teacherSummaryScore" class="summary-item">Score: 0 / 0</div>
+            <div id="teacherSummaryStreak" class="summary-item">Streak: 0 / 0</div>
+            <div id="teacherSummaryRetries" class="summary-item">Retries: 0</div>
+        </div>
+        <p id="teacherSummaryPerfectText" class="muted"></p>
+        <div class="teacher-summary-section">
+            <h4>Step stars</h4>
+            <div id="teacherSummaryStepStars" class="star-row"></div>
+        </div>
+        <div class="teacher-summary-section">
+            <h4>Achievements</h4>
+            <div id="teacherSummaryAchievements" class="achievement-list"></div>
+        </div>
+        <div class="teacher-summary-section">
+            <h4>Student reflections</h4>
+            <div id="teacherSummaryReflections" class="teacher-response-list"></div>
+        </div>
+    </div>
+</div>
+        <script>
+            window.__LESSON_DATA__ = {"id":"1.1.2","template":"lesson.njk","title":"Data, Information & Representation","moduleTitle":"What Is Computer Science?","unitTitle":"Foundations of Computing & Digital Systems","description":"Students sort raw data from processed information, manipulate raw numbers to see how charts adapt, and discover how representation choices change what patterns are visible.","chips":[],"objectives":["Differentiate \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Raw data refers to facts or numbers collected before they have been organized or explained.\">raw data\u003c/span> from interpreted \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Information is data that has been organized or processed to have meaning.\">information\u003c/span>.","Explain how \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Representation is the way data is shown, such as a chart, graph, or list.\">representation choices\u003c/span> change what patterns are visible.","Transform simple \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Values are the raw numbers or text facts in a dataset.\">values\u003c/span> into more informative displays."],"footerNote":"Aligned to CSTA: 2-DA-01, 2-AP-10, 3A-IC-24","teacherPanel":{"estimatedTime":"40-54 minutes","prerequisites":"Completion of Lesson 1.1.1","cstaStandards":["2-DA-01","2-AP-10","3A-IC-24"],"pacingSuggestion":"One class period. Warm-up (5 min) -> activities (35 min) -> wrap-up (10 min)","debriefQuestions":[{"question":"What is the difference between raw data and information?","answer":"Raw data is just facts and numbers. It becomes information when it is organized or presented in a way that gives it meaning and helps answer a question."},{"question":"Why would someone choose to use a chart instead of a table of numbers?","answer":"A chart makes patterns and trends easier to see quickly. While the raw data is the same, the chart representation makes the meaning clearer."},{"question":"How did changing the values in the transformation activity affect the output?","answer":"Changing a single value in the raw data caused the entire visualization to update. This shows how visualizations depend directly on the underlying data."}],"howToAssign":"Direct link to this lesson. No account required. Progress saves locally in the browser."},"steps":[{"id":"step1","title":"Set the Lesson Goal"},{"id":"step2","title":"Data vs Info Sort"},{"id":"step3","title":"Data Transformation"},{"id":"step4","title":"Wrap Up"}],"warmup":{"prompt":"Which statement best explains the difference between data and information?","options":[{"value":"same","label":"They are exactly the same thing; the words can be used interchangeably."},{"value":"meaning","label":"Data is raw facts and numbers; information is data organized so it has meaning."},{"value":"sensors","label":"Information is only collected by sensors, while data is only typed by humans."}],"correct":"meaning","correctFeedback":"Yes. While data provides the raw facts, information gives us the useful meaning behind those facts.","retryFeedback":"Think about which one comes first, and which one provides useful understanding based on the other."},"exitCheck":{"questions":[{"id":"exit-q1","prompt":"Which of the following is an example of raw data rather than information?","options":[{"value":"raw","label":"A list of the numbers 72, 68, 71, 65, 70."},{"value":"info-graph","label":"A line graph showing the temperature changing over a week."},{"value":"info-summary","label":"A summary stating that Tuesday was the hottest day."}],"correct":"raw"},{"id":"exit-q2","prompt":"Why might a city choose to release a map of traffic accidents rather than just a spreadsheet of the locations?","options":[{"value":"saves-space","label":"A map takes up less storage space on the computer."},{"value":"patterns","label":"The map representation makes it easier to see patterns, like dangerous intersections."},{"value":"required","label":"Spreadsheets are only allowed for financial data."}],"correct":"patterns"},{"id":"exit-q3","prompt":"When sorting the cards in the first activity, what rule best separated data from information?","options":[{"value":"format","label":"Whether the text was long or short."},{"value":"meaning","label":"Whether it was an isolated fact or an organized pattern with context."},{"value":"digital","label":"Whether it was on a screen or on paper."}],"correct":"meaning"},{"id":"exit-q4","prompt":"In the data transformation activity, what happened when you changed the raw input values?","options":[{"value":"nothing","label":"The visualization stayed the same."},{"value":"linked","label":"The chart completely changed to match the new rules and immediately showed the updated numbers."},{"value":"broken","label":"The system broke because it only works with the original data."}],"correct":"linked"}],"reflectionPrompt":"Choose one dataset you encountered in this lesson or your own life. Explain the difference between its raw data form and its information form. Use at least two lesson terms: data, information, representation, values.","reflectionPlaceholder":"Start your explanation here","reflectionRequirement":"Checklist: write at least 80 characters and use at least 2 lesson terms: data, information, representation, values.","reflectionMinLength":80,"reflectionTerms":["data","information","representation","values"],"reflectionRequiredTermCount":2,"reflectionChecklist":["Write at least 80 characters.","Use at least 2 lesson terms: data, information, representation, values.","Name the dataset and explain its raw vs representation form."],"reflectionSuccessFeedback":"Reflection complete. You clearly explained the difference and used lesson vocabulary.","reflectionRetryFeedback":"Be more specific. Use at least two lesson terms such as data, information, representation, or values.","points":50},"gamification":{"perfectScoreTarget":130,"perfectStreakTarget":4,"hotStreakThreshold":3,"achievements":[{"id":"warmup_ready","name":"Warm-Up Ready","description":"Complete Step 1 without a retry."},{"id":"data_sorter","name":"Data Sorter","description":"Correctly sort all raw data and information items."},{"id":"data_transformer","name":"Data Transformer","description":"Hit the target pattern in the data transformation activity."},{"id":"hot_streak","name":"Hot Streak","description":"Reach a streak of 4 correct actions."},{"id":"triple_star","name":"Triple Star","description":"Earn 3 stars on any step."},{"id":"perfect_score","name":"Perfect Score","description":"Finish the lesson with every point and no retries."}]},"activityData":{"data-transformation":{"transformActivity":{"goal":"Manipulate the raw numbers to discover how changing values immediately impacts the visualized representation.","prompt":"Change the weekly sales \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Data are the facts or numbers.\">data\u003c/span> using the inputs below, and watch the bar chart update. Try to hit the target \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Representation is how data is displayed visually.\">representation\u003c/span>.","targetDescription":"Create a symmetric 'bell curve' shape: Wednesday peaks at 90 items. Tuesday and Thursday match at 55 items. Monday and Friday match at 20 items.","targetData":{"monday":20,"tuesday":55,"wednesday":90,"thursday":55,"friday":20},"initialData":[{"day":"Monday","value":30},{"day":"Tuesday","value":45},{"day":"Wednesday","value":20},{"day":"Thursday","value":60},{"day":"Friday","value":50}]}},"data-vs-info":{"sortActivity":{"goal":"Sort the items into the \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Raw data is an unorganized fact or measurement.\">Raw Data\u003c/span> or \u003cspan class=\"term-tip\" tabindex=\"0\" data-tip=\"Information is data that has been organized or processed to have meaning.\">Information\u003c/span> bins based on whether they are isolated facts or organized insights.","bins":[{"id":"raw-data","label":"Raw Data","description":"Isolated facts, numbers, or text without much context."},{"id":"information","label":"Information","description":"Data that has been processed or organized to give it meaning."}],"items":[{"id":"item1","content":"72, 68, 71, 65, 70","correctBin":"raw-data","explanation":"These are just numbers on their own. We don't know what they mean."},{"id":"item2","content":"A report showing the average temperature dropped by 4 degrees.","correctBin":"information","explanation":"This tells us a trend and gives context to the numbers."},{"id":"item3","content":"A list of 100 randomly recorded mouse clicks with X and Y coordinates.","correctBin":"raw-data","explanation":"These coordinates are just measurements. They don't yet tell a story."},{"id":"item4","content":"A heatmap showing where users click the most on a website.","correctBin":"information","explanation":"This is a representation that helps us understand the clicks."},{"id":"item5","content":"\"Dog\", \"Blue\", 14, 3:30 PM","correctBin":"raw-data","explanation":"These are a mix of unconnected facts without meaning together."}],"reflection":{"prompt":"What rule did you use to decide if something was Information instead of just Raw Data?","placeholder":"Example: I looked for...","checklist":["Write at least 30 characters.","Explain your rule."]}}}}};
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initThemeControls = function initThemeControls(options) {
+        const root = options.rootElement || document.documentElement;
+        const selectElement = options.selectElement;
+        const storageKey = options.storageKey || 'lessonTheme';
+        const defaultTheme = options.defaultTheme || 'light';
+
+        function applyTheme(theme) {
+            const selectedTheme = theme === 'dark' ? 'dark' : 'light';
+            root.setAttribute('data-theme', selectedTheme);
+            if (selectElement) {
+                selectElement.value = selectedTheme;
+            }
+            localStorage.setItem(storageKey, selectedTheme);
+            return selectedTheme;
+        }
+
+        const savedTheme = localStorage.getItem(storageKey) || defaultTheme;
+        applyTheme(savedTheme);
+
+        if (selectElement) {
+            selectElement.addEventListener('change', function onThemeChange() {
+                applyTheme(selectElement.value);
+            });
+        }
+
+        return {
+            applyTheme: applyTheme,
+            getTheme: function getTheme() {
+                return root.getAttribute('data-theme') || defaultTheme;
+            },
+        };
+    };
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    function escapeHtml(value) {
+        return String(value)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#39;');
+    }
+
+    function shuffle(array) {
+        const copy = array.slice();
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+            const swapIndex = Math.floor(Math.random() * (index + 1));
+            const current = copy[index];
+            copy[index] = copy[swapIndex];
+            copy[swapIndex] = current;
+        }
+        return copy;
+    }
+
+    function setStatus(element, text, kind) {
+        if (!element) {
+            return;
+        }
+        element.textContent = text;
+        element.className = kind ? `status ${kind}` : 'status';
+    }
+
+    function setHtmlStatus(element, html, kind) {
+        if (!element) {
+            return;
+        }
+        element.innerHTML = html;
+        element.className = kind ? `status ${kind}` : 'status';
+    }
+
+    function createStepStarSlots(container, stepCount) {
+        if (!container) {
+            return;
+        }
+        container.innerHTML = '';
+        for (let index = 0; index < stepCount; index += 1) {
+            const item = document.createElement('div');
+            item.className = 'star-step';
+            item.innerHTML = `<span class="star-step-label">Step ${index + 1}</span><span class="star-glyphs">☆☆☆</span>`;
+            container.appendChild(item);
+        }
+    }
+
+    function renderStepStars(container, starRatings, popStepNumber) {
+        if (!container) {
+            return;
+        }
+        Array.from(container.querySelectorAll('.star-step')).forEach(
+            function renderStar(element, index) {
+                const stars = Math.max(0, Math.min(3, starRatings[index] || 0));
+                const filled = '★'.repeat(stars);
+                const empty = '☆'.repeat(3 - stars);
+                const glyph = element.querySelector('.star-glyphs');
+                if (glyph) {
+                    glyph.textContent = `${filled}${empty}`;
+                }
+                element.classList.toggle('earned', stars > 0);
+                if (popStepNumber === index + 1) {
+                    element.classList.remove('pop');
+                    void element.offsetWidth;
+                    element.classList.add('pop');
+                }
+            },
+        );
+    }
+
+    function renderAchievements(container, achievementCatalog, unlockedIds) {
+        if (!container) {
+            return;
+        }
+        container.innerHTML = '';
+        achievementCatalog.forEach(function renderAchievement(achievement) {
+            const unlocked = unlockedIds.has(achievement.id);
+            const card = document.createElement('div');
+            card.className = unlocked
+                ? 'achievement-item unlocked'
+                : 'achievement-item';
+            card.innerHTML = `<span class="achievement-name">${unlocked ? '🏆' : '🔒'} ${escapeHtml(achievement.name)}</span><span class="achievement-desc">${escapeHtml(achievement.description)}</span>`;
+            container.appendChild(card);
+        });
+    }
+
+    function launchConfetti(layer, pieceCount, maxDuration) {
+        if (!layer) {
+            return;
+        }
+        const computed = getComputedStyle(document.documentElement);
+        const confettiColors = [
+            computed.getPropertyValue('--accent').trim(),
+            computed.getPropertyValue('--ok').trim(),
+            computed.getPropertyValue('--warn').trim(),
+            computed.getPropertyValue('--accent-strong').trim(),
+        ].filter(Boolean);
+
+        for (let index = 0; index < pieceCount; index += 1) {
+            const piece = document.createElement('span');
+            piece.className = 'confetti-piece';
+            piece.style.left = `${Math.random() * 100}%`;
+            piece.style.animationDuration = `${680 + Math.random() * maxDuration}ms`;
+            piece.style.animationDelay = `${Math.random() * 200}ms`;
+            piece.style.backgroundColor =
+                confettiColors[index % confettiColors.length] || '#1f6f50';
+            layer.appendChild(piece);
+            setTimeout(function removePiece() {
+                piece.remove();
+            }, maxDuration + 1200);
+        }
+    }
+
+    function setHidden(element, hidden) {
+        if (!element) {
+            return;
+        }
+        element.classList.toggle('hidden', hidden);
+        element.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+    }
+
+    window.LessonCore.escapeHtml = escapeHtml;
+    window.LessonCore.shuffle = shuffle;
+    window.LessonCore.setStatus = setStatus;
+    window.LessonCore.setHtmlStatus = setHtmlStatus;
+    window.LessonCore.createStepStarSlots = createStepStarSlots;
+    window.LessonCore.renderStepStars = renderStepStars;
+    window.LessonCore.renderAchievements = renderAchievements;
+    window.LessonCore.launchConfetti = launchConfetti;
+    window.LessonCore.setHidden = setHidden;
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.createStepController = function createStepController(
+        options,
+    ) {
+        const stepElements = options.stepElements || [];
+        const stepCounter = options.stepCounterElement;
+        const progressFill = options.progressFillElement;
+        let currentStep = 1;
+        let initialized = false;
+
+        function scrollActiveStepIntoView() {
+            if (!options.autoScrollOnChange) {
+                return;
+            }
+            window.requestAnimationFrame(function queueStepScroll() {
+                const activeStep = stepElements[currentStep - 1];
+                if (!activeStep) {
+                    return;
+                }
+                const target = options.scrollTargetSelector
+                    ? activeStep.querySelector(options.scrollTargetSelector)
+                    : activeStep;
+                (target || activeStep).scrollIntoView({
+                    behavior: options.scrollBehavior || 'smooth',
+                    block: options.scrollBlock || 'start',
+                });
+            });
+        }
+
+        function showStep(stepNumber) {
+            currentStep = Math.max(
+                1,
+                Math.min(stepElements.length, stepNumber),
+            );
+            stepElements.forEach(function updateStep(stepElement, index) {
+                const active = index === currentStep - 1;
+                stepElement.classList.toggle('active', active);
+                stepElement.setAttribute(
+                    'aria-hidden',
+                    active ? 'false' : 'true',
+                );
+            });
+            if (stepCounter) {
+                stepCounter.textContent = `Step ${currentStep} of ${stepElements.length}`;
+            }
+            if (progressFill) {
+                progressFill.style.width = `${(currentStep / stepElements.length) * 100}%`;
+            }
+            if (typeof options.onStepChange === 'function') {
+                options.onStepChange(currentStep);
+            }
+            if (initialized || !options.preventInitialScroll) {
+                scrollActiveStepIntoView();
+            }
+            initialized = true;
+        }
+
+        showStep(1);
+
+        return {
+            showStep: showStep,
+            getCurrentStep: function getCurrentStep() {
+                return currentStep;
+            },
+        };
+    };
+
+    window.LessonCore.createGameState = function createGameState(options) {
+        const stepCount = options.stepCount;
+        const initialState = options.initialState || {};
+        const state = {
+            totalScore: Number(initialState.totalScore) || 0,
+            streak: Number(initialState.streak) || 0,
+            stepRetries: Array.from({ length: stepCount }, function (_, index) {
+                return Number(initialState.stepRetries?.[index]) || 0;
+            }),
+            starRatings: Array.from({ length: stepCount }, function (_, index) {
+                return Number(initialState.starRatings?.[index]) || 0;
+            }),
+            achievements: new Set(
+                Array.isArray(initialState.achievements)
+                    ? initialState.achievements
+                    : [],
+            ),
+        };
+
+        function updateScoreDisplay() {
+            if (options.scoreDisplay) {
+                options.scoreDisplay.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+        }
+
+        function updateStreakDisplay(animate) {
+            if (options.streakDisplay) {
+                options.streakDisplay.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+                if (animate) {
+                    options.streakDisplay.classList.remove('pulse');
+                    void options.streakDisplay.offsetWidth;
+                    options.streakDisplay.classList.add('pulse');
+                }
+            }
+        }
+
+        function createStarSlots() {
+            if (!options.stepStars) {
+                return;
+            }
+            window.LessonCore.createStepStarSlots(options.stepStars, stepCount);
+            window.LessonCore.renderStepStars(
+                options.stepStars,
+                state.starRatings,
+            );
+        }
+
+        function renderAchievements() {
+            window.LessonCore.renderAchievements(
+                options.achievementList,
+                options.achievementCatalog,
+                state.achievements,
+            );
+        }
+
+        function unlockAchievement(id) {
+            if (state.achievements.has(id)) {
+                return;
+            }
+            state.achievements.add(id);
+            renderAchievements();
+            window.LessonCore.launchConfetti(options.confettiLayer, 16, 820);
+        }
+
+        function addScore(points) {
+            state.totalScore += points;
+            updateScoreDisplay();
+        }
+
+        function incrementStreak() {
+            state.streak += 1;
+            updateStreakDisplay(true);
+            if (state.streak >= options.hotStreakThreshold) {
+                unlockAchievement('hot_streak');
+            }
+        }
+
+        function resetStreak() {
+            if (state.streak !== 0) {
+                state.streak = 0;
+                updateStreakDisplay(false);
+            }
+        }
+
+        function registerRetry(stepNumber) {
+            const index = Math.max(1, Math.min(stepCount, stepNumber)) - 1;
+            state.stepRetries[index] += 1;
+            resetStreak();
+        }
+
+        function markStepComplete(stepNumber) {
+            const index = Math.max(1, Math.min(stepCount, stepNumber)) - 1;
+            if (state.starRatings[index] !== 0) {
+                return;
+            }
+            const retries = state.stepRetries[index];
+            const stars = retries === 0 ? 3 : retries <= 2 ? 2 : 1;
+            state.starRatings[index] = stars;
+            if (options.stepStars) {
+                window.LessonCore.renderStepStars(
+                    options.stepStars,
+                    state.starRatings,
+                    stepNumber,
+                );
+            }
+            window.LessonCore.launchConfetti(options.confettiLayer, 24, 1000);
+            if (stars === 3) {
+                unlockAchievement('triple_star');
+            }
+            if (typeof options.onStepComplete === 'function') {
+                options.onStepComplete(stepNumber, retries, stars, state);
+            }
+        }
+
+        function getTotalRetries() {
+            return state.stepRetries.reduce(function sumRetries(
+                total,
+                retries,
+            ) {
+                return total + retries;
+            }, 0);
+        }
+
+        function isPerfect() {
+            return (
+                state.totalScore === options.perfectScoreTarget &&
+                state.stepRetries.every(function noRetries(retryCount) {
+                    return retryCount === 0;
+                })
+            );
+        }
+
+        function getSnapshot() {
+            return {
+                totalScore: state.totalScore,
+                streak: state.streak,
+                stepRetries: state.stepRetries.slice(),
+                starRatings: state.starRatings.slice(),
+                achievements: Array.from(state.achievements),
+            };
+        }
+
+        function showSummary(optionsForSummary) {
+            const perfect =
+                typeof optionsForSummary.perfect === 'boolean'
+                    ? optionsForSummary.perfect
+                    : isPerfect();
+            if (options.summarySection) {
+                options.summarySection.classList.remove('hidden');
+            }
+            if (options.summaryScore) {
+                options.summaryScore.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+            if (options.summaryStreak) {
+                options.summaryStreak.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+            }
+            if (options.summaryPerfectText) {
+                options.summaryPerfectText.textContent = perfect
+                    ? optionsForSummary.perfectMessage
+                    : optionsForSummary.retryMessage;
+            }
+            if (options.retryPrompt) {
+                options.retryPrompt.classList.toggle('hidden', perfect);
+            }
+            if (options.trophyCase) {
+                options.trophyCase.classList.remove('hidden');
+                options.trophyCase.setAttribute('aria-hidden', 'false');
+            }
+            if (perfect) {
+                unlockAchievement('perfect_score');
+            }
+        }
+
+        function bindOverlayControls() {
+            if (options.toggleTrophyButton && options.trophyCase) {
+                options.toggleTrophyButton.addEventListener(
+                    'click',
+                    function showTrophy() {
+                        options.trophyCase.classList.remove('hidden');
+                        options.trophyCase.setAttribute('aria-hidden', 'false');
+                    },
+                );
+            }
+            if (options.closeTrophyButton && options.trophyCase) {
+                options.closeTrophyButton.addEventListener(
+                    'click',
+                    function hideTrophy() {
+                        options.trophyCase.classList.add('hidden');
+                        options.trophyCase.setAttribute('aria-hidden', 'true');
+                    },
+                );
+            }
+            if (options.trophyCase) {
+                options.trophyCase.addEventListener(
+                    'click',
+                    function closeWhenBackdrop(event) {
+                        if (event.target === options.trophyCase) {
+                            options.trophyCase.classList.add('hidden');
+                            options.trophyCase.setAttribute(
+                                'aria-hidden',
+                                'true',
+                            );
+                        }
+                    },
+                );
+            }
+        }
+
+        createStarSlots();
+        updateScoreDisplay();
+        updateStreakDisplay(false);
+        renderAchievements();
+        bindOverlayControls();
+
+        return {
+            state: state,
+            addScore: addScore,
+            incrementStreak: incrementStreak,
+            registerRetry: registerRetry,
+            markStepComplete: markStepComplete,
+            unlockAchievement: unlockAchievement,
+            getSnapshot: getSnapshot,
+            getTotalRetries: getTotalRetries,
+            isPerfect: isPerfect,
+            showSummary: showSummary,
+        };
+    };
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    function clearLiveResponses(rootElement) {
+        const root = rootElement || document;
+        root.querySelectorAll('input').forEach(function clearInput(input) {
+            const type = (input.type || '').toLowerCase();
+            if (
+                ['button', 'submit', 'reset', 'hidden', 'file'].includes(type)
+            ) {
+                return;
+            }
+            if (type === 'radio' || type === 'checkbox') {
+                input.checked = false;
+                return;
+            }
+            input.value = '';
+        });
+        root.querySelectorAll('textarea').forEach(
+            function clearTextarea(textarea) {
+                textarea.value = '';
+            },
+        );
+    }
+
+    function createSessionStore(options) {
+        const storage = options.storage || window.localStorage;
+        const storageKey = options.storageKey;
+        const lessonId = options.lessonId;
+        const legacyStorage = options.legacyStorage || window.sessionStorage;
+        const legacyStorageKey = options.legacyStorageKey;
+        const progressKey =
+            options.progressKey ||
+            (lessonId ? `jibscourses_progress_${lessonId}` : '');
+        const courseProgressKey =
+            options.courseProgressKey || 'jibscourses_course_progress';
+        const restartQueryKey = options.restartQueryKey || 'lessonRestart';
+        const initialProgressState = {
+            score: 0,
+            streak: 0,
+            stepsCompleted: [],
+            reflections: {},
+            achievementsUnlocked: [],
+            ...(options.initialProgressState || {}),
+        };
+
+        function readStorageJson(targetStorage, key) {
+            if (!targetStorage || !key) {
+                return null;
+            }
+            try {
+                const raw = targetStorage.getItem(key);
+                return raw ? JSON.parse(raw) : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function hasObjectEntries(value) {
+            return (
+                Boolean(value) &&
+                typeof value === 'object' &&
+                Object.keys(value).length > 0
+            );
+        }
+
+        function normalizeProgressState(progressState) {
+            const source =
+                progressState && typeof progressState === 'object'
+                    ? progressState
+                    : {};
+            return {
+                score: Number(source.score) || 0,
+                streak: Number(source.streak) || 0,
+                stepsCompleted: Array.isArray(source.stepsCompleted)
+                    ? source.stepsCompleted.slice()
+                    : initialProgressState.stepsCompleted.slice(),
+                reflections:
+                    source.reflections && typeof source.reflections === 'object'
+                        ? { ...source.reflections }
+                        : { ...initialProgressState.reflections },
+                achievementsUnlocked: Array.isArray(source.achievementsUnlocked)
+                    ? source.achievementsUnlocked.slice()
+                    : initialProgressState.achievementsUnlocked.slice(),
+            };
+        }
+
+        function load() {
+            const saved = readStorageJson(storage, storageKey);
+            if (hasObjectEntries(saved)) {
+                return saved;
+            }
+            const legacy = readStorageJson(
+                legacyStorage,
+                legacyStorageKey || storageKey,
+            );
+            return hasObjectEntries(legacy) ? legacy : {};
+        }
+
+        function save(snapshot) {
+            storage.setItem(storageKey, JSON.stringify(snapshot));
+            if (legacyStorageKey) {
+                legacyStorage.removeItem(legacyStorageKey);
+            }
+        }
+
+        function loadProgress() {
+            return normalizeProgressState(
+                readStorageJson(storage, progressKey),
+            );
+        }
+
+        function saveProgress(progressState) {
+            if (!progressKey) {
+                return;
+            }
+            storage.setItem(
+                progressKey,
+                JSON.stringify(normalizeProgressState(progressState)),
+            );
+        }
+
+        function updateCourseProgress(status) {
+            if (!lessonId) {
+                return;
+            }
+            const normalizedStatus =
+                status === 'complete'
+                    ? 'complete'
+                    : status === 'in-progress'
+                      ? 'in-progress'
+                      : '';
+            const courseProgress =
+                readStorageJson(storage, courseProgressKey) || {};
+
+            if (!normalizedStatus) {
+                delete courseProgress[lessonId];
+                if (Object.keys(courseProgress).length === 0) {
+                    storage.removeItem(courseProgressKey);
+                } else {
+                    storage.setItem(
+                        courseProgressKey,
+                        JSON.stringify(courseProgress),
+                    );
+                }
+                return;
+            }
+
+            courseProgress[lessonId] = normalizedStatus;
+            storage.setItem(courseProgressKey, JSON.stringify(courseProgress));
+        }
+
+        function clear() {
+            storage.removeItem(storageKey);
+            if (progressKey) {
+                storage.removeItem(progressKey);
+            }
+            updateCourseProgress('');
+            if (legacyStorageKey) {
+                legacyStorage.removeItem(legacyStorageKey);
+            }
+        }
+
+        function stripRestartQueryParam() {
+            const url = new URL(window.location.href);
+            if (!url.searchParams.has(restartQueryKey)) {
+                return;
+            }
+            url.searchParams.delete(restartQueryKey);
+            window.history.replaceState(null, '', url.toString());
+        }
+
+        function restartWithoutRestore() {
+            clear();
+            clearLiveResponses();
+
+            const url = new URL(window.location.href);
+            url.searchParams.set(restartQueryKey, Date.now().toString());
+            window.location.replace(url.toString());
+        }
+
+        function bindAutoSave(callback, eventNames) {
+            const events = Array.isArray(eventNames)
+                ? eventNames
+                : ['beforeunload', 'pagehide'];
+            events.forEach(function bindEvent(eventName) {
+                window.addEventListener(eventName, callback);
+            });
+        }
+
+        return {
+            load: load,
+            save: save,
+            loadProgress: loadProgress,
+            saveProgress: saveProgress,
+            updateCourseProgress: updateCourseProgress,
+            clear: clear,
+            stripRestartQueryParam: stripRestartQueryParam,
+            restartWithoutRestore: restartWithoutRestore,
+            bindAutoSave: bindAutoSave,
+        };
+    }
+
+    function arraysEqual(left, right) {
+        if (left.length !== right.length) {
+            return false;
+        }
+        return left.every(function compare(value, index) {
+            return value === right[index];
+        });
+    }
+
+    function createStableOrderManager(options) {
+        const orders =
+            options && typeof options.initialOrders === 'object'
+                ? options.initialOrders
+                : {};
+
+        function getStableOptionOrder(key, values) {
+            const normalized = values.slice();
+            const existing = Array.isArray(orders[key])
+                ? orders[key].filter(function keepKnown(value) {
+                      return normalized.includes(value);
+                  })
+                : [];
+            if (existing.length === normalized.length) {
+                return existing;
+            }
+
+            let shuffled = window.LessonCore.shuffle(normalized);
+            if (normalized.length > 1 && arraysEqual(shuffled, normalized)) {
+                shuffled = window.LessonCore.shuffle(normalized);
+            }
+            orders[key] = shuffled;
+            return shuffled;
+        }
+
+        function reorderRadioGroup(groupName, rootElement) {
+            const root = rootElement || document;
+            const inputs = Array.from(
+                root.querySelectorAll(`input[name="${groupName}"]`),
+            );
+            if (inputs.length === 0) {
+                return;
+            }
+
+            const labels = inputs
+                .map(function getLabel(input) {
+                    return input.closest('label');
+                })
+                .filter(Boolean);
+            if (labels.length === 0) {
+                return;
+            }
+
+            const container = labels[0].parentElement;
+            if (!container) {
+                return;
+            }
+
+            const labelsByValue = new Map(
+                labels.map(function mapLabel(label) {
+                    const input = label.querySelector('input');
+                    return [input.value, label];
+                }),
+            );
+            const orderedValues = getStableOptionOrder(
+                groupName,
+                labels.map(function mapValue(label) {
+                    return label.querySelector('input').value;
+                }),
+            );
+
+            orderedValues.forEach(function appendLabel(value) {
+                const label = labelsByValue.get(value);
+                if (label) {
+                    container.appendChild(label);
+                }
+            });
+        }
+
+        return {
+            getStableOptionOrder: getStableOptionOrder,
+            reorderRadioGroup: reorderRadioGroup,
+            getState: function getState() {
+                return orders;
+            },
+        };
+    }
+
+    function getCheckedValue(groupName, rootElement) {
+        const root = rootElement || document;
+        const selected = root.querySelector(
+            `input[name="${groupName}"]:checked`,
+        );
+        return selected ? selected.value : '';
+    }
+
+    function setCheckedValue(groupName, value, rootElement) {
+        if (!value) {
+            return;
+        }
+        const root = rootElement || document;
+        const input = root.querySelector(
+            `input[name="${groupName}"][value="${value}"]`,
+        );
+        if (input) {
+            input.checked = true;
+        }
+    }
+
+    window.LessonCore.clearLiveResponses = clearLiveResponses;
+    window.LessonCore.createSessionStore = createSessionStore;
+    window.LessonCore.createStableOrderManager = createStableOrderManager;
+    window.LessonCore.getCheckedValue = getCheckedValue;
+    window.LessonCore.setCheckedValue = setCheckedValue;
+})();
+
+        </script>
+
+        <script>
+(function () {
+    window.LessonCore = window.LessonCore || {};
+
+    window.LessonCore.initTeacherSummary = function initTeacherSummary(
+        options,
+    ) {
+        const modal = options.modal;
+        const triggerButton = options.triggerButton;
+        const closeButton = options.closeButton;
+        let unlocked = Boolean(options.initiallyUnlocked);
+
+        function setOpen(open) {
+            window.LessonCore.setHidden(modal, !open);
+        }
+
+        function ensureStepStars() {
+            if (!options.stepStarsElement) {
+                return;
+            }
+            if (
+                options.stepStarsElement.querySelectorAll('.star-step')
+                    .length === options.stepCount
+            ) {
+                return;
+            }
+            window.LessonCore.createStepStarSlots(
+                options.stepStarsElement,
+                options.stepCount,
+            );
+        }
+
+        function renderReflections() {
+            if (!options.reflectionsContainer) {
+                return;
+            }
+            options.reflectionsContainer.innerHTML = '';
+            (options.reflectionSections || []).forEach(
+                function renderSection(section) {
+                    const card = document.createElement('div');
+                    card.className = 'teacher-response-card';
+
+                    const label = document.createElement('p');
+                    label.className = 'teacher-response-label';
+                    label.textContent = section.label;
+
+                    const value = document.createElement('div');
+                    value.className = 'teacher-response-text';
+                    value.textContent =
+                        section.getValue().trim() ||
+                        section.emptyText ||
+                        'No response was saved.';
+
+                    card.appendChild(label);
+                    card.appendChild(value);
+                    options.reflectionsContainer.appendChild(card);
+                },
+            );
+        }
+
+        function render() {
+            const state = options.game.state;
+            const perfect =
+                typeof options.isPerfect === 'function'
+                    ? options.isPerfect()
+                    : options.game.isPerfect();
+            if (options.scoreElement) {
+                options.scoreElement.textContent = `Score: ${state.totalScore} / ${options.perfectScoreTarget}`;
+            }
+            if (options.streakElement) {
+                options.streakElement.textContent = `Streak: ${state.streak} / ${options.perfectStreakTarget}`;
+            }
+            if (options.retriesElement) {
+                options.retriesElement.textContent = `Retries: ${options.game.getTotalRetries()}`;
+            }
+            if (options.perfectTextElement) {
+                options.perfectTextElement.textContent = perfect
+                    ? options.summaryMessages.perfect
+                    : options.summaryMessages.retry;
+            }
+            ensureStepStars();
+            window.LessonCore.renderStepStars(
+                options.stepStarsElement,
+                state.starRatings,
+            );
+            window.LessonCore.renderAchievements(
+                options.achievementsElement,
+                options.achievementCatalog,
+                state.achievements,
+            );
+            renderReflections();
+        }
+
+        if (triggerButton) {
+            triggerButton.addEventListener(
+                'click',
+                function openTeacherSummary() {
+                    if (!unlocked) {
+                        return;
+                    }
+                    render();
+                    setOpen(true);
+                },
+            );
+        }
+
+        if (closeButton) {
+            closeButton.addEventListener(
+                'click',
+                function closeTeacherSummary() {
+                    setOpen(false);
+                },
+            );
+        }
+
+        if (modal) {
+            modal.addEventListener('click', function closeWhenBackdrop(event) {
+                if (event.target === modal) {
+                    setOpen(false);
+                }
+            });
+        }
+
+        if (unlocked) {
+            render();
+        }
+
+        return {
+            render: render,
+            setUnlocked: function setUnlocked(value) {
+                unlocked = Boolean(value);
+            },
+            isUnlocked: function isUnlocked() {
+                return unlocked;
+            },
+            setOpen: setOpen,
+        };
+    };
+})();
+
+        </script>
+
+
+        <script>
+(function () {
+    const lesson = window.__LESSON_DATA__;
+    const core = window.LessonCore;
+    const sortData = lesson.activityData['data-vs-info'].sortActivity;
+    const transformData = lesson.activityData['data-transformation'].transformActivity;
+
+    const completionSummaryMessages = {
+        perfect: "Perfect! You correctly sorted data from information and transformed values precisely.",
+        good: "Great job! You successfully completed the raw data sorting and visualization activities.",
+        average: "You finished! Review how context guides whether numbers are raw data or information.",
+    };
+
+    const sessionStore = core.createSessionStore({
+        lessonId: lesson.id,
+        storageKey: `jibscourses_lesson_state_${lesson.id}`,
+        legacyStorageKey: `lesson-session:${lesson.id}`,
+        initialProgressState: {
+            score: 0,
+            streak: 0,
+            stepsCompleted: [],
+            reflections: {},
+            achievementsUnlocked: [],
+        },
+    });
+
+    const persistedSession = sessionStore.load();
+    const orderManager = core.createStableOrderManager({
+        initialOrders:
+            persistedSession.optionOrders &&
+            typeof persistedSession.optionOrders === 'object'
+                ? persistedSession.optionOrders
+                : {},
+    });
+
+    let game;
+    let suppressSessionSave = false;
+    let persistTimeoutId = 0;
+    let warmupController;
+    let sortController;
+    let transformController;
+    let exitController;
+
+    sessionStore.stripRestartQueryParam();
+
+    function buildProgressState() {
+        const exitState = exitController ? exitController.getState() : {};
+        const reflections = {};
+        const finalReflection = (exitState.finalReflection || '').trim();
+
+        if (finalReflection) {
+            reflections.final = finalReflection;
+        }
+
+        return {
+            score: game ? game.state.totalScore : 0,
+            streak: game ? game.state.streak : 0,
+            stepsCompleted: lesson.steps
+                .filter(function filterCompletedStep(step, index) {
+                    return Boolean(game && game.state.starRatings[index] > 0);
+                })
+                .map(function mapCompletedStep(step) {
+                    return step.id;
+                }),
+            reflections: reflections,
+            achievementsUnlocked: game
+                ? Array.from(game.state.achievements)
+                : [],
+        };
+    }
+
+    function getCourseProgressStatus(snapshot, progressState) {
+        const hasProgress =
+            progressState.score > 0 ||
+            progressState.stepsCompleted.length > 0 ||
+            progressState.achievementsUnlocked.length > 0 ||
+            Object.keys(progressState.reflections).length > 0 ||
+            Number(snapshot.currentStep) > 1 ||
+            snapshot.game?.stepRetries?.some(function hasRetry(retryCount) {
+                return retryCount > 0;
+            });
+
+        if (snapshot.exit?.completed) {
+            return 'complete';
+        }
+
+        return hasProgress ? 'in-progress' : '';
+    }
+
+    const stepController = core.createStepController({
+        stepElements: Array.from(document.querySelectorAll('.lesson-step')),
+        stepCounterElement: document.getElementById('stepCounter'),
+        progressFillElement: document.getElementById('progressFill'),
+        autoScrollOnChange: true,
+        scrollTargetSelector: '.step-title',
+        scrollBehavior: 'smooth',
+        preventInitialScroll: true,
+    });
+
+    core.initThemeControls({
+        selectElement: document.getElementById('themeSelect'),
+        defaultTheme: 'dark',
+    });
+
+    game = core.createGameState({
+        stepCount: lesson.steps.length,
+        initialState: persistedSession.game,
+        perfectScoreTarget: lesson.gamification.perfectScoreTarget,
+        perfectStreakTarget: lesson.gamification.perfectStreakTarget,
+        hotStreakThreshold: lesson.gamification.hotStreakThreshold,
+        achievementCatalog: lesson.gamification.achievements,
+        scoreDisplay: document.getElementById('scoreDisplay'),
+        streakDisplay: document.getElementById('streakDisplay'),
+        stepStars: document.getElementById('stepStars'),
+        achievementList: document.getElementById('achievementList'),
+        summarySection: document.getElementById('trophySummary'),
+        summaryScore: document.getElementById('summaryScore'),
+        summaryStreak: document.getElementById('summaryStreak'),
+        summaryPerfectText: document.getElementById('summaryPerfectText'),
+        retryPrompt: document.getElementById('retryPrompt'),
+        confettiLayer: document.getElementById('confettiLayer'),
+        toggleTrophyButton: document.getElementById('toggleTrophyBtn'),
+        closeTrophyButton: document.getElementById('closeTrophyBtn'),
+        trophyCase: document.getElementById('trophyCase'),
+        onStepComplete: function onStepComplete(stepNumber, retries) {
+            if (stepNumber === 1 && retries === 0) {
+                game.unlockAchievement('warmup_ready');
+            }
+        },
+    });
+
+    function setChecklistItemState(item, complete, text) {
+        if (!item) {
+            return;
+        }
+        item.classList.toggle('completed', complete);
+        if (typeof text === 'string') {
+            item.textContent = text;
+        }
+    }
+
+    function saveSessionSnapshot() {
+        if (suppressSessionSave || !game) {
+            return;
+        }
+        const snapshot = {
+            currentStep: stepController.getCurrentStep(),
+            optionOrders: orderManager.getState(),
+            game: game.getSnapshot(),
+            warmup: warmupController ? warmupController.getState() : {},
+            sort: sortController ? sortController.getState() : {},
+            transform: transformController ? transformController.getState() : {},
+            exit: exitController ? exitController.getState() : {},
+        };
+        const progressState = buildProgressState();
+        sessionStore.save(snapshot);
+        sessionStore.saveProgress(progressState);
+        sessionStore.updateCourseProgress(
+            getCourseProgressStatus(snapshot, progressState),
+        );
+    }
+
+    function clearSessionSnapshot() {
+        sessionStore.clear();
+    }
+
+    function scheduleSessionPersist() {
+        if (suppressSessionSave) {
+            return;
+        }
+        if (persistTimeoutId) {
+            window.clearTimeout(persistTimeoutId);
+        }
+        persistTimeoutId = window.setTimeout(function persistSoon() {
+            persistTimeoutId = 0;
+            saveSessionSnapshot();
+        }, 120);
+    }
+
+    function handleSessionPersist() {
+        if (suppressSessionSave) {
+            clearSessionSnapshot();
+            return;
+        }
+        if (persistTimeoutId) {
+            window.clearTimeout(persistTimeoutId);
+            persistTimeoutId = 0;
+        }
+        saveSessionSnapshot();
+    }
+
+    sessionStore.bindAutoSave(handleSessionPersist);
+    document.addEventListener('input', scheduleSessionPersist);
+    document.addEventListener('change', scheduleSessionPersist);
+    document.addEventListener('click', function persistAfterButtonClick(event) {
+        if (event.target.closest('button')) {
+            scheduleSessionPersist();
+        }
+    });
+
+    document
+        .getElementById('resetLessonBtn')
+        .addEventListener('click', function () {
+            suppressSessionSave = true;
+            sessionStore.restartWithoutRestore();
+        });
+    document
+        .getElementById('tryAgainBtn')
+        .addEventListener('click', function () {
+            suppressSessionSave = true;
+            sessionStore.restartWithoutRestore();
+        });
+
+    function bindStepButtons() {
+        document.getElementById('nextStep1').addEventListener('click', () => stepController.showStep(2));
+        document.getElementById('backStep2').addEventListener('click', () => stepController.showStep(1));
+        document.getElementById('nextStep2').addEventListener('click', () => stepController.showStep(3));
+        document.getElementById('backStep3').addEventListener('click', () => stepController.showStep(2));
+        document.getElementById('nextStep3').addEventListener('click', () => stepController.showStep(4));
+        document.getElementById('backStep4').addEventListener('click', () => stepController.showStep(3));
+    }
+
+    function initWarmup() {
+        const statusElement = document.getElementById('warmupStatus');
+        const nextButton = document.getElementById('nextStep1');
+        const savedWarmup = persistedSession.warmup || {};
+        let completed = Boolean(savedWarmup.completed);
+
+        orderManager.reorderRadioGroup('warmup');
+        core.setCheckedValue('warmup', savedWarmup.selectedValue);
+        if (completed) {
+            nextButton.disabled = false;
+            core.setStatus(statusElement, lesson.warmup.correctFeedback, 'ok');
+        }
+
+        document.getElementById('checkWarmupBtn').addEventListener('click', () => {
+            const checked = document.querySelector('input[name="warmup"]:checked');
+            if (!checked) {
+                core.setStatus(statusElement, 'Choose one answer before you check the warm-up.', 'retry');
+                return;
+            }
+            if (checked.value === lesson.warmup.correct) {
+                if (!completed) {
+                    completed = true;
+                    game.addScore(10);
+                    game.incrementStreak();
+                    game.markStepComplete(1);
+                }
+                core.setStatus(statusElement, lesson.warmup.correctFeedback, 'ok');
+                nextButton.disabled = false;
+            } else {
+                game.registerRetry(1);
+                core.setStatus(statusElement, lesson.warmup.retryFeedback, 'retry');
+            }
+        });
+
+        return {
+            getState: () => ({
+                completed: completed,
+                selectedValue: core.getCheckedValue('warmup'),
+            }),
+        };
+    }
+
+    function initSortActivity() {
+        const tray = document.getElementById('sortItemTray');
+        const bins = document.querySelectorAll('.bin-drop-zone');
+        const checkSortBtn = document.getElementById('checkSortBtn');
+        const resetSortBtn = document.getElementById('resetSortBtn');
+        const status = document.getElementById('sortStatus');
+        const savedSort = persistedSession.sort || {};
+        
+        let completed = Boolean(savedSort.completed);
+        let draggedItem = null;
+
+        function renderItems() {
+            tray.innerHTML = '';
+            sortData.items.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'sortable-card';
+                el.draggable = true;
+                el.id = item.id;
+                el.dataset.correctBin = item.correctBin;
+                el.innerHTML = `
+                    <p><strong>${core.escapeHtml(item.content)}</strong></p>
+                    <div class="card-explanation">${core.escapeHtml(item.explanation)}</div>
+                `;
+                
+                el.addEventListener('dragstart', () => {
+                    draggedItem = el;
+                    setTimeout(() => el.classList.add('dragging'), 0);
+                });
+                el.addEventListener('dragend', () => {
+                    draggedItem = null;
+                    el.classList.remove('dragging');
+                    updateSubmitState();
+                });
+                tray.appendChild(el);
+            });
+        }
+
+        bins.forEach(bin => {
+            bin.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                bin.parentElement.classList.add('drag-over');
+            });
+            bin.addEventListener('dragleave', () => {
+                bin.parentElement.classList.remove('drag-over');
+            });
+            bin.addEventListener('drop', (e) => {
+                e.preventDefault();
+                bin.parentElement.classList.remove('drag-over');
+                if (draggedItem) {
+                    bin.appendChild(draggedItem);
+                }
+            });
+        });
+
+        tray.addEventListener('dragover', (e) => e.preventDefault());
+        tray.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedItem) {
+                tray.appendChild(draggedItem);
+            }
+        });
+
+        function updateSubmitState() {
+            const remaining = tray.querySelectorAll('.sortable-card').length;
+            checkSortBtn.disabled = remaining > 0;
+            if (remaining === 0) {
+                core.setStatus(status, "All items placed. Click Submit Sort to check your answers.", "");
+            } else {
+                core.setStatus(status, "Place all cards into bins before submitting.", "");
+            }
+        }
+
+        checkSortBtn.addEventListener('click', () => {
+            let allCorrect = true;
+            const allCards = document.querySelectorAll('.sortable-card');
+            allCards.forEach(card => {
+                card.classList.add('graded');
+                const parentBin = card.closest('.sort-bin');
+                if (parentBin && parentBin.dataset.binId === card.dataset.correctBin) {
+                    card.classList.add('correct');
+                    card.classList.remove('incorrect');
+                } else {
+                    card.classList.add('incorrect');
+                    card.classList.remove('correct');
+                    allCorrect = false;
+                }
+            });
+            
+            if (allCorrect) {
+                if (!completed) {
+                    completed = true;
+                    game.addScore(30);
+                    game.incrementStreak();
+                    game.markStepComplete(2);
+                    game.unlockAchievement('data_sorter');
+                }
+                core.setStatus(status, "Perfect! You correctly sorted data from information.", "ok");
+                document.getElementById('nextStep2').disabled = false;
+            } else {
+                game.registerRetry(2);
+                core.setStatus(status, "Some items are incorrectly placed. Review the explanations and try again.", "retry");
+            }
+        });
+
+        resetSortBtn.addEventListener('click', () => {
+            renderItems();
+            bins.forEach(b => b.innerHTML = '');
+            checkSortBtn.disabled = true;
+            core.setStatus(status, "Place all cards into bins before submitting.", "");
+            document.getElementById('nextStep2').disabled = true;
+        });
+
+        renderItems();
+        if (savedSort.cardBinMap) {
+            Object.keys(savedSort.cardBinMap).forEach(cardId => {
+                const binId = savedSort.cardBinMap[cardId];
+                const card = document.getElementById(cardId);
+                if (card && binId !== 'tray') {
+                    const binZone = document.querySelector(`.sort-bin[data-bin-id="${binId}"] .bin-drop-zone`);
+                    if (binZone) binZone.appendChild(card);
+                }
+            });
+            updateSubmitState();
+        }
+
+        if (completed) {
+            document.querySelectorAll('.sortable-card').forEach(card => {
+                card.classList.add('graded', 'correct');
+            });
+            document.getElementById('nextStep2').disabled = false;
+            core.setStatus(status, "Activity complete. Feel free to review or move on.", "ok");
+            checkSortBtn.disabled = true;
+        }
+        
+        return {
+            getState: () => {
+                const map = {};
+                document.querySelectorAll('.sortable-card').forEach(card => {
+                    const bin = card.closest('.sort-bin');
+                    map[card.id] = bin ? bin.dataset.binId : 'tray';
+                });
+                return { completed, cardBinMap: map };
+            }
+        };
+    }
+
+    function initTransformActivity() {
+        const inputsContainer = document.getElementById('dataInputsContainer');
+        const chartContainer = document.getElementById('chartContainer');
+        const resetDataBtn = document.getElementById('resetDataBtn');
+        const status = document.getElementById('transformTargetStatus');
+        const targetData = transformData.targetData;
+        
+        const savedTransform = persistedSession.transform || {};
+        let completed = Boolean(savedTransform.completed);
+        let currentData = savedTransform.currentData ? JSON.parse(JSON.stringify(savedTransform.currentData)) : JSON.parse(JSON.stringify(transformData.initialData));
+
+        function renderChart() {
+            chartContainer.innerHTML = '';
+            const maxVal = Math.max(...currentData.map(d => d.value), 100);
+            
+            currentData.forEach(d => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'chart-bar-wrapper';
+                
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                const heightPct = (d.value / maxVal) * 100;
+                bar.style.height = `${heightPct}%`;
+                
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = d.day.substring(0, 3);
+                
+                wrapper.appendChild(bar);
+                wrapper.appendChild(label);
+                chartContainer.appendChild(wrapper);
+                
+                if (targetData[d.day.toLowerCase()] !== undefined) {
+                    if (d.value === targetData[d.day.toLowerCase()]) {
+                        bar.style.backgroundColor = 'var(--color-success)';
+                    }
+                }
+            });
+            checkTargetMatch();
+        }
+
+        function checkTargetMatch() {
+            let allMatch = true;
+            currentData.forEach(d => {
+                if (targetData[d.day.toLowerCase()] !== undefined) {
+                    if (d.value !== targetData[d.day.toLowerCase()]) {
+                        allMatch = false;
+                    }
+                }
+            });
+
+            if (allMatch) {
+                if (!completed) {
+                    completed = true;
+                    game.addScore(40);
+                    game.incrementStreak();
+                    game.markStepComplete(3);
+                    game.unlockAchievement('data_transformer');
+                }
+                core.setStatus(status, "Target matched! Notice how raw values drive the entire representation.", "ok");
+                document.getElementById('nextStep3').disabled = false;
+                chartContainer.style.borderColor = 'var(--color-success)';
+            } else {
+                if(!completed) {
+                    core.setStatus(status, "Adjust the data to match the target description.", "");
+                    document.getElementById('nextStep3').disabled = true;
+                }
+                chartContainer.style.borderColor = 'var(--color-border)';
+            }
+        }
+
+        function renderInputs() {
+            inputsContainer.innerHTML = '';
+            currentData.forEach((d, index) => {
+                const row = document.createElement('div');
+                row.className = 'input-row';
+                
+                const label = document.createElement('label');
+                label.textContent = d.day;
+                
+                const input = document.createElement('input');
+                input.type = 'range';
+                input.min = '0';
+                input.max = '100';
+                input.value = d.value;
+                input.step = '5';
+                
+                const display = document.createElement('div');
+                display.className = 'value-display';
+                display.textContent = d.value;
+                
+                input.addEventListener('input', (e) => {
+                    const val = parseInt(e.target.value, 10);
+                    display.textContent = val;
+                    currentData[index].value = val;
+                    renderChart();
+                });
+                
+                row.appendChild(label);
+                row.appendChild(input);
+                row.appendChild(display);
+                inputsContainer.appendChild(row);
+            });
+        }
+
+        resetDataBtn.addEventListener('click', () => {
+            currentData = JSON.parse(JSON.stringify(transformData.initialData));
+            renderInputs();
+            renderChart();
+            game.registerRetry(3);
+        });
+
+        renderInputs();
+        renderChart();
+
+        if (completed) {
+            document.getElementById('nextStep3').disabled = false;
+            core.setStatus(status, "Activity complete. Feel free to review or move on.", "ok");
+        }
+
+        return {
+            getState: () => ({
+                completed,
+                currentData: JSON.parse(JSON.stringify(currentData))
+            })
+        };
+    }
+
+    function initExitCheck() {
+        const savedExit = persistedSession.exit || {};
+        let completed = Boolean(savedExit.completed);
+        const submitBtn = document.getElementById('submitExitCheckBtn');
+        const status = document.getElementById('exitStatus');
+        const completeBanner = document.getElementById('completeBanner');
+        const reflectionInput = document.getElementById('finalReflection');
+        
+        lesson.exitCheck.questions.forEach(q => {
+            orderManager.reorderRadioGroup(q.id);
+            if (savedExit.answers && savedExit.answers[q.id]) {
+                core.setCheckedValue(q.id, savedExit.answers[q.id]);
+            }
+        });
+        
+        if (savedExit.finalReflection) {
+            reflectionInput.value = savedExit.finalReflection;
+        }
+
+        const teacherSummary = core.initTeacherSummary({
+            triggerButton: document.getElementById('openTeacherSummaryBtn'),
+            modal: document.getElementById('teacherSummaryModal'),
+            closeButton: document.getElementById('closeTeacherSummaryBtn'),
+            scoreElement: document.getElementById('teacherSummaryScore'),
+            streakElement: document.getElementById('teacherSummaryStreak'),
+            retriesElement: document.getElementById('teacherSummaryRetries'),
+            perfectTextElement: document.getElementById('teacherSummaryPerfectText'),
+            achievementsElement: document.getElementById('teacherSummaryAchievements'),
+            stepStarsElement: document.getElementById('teacherSummaryStepStars'),
+            reflectionsContainer: document.getElementById('teacherSummaryReflections'),
+            achievementCatalog: lesson.gamification.achievements,
+            perfectScoreTarget: lesson.gamification.perfectScoreTarget,
+            perfectStreakTarget: lesson.gamification.perfectStreakTarget,
+            stepCount: lesson.steps.length,
+            game: game,
+            summaryMessages: completionSummaryMessages,
+            reflectionSections: [
+                {
+                    label: 'Final reflection',
+                    getValue: () => reflectionInput.value,
+                    emptyText: 'No final reflection was saved.',
+                },
+            ],
+            initiallyUnlocked: completed,
+        });
+
+        const finalReflectionChecklist = document.getElementById('finalReflectionChecklist')?.children;
+
+        function updateFinalReflectionChecklist() {
+            const text = reflectionInput.value.trim();
+            const wordsObj = ['data', 'information', 'representation', 'values'];
+            let matchedTermCount = 0;
+            const lowerText = text.toLowerCase();
+            wordsObj.forEach(w => {
+                if (lowerText.includes(w)) matchedTermCount++;
+            });
+
+            if (finalReflectionChecklist) {
+                setChecklistItemState(
+                    finalReflectionChecklist[0],
+                    text.length >= 80,
+                    `Write at least 80 characters. ${Math.min(text.length, 80)}/80`
+                );
+                setChecklistItemState(
+                    finalReflectionChecklist[1],
+                    matchedTermCount >= 2,
+                    `Use at least 2 lesson terms: data, information, representation, values. ${Math.min(matchedTermCount, 2)}/2`
+                );
+                setChecklistItemState(
+                    finalReflectionChecklist[2],
+                    text.length > 5 && matchedTermCount >= 1, // rough approximation for mentioning dataset
+                    "Name the dataset and explain its raw vs representation form."
+                );
+            }
+        }
+
+        reflectionInput.addEventListener('input', updateFinalReflectionChecklist);
+        updateFinalReflectionChecklist();
+
+        submitBtn.addEventListener('click', () => {
+            let allCorrect = true;
+            let answeredAll = true;
+            
+            lesson.exitCheck.questions.forEach(q => {
+                const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+                const fieldset = document.getElementById(q.id);
+                if (!checked) {
+                    answeredAll = false;
+                    fieldset.classList.add('error');
+                } else if (checked.value !== q.correct) {
+                    allCorrect = false;
+                    fieldset.classList.add('error');
+                    fieldset.style.borderColor = 'var(--color-danger)';
+                } else {
+                    fieldset.classList.remove('error');
+                    fieldset.style.borderColor = 'var(--color-success)';
+                }
+            });
+
+            const reflectionStr = reflectionInput.value.trim();
+            const wordsObj = ['data', 'information', 'representation', 'values'];
+            let count = 0;
+            wordsObj.forEach(w => {
+                if (reflectionStr.toLowerCase().includes(w)) count++;
+            });
+
+            const refValid = reflectionStr.length >= 80 && count >= 2;
+
+            if (!answeredAll) {
+                core.setStatus(status, "Answer all questions before submitting.", "retry");
+                return;
+            }
+
+            if (!allCorrect) {
+                game.registerRetry(4);
+                core.setStatus(status, "Some answers are incorrect. Review the lesson and try again.", "retry");
+                return;
+            }
+
+            if (!refValid) {
+                game.registerRetry(4);
+                core.setStatus(status, "Please include at least 80 characters and 2 keyword terms in your reflection.", "retry");
+                return;
+            }
+
+            if (!completed) {
+                completed = true;
+                game.addScore(lesson.exitCheck.points);
+                game.incrementStreak();
+                game.markStepComplete(4);
+            }
+
+            core.setStatus(status, "Wrap-up accepted. Well done!", "ok");
+            core.setHidden(completeBanner, false);
+            submitBtn.disabled = true;
+            
+            document.querySelectorAll('#step4 input').forEach(inp => inp.disabled = true);
+            reflectionInput.disabled = true;
+
+            game.showSummary({
+                perfect: game.isPerfect(),
+                perfectMessage: completionSummaryMessages.perfect,
+                retryMessage: completionSummaryMessages.good,
+            });
+            teacherSummary.setUnlocked(true);
+            teacherSummary.render();
+        });
+
+        if (completed) {
+            core.setStatus(status, "Wrap-up accepted. Well done!", "ok");
+            core.setHidden(completeBanner, false);
+            submitBtn.disabled = true;
+            document.querySelectorAll('#step4 input').forEach(inp => inp.disabled = true);
+            reflectionInput.disabled = true;
+            teacherSummary.render();
+        }
+
+        return {
+            getState: () => {
+                const answers = {};
+                lesson.exitCheck.questions.forEach(q => {
+                    answers[q.id] = core.getCheckedValue(q.id);
+                });
+                return {
+                    completed,
+                    answers,
+                    finalReflection: reflectionInput.value.trim()
+                };
+            }
+        };
+    }
+
+    bindStepButtons();
+    warmupController = initWarmup();
+    sortController = initSortActivity();
+    transformController = initTransformActivity();
+    exitController = initExitCheck();
+
+    if (Number(persistedSession.currentStep) > 1) {
+        stepController.showStep(Number(persistedSession.currentStep));
+    }
+    saveSessionSnapshot();
+})();
+
+        </script>
+
+    </body>
+</html>
