@@ -390,6 +390,66 @@
             line-height: 1.8;
         }
 
+        /* Usage Guide Section */
+        .usage-guide {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .usage-guide .section-header p {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resource-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .resource-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            background: rgba(139, 92, 246, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .resource-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .resource-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -489,6 +549,44 @@
                         </div>
                         <h3>Interactive Learning</h3>
                         <p>Lessons aren't just static text. They include interactive activities, gamification, and checkpoints built right in.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="usage-guide">
+                <div class="section-header">
+                    <h2>How to Use These Resources</h2>
+                    <p>These lessons assume that each student or small group of students has access to their own computer or device. While the interactive student environments are fully mobile-friendly, a wider screen provides the optimal learning experience.</p>
+                </div>
+
+                <div class="resource-breakdown">
+                    <div class="resource-item">
+                        <div class="resource-icon">💻</div>
+                        <div>
+                            <h4>Interactive Lesson (HTML)</h4>
+                            <p>The core digital environment for students to explore concepts, complete activities, and test their knowledge.</p>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-icon">🎓</div>
+                        <div>
+                            <h4>Abridged Teacher Guide (HTML)</h4>
+                            <p>A quick, digital-friendly reference containing pacing suggestions, answers, and debriefing questions to keep open while teaching.</p>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-icon">📝</div>
+                        <div>
+                            <h4>Student Worksheet (PDF)</h4>
+                            <p>A printable document for students to follow along, take notes, and complete offline exercises during the lesson.</p>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-icon">📋</div>
+                        <div>
+                            <h4>Complete Teacher Guide (PDF)</h4>
+                            <p>A comprehensive, printable version of the teacher guide containing deep-dive pedagogical context and all worksheet answers.</p>
+                        </div>
                     </div>
                 </div>
             </section>
