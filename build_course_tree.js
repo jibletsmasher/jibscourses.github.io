@@ -227,20 +227,33 @@ function generateLessonIndex(lessonCode, lessonTitle, files) {
             opacity: 1;
         }
 
-        .resource-card.teacher::before {
-            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
-        }
-        
-        .resource-card.teacher:hover {
-            border-color: rgba(234, 179, 8, 0.4);
+        /* Interactive Lesson: Green */
+        .resource-card.interactive::before {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
         }
 
+        .resource-card.interactive:hover {
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        /* Teacher Guide HTML: Purple (default gradient) */
+
+        /* Student Worksheet PDF: Red */
         .resource-card.pdf::before {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
         }
 
         .resource-card.pdf:hover {
             border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        /* Teacher Resource PDF: Yellow */
+        .resource-card.teacher::before {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+        }
+
+        .resource-card.teacher:hover {
+            border-color: rgba(234, 179, 8, 0.4);
         }
 
         .card-content {
@@ -283,20 +296,27 @@ function generateLessonIndex(lessonCode, lessonTitle, files) {
             transition: all 0.3s ease;
         }
 
+        /* Default hover btn: purple */
         .resource-card:hover .btn {
             background: var(--gradient-primary);
             border-color: transparent;
             color: white;
         }
 
-        .resource-card.teacher:hover .btn {
-            background: linear-gradient(135deg, #eab308, #f59e0b);
+        .resource-card.interactive:hover .btn {
+            background: linear-gradient(135deg, #22c55e, #10b981);
             border-color: transparent;
             color: white;
         }
 
         .resource-card.pdf:hover .btn {
             background: linear-gradient(135deg, #ef4444, #f43f5e);
+            border-color: transparent;
+            color: white;
+        }
+
+        .resource-card.teacher:hover .btn {
+            background: linear-gradient(135deg, #eab308, #f59e0b);
             border-color: transparent;
             color: white;
         }
@@ -312,7 +332,7 @@ function generateLessonIndex(lessonCode, lessonTitle, files) {
                         <linearGradient id="paint0_linear" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
                             <stop stop-color="#6d28d9"/>
                             <stop offset="1" stop-color="#d946ef"/>
-                        </linear.gradient>
+                        </linearGradient>
                     </defs>
                     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
                 </svg>
@@ -330,7 +350,7 @@ function generateLessonIndex(lessonCode, lessonTitle, files) {
 
             <div class="resource-grid">
                 ${files.interactiveHtml ? `
-                <a href="${files.interactiveHtml}" class="resource-card">
+                <a href="${files.interactiveHtml}" class="resource-card interactive">
                     <div class="card-content">
                         <div class="icon">💻</div>
                         <h2 class="resource-title">Interactive Lesson</h2>
@@ -340,7 +360,7 @@ function generateLessonIndex(lessonCode, lessonTitle, files) {
                 </a>` : ''}
 
                 ${files.teacherHtml ? `
-                <a href="${files.teacherHtml}" class="resource-card teacher">
+                <a href="${files.teacherHtml}" class="resource-card">
                     <div class="card-content">
                         <div class="icon">🎓</div>
                         <h2 class="resource-title">Teacher's Guide</h2>
@@ -360,7 +380,7 @@ function generateLessonIndex(lessonCode, lessonTitle, files) {
                 </a>` : ''}
 
                 ${files.teacherPdf ? `
-                <a href="${files.teacherPdf}" class="resource-card teacher pdf">
+                <a href="${files.teacherPdf}" class="resource-card teacher">
                     <div class="card-content">
                         <div class="icon">📋</div>
                         <h2 class="resource-title">Teacher Resource</h2>
