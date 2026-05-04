@@ -1,266 +1,346 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-    <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6VPTWZXEV"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6VPTWZXEV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G6VPTWZXEV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1.3 — 1.1.3 — Binary & Encoding | Jib's Courses</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #050505;
+            --bg-surface: #121212;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            
+            --accent-color: #8b5cf6;
+            --accent-hover: #a78bfa;
+            --gradient-primary: linear-gradient(135deg, #6d28d9 0%, #d946ef 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(109, 40, 217, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
+            
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
 
-            gtag('config', 'G-G6VPTWZXEV');
-        </script>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>1.1.3 — 1.1.3 — Binary & Encoding — Resources</title>
-        <style>
-            :root {
-                --color-primary: #7f77dd;
-                --color-primary-light: #eeedfe;
-                --color-primary-dark: #3c3489;
-                --color-primary-text: #534ab7;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-                --color-teacher: #1d9e75;
-                --color-teacher-light: #e1f5ee;
-                --color-teacher-dark: #085041;
-                --color-teacher-text: #0f6e56;
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-                --bg: #121124;
-                --bg-accent: #1a1936;
-                --card: #1f1d3d;
-                --card-strong: #2b2955;
-                --text: #ebf4ee;
-                --muted: #9db4a8;
-                --accent: var(--color-primary);
-                --accent-strong: var(--color-primary-dark);
-                --accent-soft: color-mix(
-                    in srgb,
-                    var(--color-primary) 24%,
-                    var(--card)
-                );
-                --border: #28453d;
-                --shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
-                --radius-card: 28px;
-                --radius-button: 16px;
-                --font-serif: Georgia, 'Times New Roman', serif;
-            }
+        /* Abstract Background Elements */
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-primary);
+            filter: blur(120px);
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: -1;
+            top: -200px;
+            left: -200px;
+        }
 
-            * {
-                box-sizing: border-box;
-            }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-            body {
-                margin: 0;
-                min-height: 100vh;
-                background: radial-gradient(
-                        circle at top left,
-                        var(--bg-accent),
-                        transparent 34%
-                    ),
-                    linear-gradient(180deg, var(--bg), var(--bg-accent));
-                color: var(--text);
-                font-family: var(--font-serif);
-                line-height: 1.5;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-            }
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            .container {
-                width: min(1000px, 100%);
-                display: grid;
-                gap: 2rem;
-            }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-            .header {
-                text-align: center;
-                display: grid;
-                gap: 0.5rem;
-            }
+        .logo span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-            .lesson-code {
-                display: inline-block;
-                padding: 0.35rem 1rem;
-                background: var(--accent-soft);
-                color: var(--color-primary);
-                border-radius: 999px;
-                font-size: 0.9rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                margin: 0 auto;
-                border: 1px solid var(--border);
-            }
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
 
-            h1 {
-                font-size: clamp(2rem, 5vw, 3.5rem);
-                margin: 0.5rem 0;
-                line-height: 1.1;
-            }
+        .nav-cta:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
 
-            .description {
-                color: var(--muted);
-                font-size: 1.1rem;
-                max-width: 60ch;
-                margin: 0 auto;
-            }
+        .hero {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            position: relative;
+        }
 
-            .resource-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 1.5rem;
-            }
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: var(--gradient-subtle);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: var(--accent-hover);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
 
-            .resource-card {
-                background: var(--card);
-                border: 1px solid var(--border);
-                border-radius: var(--radius-card);
-                padding: 2rem;
-                text-decoration: none;
-                color: inherit;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                transition:
-                    transform 0.2s ease,
-                    border-color 0.2s ease,
-                    box-shadow 0.2s ease;
-                position: relative;
-                overflow: hidden;
-            }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
 
-            .resource-card:hover {
-                transform: translateY(-8px);
-                border-color: var(--color-primary);
-                box-shadow: 0 12px 30px rgba(127, 119, 221, 0.2);
-            }
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-            .resource-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 4px;
-                background: var(--accent);
-                opacity: 0.3;
-            }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0 6rem;
+        }
 
-            .resource-card.teacher::before {
-                background: #ffcc00; /* Gold/Amber for attention resources */
-            }
+        .resource-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
 
-            .resource-card.pdf::before {
-                background: #e24b4a; /* Red for PDF */
-            }
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-subtle);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
 
-            .icon {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
-            }
+        .resource-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
 
-            .resource-title {
-                font-size: 1.4rem;
-                font-weight: 700;
-                margin: 0;
-            }
+        .resource-card:hover::before {
+            opacity: 1;
+        }
 
-            .resource-meta {
-                font-size: 0.9rem;
-                color: var(--muted);
-                margin-top: auto;
-            }
+        .resource-card.teacher::before {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+        }
+        
+        .resource-card.teacher:hover {
+            border-color: rgba(234, 179, 8, 0.4);
+        }
 
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0.75rem 1.5rem;
-                background: var(--card-strong);
-                border: 1px solid var(--border);
-                border-radius: var(--radius-button);
-                font-weight: 700;
-                margin-top: 1rem;
-                transition: all 0.2s ease;
-            }
+        .resource-card.pdf::before {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
+        }
 
-            .resource-card:hover .btn {
-                background: var(--accent);
-                border-color: var(--accent);
-                color: #fff;
-            }
+        .resource-card.pdf:hover {
+            border-color: rgba(239, 68, 68, 0.4);
+        }
 
-            .resource-card.teacher:hover .btn {
-                background: var(--color-primary-dark);
-                border-color: var(--color-primary);
-            }
+        .card-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
 
-            .back-link {
-                margin-top: 3rem;
-                color: var(--muted);
-                text-decoration: none;
-                font-size: 0.95rem;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                transition: color 0.2s ease;
-            }
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
 
-            .back-link:hover {
-                color: var(--text);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <header class="header">
-                <span class="lesson-code">LESSON 1.1.3</span>
+        .resource-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .resource-meta {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover .btn {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        .resource-card.teacher:hover .btn {
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            border-color: transparent;
+            color: white;
+        }
+
+        .resource-card.pdf:hover .btn {
+            background: linear-gradient(135deg, #ef4444, #f43f5e);
+            border-color: transparent;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="container">
+        <header>
+            <a href="../../../index.html" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#paint0_linear)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#6d28d9"/>
+                            <stop offset="1" stop-color="#d946ef"/>
+                        </linear.gradient>
+                    </defs>
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                </svg>
+                Jib's <span>Courses</span>
+            </a>
+            <a href="../../index.html" class="nav-cta">Back to Course</a>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-badge">Lesson 1.1.3</div>
                 <h1>1.1.3 — Binary & Encoding</h1>
-                <p class="description">
-                    Access all resources for this lesson, including interactive content, teacher guides, and printable worksheets.
-                </p>
-            </header>
+                <p>Access all resources for this lesson, including interactive content, teacher guides, and printable worksheets.</p>
+            </section>
 
             <div class="resource-grid">
                 
                 <a href="1.1.3-binary-encoding.html" class="resource-card">
-                    <div class="icon">💻</div>
-                    <h2 class="resource-title">Interactive Lesson</h2>
-                    <p class="resource-meta">The core digital lesson for students.</p>
-                    <div class="btn">Launch Lesson</div>
+                    <div class="card-content">
+                        <div class="icon">💻</div>
+                        <h2 class="resource-title">Interactive Lesson</h2>
+                        <p class="resource-meta">The core digital lesson for students.</p>
+                        <div class="btn">Launch Lesson</div>
+                    </div>
                 </a>
 
                 
                 <a href="for-teachers.html" class="resource-card teacher">
-                    <div class="icon">🎓</div>
-                    <h2 class="resource-title">Teacher's Guide</h2>
-                    <p class="resource-meta">HTML guide with answers and debriefing questions.</p>
-                    <div class="btn">View Guide</div>
+                    <div class="card-content">
+                        <div class="icon">🎓</div>
+                        <h2 class="resource-title">Teacher's Guide</h2>
+                        <p class="resource-meta">HTML guide with answers and debriefing questions.</p>
+                        <div class="btn">View Guide</div>
+                    </div>
                 </a>
 
                 
                 <a href="1.1.3_student_worksheet.pdf" class="resource-card pdf">
-                    <div class="icon">📝</div>
-                    <h2 class="resource-title">Student Worksheet</h2>
-                    <p class="resource-meta">Downloadable PDF for classroom work.</p>
-                    <div class="btn">Download PDF</div>
+                    <div class="card-content">
+                        <div class="icon">📝</div>
+                        <h2 class="resource-title">Student Worksheet</h2>
+                        <p class="resource-meta">Downloadable PDF for classroom work.</p>
+                        <div class="btn">Download PDF</div>
+                    </div>
                 </a>
 
                 
                 <a href="1.1.3_teacher_guide.pdf" class="resource-card teacher pdf">
-                    <div class="icon">📋</div>
-                    <h2 class="resource-title">Teacher Resource</h2>
-                    <p class="resource-meta">Complete teacher guide in PDF format.</p>
-                    <div class="btn">Download PDF</div>
+                    <div class="card-content">
+                        <div class="icon">📋</div>
+                        <h2 class="resource-title">Teacher Resource</h2>
+                        <p class="resource-meta">Complete teacher guide in PDF format.</p>
+                        <div class="btn">Download PDF</div>
+                    </div>
                 </a>
             </div>
-
-            <a href="../../../index.html" class="back-link">
-                ← Back to Course Overview
-            </a>
-        </div>
-    </body>
+        </main>
+    </div>
+</body>
 </html>
